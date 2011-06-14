@@ -87,6 +87,8 @@
 		[self addSubview:_imageLoadingProgress];
 
 		[self configureSubviews];
+		
+		self.hideWhenEmpty = YES;
     }
     return self;
 }
@@ -314,6 +316,16 @@
 		[self setIsMinimized:NO animated:YES];
 		return;
 	}
+	
+	UITouch *touch = [touches anyObject];
+	CGPoint tapLocation = [touch locationInView:self];
+	
+	if (tapLocation.x > (self.bounds.size.width-40))
+	{
+		[self performSelector:@selector(closeButtonPressed)];
+		return;
+	}
+	
 	[_delegate bannerViewPressed:self];
 }
 
@@ -426,8 +438,11 @@
 {
 	if (self.isMinimized)
 	{
-		_reloadAfterOpenning = YES;
-		return;
+		if (!self.isEmpty || !_hideWhenEmpty)
+		{
+			_reloadAfterOpenning = YES;
+			return;
+		}
 	}
 	
 	[self cancelLoadImage];

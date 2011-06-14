@@ -1,17 +1,5 @@
 // !$*UTF8*$!
 {
-	06447EA91259B47800D649E9 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			LSRequiresIPhoneOS,
-		);
-		name = "/Users/Apelsin/Documents/Work/Project/wapPlus/WapPlusSDK/WapPlusDemo/WapPlusDemo-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
-	};
 	0644805A125C93F300D649E9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */;
@@ -22,26 +10,6 @@
 		vrLen = 2566;
 		vrLoc = 0;
 	};
-	0644806A125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */;
-		name = "WPBannerView.m: 1";
-		rLen = 1647;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 2026;
-		vrLoc = 0;
-	};
-	0644806B125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 06FE33BB124A282400A7CA77 /* WPDemo2ViewController.m */;
-		name = "WPDemo2ViewController.m: 30";
-		rLen = 0;
-		rLoc = 1656;
-		rType = 0;
-		vrLen = 2044;
-		vrLoc = 0;
-	};
 	0644806C125C95FD00D649E9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 06FE33BA124A282400A7CA77 /* WPDemo2ViewController.h */;
@@ -50,26 +18,6 @@
 		rLoc = 1657;
 		rType = 0;
 		vrLen = 1858;
-		vrLoc = 0;
-	};
-	0644806D125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 0672C3CC122BAED700DE1F54 /* WPDemo1ViewController.m */;
-		name = "WPDemo1ViewController.m: 31";
-		rLen = 0;
-		rLoc = 1656;
-		rType = 0;
-		vrLen = 2006;
-		vrLoc = 0;
-	};
-	0644806E125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 0672C3CB122BAED700DE1F54 /* WPDemo1ViewController.h */;
-		name = "WPDemo1ViewController.h: 31";
-		rLen = 0;
-		rLoc = 1656;
-		rType = 0;
-		vrLen = 1911;
 		vrLoc = 0;
 	};
 	0644806F125C95FD00D649E9 /* PBXTextBookmark */ = {
@@ -112,16 +60,6 @@
 		vrLen = 2074;
 		vrLoc = 0;
 	};
-	06448073125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */;
-		name = "WapPlusDemo_Prefix.pch: 18";
-		rLen = 0;
-		rLoc = 428;
-		rType = 0;
-		vrLen = 428;
-		vrLoc = 0;
-	};
 	06448074125C95FD00D649E9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 06FE33CD124A2CCE00A7CA77 /* WPDemo3ViewController.h */;
@@ -142,35 +80,25 @@
 		vrLen = 2002;
 		vrLoc = 0;
 	};
-	06448076125C95FD00D649E9 /* PBXTextBookmark */ = {
+	06448084125C992200D649E9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 32";
+		fRef = 0672C372122BAC9300DE1F54 /* WPBannerView.h */;
+		name = "WPBannerView.h: 97";
+		rLen = 253;
+		rLoc = 3261;
+		rType = 0;
+		vrLen = 1323;
+		vrLoc = 2197;
+	};
+	06448085125C992200D649E9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0672C3CB122BAED700DE1F54 /* WPDemo1ViewController.h */;
+		name = "WPDemo1ViewController.h: 31";
 		rLen = 0;
-		rLoc = 1664;
+		rLoc = 1656;
 		rType = 0;
-		vrLen = 1887;
+		vrLen = 1911;
 		vrLoc = 0;
-	};
-	06448077125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 0672C372122BAC9300DE1F54 /* WPBannerView.h */;
-		name = "WPBannerView.h: 61";
-		rLen = 20;
-		rLoc = 2320;
-		rType = 0;
-		vrLen = 1317;
-		vrLoc = 2199;
-	};
-	06448078125C95FD00D649E9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 0672C372122BAC9300DE1F54 /* WPBannerView.h */;
-		name = "WPBannerView.h: 61";
-		rLen = 20;
-		rLoc = 2320;
-		rType = 0;
-		vrLen = 1287;
-		vrLoc = 2233;
 	};
 	0654FF931254CB2900A9DD02 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -273,15 +201,15 @@
 	0672C372122BAC9300DE1F54 /* WPBannerView.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {965, 1378}}";
-			sepNavSelRange = "{2320, 20}";
-			sepNavVisRange = "{2233, 1287}";
+			sepNavSelRange = "{3261, 253}";
+			sepNavVisRange = "{2197, 1323}";
 		};
 	};
 	0672C373122BAC9300DE1F54 /* WPBannerView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {633, 7267}}";
-			sepNavSelRange = "{11854, 0}";
-			sepNavVisRange = "{12150, 390}";
+			sepNavIntBoundsRect = "{{0, 0}, {965, 7930}}";
+			sepNavSelRange = "{9400, 0}";
+			sepNavVisRange = "{0, 2062}";
 		};
 	};
 	0672C374122BAC9300DE1F54 /* WPTypes.h */ = {
@@ -308,22 +236,93 @@
 	};
 	0672C3CB122BAED700DE1F54 /* WPDemo1ViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {965, 620}}";
+			sepNavIntBoundsRect = "{{0, 0}, {965, 668}}";
 			sepNavSelRange = "{1656, 0}";
 			sepNavVisRange = "{0, 1911}";
 		};
 	};
 	0672C3CC122BAED700DE1F54 /* WPDemo1ViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {965, 1677}}";
-			sepNavSelRange = "{1656, 0}";
-			sepNavVisRange = "{0, 2006}";
+			sepNavIntBoundsRect = "{{0, 0}, {965, 1781}}";
+			sepNavSelRange = "{2705, 0}";
+			sepNavVisRange = "{2233, 1454}";
 			sepNavWindowFrame = "{{74, 0}, {1289, 878}}";
 		};
 	};
 	0672C407122BB06500DE1F54 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 0672C3FE122BB04A00DE1F54 /* logo.png */;
+	};
+	068FAFDE125DD42900FE5A88 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/Apelsin/Documents/Work/Project/wapPlus/WapPlusSDK/WapPlusDemo/WapPlusDemo-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	068FAFDF125DD42900FE5A88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0672C3CC122BAED700DE1F54 /* WPDemo1ViewController.m */;
+		name = "WPDemo1ViewController.m: 74";
+		rLen = 0;
+		rLoc = 2705;
+		rType = 0;
+		vrLen = 1454;
+		vrLoc = 2233;
+	};
+	068FAFE0125DD42900FE5A88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 06FE33BB124A282400A7CA77 /* WPDemo2ViewController.m */;
+		name = "WPDemo2ViewController.m: 73";
+		rLen = 0;
+		rLoc = 2536;
+		rType = 0;
+		vrLen = 1000;
+		vrLoc = 2065;
+	};
+	068FAFE1125DD42900FE5A88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 32";
+		rLen = 0;
+		rLoc = 1664;
+		rType = 0;
+		vrLen = 1887;
+		vrLoc = 0;
+	};
+	068FAFE2125DD42900FE5A88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */;
+		name = "WapPlusDemo_Prefix.pch: 18";
+		rLen = 0;
+		rLoc = 428;
+		rType = 0;
+		vrLen = 428;
+		vrLoc = 0;
+	};
+	068FAFE3125DD42900FE5A88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */;
+		name = "WPBannerView.m: 431";
+		rLen = 0;
+		rLoc = 12639;
+		rType = 0;
+		vrLen = 990;
+		vrLoc = 11914;
+	};
+	068FAFF2125DD47900FE5A88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */;
+		name = "WPBannerView.m: 329";
+		rLen = 0;
+		rLoc = 9400;
+		rType = 0;
+		vrLen = 2062;
+		vrLoc = 0;
 	};
 	06FC7E9312537857002C00A6 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -414,9 +413,9 @@
 	};
 	06FE33BB124A282400A7CA77 /* WPDemo2ViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {951, 2392}}";
-			sepNavSelRange = "{2710, 0}";
-			sepNavVisRange = "{1299, 668}";
+			sepNavIntBoundsRect = "{{0, 0}, {965, 2249}}";
+			sepNavSelRange = "{2536, 0}";
+			sepNavVisRange = "{2065, 1000}";
 		};
 	};
 	06FE33CD124A2CCE00A7CA77 /* WPDemo3ViewController.h */ = {
@@ -563,29 +562,29 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 308051274;
-			PBXWorkspaceStateSaveDate = 308051274;
+			PBXPerProjectTemplateStateSaveDate = 308138406;
+			PBXWorkspaceStateSaveDate = 308138406;
 		};
 		perUserProjectItems = {
-			06447EA91259B47800D649E9 /* PlistBookmark */ = 06447EA91259B47800D649E9 /* PlistBookmark */;
 			0644805A125C93F300D649E9 /* PBXTextBookmark */ = 0644805A125C93F300D649E9 /* PBXTextBookmark */;
-			0644806A125C95FD00D649E9 /* PBXTextBookmark */ = 0644806A125C95FD00D649E9 /* PBXTextBookmark */;
-			0644806B125C95FD00D649E9 /* PBXTextBookmark */ = 0644806B125C95FD00D649E9 /* PBXTextBookmark */;
 			0644806C125C95FD00D649E9 /* PBXTextBookmark */ = 0644806C125C95FD00D649E9 /* PBXTextBookmark */;
-			0644806D125C95FD00D649E9 /* PBXTextBookmark */ = 0644806D125C95FD00D649E9 /* PBXTextBookmark */;
-			0644806E125C95FD00D649E9 /* PBXTextBookmark */ = 0644806E125C95FD00D649E9 /* PBXTextBookmark */;
 			0644806F125C95FD00D649E9 /* PBXTextBookmark */ = 0644806F125C95FD00D649E9 /* PBXTextBookmark */;
 			06448070125C95FD00D649E9 /* PBXTextBookmark */ = 06448070125C95FD00D649E9 /* PBXTextBookmark */;
 			06448071125C95FD00D649E9 /* PBXTextBookmark */ = 06448071125C95FD00D649E9 /* PBXTextBookmark */;
 			06448072125C95FD00D649E9 /* PBXTextBookmark */ = 06448072125C95FD00D649E9 /* PBXTextBookmark */;
-			06448073125C95FD00D649E9 /* PBXTextBookmark */ = 06448073125C95FD00D649E9 /* PBXTextBookmark */;
 			06448074125C95FD00D649E9 /* PBXTextBookmark */ = 06448074125C95FD00D649E9 /* PBXTextBookmark */;
 			06448075125C95FD00D649E9 /* PBXTextBookmark */ = 06448075125C95FD00D649E9 /* PBXTextBookmark */;
-			06448076125C95FD00D649E9 /* PBXTextBookmark */ = 06448076125C95FD00D649E9 /* PBXTextBookmark */;
-			06448077125C95FD00D649E9 /* PBXTextBookmark */ = 06448077125C95FD00D649E9 /* PBXTextBookmark */;
-			06448078125C95FD00D649E9 /* PBXTextBookmark */ = 06448078125C95FD00D649E9 /* PBXTextBookmark */;
+			06448084125C992200D649E9 /* PBXTextBookmark */ = 06448084125C992200D649E9 /* PBXTextBookmark */;
+			06448085125C992200D649E9 /* PBXTextBookmark */ = 06448085125C992200D649E9 /* PBXTextBookmark */;
 			0654FF931254CB2900A9DD02 /* PBXTextBookmark */ = 0654FF931254CB2900A9DD02 /* PBXTextBookmark */;
 			0672C407122BB06500DE1F54 /* PBXBookmark */ = 0672C407122BB06500DE1F54 /* PBXBookmark */;
+			068FAFDE125DD42900FE5A88 /* PlistBookmark */ = 068FAFDE125DD42900FE5A88 /* PlistBookmark */;
+			068FAFDF125DD42900FE5A88 /* PBXTextBookmark */ = 068FAFDF125DD42900FE5A88 /* PBXTextBookmark */;
+			068FAFE0125DD42900FE5A88 /* PBXTextBookmark */ = 068FAFE0125DD42900FE5A88 /* PBXTextBookmark */;
+			068FAFE1125DD42900FE5A88 /* PBXTextBookmark */ = 068FAFE1125DD42900FE5A88 /* PBXTextBookmark */;
+			068FAFE2125DD42900FE5A88 /* PBXTextBookmark */ = 068FAFE2125DD42900FE5A88 /* PBXTextBookmark */;
+			068FAFE3125DD42900FE5A88 /* PBXTextBookmark */ = 068FAFE3125DD42900FE5A88 /* PBXTextBookmark */;
+			068FAFF2125DD47900FE5A88 /* PBXTextBookmark */ = 068FAFF2125DD47900FE5A88 /* PBXTextBookmark */;
 			06FC7E9312537857002C00A6 /* PBXTextBookmark */ = 06FC7E9312537857002C00A6 /* PBXTextBookmark */;
 			06FC7E9612537857002C00A6 /* PBXTextBookmark */ = 06FC7E9612537857002C00A6 /* PBXTextBookmark */;
 			06FC7E9712537857002C00A6 /* PBXTextBookmark */ = 06FC7E9712537857002C00A6 /* PBXTextBookmark */;
@@ -605,16 +604,21 @@
 	};
 	29B97316FDCFA39411CA2CEA /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {965, 643}}";
+			sepNavIntBoundsRect = "{{0, 0}, {965, 645}}";
 			sepNavSelRange = "{1664, 0}";
 			sepNavVisRange = "{0, 1887}";
 		};
 	};
 	32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {965, 620}}";
+			sepNavIntBoundsRect = "{{0, 0}, {965, 645}}";
 			sepNavSelRange = "{428, 0}";
 			sepNavVisRange = "{0, 428}";
+		};
+	};
+	8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{72, 0}, {1289, 878}}";
 		};
 	};
 }

@@ -71,7 +71,6 @@
 	topBannerView.showCloseButton = YES;
 	topBannerView.autoupdateTimeout = 10;
 	topBannerView.delegate = self;
-	topBannerView.hideWhenEmpty = YES;
 	[topBannerView reloadBanner];
 	[self.view addSubview:topBannerView];
 
@@ -79,7 +78,6 @@
 	bottomBannerView.showCloseButton = YES;
 	bottomBannerView.autoupdateTimeout = 15;
 	bottomBannerView.delegate = self;
-	bottomBannerView.hideWhenEmpty = NO;
 	bottomBannerView.isMinimized = YES;
 	[bottomBannerView reloadBanner];
 	[self.view addSubview:bottomBannerView];
