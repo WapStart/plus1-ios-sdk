@@ -1,0 +1,364 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */; };
+		0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */; };
+		0672C379122BAC9300DE1F54 /* WPBannerInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */; };
+		0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */; };
+		0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C376122BAC9300DE1F54 /* WPUtils.m */; };
+		0672C380122BAC9F00DE1F54 /* wp_banner_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C37D122BAC9F00DE1F54 /* wp_banner_background.png */; };
+		0672C381122BAC9F00DE1F54 /* wp_banner_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C37E122BAC9F00DE1F54 /* wp_banner_close.png */; };
+		0672C382122BAC9F00DE1F54 /* wp_banner_shild.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C37F122BAC9F00DE1F54 /* wp_banner_shild.png */; };
+		0672C3CD122BAED700DE1F54 /* WPDemo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C3CC122BAED700DE1F54 /* WPDemo1ViewController.m */; };
+		0672C3FF122BB04A00DE1F54 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C3FE122BB04A00DE1F54 /* logo.png */; };
+		0672C64C122BCEFE00DE1F54 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C64A122BCEFE00DE1F54 /* Default.png */; };
+		0672C64D122BCEFE00DE1F54 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C64B122BCEFE00DE1F54 /* Icon.png */; };
+		06FE3324124A1BA600A7CA77 /* WPBannerRequestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE3323124A1BA600A7CA77 /* WPBannerRequestInfo.m */; };
+		06FE3353124A21AD00A7CA77 /* WPMainDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE3352124A21AD00A7CA77 /* WPMainDemoViewController.m */; };
+		06FE33BC124A282400A7CA77 /* WPDemo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE33BB124A282400A7CA77 /* WPDemo2ViewController.m */; };
+		06FE33CF124A2CCE00A7CA77 /* WPDemo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE33CE124A2CCE00A7CA77 /* WPDemo3ViewController.m */; };
+		1D3623260D0F684500981E51 /* WapPlusDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* WapPlusDemoAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfo.h; sourceTree = "<group>"; };
+		0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfo.m; sourceTree = "<group>"; };
+		0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoLoader.h; sourceTree = "<group>"; };
+		0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoLoader.m; sourceTree = "<group>"; };
+		0672C370122BAC9300DE1F54 /* WPBannerInfoParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoParser.h; sourceTree = "<group>"; };
+		0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoParser.m; sourceTree = "<group>"; };
+		0672C372122BAC9300DE1F54 /* WPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerView.h; sourceTree = "<group>"; };
+		0672C373122BAC9300DE1F54 /* WPBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerView.m; sourceTree = "<group>"; };
+		0672C374122BAC9300DE1F54 /* WPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTypes.h; sourceTree = "<group>"; };
+		0672C375122BAC9300DE1F54 /* WPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPUtils.h; sourceTree = "<group>"; };
+		0672C376122BAC9300DE1F54 /* WPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPUtils.m; sourceTree = "<group>"; };
+		0672C37D122BAC9F00DE1F54 /* wp_banner_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wp_banner_background.png; sourceTree = "<group>"; };
+		0672C37E122BAC9F00DE1F54 /* wp_banner_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wp_banner_close.png; sourceTree = "<group>"; };
+		0672C37F122BAC9F00DE1F54 /* wp_banner_shild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wp_banner_shild.png; sourceTree = "<group>"; };
+		0672C3CB122BAED700DE1F54 /* WPDemo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDemo1ViewController.h; sourceTree = "<group>"; };
+		0672C3CC122BAED700DE1F54 /* WPDemo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDemo1ViewController.m; sourceTree = "<group>"; };
+		0672C3FE122BB04A00DE1F54 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		0672C64A122BCEFE00DE1F54 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0672C64B122BCEFE00DE1F54 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		06FE3322124A1BA600A7CA77 /* WPBannerRequestInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerRequestInfo.h; sourceTree = "<group>"; };
+		06FE3323124A1BA600A7CA77 /* WPBannerRequestInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerRequestInfo.m; sourceTree = "<group>"; };
+		06FE3351124A21AD00A7CA77 /* WPMainDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPMainDemoViewController.h; sourceTree = "<group>"; };
+		06FE3352124A21AD00A7CA77 /* WPMainDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPMainDemoViewController.m; sourceTree = "<group>"; };
+		06FE33BA124A282400A7CA77 /* WPDemo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDemo2ViewController.h; sourceTree = "<group>"; };
+		06FE33BB124A282400A7CA77 /* WPDemo2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDemo2ViewController.m; sourceTree = "<group>"; };
+		06FE33CD124A2CCE00A7CA77 /* WPDemo3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDemo3ViewController.h; sourceTree = "<group>"; };
+		06FE33CE124A2CCE00A7CA77 /* WPDemo3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDemo3ViewController.m; sourceTree = "<group>"; };
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* WapPlusDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WapPlusDemoAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* WapPlusDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WapPlusDemoAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* WapPlusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WapPlusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WapPlusDemo_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WapPlusDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0672C33A122BAB5800DE1F54 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				06FE372D1252346D00A7CA77 /* src */,
+				0672C37C122BAC9F00DE1F54 /* resources */,
+			);
+			name = SDK;
+			path = ../SDK/src;
+			sourceTree = "<group>";
+		};
+		0672C37C122BAC9F00DE1F54 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				0672C37D122BAC9F00DE1F54 /* wp_banner_background.png */,
+				0672C37E122BAC9F00DE1F54 /* wp_banner_close.png */,
+				0672C37F122BAC9F00DE1F54 /* wp_banner_shild.png */,
+			);
+			name = resources;
+			path = ../SDK/resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		06FE372D1252346D00A7CA77 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */,
+				0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */,
+				06FE3322124A1BA600A7CA77 /* WPBannerRequestInfo.h */,
+				06FE3323124A1BA600A7CA77 /* WPBannerRequestInfo.m */,
+				0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */,
+				0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */,
+				0672C370122BAC9300DE1F54 /* WPBannerInfoParser.h */,
+				0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */,
+				0672C372122BAC9300DE1F54 /* WPBannerView.h */,
+				0672C373122BAC9300DE1F54 /* WPBannerView.m */,
+				0672C374122BAC9300DE1F54 /* WPTypes.h */,
+				0672C375122BAC9300DE1F54 /* WPUtils.h */,
+				0672C376122BAC9300DE1F54 /* WPUtils.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* WapPlusDemoAppDelegate.h */,
+				1D3623250D0F684500981E51 /* WapPlusDemoAppDelegate.m */,
+				06FE3351124A21AD00A7CA77 /* WPMainDemoViewController.h */,
+				06FE3352124A21AD00A7CA77 /* WPMainDemoViewController.m */,
+				0672C3CB122BAED700DE1F54 /* WPDemo1ViewController.h */,
+				0672C3CC122BAED700DE1F54 /* WPDemo1ViewController.m */,
+				06FE33BA124A282400A7CA77 /* WPDemo2ViewController.h */,
+				06FE33BB124A282400A7CA77 /* WPDemo2ViewController.m */,
+				06FE33CD124A2CCE00A7CA77 /* WPDemo3ViewController.h */,
+				06FE33CE124A2CCE00A7CA77 /* WPDemo3ViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* WapPlusDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				0672C33A122BAB5800DE1F54 /* SDK */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0672C64A122BCEFE00DE1F54 /* Default.png */,
+				0672C64B122BCEFE00DE1F54 /* Icon.png */,
+				0672C3FE122BB04A00DE1F54 /* logo.png */,
+				8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* WapPlusDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WapPlusDemo" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WapPlusDemo;
+			productName = WapPlusDemo;
+			productReference = 1D6058910D05DD3D006BFB54 /* WapPlusDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WapPlusDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* WapPlusDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0672C380122BAC9F00DE1F54 /* wp_banner_background.png in Resources */,
+				0672C381122BAC9F00DE1F54 /* wp_banner_close.png in Resources */,
+				0672C382122BAC9F00DE1F54 /* wp_banner_shild.png in Resources */,
+				0672C3FF122BB04A00DE1F54 /* logo.png in Resources */,
+				0672C64C122BCEFE00DE1F54 /* Default.png in Resources */,
+				0672C64D122BCEFE00DE1F54 /* Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* WapPlusDemoAppDelegate.m in Sources */,
+				0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */,
+				0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */,
+				0672C379122BAC9300DE1F54 /* WPBannerInfoParser.m in Sources */,
+				0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */,
+				0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */,
+				0672C3CD122BAED700DE1F54 /* WPDemo1ViewController.m in Sources */,
+				06FE3324124A1BA600A7CA77 /* WPBannerRequestInfo.m in Sources */,
+				06FE3353124A21AD00A7CA77 /* WPMainDemoViewController.m in Sources */,
+				06FE33BC124A282400A7CA77 /* WPDemo2ViewController.m in Sources */,
+				06FE33CF124A2CCE00A7CA77 /* WPDemo3ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
+				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
+				PRODUCT_NAME = WapPlusDemo;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
+				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
+				PRODUCT_NAME = WapPlusDemo;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Valentina Yakovleva (G5U4A835CR)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "197834E9-3634-4BCC-9965-D94D702BE0EB";
+				SDKROOT = iphoneos4.1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Valentina Yakovleva (G5U4A835CR)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "197834E9-3634-4BCC-9965-D94D702BE0EB";
+				SDKROOT = iphoneos4.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "WapPlusDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "WapPlusDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
