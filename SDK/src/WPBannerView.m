@@ -465,10 +465,10 @@
 	[self cancelLoadImage];
 	
 	NSString *imageURL = nil;
-	if (_bannerInfo.pictureUrl != nil)
-		imageURL = _bannerInfo.pictureUrl;
-	else
+	if (_bannerInfo.pictureUrlPng != nil)
 		imageURL = _bannerInfo.pictureUrlPng;
+	else
+		imageURL = _bannerInfo.pictureUrl;
 	
 	NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]
 												cachePolicy:NSURLRequestUseProtocolCachePolicy 
