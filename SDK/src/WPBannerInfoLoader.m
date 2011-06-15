@@ -36,7 +36,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application"
+#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)
@@ -107,8 +107,6 @@
 	
 	[url appendFormat:@"&site=%d", _bannerRequestInfo.applicationId];
 	[url appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
-	[url appendFormat:@"&clientSession=%@", _clientSessionId];
-	[url appendFormat:@"&userAgent=%@", [self getUserAgent]];
 	
 	if (_bannerRequestInfo.gender != WPGenderUnknown)
 		[url appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
@@ -139,10 +137,18 @@
 	if (_urlConnection != nil)
 		return NO;
 	
-	NSURLRequest *theRequest = [NSURLRequest requestWithURL:[self requestUrl]
-												cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
-											timeoutInterval:60];
-	
+	NSMutableURLRequest *theRequest =
+		[NSMutableURLRequest requestWithURL:[self requestUrl]
+								cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+							timeoutInterval:60];
+
+	// Setting up headers
+	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
+	  forHTTPHeaderField:@"Cookies"];
+
+	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
+	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
+
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 
 											 startImmediately:YES];
