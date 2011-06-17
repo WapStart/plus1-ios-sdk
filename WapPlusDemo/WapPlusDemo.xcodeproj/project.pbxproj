@@ -306,7 +306,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Valentina Yakovleva (G5U4A835CR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Klestov (JCBBQCRYV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander Klestov (JCBBQCRYV4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -314,7 +315,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "197834E9-3634-4BCC-9965-D94D702BE0EB";
+				PROVISIONING_PROFILE = "A0C91368-B8A9-4793-818D-E4BFF15ED87C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0C91368-B8A9-4793-818D-E4BFF15ED87C";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
@@ -323,7 +325,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Valentina Yakovleva (G5U4A835CR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Klestov (JCBBQCRYV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander Klestov (JCBBQCRYV4)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -332,7 +335,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "197834E9-3634-4BCC-9965-D94D702BE0EB";
+				PROVISIONING_PROFILE = "A0C91368-B8A9-4793-818D-E4BFF15ED87C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0C91368-B8A9-4793-818D-E4BFF15ED87C";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
