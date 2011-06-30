@@ -35,3 +35,10 @@ typedef enum
 	WPGenderMale    = 1,
 	WPGenderFemale	= 2
 } WPGender;
+
+typedef enum 
+{
+    WPBannerTypeText    = 1,
+    WPBannerTypeMixed   = 2,
+    WPBAnnerTypeImage   = 3
+} WPBannerType;

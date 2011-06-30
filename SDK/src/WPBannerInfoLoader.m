@@ -36,7 +36,8 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
+// #define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
+#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)
@@ -105,7 +106,7 @@
 {
 	NSMutableString *url = [NSMutableString stringWithString:WPRotatorUrl];
 	
-	[url appendFormat:@"&site=%d", _bannerRequestInfo.applicationId];
+	[url appendFormat:@"&id=%d", _bannerRequestInfo.applicationId];
 	[url appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
 	
 	if (_bannerRequestInfo.gender != WPGenderUnknown)
@@ -113,6 +114,14 @@
 	
 	if (_bannerRequestInfo.age > 0)
 		[url appendFormat:@"&age=%d", _bannerRequestInfo.age];
+    
+    NSSet *set = [_bannerRequestInfo.typeList retain];
+    
+    for (id item in set)
+        [url appendFormat:@"&types[]=%d", [item intValue]];
+    
+    if (_bannerRequestInfo.login != nil)
+        [url appendFormat:@"&login=%@", _bannerRequestInfo.login];
 	
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }

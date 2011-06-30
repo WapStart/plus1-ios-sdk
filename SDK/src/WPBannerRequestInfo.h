@@ -34,19 +34,26 @@
 
 @interface WPBannerRequestInfo : NSObject
 {
-	NSInteger  _applicationId;
-	WPGender   _gender;
-	NSInteger  _age;
+	NSInteger    _applicationId;
+	WPGender     _gender;
+	NSInteger    _age;
+    NSMutableSet *_typesList;
+    NSString     *_login;
 }
 
 @property (nonatomic, assign) NSInteger  applicationId;
 @property (nonatomic, assign) WPGender   gender;
 @property (nonatomic, assign) NSInteger  age;
 @property (nonatomic, readonly) NSString *pageId;
+@property (nonatomic, readonly) NSSet    *typeList;
+@property (nonatomic, retain) NSString   *login;
 
 - (id) initWithApplicationId:(NSInteger) applicationId;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;
 - (id) initWithApplicationId:(NSInteger) applicationId age:(NSInteger) age;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender age:(NSInteger) age;
+
+- (void) addType:(WPBannerType) bannerType;
+- (void) clearTypes;
 
 @end
