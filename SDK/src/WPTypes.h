@@ -38,7 +38,7 @@ typedef enum
 
 typedef enum 
 {
-    WPBannerTypeText    = 1,
-    WPBannerTypeMixed   = 2,
-    WPBAnnerTypeImage   = 3
+    WPBannerTypeMixed   = 1,
+    WPBannerTypeText    = 2,
+    WPBannerTypeGraphic = 3
 } WPBannerType;

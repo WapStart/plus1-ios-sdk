@@ -66,7 +66,7 @@
 	[self.view addSubview:logoView];
 
 	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:TEST_APPLICATION_ID];
-    [requestInfo addType:WPBAnnerTypeImage];
+    [requestInfo addType:WPBannerTypeGraphic];
     
 	topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	topBannerView.showCloseButton = YES;
