@@ -138,6 +138,12 @@
 	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
 }
 
+- (NSString *) getDeviceIMEI
+{
+	NetworkController *ntc = [NetworkController sharedInstance];
+	return [ntc IMEI];
+}
+
 - (BOOL) start
 {
 	if (_bannerRequestInfo == nil)
@@ -157,6 +163,9 @@
 
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
+
+	if ((NSString *imei = [self getDeviceIMEI]) != nil)
+		[theRequest setValue:imei forHTTPHeaderField:@"x-device-imei"]; 
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 
