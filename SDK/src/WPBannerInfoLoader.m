@@ -144,6 +144,12 @@
 	return [ntc IMEI];
 }
 
+- (NSString *) getDisplayMetrics 
+{
+	CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+	return [NSString stringWithFormat:@"%3.0fx%3.0f", screenRect.size.width, screenRect.size.height];
+}
+
 - (BOOL) start
 {
 	if (_bannerRequestInfo == nil)
@@ -163,6 +169,7 @@
 
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
+	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
 
 	if ((NSString *imei = [self getDeviceIMEI]) != nil)
 		[theRequest setValue:imei forHTTPHeaderField:@"x-device-imei"]; 
