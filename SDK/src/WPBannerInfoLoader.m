@@ -114,11 +114,11 @@
 	
 	if (_bannerRequestInfo.age > 0)
 		[url appendFormat:@"&age=%d", _bannerRequestInfo.age];
-    
-    NSSet *set = [_bannerRequestInfo.typeList retain];
-    
-    for (id item in set)
-        [url appendFormat:@"&types[]=%d", [item intValue]];
+  
+//  NOTE: disabled while on server side 
+//    NSSet *set = [_bannerRequestInfo.typeList retain];
+//    for (id item in set)
+//        [url appendFormat:@"&types[]=%d", [item intValue]];
     
     if (_bannerRequestInfo.login != nil)
         [url appendFormat:@"&login=%@", _bannerRequestInfo.login];
@@ -140,8 +140,7 @@
 
 - (NSString *) getDeviceIMEI
 {
-	NetworkController *ntc = [NetworkController sharedInstance];
-	return [ntc IMEI];
+    return [[UIDevice currentDevice] uniqueIdentifier];
 }
 
 - (NSString *) getDisplayMetrics 
@@ -170,9 +169,7 @@
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
-
-	if ((NSString *imei = [self getDeviceIMEI]) != nil)
-		[theRequest setValue:imei forHTTPHeaderField:@"x-device-imei"]; 
+	[theRequest setValue:[self getDeviceIMEI] forHTTPHeaderField:@"x-device-imei"]; 
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 

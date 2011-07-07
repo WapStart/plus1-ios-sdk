@@ -53,7 +53,8 @@
 - (id) initWithApplicationId:(NSInteger) applicationId age:(NSInteger) age;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender age:(NSInteger) age;
 
-- (void) addType:(WPBannerType) bannerType;
-- (void) clearTypes;
+// NOTE: disabled while
+//- (void) addType:(WPBannerType) bannerType;
+//- (void) clearTypes;
 
 @end
