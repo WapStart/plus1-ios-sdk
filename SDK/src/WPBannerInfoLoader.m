@@ -53,13 +53,17 @@
 
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
+@synthesize locMgr = _locationManager;
 
 - (id) init
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = nil;
 		_bannerInfoParser = [[WPBannerInfoParser alloc] init];
+        _locationManager = [[WPLocationManager alloc] init];
+        _locationManager.delegate = self;
+        [_locationManager.locMgr startUpdatingLocation];
 		
 		[self initializeClientSessionId];
 	}
@@ -68,11 +72,14 @@
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = [requestInfo retain];
 		_bannerInfoParser = [[WPBannerInfoParser alloc] init];
-		
+        _locationManager = [[WPLocationManager alloc] init];
+        _locationManager.delegate = self;
+        [_locationManager.locMgr startUpdatingLocation];
+
 		[self initializeClientSessionId];
 	}
 	return self;
@@ -82,6 +89,10 @@
 {
 	[self cancel];
 	
+    if (_location != nil)
+        [_location release];
+    
+    [_locationManager release];
 	[_bannerRequestInfo release];
 	[_clientSessionId release];
 	[_bannerInfoParser release];
@@ -123,6 +134,12 @@
     if (_bannerRequestInfo.login != nil)
         [url appendFormat:@"&login=%@", _bannerRequestInfo.login];
 	
+    if (_location != nil)
+        [url appendFormat:@"&location=%3.0f;%3.0f", 
+            _location.coordinate.latitude,
+            _location.coordinate.longitude
+        ];
+    
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
@@ -249,5 +266,19 @@
 	
 	[_urlConnection release], _urlConnection = nil;
 }
+
+#pragma mark Location Manager delegate
+- (void)locationUpdate:(CLLocation *)location
+{
+    if (_location != nil)
+        [_location release], _location = nil;
+        
+    if (location != nil)
+        _location = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude 
+                                               longitude:location.coordinate.longitude];
+}
+
+// TODO: think about errors
+- (void)locationError:(NSError *)error { /*_*/ }
 
 @end

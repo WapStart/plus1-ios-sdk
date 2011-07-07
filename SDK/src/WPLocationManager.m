@@ -1,7 +1,7 @@
 /**
- * WPBannerInfoLoader.h
+ * WPLocationManager.m
  *
- * Copyright (c) 2010, Alexey Goliatin <alexey.goliatin@gmail.com>
+ * Copyright (c) 2011, Alexander A. Klestov <a.klestov@co.wapstart.ru>
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -29,57 +29,37 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
-#import "WPBannerRequestInfo.h"
 #import "WPLocationManager.h"
 
-@class WPBannerInfoParser;
-@class WPBannerInfo;
+@implementation WPLocationManager
 
-@protocol WPBannerInfoLoaderDelegate;
+@synthesize locMgr, delegate;
 
-typedef enum
+- (id)init 
 {
-	WPBannerInfoLoaderErrorCodeUnknown,
-	WPBannerInfoLoaderErrorCodeCancel,
-	WPBannerInfoLoaderErrorCodeTimeout
-} WPBannerInfoLoaderErrorCode;
-
-@interface WPBannerInfoLoader : NSObject <WPLocationManagerDelegate>
-{
-@private
-	WPBannerRequestInfo *_bannerRequestInfo;
-
-	id<WPBannerInfoLoaderDelegate> _delegate;
-	
-	NSURLConnection *_urlConnection;
-	
-	NSString           *_clientSessionId;
-	WPBannerInfoParser *_bannerInfoParser;
-    
-    WPLocationManager  *_locationManager;
-    CLLocation         *_location;
+    self = [super init];
+    if (self != nil) {
+        self.locMgr = [[CLLocationManager alloc] init];
+        self.locMgr.delegate = self;
+    }
+    return self;
 }
 
-@property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
-@property (nonatomic, readonly) WPBannerInfo *bannerInfo;
-@property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;
-@property (nonatomic, retain) WPLocationManager *locMgr;
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [self.delegate locationUpdate:newLocation];
+}
 
-- (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
+{
+    [self.delegate locationError:error];
+}
 
-- (BOOL) start;
-
-- (void) cancel;
-
-- (void) locationUpdate:(CLLocation *)location;
-- (void) locationError:(NSError *)error; 
-
-@end
-
-@protocol WPBannerInfoLoaderDelegate
-
-- (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader;
-- (void) bannerInfoLoader:(WPBannerInfoLoader *) loader didFailWithCode:(WPBannerInfoLoaderErrorCode) errorCode;
+- (void)dealloc 
+{
+    locMgr.delegate = nil;
+    [locMgr release];
+    [super dealloc];
+}
 
 @end

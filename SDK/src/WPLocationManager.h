@@ -1,7 +1,7 @@
 /**
- * WPBannerInfoLoader.h
+ * WPLocationManager.h
  *
- * Copyright (c) 2010, Alexey Goliatin <alexey.goliatin@gmail.com>
+ * Copyright (c) 2011, Alexander A. Klestov <a.klestov@co.wapstart.ru>
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -30,56 +30,20 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "WPBannerRequestInfo.h"
-#import "WPLocationManager.h"
+#import <CoreLocation/CoreLocation.h>
 
-@class WPBannerInfoParser;
-@class WPBannerInfo;
-
-@protocol WPBannerInfoLoaderDelegate;
-
-typedef enum
-{
-	WPBannerInfoLoaderErrorCodeUnknown,
-	WPBannerInfoLoaderErrorCodeCancel,
-	WPBannerInfoLoaderErrorCodeTimeout
-} WPBannerInfoLoaderErrorCode;
-
-@interface WPBannerInfoLoader : NSObject <WPLocationManagerDelegate>
-{
-@private
-	WPBannerRequestInfo *_bannerRequestInfo;
-
-	id<WPBannerInfoLoaderDelegate> _delegate;
-	
-	NSURLConnection *_urlConnection;
-	
-	NSString           *_clientSessionId;
-	WPBannerInfoParser *_bannerInfoParser;
-    
-    WPLocationManager  *_locationManager;
-    CLLocation         *_location;
-}
-
-@property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
-@property (nonatomic, readonly) WPBannerInfo *bannerInfo;
-@property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;
-@property (nonatomic, retain) WPLocationManager *locMgr;
-
-- (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
-
-- (BOOL) start;
-
-- (void) cancel;
-
+@protocol WPLocationManagerDelegate
+@required
 - (void) locationUpdate:(CLLocation *)location;
 - (void) locationError:(NSError *)error; 
-
 @end
 
-@protocol WPBannerInfoLoaderDelegate
+@interface WPLocationManager : NSObject <CLLocationManagerDelegate> {
+    id<WPLocationManagerDelegate> delegate;
+    CLLocationManager *locMgr;
+}
 
-- (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader;
-- (void) bannerInfoLoader:(WPBannerInfoLoader *) loader didFailWithCode:(WPBannerInfoLoaderErrorCode) errorCode;
+@property (nonatomic, assign) id<WPLocationManagerDelegate> delegate;
+@property (nonatomic, retain) CLLocationManager *locMgr;
 
 @end
