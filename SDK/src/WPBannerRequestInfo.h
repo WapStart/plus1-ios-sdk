@@ -30,6 +30,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 #import "WPTypes.h"
 
 @interface WPBannerRequestInfo : NSObject
@@ -39,6 +40,8 @@
 	NSInteger    _age;
     NSMutableSet *_typesList;
     NSString     *_login;
+    
+    CLLocation   *_location;
 }
 
 @property (nonatomic, assign) NSInteger  applicationId;
@@ -47,6 +50,7 @@
 @property (nonatomic, readonly) NSString *pageId;
 @property (nonatomic, readonly) NSSet    *typeList;
 @property (nonatomic, retain) NSString   *login;
+@property (nonatomic, retain) CLLocation *location;
 
 - (id) initWithApplicationId:(NSInteger) applicationId;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;

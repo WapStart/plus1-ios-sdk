@@ -41,10 +41,11 @@ static NSString *wpCurrentPageId = nil;
 @synthesize age = _age;
 @synthesize typeList = _typesList;
 @synthesize login = _login;
+@synthesize location = _location;
 
 - (id) initWithApplicationId:(NSInteger) applicationId
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		self.applicationId = applicationId;
 		self.gender = WPGenderUnknown;
@@ -56,7 +57,7 @@ static NSString *wpCurrentPageId = nil;
 
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		self.applicationId = applicationId;
 		self.gender = gender;
@@ -68,7 +69,7 @@ static NSString *wpCurrentPageId = nil;
 
 - (id) initWithApplicationId:(NSInteger) applicationId age:(NSInteger) age
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		self.applicationId = applicationId;
 		self.gender = WPGenderUnknown;
@@ -80,7 +81,7 @@ static NSString *wpCurrentPageId = nil;
 
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender age:(NSInteger) age
 {
-	if (self = [super init])
+	if ((self = [super init]) != nil)
 	{
 		self.applicationId = applicationId;
 		self.gender = gender;

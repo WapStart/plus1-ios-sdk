@@ -57,6 +57,7 @@
 @synthesize minimizedLabel = _minimizedLabel;
 @synthesize showCloseButton = _showCloseButton;
 @synthesize hideWhenEmpty = _hideWhenEmpty;
+@synthesize disableAutoDetectLocation = _disableAutoDetectLocation;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
@@ -89,7 +90,12 @@
 		[self configureSubviews];
 		
 		self.hideWhenEmpty = YES;
+        
+        _locationManager = [[WPLocationManager alloc] init];
+        _locationManager.delegate = self;
+        [_locationManager.locMgr startUpdatingLocation];
     }
+    
     return self;
 }
 
@@ -100,6 +106,7 @@
 	[_bannerInfoLoader cancel];
 	[self cancelLoadImage];
 	
+    [_locationManager release];
 	[_bannerRequestInfo release];
 	[_bannerImage release];
 	[_bannerInfo release];
@@ -211,6 +218,14 @@
 		_autoupdateTimer = [NSTimer timerWithTimeInterval:_autoupdateTimeout target:self selector:@selector(reloadBanner) userInfo:nil repeats:YES];
 		[[NSRunLoop currentRunLoop] addTimer:_autoupdateTimer forMode:NSDefaultRunLoopMode];
 	}
+}
+
+- (void) setDisableAutoDetectLocation:(BOOL)disableAutoDetectLocation
+{
+    _disableAutoDetectLocation = disableAutoDetectLocation;
+    
+    if (_disableAutoDetectLocation)
+        [_locationManager.locMgr stopUpdatingLocation];
 }
 
 #pragma mark Drawing and Views
@@ -465,20 +480,20 @@
 	[self cancelLoadImage];
 	
 	NSString *imageURL = nil;
-	if (_bannerInfo.pictureUrlPng != nil)
-		imageURL = _bannerInfo.pictureUrlPng;
-	else
+	if (_bannerInfo.pictureUrl != nil)
 		imageURL = _bannerInfo.pictureUrl;
+	else
+		imageURL = _bannerInfo.pictureUrlPng;
+    
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]
+                                                cachePolicy:NSURLRequestUseProtocolCachePolicy 
+                                            timeoutInterval:60];
 	
-	NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]
-												cachePolicy:NSURLRequestUseProtocolCachePolicy 
-											timeoutInterval:60];
+    _imageData = [[NSMutableData alloc] init];
 	
-	_imageData = [[NSMutableData alloc] init];
-	
-	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
-													 delegate:self 
-											 startImmediately:YES];
+    _urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
+                                                     delegate:self 
+                                             startImmediately:YES];
 }
 
 - (void) cancelLoadImage
@@ -533,9 +548,8 @@
 
 	[_imageLoadingProgress removeFromSuperview];
 	[_imageLoadingProgress release], _imageLoadingProgress = nil;
-
 	[_bannerImage release];
-	_bannerImage = [[UIImage alloc] initWithData:_imageData];
+    _bannerImage = [[UIImage alloc] initWithData:_imageData];
 	_showImageBanner = (_bannerInfo.title == nil);
 	[self setNeedsDisplay];
 	
@@ -581,6 +595,14 @@
 	[self configureSubviews];
 	[self setNeedsDisplay];
 }
+
+#pragma mark Location manager delegates 
+- (void) locationUpdate:(CLLocation *)location
+{
+    _bannerRequestInfo.location = location;
+}
+
+- (void) locationError:(NSError *)error { /*_*/ }
 
 #pragma mark Utils
 

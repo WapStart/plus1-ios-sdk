@@ -31,7 +31,6 @@
 
 #import <Foundation/Foundation.h>
 #import "WPBannerRequestInfo.h"
-#import "WPLocationManager.h"
 
 @class WPBannerInfoParser;
 @class WPBannerInfo;
@@ -45,35 +44,28 @@ typedef enum
 	WPBannerInfoLoaderErrorCodeTimeout
 } WPBannerInfoLoaderErrorCode;
 
-@interface WPBannerInfoLoader : NSObject <WPLocationManagerDelegate>
+@interface WPBannerInfoLoader : NSObject 
 {
 @private
 	WPBannerRequestInfo *_bannerRequestInfo;
 
 	id<WPBannerInfoLoaderDelegate> _delegate;
 	
-	NSURLConnection *_urlConnection;
+	NSURLConnection    *_urlConnection;
 	
 	NSString           *_clientSessionId;
 	WPBannerInfoParser *_bannerInfoParser;
-    
-    WPLocationManager  *_locationManager;
-    CLLocation         *_location;
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
 @property (nonatomic, readonly) WPBannerInfo *bannerInfo;
 @property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;
-@property (nonatomic, retain) WPLocationManager *locMgr;
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
 
 - (BOOL) start;
 
 - (void) cancel;
-
-- (void) locationUpdate:(CLLocation *)location;
-- (void) locationError:(NSError *)error; 
 
 @end
 

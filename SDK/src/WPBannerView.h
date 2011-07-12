@@ -31,15 +31,17 @@
 
 #import <UIKit/UIKit.h>
 #import "WPBannerInfoLoader.h"
+#import "WPLocationManager.h"
 
 @class WPBannerInfo;
 @protocol WPBannerViewDelegate;
 
-@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate>
+@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate>
 {
-	WPBannerInfo *_bannerInfo;
+	WPBannerInfo        *_bannerInfo;
 	WPBannerRequestInfo *_bannerRequestInfo;
-	WPBannerInfoLoader *_bannerInfoLoader;
+	WPBannerInfoLoader  *_bannerInfoLoader;
+    WPLocationManager   *_locationManager;
 	
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;
@@ -65,6 +67,7 @@
 	BOOL _showImageBanner;
 	
 	BOOL _hideWhenEmpty;
+    BOOL _disableAutoDetectLocation;
 }
 
 @property (nonatomic, readonly) WPBannerInfo *bannerInfo;
@@ -75,6 +78,7 @@
 @property (nonatomic, assign) BOOL hideWhenEmpty;
 @property (nonatomic, readonly) BOOL isEmpty;
 @property (nonatomic, readonly) CGFloat bannerHeight;
+@property (nonatomic, assign) BOOL disableAutoDetectLocation;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 
