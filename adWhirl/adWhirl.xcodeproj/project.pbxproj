@@ -1,0 +1,638 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* adWhirlAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* adWhirlAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2899E5220DE3E06400AC0155 /* adWhirlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* adWhirlViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* adWhirlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* adWhirlViewController.m */; };
+		CE90E51B129591F200296C53 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E513129591F200296C53 /* AddressBook.framework */; };
+		CE90E51C129591F200296C53 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E514129591F200296C53 /* AudioToolbox.framework */; };
+		CE90E51D129591F200296C53 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E515129591F200296C53 /* AVFoundation.framework */; };
+		CE90E51E129591F200296C53 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E516129591F200296C53 /* MapKit.framework */; };
+		CE90E51F129591F200296C53 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E517129591F200296C53 /* MediaPlayer.framework */; };
+		CE90E520129591F200296C53 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E518129591F200296C53 /* MessageUI.framework */; };
+		CE90E521129591F200296C53 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E519129591F200296C53 /* QuartzCore.framework */; };
+		CE90E522129591F200296C53 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90E51A129591F200296C53 /* SystemConfiguration.framework */; };
+		CE90E65C1295A3CD00296C53 /* WPBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2441294D47900699D3C /* WPBannerView.m */; };
+		CEA8F2481294D47900699D3C /* wp_banner_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA8F2371294D47900699D3C /* wp_banner_background.png */; };
+		CEA8F2491294D47900699D3C /* wp_banner_close.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA8F2381294D47900699D3C /* wp_banner_close.png */; };
+		CEA8F24A1294D47900699D3C /* wp_banner_shild.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA8F2391294D47900699D3C /* wp_banner_shild.png */; };
+		CEA8F31D1294D9E700699D3C /* AdWhirlAdapterCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2EC1294D9E700699D3C /* AdWhirlAdapterCustom.m */; };
+		CEA8F31E1294D9E700699D3C /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2EE1294D9E700699D3C /* AdWhirlAdapterEvent.m */; };
+		CEA8F31F1294D9E700699D3C /* AdWhirlAdapterGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2F01294D9E700699D3C /* AdWhirlAdapterGeneric.m */; };
+		CEA8F3201294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2F21294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.m */; };
+		CEA8F3211294D9E700699D3C /* AdWhirlAdNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2F31294D9E700699D3C /* AdWhirlAdNetworkAdapter.m */; };
+		CEA8F3221294D9E700699D3C /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2F51294D9E700699D3C /* AdWhirlAdNetworkConfig.m */; };
+		CEA8F3231294D9E700699D3C /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2F71294D9E700699D3C /* AdWhirlAdNetworkRegistry.m */; };
+		CEA8F3241294D9E700699D3C /* AdWhirlClassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2F91294D9E700699D3C /* AdWhirlClassWrapper.m */; };
+		CEA8F3251294D9E700699D3C /* AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2FB1294D9E700699D3C /* AdWhirlConfig.m */; };
+		CEA8F3261294D9E700699D3C /* AdWhirlConfigStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2FD1294D9E700699D3C /* AdWhirlConfigStore.m */; };
+		CEA8F3271294D9E700699D3C /* AdWhirlCustomAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2FF1294D9E700699D3C /* AdWhirlCustomAdView.m */; };
+		CEA8F3281294D9E700699D3C /* AdWhirlError.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3011294D9E700699D3C /* AdWhirlError.m */; };
+		CEA8F3291294D9E700699D3C /* AdWhirlLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3031294D9E700699D3C /* AdWhirlLog.m */; };
+		CEA8F32A1294D9E700699D3C /* AdWhirlView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3051294D9E700699D3C /* AdWhirlView.m */; };
+		CEA8F32B1294D9E700699D3C /* AdWhirlWebBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA8F3061294D9E700699D3C /* AdWhirlWebBrowser.xib */; };
+		CEA8F32C1294D9E700699D3C /* AdWhirlWebBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3081294D9E700699D3C /* AdWhirlWebBrowserController.m */; };
+		CEA8F32D1294D9E700699D3C /* ARRollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3091294D9E700699D3C /* ARRollerView.m */; };
+		CEA8F32E1294D9E700699D3C /* AWNetworkReachabilityWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F30C1294D9E700699D3C /* AWNetworkReachabilityWrapper.m */; };
+		CEA8F32F1294D9E700699D3C /* UIColor+AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F30E1294D9E700699D3C /* UIColor+AdWhirlConfig.m */; };
+		CEA8F3471294D9F300699D3C /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3321294D9F300699D3C /* CDataScanner.m */; };
+		CEA8F3481294D9F300699D3C /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3351294D9F300699D3C /* CDataScanner_Extensions.m */; };
+		CEA8F3491294D9F300699D3C /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3371294D9F300699D3C /* NSCharacterSet_Extensions.m */; };
+		CEA8F34A1294D9F300699D3C /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3391294D9F300699D3C /* NSDictionary_JSONExtensions.m */; };
+		CEA8F34B1294D9F300699D3C /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F33B1294D9F300699D3C /* NSScanner_Extensions.m */; };
+		CEA8F34C1294D9F300699D3C /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F33E1294D9F300699D3C /* CJSONDataSerializer.m */; };
+		CEA8F34D1294D9F300699D3C /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3401294D9F300699D3C /* CJSONDeserializer.m */; };
+		CEA8F34E1294D9F300699D3C /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3421294D9F300699D3C /* CJSONScanner.m */; };
+		CEA8F34F1294D9F300699D3C /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3441294D9F300699D3C /* CJSONSerializer.m */; };
+		CEA8F3501294D9F300699D3C /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F3461294D9F300699D3C /* CSerializedJSONData.m */; };
+		CEA8F3BB1294DDD400699D3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA8F3BA1294DDD400699D3C /* CoreLocation.framework */; };
+		CEA8F3F51294DE4B00699D3C /* WPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F23C1294D47900699D3C /* WPBannerInfo.m */; };
+		CEA8F3F61294DE4B00699D3C /* WPBannerInfoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F23E1294D47900699D3C /* WPBannerInfoLoader.m */; };
+		CEA8F3F71294DE4C00699D3C /* WPBannerInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2401294D47900699D3C /* WPBannerInfoParser.m */; };
+		CEA8F3F81294DE4C00699D3C /* WPBannerRequestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2421294D47900699D3C /* WPBannerRequestInfo.m */; };
+		CEA8F3FA1294DE4E00699D3C /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F2471294D47900699D3C /* WPUtils.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* adWhirlAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adWhirlAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* adWhirlAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adWhirlAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* adWhirl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adWhirl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* adWhirlViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = adWhirlViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* adWhirlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adWhirlViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* adWhirlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adWhirlViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* adWhirl_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adWhirl_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* adWhirl-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "adWhirl-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		CE90E513129591F200296C53 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		CE90E514129591F200296C53 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CE90E515129591F200296C53 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CE90E516129591F200296C53 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CE90E517129591F200296C53 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		CE90E518129591F200296C53 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CE90E519129591F200296C53 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE90E51A129591F200296C53 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CEA8F2371294D47900699D3C /* wp_banner_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_background.png; path = ../SDK/resources/wp_banner_background.png; sourceTree = "<group>"; };
+		CEA8F2381294D47900699D3C /* wp_banner_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_close.png; path = ../SDK/resources/wp_banner_close.png; sourceTree = "<group>"; };
+		CEA8F2391294D47900699D3C /* wp_banner_shild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_shild.png; path = ../SDK/resources/wp_banner_shild.png; sourceTree = "<group>"; };
+		CEA8F23B1294D47900699D3C /* WPBannerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPBannerInfo.h; path = src/WPBannerInfo.h; sourceTree = "<group>"; };
+		CEA8F23C1294D47900699D3C /* WPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPBannerInfo.m; path = src/WPBannerInfo.m; sourceTree = "<group>"; };
+		CEA8F23D1294D47900699D3C /* WPBannerInfoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPBannerInfoLoader.h; path = src/WPBannerInfoLoader.h; sourceTree = "<group>"; };
+		CEA8F23E1294D47900699D3C /* WPBannerInfoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPBannerInfoLoader.m; path = src/WPBannerInfoLoader.m; sourceTree = "<group>"; };
+		CEA8F23F1294D47900699D3C /* WPBannerInfoParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPBannerInfoParser.h; path = src/WPBannerInfoParser.h; sourceTree = "<group>"; };
+		CEA8F2401294D47900699D3C /* WPBannerInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPBannerInfoParser.m; path = src/WPBannerInfoParser.m; sourceTree = "<group>"; };
+		CEA8F2411294D47900699D3C /* WPBannerRequestInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPBannerRequestInfo.h; path = src/WPBannerRequestInfo.h; sourceTree = "<group>"; };
+		CEA8F2421294D47900699D3C /* WPBannerRequestInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPBannerRequestInfo.m; path = src/WPBannerRequestInfo.m; sourceTree = "<group>"; };
+		CEA8F2431294D47900699D3C /* WPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPBannerView.h; path = src/WPBannerView.h; sourceTree = "<group>"; };
+		CEA8F2441294D47900699D3C /* WPBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPBannerView.m; path = src/WPBannerView.m; sourceTree = "<group>"; };
+		CEA8F2451294D47900699D3C /* WPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPTypes.h; path = src/WPTypes.h; sourceTree = "<group>"; };
+		CEA8F2461294D47900699D3C /* WPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPUtils.h; path = src/WPUtils.h; sourceTree = "<group>"; };
+		CEA8F2471294D47900699D3C /* WPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPUtils.m; path = src/WPUtils.m; sourceTree = "<group>"; };
+		CEA8F2D11294D9E700699D3C /* AdWhirlAdapterAdMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterAdMob.h; sourceTree = "<group>"; };
+		CEA8F2D21294D9E700699D3C /* AdWhirlAdapterAdMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterAdMob.m; sourceTree = "<group>"; };
+		CEA8F2D31294D9E700699D3C /* AdWhirlAdapterGoogleAdSense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGoogleAdSense.h; sourceTree = "<group>"; };
+		CEA8F2D41294D9E700699D3C /* AdWhirlAdapterGoogleAdSense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGoogleAdSense.m; sourceTree = "<group>"; };
+		CEA8F2D51294D9E700699D3C /* AdWhirlAdapterGreystripe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGreystripe.h; sourceTree = "<group>"; };
+		CEA8F2D61294D9E700699D3C /* AdWhirlAdapterGreystripe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGreystripe.m; sourceTree = "<group>"; };
+		CEA8F2D71294D9E700699D3C /* AdWhirlAdapterIAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterIAd.h; sourceTree = "<group>"; };
+		CEA8F2D81294D9E700699D3C /* AdWhirlAdapterIAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterIAd.m; sourceTree = "<group>"; };
+		CEA8F2D91294D9E700699D3C /* AdWhirlAdapterInMobi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterInMobi.h; sourceTree = "<group>"; };
+		CEA8F2DA1294D9E700699D3C /* AdWhirlAdapterInMobi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterInMobi.m; sourceTree = "<group>"; };
+		CEA8F2DB1294D9E700699D3C /* AdWhirlAdapterJumpTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterJumpTap.h; sourceTree = "<group>"; };
+		CEA8F2DC1294D9E700699D3C /* AdWhirlAdapterJumpTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterJumpTap.m; sourceTree = "<group>"; };
+		CEA8F2DD1294D9E700699D3C /* AdWhirlAdapterMdotM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMdotM.h; sourceTree = "<group>"; };
+		CEA8F2DE1294D9E700699D3C /* AdWhirlAdapterMdotM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMdotM.m; sourceTree = "<group>"; };
+		CEA8F2DF1294D9E700699D3C /* AdWhirlAdapterMillennial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterMillennial.h; sourceTree = "<group>"; };
+		CEA8F2E01294D9E700699D3C /* AdWhirlAdapterMillennial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterMillennial.m; sourceTree = "<group>"; };
+		CEA8F2E11294D9E700699D3C /* AdWhirlAdapterQuattro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterQuattro.h; sourceTree = "<group>"; };
+		CEA8F2E21294D9E700699D3C /* AdWhirlAdapterQuattro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterQuattro.m; sourceTree = "<group>"; };
+		CEA8F2E31294D9E700699D3C /* AdWhirlAdapterVideoEgg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterVideoEgg.h; sourceTree = "<group>"; };
+		CEA8F2E41294D9E700699D3C /* AdWhirlAdapterVideoEgg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterVideoEgg.m; sourceTree = "<group>"; };
+		CEA8F2E51294D9E700699D3C /* AdWhirlAdapterZestADZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterZestADZ.h; sourceTree = "<group>"; };
+		CEA8F2E61294D9E700699D3C /* AdWhirlAdapterZestADZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterZestADZ.m; sourceTree = "<group>"; };
+		CEA8F2E71294D9E700699D3C /* AdWhirlAdNetworkAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdNetworkAdapter.h; sourceTree = "<group>"; };
+		CEA8F2E81294D9E700699D3C /* AdWhirlDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlDelegateProtocol.h; sourceTree = "<group>"; };
+		CEA8F2E91294D9E700699D3C /* AdWhirlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlView.h; sourceTree = "<group>"; };
+		CEA8F2EB1294D9E700699D3C /* AdWhirlAdapterCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterCustom.h; sourceTree = "<group>"; };
+		CEA8F2EC1294D9E700699D3C /* AdWhirlAdapterCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterCustom.m; sourceTree = "<group>"; };
+		CEA8F2ED1294D9E700699D3C /* AdWhirlAdapterEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterEvent.h; sourceTree = "<group>"; };
+		CEA8F2EE1294D9E700699D3C /* AdWhirlAdapterEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterEvent.m; sourceTree = "<group>"; };
+		CEA8F2EF1294D9E700699D3C /* AdWhirlAdapterGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdapterGeneric.h; sourceTree = "<group>"; };
+		CEA8F2F01294D9E700699D3C /* AdWhirlAdapterGeneric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdapterGeneric.m; sourceTree = "<group>"; };
+		CEA8F2F11294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AdWhirlAdNetworkAdapter+Helpers.h"; sourceTree = "<group>"; };
+		CEA8F2F21294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AdWhirlAdNetworkAdapter+Helpers.m"; sourceTree = "<group>"; };
+		CEA8F2F31294D9E700699D3C /* AdWhirlAdNetworkAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdNetworkAdapter.m; sourceTree = "<group>"; };
+		CEA8F2F41294D9E700699D3C /* AdWhirlAdNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdNetworkConfig.h; sourceTree = "<group>"; };
+		CEA8F2F51294D9E700699D3C /* AdWhirlAdNetworkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdNetworkConfig.m; sourceTree = "<group>"; };
+		CEA8F2F61294D9E700699D3C /* AdWhirlAdNetworkRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlAdNetworkRegistry.h; sourceTree = "<group>"; };
+		CEA8F2F71294D9E700699D3C /* AdWhirlAdNetworkRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlAdNetworkRegistry.m; sourceTree = "<group>"; };
+		CEA8F2F81294D9E700699D3C /* AdWhirlClassWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlClassWrapper.h; sourceTree = "<group>"; };
+		CEA8F2F91294D9E700699D3C /* AdWhirlClassWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlClassWrapper.m; sourceTree = "<group>"; };
+		CEA8F2FA1294D9E700699D3C /* AdWhirlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlConfig.h; sourceTree = "<group>"; };
+		CEA8F2FB1294D9E700699D3C /* AdWhirlConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlConfig.m; sourceTree = "<group>"; };
+		CEA8F2FC1294D9E700699D3C /* AdWhirlConfigStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlConfigStore.h; sourceTree = "<group>"; };
+		CEA8F2FD1294D9E700699D3C /* AdWhirlConfigStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlConfigStore.m; sourceTree = "<group>"; };
+		CEA8F2FE1294D9E700699D3C /* AdWhirlCustomAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlCustomAdView.h; sourceTree = "<group>"; };
+		CEA8F2FF1294D9E700699D3C /* AdWhirlCustomAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlCustomAdView.m; sourceTree = "<group>"; };
+		CEA8F3001294D9E700699D3C /* AdWhirlError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlError.h; sourceTree = "<group>"; };
+		CEA8F3011294D9E700699D3C /* AdWhirlError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlError.m; sourceTree = "<group>"; };
+		CEA8F3021294D9E700699D3C /* AdWhirlLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlLog.h; sourceTree = "<group>"; };
+		CEA8F3031294D9E700699D3C /* AdWhirlLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlLog.m; sourceTree = "<group>"; };
+		CEA8F3041294D9E700699D3C /* AdWhirlView+.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AdWhirlView+.h"; sourceTree = "<group>"; };
+		CEA8F3051294D9E700699D3C /* AdWhirlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlView.m; sourceTree = "<group>"; };
+		CEA8F3061294D9E700699D3C /* AdWhirlWebBrowser.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdWhirlWebBrowser.xib; sourceTree = "<group>"; };
+		CEA8F3071294D9E700699D3C /* AdWhirlWebBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdWhirlWebBrowserController.h; sourceTree = "<group>"; };
+		CEA8F3081294D9E700699D3C /* AdWhirlWebBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdWhirlWebBrowserController.m; sourceTree = "<group>"; };
+		CEA8F3091294D9E700699D3C /* ARRollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRollerView.m; sourceTree = "<group>"; };
+		CEA8F30A1294D9E700699D3C /* AWNetworkReachabilityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityDelegate.h; sourceTree = "<group>"; };
+		CEA8F30B1294D9E700699D3C /* AWNetworkReachabilityWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWNetworkReachabilityWrapper.h; sourceTree = "<group>"; };
+		CEA8F30C1294D9E700699D3C /* AWNetworkReachabilityWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWNetworkReachabilityWrapper.m; sourceTree = "<group>"; };
+		CEA8F30D1294D9E700699D3C /* UIColor+AdWhirlConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AdWhirlConfig.h"; sourceTree = "<group>"; };
+		CEA8F30E1294D9E700699D3C /* UIColor+AdWhirlConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AdWhirlConfig.m"; sourceTree = "<group>"; };
+		CEA8F3101294D9E700699D3C /* ARRollerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRollerProtocol.h; sourceTree = "<group>"; };
+		CEA8F3111294D9E700699D3C /* ARRollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRollerView.h; sourceTree = "<group>"; };
+		CEA8F3311294D9F300699D3C /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		CEA8F3321294D9F300699D3C /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		CEA8F3341294D9F300699D3C /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		CEA8F3351294D9F300699D3C /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		CEA8F3361294D9F300699D3C /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
+		CEA8F3371294D9F300699D3C /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
+		CEA8F3381294D9F300699D3C /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		CEA8F3391294D9F300699D3C /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		CEA8F33A1294D9F300699D3C /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
+		CEA8F33B1294D9F300699D3C /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
+		CEA8F33D1294D9F300699D3C /* CJSONDataSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDataSerializer.h; sourceTree = "<group>"; };
+		CEA8F33E1294D9F300699D3C /* CJSONDataSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDataSerializer.m; sourceTree = "<group>"; };
+		CEA8F33F1294D9F300699D3C /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		CEA8F3401294D9F300699D3C /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		CEA8F3411294D9F300699D3C /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		CEA8F3421294D9F300699D3C /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		CEA8F3431294D9F300699D3C /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		CEA8F3441294D9F300699D3C /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		CEA8F3451294D9F300699D3C /* CSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSerializedJSONData.h; sourceTree = "<group>"; };
+		CEA8F3461294D9F300699D3C /* CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSerializedJSONData.m; sourceTree = "<group>"; };
+		CEA8F3BA1294DDD400699D3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				CEA8F3BB1294DDD400699D3C /* CoreLocation.framework in Frameworks */,
+				CE90E51B129591F200296C53 /* AddressBook.framework in Frameworks */,
+				CE90E51C129591F200296C53 /* AudioToolbox.framework in Frameworks */,
+				CE90E51D129591F200296C53 /* AVFoundation.framework in Frameworks */,
+				CE90E51E129591F200296C53 /* MapKit.framework in Frameworks */,
+				CE90E51F129591F200296C53 /* MediaPlayer.framework in Frameworks */,
+				CE90E520129591F200296C53 /* MessageUI.framework in Frameworks */,
+				CE90E521129591F200296C53 /* QuartzCore.framework in Frameworks */,
+				CE90E522129591F200296C53 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* adWhirlAppDelegate.h */,
+				1D3623250D0F684500981E51 /* adWhirlAppDelegate.m */,
+				28D7ACF60DDB3853001CB0EB /* adWhirlViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* adWhirlViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* adWhirl.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F2CF1294D9E700699D3C /* AdWhirl */,
+				CEA8F2351294D47900699D3C /* Plus1SDK */,
+				CEA8F3301294D9F300699D3C /* TouchJSON */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* adWhirl_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F2511294D49500699D3C /* images */,
+				2899E5210DE3E06400AC0155 /* adWhirlViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* adWhirl-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E513129591F200296C53 /* AddressBook.framework */,
+				CE90E514129591F200296C53 /* AudioToolbox.framework */,
+				CE90E515129591F200296C53 /* AVFoundation.framework */,
+				CE90E516129591F200296C53 /* MapKit.framework */,
+				CE90E517129591F200296C53 /* MediaPlayer.framework */,
+				CE90E518129591F200296C53 /* MessageUI.framework */,
+				CE90E519129591F200296C53 /* QuartzCore.framework */,
+				CE90E51A129591F200296C53 /* SystemConfiguration.framework */,
+				CEA8F3BA1294DDD400699D3C /* CoreLocation.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEA8F2351294D47900699D3C /* Plus1SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F23B1294D47900699D3C /* WPBannerInfo.h */,
+				CEA8F23C1294D47900699D3C /* WPBannerInfo.m */,
+				CEA8F23D1294D47900699D3C /* WPBannerInfoLoader.h */,
+				CEA8F23E1294D47900699D3C /* WPBannerInfoLoader.m */,
+				CEA8F23F1294D47900699D3C /* WPBannerInfoParser.h */,
+				CEA8F2401294D47900699D3C /* WPBannerInfoParser.m */,
+				CEA8F2411294D47900699D3C /* WPBannerRequestInfo.h */,
+				CEA8F2421294D47900699D3C /* WPBannerRequestInfo.m */,
+				CEA8F2431294D47900699D3C /* WPBannerView.h */,
+				CEA8F2441294D47900699D3C /* WPBannerView.m */,
+				CEA8F2451294D47900699D3C /* WPTypes.h */,
+				CEA8F2461294D47900699D3C /* WPUtils.h */,
+				CEA8F2471294D47900699D3C /* WPUtils.m */,
+			);
+			name = Plus1SDK;
+			path = ../SDK;
+			sourceTree = SOURCE_ROOT;
+		};
+		CEA8F2511294D49500699D3C /* images */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F2371294D47900699D3C /* wp_banner_background.png */,
+				CEA8F2381294D47900699D3C /* wp_banner_close.png */,
+				CEA8F2391294D47900699D3C /* wp_banner_shild.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		CEA8F2CF1294D9E700699D3C /* AdWhirl */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F2D01294D9E700699D3C /* adapters */,
+				CEA8F2E81294D9E700699D3C /* AdWhirlDelegateProtocol.h */,
+				CEA8F2E91294D9E700699D3C /* AdWhirlView.h */,
+				CEA8F2EA1294D9E700699D3C /* internal */,
+				CEA8F30F1294D9E700699D3C /* legacy */,
+			);
+			name = AdWhirl;
+			path = ../../../../AdWhirlSDK_iPhone_2.6.1/AdWhirl;
+			sourceTree = SOURCE_ROOT;
+		};
+		CEA8F2D01294D9E700699D3C /* adapters */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F2D11294D9E700699D3C /* AdWhirlAdapterAdMob.h */,
+				CEA8F2D21294D9E700699D3C /* AdWhirlAdapterAdMob.m */,
+				CEA8F2D31294D9E700699D3C /* AdWhirlAdapterGoogleAdSense.h */,
+				CEA8F2D41294D9E700699D3C /* AdWhirlAdapterGoogleAdSense.m */,
+				CEA8F2D51294D9E700699D3C /* AdWhirlAdapterGreystripe.h */,
+				CEA8F2D61294D9E700699D3C /* AdWhirlAdapterGreystripe.m */,
+				CEA8F2D71294D9E700699D3C /* AdWhirlAdapterIAd.h */,
+				CEA8F2D81294D9E700699D3C /* AdWhirlAdapterIAd.m */,
+				CEA8F2D91294D9E700699D3C /* AdWhirlAdapterInMobi.h */,
+				CEA8F2DA1294D9E700699D3C /* AdWhirlAdapterInMobi.m */,
+				CEA8F2DB1294D9E700699D3C /* AdWhirlAdapterJumpTap.h */,
+				CEA8F2DC1294D9E700699D3C /* AdWhirlAdapterJumpTap.m */,
+				CEA8F2DD1294D9E700699D3C /* AdWhirlAdapterMdotM.h */,
+				CEA8F2DE1294D9E700699D3C /* AdWhirlAdapterMdotM.m */,
+				CEA8F2DF1294D9E700699D3C /* AdWhirlAdapterMillennial.h */,
+				CEA8F2E01294D9E700699D3C /* AdWhirlAdapterMillennial.m */,
+				CEA8F2E11294D9E700699D3C /* AdWhirlAdapterQuattro.h */,
+				CEA8F2E21294D9E700699D3C /* AdWhirlAdapterQuattro.m */,
+				CEA8F2E31294D9E700699D3C /* AdWhirlAdapterVideoEgg.h */,
+				CEA8F2E41294D9E700699D3C /* AdWhirlAdapterVideoEgg.m */,
+				CEA8F2E51294D9E700699D3C /* AdWhirlAdapterZestADZ.h */,
+				CEA8F2E61294D9E700699D3C /* AdWhirlAdapterZestADZ.m */,
+				CEA8F2E71294D9E700699D3C /* AdWhirlAdNetworkAdapter.h */,
+			);
+			path = adapters;
+			sourceTree = "<group>";
+		};
+		CEA8F2EA1294D9E700699D3C /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F2EB1294D9E700699D3C /* AdWhirlAdapterCustom.h */,
+				CEA8F2EC1294D9E700699D3C /* AdWhirlAdapterCustom.m */,
+				CEA8F2ED1294D9E700699D3C /* AdWhirlAdapterEvent.h */,
+				CEA8F2EE1294D9E700699D3C /* AdWhirlAdapterEvent.m */,
+				CEA8F2EF1294D9E700699D3C /* AdWhirlAdapterGeneric.h */,
+				CEA8F2F01294D9E700699D3C /* AdWhirlAdapterGeneric.m */,
+				CEA8F2F11294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.h */,
+				CEA8F2F21294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.m */,
+				CEA8F2F31294D9E700699D3C /* AdWhirlAdNetworkAdapter.m */,
+				CEA8F2F41294D9E700699D3C /* AdWhirlAdNetworkConfig.h */,
+				CEA8F2F51294D9E700699D3C /* AdWhirlAdNetworkConfig.m */,
+				CEA8F2F61294D9E700699D3C /* AdWhirlAdNetworkRegistry.h */,
+				CEA8F2F71294D9E700699D3C /* AdWhirlAdNetworkRegistry.m */,
+				CEA8F2F81294D9E700699D3C /* AdWhirlClassWrapper.h */,
+				CEA8F2F91294D9E700699D3C /* AdWhirlClassWrapper.m */,
+				CEA8F2FA1294D9E700699D3C /* AdWhirlConfig.h */,
+				CEA8F2FB1294D9E700699D3C /* AdWhirlConfig.m */,
+				CEA8F2FC1294D9E700699D3C /* AdWhirlConfigStore.h */,
+				CEA8F2FD1294D9E700699D3C /* AdWhirlConfigStore.m */,
+				CEA8F2FE1294D9E700699D3C /* AdWhirlCustomAdView.h */,
+				CEA8F2FF1294D9E700699D3C /* AdWhirlCustomAdView.m */,
+				CEA8F3001294D9E700699D3C /* AdWhirlError.h */,
+				CEA8F3011294D9E700699D3C /* AdWhirlError.m */,
+				CEA8F3021294D9E700699D3C /* AdWhirlLog.h */,
+				CEA8F3031294D9E700699D3C /* AdWhirlLog.m */,
+				CEA8F3041294D9E700699D3C /* AdWhirlView+.h */,
+				CEA8F3051294D9E700699D3C /* AdWhirlView.m */,
+				CEA8F3061294D9E700699D3C /* AdWhirlWebBrowser.xib */,
+				CEA8F3071294D9E700699D3C /* AdWhirlWebBrowserController.h */,
+				CEA8F3081294D9E700699D3C /* AdWhirlWebBrowserController.m */,
+				CEA8F3091294D9E700699D3C /* ARRollerView.m */,
+				CEA8F30A1294D9E700699D3C /* AWNetworkReachabilityDelegate.h */,
+				CEA8F30B1294D9E700699D3C /* AWNetworkReachabilityWrapper.h */,
+				CEA8F30C1294D9E700699D3C /* AWNetworkReachabilityWrapper.m */,
+				CEA8F30D1294D9E700699D3C /* UIColor+AdWhirlConfig.h */,
+				CEA8F30E1294D9E700699D3C /* UIColor+AdWhirlConfig.m */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		CEA8F30F1294D9E700699D3C /* legacy */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F3101294D9E700699D3C /* ARRollerProtocol.h */,
+				CEA8F3111294D9E700699D3C /* ARRollerView.h */,
+			);
+			path = legacy;
+			sourceTree = "<group>";
+		};
+		CEA8F3301294D9F300699D3C /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F3311294D9F300699D3C /* CDataScanner.h */,
+				CEA8F3321294D9F300699D3C /* CDataScanner.m */,
+				CEA8F3331294D9F300699D3C /* Extensions */,
+				CEA8F33C1294D9F300699D3C /* JSON */,
+			);
+			name = TouchJSON;
+			path = ../../../../AdWhirlSDK_iPhone_2.6.1/TouchJSON;
+			sourceTree = SOURCE_ROOT;
+		};
+		CEA8F3331294D9F300699D3C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F3341294D9F300699D3C /* CDataScanner_Extensions.h */,
+				CEA8F3351294D9F300699D3C /* CDataScanner_Extensions.m */,
+				CEA8F3361294D9F300699D3C /* NSCharacterSet_Extensions.h */,
+				CEA8F3371294D9F300699D3C /* NSCharacterSet_Extensions.m */,
+				CEA8F3381294D9F300699D3C /* NSDictionary_JSONExtensions.h */,
+				CEA8F3391294D9F300699D3C /* NSDictionary_JSONExtensions.m */,
+				CEA8F33A1294D9F300699D3C /* NSScanner_Extensions.h */,
+				CEA8F33B1294D9F300699D3C /* NSScanner_Extensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEA8F33C1294D9F300699D3C /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F33D1294D9F300699D3C /* CJSONDataSerializer.h */,
+				CEA8F33E1294D9F300699D3C /* CJSONDataSerializer.m */,
+				CEA8F33F1294D9F300699D3C /* CJSONDeserializer.h */,
+				CEA8F3401294D9F300699D3C /* CJSONDeserializer.m */,
+				CEA8F3411294D9F300699D3C /* CJSONScanner.h */,
+				CEA8F3421294D9F300699D3C /* CJSONScanner.m */,
+				CEA8F3431294D9F300699D3C /* CJSONSerializer.h */,
+				CEA8F3441294D9F300699D3C /* CJSONSerializer.m */,
+				CEA8F3451294D9F300699D3C /* CSerializedJSONData.h */,
+				CEA8F3461294D9F300699D3C /* CSerializedJSONData.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* adWhirl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "adWhirl" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = adWhirl;
+			productName = adWhirl;
+			productReference = 1D6058910D05DD3D006BFB54 /* adWhirl.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "adWhirl" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* adWhirl */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* adWhirlViewController.xib in Resources */,
+				CEA8F2481294D47900699D3C /* wp_banner_background.png in Resources */,
+				CEA8F2491294D47900699D3C /* wp_banner_close.png in Resources */,
+				CEA8F24A1294D47900699D3C /* wp_banner_shild.png in Resources */,
+				CEA8F32B1294D9E700699D3C /* AdWhirlWebBrowser.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* adWhirlAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* adWhirlViewController.m in Sources */,
+				CEA8F31D1294D9E700699D3C /* AdWhirlAdapterCustom.m in Sources */,
+				CEA8F31E1294D9E700699D3C /* AdWhirlAdapterEvent.m in Sources */,
+				CEA8F31F1294D9E700699D3C /* AdWhirlAdapterGeneric.m in Sources */,
+				CEA8F3201294D9E700699D3C /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */,
+				CEA8F3211294D9E700699D3C /* AdWhirlAdNetworkAdapter.m in Sources */,
+				CEA8F3221294D9E700699D3C /* AdWhirlAdNetworkConfig.m in Sources */,
+				CEA8F3231294D9E700699D3C /* AdWhirlAdNetworkRegistry.m in Sources */,
+				CEA8F3241294D9E700699D3C /* AdWhirlClassWrapper.m in Sources */,
+				CEA8F3251294D9E700699D3C /* AdWhirlConfig.m in Sources */,
+				CEA8F3261294D9E700699D3C /* AdWhirlConfigStore.m in Sources */,
+				CEA8F3271294D9E700699D3C /* AdWhirlCustomAdView.m in Sources */,
+				CEA8F3281294D9E700699D3C /* AdWhirlError.m in Sources */,
+				CEA8F3291294D9E700699D3C /* AdWhirlLog.m in Sources */,
+				CEA8F32A1294D9E700699D3C /* AdWhirlView.m in Sources */,
+				CEA8F32C1294D9E700699D3C /* AdWhirlWebBrowserController.m in Sources */,
+				CEA8F32D1294D9E700699D3C /* ARRollerView.m in Sources */,
+				CEA8F32E1294D9E700699D3C /* AWNetworkReachabilityWrapper.m in Sources */,
+				CEA8F32F1294D9E700699D3C /* UIColor+AdWhirlConfig.m in Sources */,
+				CEA8F3471294D9F300699D3C /* CDataScanner.m in Sources */,
+				CEA8F3481294D9F300699D3C /* CDataScanner_Extensions.m in Sources */,
+				CEA8F3491294D9F300699D3C /* NSCharacterSet_Extensions.m in Sources */,
+				CEA8F34A1294D9F300699D3C /* NSDictionary_JSONExtensions.m in Sources */,
+				CEA8F34B1294D9F300699D3C /* NSScanner_Extensions.m in Sources */,
+				CEA8F34C1294D9F300699D3C /* CJSONDataSerializer.m in Sources */,
+				CEA8F34D1294D9F300699D3C /* CJSONDeserializer.m in Sources */,
+				CEA8F34E1294D9F300699D3C /* CJSONScanner.m in Sources */,
+				CEA8F34F1294D9F300699D3C /* CJSONSerializer.m in Sources */,
+				CEA8F3501294D9F300699D3C /* CSerializedJSONData.m in Sources */,
+				CEA8F3F51294DE4B00699D3C /* WPBannerInfo.m in Sources */,
+				CEA8F3F61294DE4B00699D3C /* WPBannerInfoLoader.m in Sources */,
+				CEA8F3F71294DE4C00699D3C /* WPBannerInfoParser.m in Sources */,
+				CEA8F3F81294DE4C00699D3C /* WPBannerRequestInfo.m in Sources */,
+				CEA8F3FA1294DE4E00699D3C /* WPUtils.m in Sources */,
+				CE90E65C1295A3CD00296C53 /* WPBannerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = adWhirl_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "adWhirl-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = adWhirl;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = adWhirl_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "adWhirl-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_NAME = adWhirl;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "adWhirl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "adWhirl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
