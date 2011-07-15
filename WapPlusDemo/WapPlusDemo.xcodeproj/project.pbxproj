@@ -30,7 +30,6 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */; };
 		CE6C8CEE13C5993C00EC98B9 /* WPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */; };
-		CE6C8CF113C7287D00EC98B9 /* AnimatedGif.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C8CF013C7287D00EC98B9 /* AnimatedGif.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,8 +72,6 @@
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLocationManager.h; sourceTree = "<group>"; };
 		CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPLocationManager.m; sourceTree = "<group>"; };
-		CE6C8CEF13C7287C00EC98B9 /* AnimatedGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGif.h; sourceTree = "<group>"; };
-		CE6C8CF013C7287D00EC98B9 /* AnimatedGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGif.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +113,6 @@
 		06FE372D1252346D00A7CA77 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C8CEF13C7287C00EC98B9 /* AnimatedGif.h */,
-				CE6C8CF013C7287D00EC98B9 /* AnimatedGif.m */,
 				0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */,
 				0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */,
 				06FE3322124A1BA600A7CA77 /* WPBannerRequestInfo.h */,
@@ -284,7 +279,6 @@
 				06FE33BC124A282400A7CA77 /* WPDemo2ViewController.m in Sources */,
 				06FE33CF124A2CCE00A7CA77 /* WPDemo3ViewController.m in Sources */,
 				CE6C8CEE13C5993C00EC98B9 /* WPLocationManager.m in Sources */,
-				CE6C8CF113C7287D00EC98B9 /* AnimatedGif.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
