@@ -36,8 +36,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-// #define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
-#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/?area=application&version=2"
+#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)

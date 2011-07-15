@@ -65,7 +65,7 @@
 {
     [super viewDidLoad];
 
-	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:TEST_APPLICATION_ID];
+	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:APPLICATION_ID];
 	
 	bannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	bannerView.showCloseButton = YES;
