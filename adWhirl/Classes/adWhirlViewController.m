@@ -32,8 +32,6 @@
 #import "adWhirlViewController.h"
 #import "WPBannerInfo.h"
 
-#define TEST_APPLICATION_ID 1273
-
 @implementation adWhirlViewController
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -48,8 +46,8 @@
 	[self.view addSubview:adView];
 	
 	WPBannerRequestInfo *requestInfo = 
-		[[WPBannerRequestInfo alloc] initWithApplicationId:TEST_APPLICATION_ID];
-
+		[[WPBannerRequestInfo alloc] initWithApplicationId:/* PLACE YOUR APPICATION ID HERE */];
+    
 	plus1Banner = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	plus1Banner.showCloseButton = NO;
 	plus1Banner.autoupdateTimeout = 0;
