@@ -69,6 +69,7 @@
 		_showCloseButton = YES;
 		_hideWhenEmpty = NO;
 		_reloadAfterOpenning = NO;
+		_disableAutoDetectLocation = YES;
 
 		_bannerRequestInfo = [requestInfo retain];
         
@@ -93,7 +94,6 @@
         
         _locationManager = [[WPLocationManager alloc] init];
         _locationManager.delegate = self;
-        [_locationManager.locMgr startUpdatingLocation];
     }
     
     return self;
@@ -226,6 +226,8 @@
     
     if (_disableAutoDetectLocation)
         [_locationManager.locMgr stopUpdatingLocation];
+    else
+        [_locationManager.locMgr startUpdatingLocation];
 }
 
 #pragma mark Drawing and Views
