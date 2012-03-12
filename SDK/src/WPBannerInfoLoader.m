@@ -41,7 +41,19 @@
 //#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
+
 @interface WPBannerInfoLoader (PrivateMethods)
+
+- (void) initializeClientSessionId;
+- (NSURL *) requestUrl;
+- (NSString *) getUserAgent;
+
+@end
+
+
+@interface WPBannerInfoLoader (PrivateMethods)
+
+@property (nonatomic, retain) NSMutableData *data;
 
 - (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
@@ -54,6 +66,7 @@
 
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
+@synthesize data = _data;
 
 - (id) init
 {
@@ -86,6 +99,8 @@
 	[_bannerRequestInfo release];
 	[_clientSessionId release];
 	//[_bannerInfoParser release];
+	[_data release];
+
 	[super dealloc];
 }
 
@@ -185,7 +200,9 @@
 	
 	if (_urlConnection == nil)
 		return NO;
-	
+
+	self.data = [NSMutableData data];
+
 	return YES;
 }
 
@@ -201,10 +218,10 @@
 	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
 }
 
-- (WPBannerInfo *) bannerInfo
+/*- (WPBannerInfo *) bannerInfo
 {
 	return _bannerInfoParser.bannerInfo;
-}
+}*/
 
 //////////////////////////////////////////////////////////
 //       NSURLConnection delegate functions             //
@@ -214,6 +231,10 @@
 {
 	if (connection != _urlConnection)
 		return;
+	
+	[self.data setLength:0];
+	
+	// FIXME: store some header info
 }
 
 
@@ -222,6 +243,8 @@
 	if (connection != _urlConnection)
 		return;
 
+	[self.data appendData:data];
+	
     // Process the downloaded chunk of data.
 	/*@try {
 		[_bannerInfoParser parseData:data];

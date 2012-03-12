@@ -577,9 +577,8 @@
 
 	UIWebView *webview = [self makeAdViewWithFrame:self.frame];
 	//webview.delegate = self; // FIXME: add UIWebViewDelegate
-	NSURL *baseUrl = [NSURL URLWithString:@"http://ya.ru"]; // FIXME
-	NSData *data = [[NSData alloc] initWithContentsOfURL:baseUrl]; // test data
-	[webview loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:baseUrl];
+	NSURL *baseUrl = [NSURL URLWithString:@"http://plus1.wapstart.ru/"]; // FIXME: really need baseUrl?
+	[webview loadData:loader.data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:baseUrl];
 
 	/*if (loader.bannerInfo != nil && loader.bannerInfo.bannerId != 0)
 	{
