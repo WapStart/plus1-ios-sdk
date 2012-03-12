@@ -295,6 +295,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = WapPlusDemo;
 			};
 			name = Debug;
@@ -307,6 +308,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = WapPlusDemo;
 				VALIDATE_PRODUCT = YES;
 			};

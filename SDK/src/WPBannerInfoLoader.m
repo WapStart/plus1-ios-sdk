@@ -36,7 +36,9 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
+//#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
+#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/?area=application&version=2"
+//#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)
@@ -58,7 +60,7 @@
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = nil;
-		_bannerInfoParser = [[WPBannerInfoParser alloc] init];
+		//_bannerInfoParser = [[WPBannerInfoParser alloc] init];
 		
 		[self initializeClientSessionId];
 	}
@@ -70,7 +72,7 @@
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = [requestInfo retain];
-		_bannerInfoParser = [[WPBannerInfoParser alloc] init];
+		//_bannerInfoParser = [[WPBannerInfoParser alloc] init];
 
 		[self initializeClientSessionId];
 	}
@@ -83,7 +85,7 @@
 	
 	[_bannerRequestInfo release];
 	[_clientSessionId release];
-	[_bannerInfoParser release];
+	//[_bannerInfoParser release];
 	[super dealloc];
 }
 
@@ -174,7 +176,8 @@
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
-	[theRequest setValue:[self getDeviceIMEI] forHTTPHeaderField:@"x-device-imei"]; 
+	[theRequest setValue:[self getDeviceIMEI] forHTTPHeaderField:@"x-device-imei"];
+	// TODO: add container metrics header
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 
@@ -193,7 +196,7 @@
 	
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
-	[_bannerInfoParser finishParsing];
+	//[_bannerInfoParser finishParsing];
 	
 	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
 }
@@ -220,12 +223,12 @@
 		return;
 
     // Process the downloaded chunk of data.
-	@try {
+	/*@try {
 		[_bannerInfoParser parseData:data];
 	}
 	@catch (NSException * e) {
 		NSLog(@"!!!");
-	}
+	}*/
 }
 
 
@@ -240,7 +243,7 @@
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeUnknown];
 	
 	[_urlConnection release], _urlConnection = nil;
-	[_bannerInfoParser finishParsing];
+	//[_bannerInfoParser finishParsing];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
@@ -248,7 +251,7 @@
 	if (connection != _urlConnection)
 		return;
 	
-	[_bannerInfoParser finishParsing];
+	//[_bannerInfoParser finishParsing];
 
 	[_delegate bannerInfoLoaderDidFinish:self];
 	

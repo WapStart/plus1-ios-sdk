@@ -14,5 +14,5 @@
     #import <CoreData/CoreData.h>
 #endif
 
-#define APPLICATION_ID /* PLACE YOUR APPLICATION ID HERE */
+#define APPLICATION_ID 1/* PLACE YOUR APPLICATION ID HERE */
 #define UPDATE_BANNER_TIMEOUT 15

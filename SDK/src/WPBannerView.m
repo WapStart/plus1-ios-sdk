@@ -44,6 +44,8 @@
 - (void) loadImage;
 - (void) cancelLoadImage;
 
+- (UIWebView *) makeAdViewWithFrame:(CGRect)frame;
+
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
 @end
@@ -285,9 +287,9 @@
 	if (_bannerInfoLoader != nil)
 		return;
 	
-	CGRect maxRect = CGRectMake(9, 0, self.bounds.size.width-([_closeButton isHidden] ? 9 : 31), self.bounds.size.height);
+	//CGRect maxRect = CGRectMake(9, 0, self.bounds.size.width-([_closeButton isHidden] ? 9 : 31), self.bounds.size.height);
 
-	if (_showImageBanner && _bannerImage != nil)
+	/*if (_showImageBanner && _bannerImage != nil)
 	{
 		[_bannerImage drawInRect:[WPBannerView aspectFittedRect:_bannerImage.size max:maxRect]];
 	}else
@@ -314,7 +316,7 @@
 								  alignment:UITextAlignmentLeft];
 			
 		}
-	}
+	}*/
 }
 
 - (void) layoutSubviews
@@ -504,7 +506,10 @@
 		return;
 	
 	[_urlConnection cancel];
-	[_imageData release];
+
+#if !__has_feature(objc_arc)
+    [_imageData release];
+#endif
 }
 
 #pragma mark Network delegates
@@ -568,7 +573,15 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
-	if (loader.bannerInfo != nil && loader.bannerInfo.bannerId != 0)
+	NSLog(@"Load!!!");
+
+	UIWebView *webview = [self makeAdViewWithFrame:self.frame];
+	//webview.delegate = self; // FIXME: add UIWebViewDelegate
+	NSURL *baseUrl = [NSURL URLWithString:@"http://ya.ru"]; // FIXME
+	NSData *data = [[NSData alloc] initWithContentsOfURL:baseUrl]; // test data
+	[webview loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:baseUrl];
+
+	/*if (loader.bannerInfo != nil && loader.bannerInfo.bannerId != 0)
 	{
 		// Banner info loaded
 		[_drawImageTimer invalidate], _drawImageTimer = nil;
@@ -581,8 +594,11 @@
 
 		if (_bannerInfo.pictureUrl != nil || _bannerInfo.pictureUrlPng != nil)
 			[self loadImage];
-	}
-	
+	}*/
+
+	[self setHidden:false];
+	[self addSubview:webview];
+
 	[_bannerInfoLoader release], _bannerInfoLoader = nil;
 	[self configureSubviews];
 	[self setNeedsDisplay];
@@ -625,5 +641,12 @@
 	return CGRectIntegral(newRect);
 }
 
+- (UIWebView *) makeAdViewWithFrame:(CGRect)frame
+{
+	UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+	webView.backgroundColor = [UIColor clearColor];
+	webView.opaque = NO;
+	return [webView autorelease];
+}
 
 @end
