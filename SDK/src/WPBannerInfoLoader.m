@@ -57,6 +57,7 @@
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
 @synthesize data = _data;
+@synthesize adType = _adType;
 
 - (id) init
 {
@@ -225,8 +226,9 @@
 	[self.data setLength:0];
 	
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
-		NSString *adtype = [[response allHeaderFields] valueForKey:@"X-Adtype"];
-		NSLog(@"X-Adtype: %@", adtype);
+		NSString *adType = [[response allHeaderFields] valueForKey:@"X-Adtype"];
+		NSLog(@"X-Adtype received: %@", adType);
+		self.adType = adType;
 	}
 }
 

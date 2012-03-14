@@ -573,7 +573,7 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
-	NSLog(@"Load!!!");
+	NSLog(@"Load!!! type: %@", loader.adType);
 
 	UIWebView *webview = [self makeAdViewWithFrame:self.frame];
 	//webview.delegate = self; // FIXME: add UIWebViewDelegate

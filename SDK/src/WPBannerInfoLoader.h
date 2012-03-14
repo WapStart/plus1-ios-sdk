@@ -59,8 +59,9 @@ typedef enum
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
 //@property (nonatomic, readonly) WPBannerInfo *bannerInfo;
-@property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;
 @property (nonatomic, retain) NSMutableData *data;
+@property (nonatomic, retain) NSString *adType;
+@property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
 - (BOOL) start;
