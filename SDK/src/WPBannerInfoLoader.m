@@ -37,23 +37,13 @@
 #include <sys/sysctl.h>
 
 //#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
-#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/?area=application&version=2"
+//#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/?area=application&version=2"
+#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 //#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
 
 @interface WPBannerInfoLoader (PrivateMethods)
-
-- (void) initializeClientSessionId;
-- (NSURL *) requestUrl;
-- (NSString *) getUserAgent;
-
-@end
-
-
-@interface WPBannerInfoLoader (PrivateMethods)
-
-@property (nonatomic, retain) NSMutableData *data;
 
 - (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
@@ -234,7 +224,10 @@
 	
 	[self.data setLength:0];
 	
-	// FIXME: store some header info
+	if ([response respondsToSelector:@selector(allHeaderFields)]) {
+		NSString *adtype = [[response allHeaderFields] valueForKey:@"X-Adtype"];
+		NSLog(@"X-Adtype: %@", adtype);
+	}
 }
 
 

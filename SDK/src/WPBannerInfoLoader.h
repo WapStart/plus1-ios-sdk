@@ -63,9 +63,7 @@ typedef enum
 @property (nonatomic, retain) NSMutableData *data;
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
-
 - (BOOL) start;
-
 - (void) cancel;
 
 @end
