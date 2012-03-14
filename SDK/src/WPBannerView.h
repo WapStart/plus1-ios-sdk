@@ -42,6 +42,8 @@
 	WPBannerRequestInfo *_bannerRequestInfo;
 	WPBannerInfoLoader  *_bannerInfoLoader;
     WPLocationManager   *_locationManager;
+
+	UIView				*_currentContentView;
 	
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;

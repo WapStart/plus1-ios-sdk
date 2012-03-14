@@ -31,6 +31,7 @@
 
 #import "WPBannerView.h"
 #import "WPBannerInfo.h"
+#import "MRAdView.h"
 
 #define BANNER_HEIGHT 60
 #define MINIMIZED_BANNER_HEIGHT 20
@@ -128,7 +129,8 @@
 
 - (BOOL) isEmpty
 {
-	return (_bannerInfo == nil);
+	return false;
+	//return (_bannerInfo == nil);
 }
 
 - (void) setShowCloseButton:(BOOL)show
@@ -512,6 +514,16 @@
 #endif
 }
 
+- (UIWebView *) makeAdViewWithFrame:(CGRect)frame
+{
+	UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+	webView.backgroundColor = [UIColor clearColor];
+	webView.opaque = NO;
+	[[webView scrollView] setScrollEnabled:NO];
+	
+	return [webView autorelease];
+}
+
 #pragma mark Network delegates
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -575,10 +587,24 @@
 {
 	NSLog(@"Load!!! type: %@", loader.adType);
 
-	UIWebView *webview = [self makeAdViewWithFrame:self.frame];
-	//webview.delegate = self; // FIXME: add UIWebViewDelegate
-	//NSURL *baseUrl = [NSURL URLWithString:@"http://plus1.wapstart.ru/"]; // FIXME: really need baseUrl?
-	[webview loadData:loader.data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
+	if (_currentContentView != nil) {
+		[_currentContentView removeFromSuperview];
+		[_currentContentView release];
+	}
+
+	if ([@"mraid" isEqualToString:loader.adType]) {
+		MRAdView *mraidview = [[MRAdView alloc] initWithFrame:self.frame];
+		[mraidview loadCreativeWithHTMLString:@"yeeeeeahhhh!!! <b>MRAID</b>" baseURL:nil];
+		//[self addSubview:mraidview];
+		_currentContentView = mraidview;
+	} else {
+		UIWebView *webview = [self makeAdViewWithFrame:self.frame];
+		//webview.delegate = self; // FIXME: add UIWebViewDelegate
+		//NSURL *baseUrl = [NSURL URLWithString:@"http://plus1.wapstart.ru/"]; // FIXME: really need baseUrl?
+		[webview loadData:loader.data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
+		//[self addSubview:webview];
+		_currentContentView = webview;
+	}
 
 	/*if (loader.bannerInfo != nil && loader.bannerInfo.bannerId != 0)
 	{
@@ -595,8 +621,9 @@
 			[self loadImage];
 	}*/
 
-	[self setHidden:false];
-	[self addSubview:webview];
+	//[self setHidden:false];
+	[self setHideWhenEmpty:_hideWhenEmpty]; // FIXME: huh?
+	[self addSubview:_currentContentView];
 
 	[_bannerInfoLoader release], _bannerInfoLoader = nil;
 	[self configureSubviews];
@@ -638,14 +665,6 @@
 	}
 	
 	return CGRectIntegral(newRect);
-}
-
-- (UIWebView *) makeAdViewWithFrame:(CGRect)frame
-{
-	UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
-	webView.backgroundColor = [UIColor clearColor];
-	webView.opaque = NO;
-	return [webView autorelease];
 }
 
 @end
