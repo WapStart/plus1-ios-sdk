@@ -316,6 +316,8 @@ static NSString * const kMraidURLScheme = @"mraid";
     cmd.parameters = parameters;
     cmd.view = self;
     
+	NSLog(@"Mraid command: %@", command);
+	
     BOOL processed = [cmd execute];
     if (!processed) MPLogDebug(@"Unknown command: %@", command);
     
@@ -368,8 +370,8 @@ static NSString * const kMraidURLScheme = @"mraid";
             return NO;
         }
         return YES;
-    } else if ([scheme isEqualToString:@"mopub"]) {
-        return NO;
+    //} else if ([scheme isEqualToString:@"mopub"]) {
+    //    return NO;
     } else if ([scheme isEqualToString:@"ios-log"]) {
         [urlString replaceOccurrencesOfString:@"%20" 
                                    withString:@" " 

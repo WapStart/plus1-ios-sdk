@@ -164,12 +164,9 @@
 
 - (BOOL) start
 {
-	if (_bannerRequestInfo == nil)
+	if (_bannerRequestInfo == nil || _urlConnection != nil)
 		return NO;
-	
-	if (_urlConnection != nil)
-		return NO;
-	
+
 	NSMutableURLRequest *theRequest =
 		[NSMutableURLRequest requestWithURL:[self requestUrl]
 								cachePolicy:NSURLRequestReloadIgnoringLocalCacheData

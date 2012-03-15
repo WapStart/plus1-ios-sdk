@@ -61,6 +61,7 @@
 @synthesize showCloseButton = _showCloseButton;
 @synthesize hideWhenEmpty = _hideWhenEmpty;
 @synthesize disableAutoDetectLocation = _disableAutoDetectLocation;
+@synthesize autoupdateTimeout = _autoupdateTimeout;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
@@ -97,6 +98,8 @@
         
         _locationManager = [[WPLocationManager alloc] init];
         _locationManager.delegate = self;
+
+		[self startAutoupdateTimer];
     }
     
     return self;
@@ -177,7 +180,12 @@
 		{
 			currentFrame.size.height = MINIMIZED_BANNER_HEIGHT;
 		}
-	}else {
+		
+		if (_currentContentView != nil) {
+			[_currentContentView removeFromSuperview];
+			[_currentContentView release];
+		}
+	} else {
 		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
 		{
 			// Banner from bottom
@@ -204,23 +212,19 @@
 	_reloadAfterOpenning = NO;
 }
 
-- (CGFloat) autoupdateTimeout
+- (void) startAutoupdateTimer
 {
-	return _autoupdateTimeout;
-}
-
-- (void) setAutoupdateTimeout:(CGFloat)newTimeout
-{
-	_autoupdateTimeout = newTimeout;
-	
-	if (_autoupdateTimeout == 0)
-	{
-		// Turn off timer
-		[_autoupdateTimer invalidate], _autoupdateTimer = nil;
-	}else
-	{
+	if (_autoupdateTimeout > 0 && _autoupdateTimer == nil) {
 		_autoupdateTimer = [NSTimer timerWithTimeInterval:_autoupdateTimeout target:self selector:@selector(reloadBanner) userInfo:nil repeats:YES];
 		[[NSRunLoop currentRunLoop] addTimer:_autoupdateTimer forMode:NSDefaultRunLoopMode];
+	}
+}
+
+- (void) stopAutoupdateTimer
+{
+	if (_autoupdateTimeout == 0 && _autoupdateTimer != nil) {
+		// Turn off timer
+		[_autoupdateTimer invalidate], _autoupdateTimer = nil;
 	}
 }
 
@@ -267,7 +271,7 @@
 	[bgImage drawInRect:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
 
 	[[UIColor whiteColor] set];
-	
+
 	if (self.isMinimized)
 	{
 		CGRect rect = CGRectMake(10, 2, self.bounds.size.width-20, self.bounds.size.height-4);
@@ -466,8 +470,9 @@
 		}
 	}
 	
-	[self cancelLoadImage];
+	//[self cancelLoadImage];
 	[_bannerInfoLoader cancel];
+	[_bannerInfoLoader release];
 	
 	_bannerInfoLoader = [[WPBannerInfoLoader alloc] initWithRequestInfo:_bannerRequestInfo];
 	_bannerInfoLoader.delegate = self;
@@ -479,6 +484,8 @@
 	
 	[self configureSubviews];
 	[self setNeedsDisplay];
+
+	[self startAutoupdateTimer]; // FIXME: need one call at first load
 }
 
 - (void) loadImage
@@ -592,17 +599,17 @@
 		[_currentContentView release];
 	}
 
+	NSString *html = [NSString stringWithUTF8String:[loader.data bytes]];
+
 	if ([@"mraid" isEqualToString:loader.adType]) {
 		MRAdView *mraidview = [[MRAdView alloc] initWithFrame:self.frame];
-		[mraidview loadCreativeWithHTMLString:@"yeeeeeahhhh!!! <b>MRAID</b>" baseURL:nil];
-		//[self addSubview:mraidview];
+		[mraidview loadCreativeWithHTMLString:html baseURL:nil];
+		[mraidview setDelegate:self];
 		_currentContentView = mraidview;
 	} else {
 		UIWebView *webview = [self makeAdViewWithFrame:self.frame];
 		//webview.delegate = self; // FIXME: add UIWebViewDelegate
-		//NSURL *baseUrl = [NSURL URLWithString:@"http://plus1.wapstart.ru/"]; // FIXME: really need baseUrl?
-		[webview loadData:loader.data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:nil];
-		//[self addSubview:webview];
+		[webview loadHTMLString:html baseURL:nil];
 		_currentContentView = webview;
 	}
 
@@ -623,12 +630,12 @@
 
 	//[self setHidden:false];
 	[self setHideWhenEmpty:_hideWhenEmpty]; // FIXME: huh?
-	[self addSubview:_currentContentView];
+	[self insertSubview:_currentContentView atIndex:0];
 
 	[_bannerInfoLoader release], _bannerInfoLoader = nil;
 	[self configureSubviews];
 	[self setNeedsDisplay];
-	
+
 	if ([_delegate respondsToSelector:@selector(bannerViewInfoLoaded:)])
 		[_delegate bannerViewInfoLoaded:self];
 }
@@ -665,6 +672,31 @@
 	}
 	
 	return CGRectIntegral(newRect);
+}
+
+- (UIViewController *)viewControllerForPresentingModalView
+{
+	return nil;
+}
+
+- (void)didExpandAd:(MRAdView *)adView
+{
+	NSLog(@"MRAID: Expanded!");
+	
+	[_bannerInfoLoader cancel];
+	[self stopAutoupdateTimer];
+}
+
+- (void)didCloseAd:(MRAdView *)adView
+{
+	NSLog(@"MRAID: Closed!");
+	
+	[self startAutoupdateTimer];
+}
+
+- (void)adDidLoad:(MRAdView *)adView;
+{
+	NSLog(@"MRAID: Loaded!");
 }
 
 @end
