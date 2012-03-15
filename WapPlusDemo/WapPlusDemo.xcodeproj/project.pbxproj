@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */; };
 		0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */; };
-		0672C379122BAC9300DE1F54 /* WPBannerInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */; };
 		0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */; };
 		0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C376122BAC9300DE1F54 /* WPUtils.m */; };
 		0672C380122BAC9F00DE1F54 /* wp_banner_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C37D122BAC9F00DE1F54 /* wp_banner_background.png */; };
@@ -49,8 +48,6 @@
 		0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfo.m; sourceTree = "<group>"; };
 		0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoLoader.h; sourceTree = "<group>"; };
 		0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoLoader.m; sourceTree = "<group>"; };
-		0672C370122BAC9300DE1F54 /* WPBannerInfoParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoParser.h; sourceTree = "<group>"; };
-		0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoParser.m; sourceTree = "<group>"; };
 		0672C372122BAC9300DE1F54 /* WPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerView.h; sourceTree = "<group>"; };
 		0672C373122BAC9300DE1F54 /* WPBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerView.m; sourceTree = "<group>"; };
 		0672C374122BAC9300DE1F54 /* WPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTypes.h; sourceTree = "<group>"; };
@@ -164,8 +161,6 @@
 				0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */,
 				0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */,
 				0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */,
-				0672C370122BAC9300DE1F54 /* WPBannerInfoParser.h */,
-				0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */,
 				06FE3322124A1BA600A7CA77 /* WPBannerRequestInfo.h */,
 				06FE3323124A1BA600A7CA77 /* WPBannerRequestInfo.m */,
 				0672C372122BAC9300DE1F54 /* WPBannerView.h */,
@@ -340,7 +335,6 @@
 				1D3623260D0F684500981E51 /* WapPlusDemoAppDelegate.m in Sources */,
 				0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */,
 				0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */,
-				0672C379122BAC9300DE1F54 /* WPBannerInfoParser.m in Sources */,
 				0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */,
 				0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */,
 				0672C3CD122BAED700DE1F54 /* WPDemo1ViewController.m in Sources */,

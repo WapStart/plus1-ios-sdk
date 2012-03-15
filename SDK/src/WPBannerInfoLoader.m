@@ -30,7 +30,6 @@
  */
 
 #import "WPBannerInfoLoader.h"
-#import "WPBannerInfoParser.h"
 #import "WPBannerInfo.h"
 #import "WPUtils.h"
 #include <sys/types.h>
@@ -64,7 +63,6 @@
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = nil;
-		//_bannerInfoParser = [[WPBannerInfoParser alloc] init];
 		
 		[self initializeClientSessionId];
 	}
@@ -76,7 +74,6 @@
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = [requestInfo retain];
-		//_bannerInfoParser = [[WPBannerInfoParser alloc] init];
 
 		[self initializeClientSessionId];
 	}
@@ -89,7 +86,6 @@
 	
 	[_bannerRequestInfo release];
 	[_clientSessionId release];
-	//[_bannerInfoParser release];
 	[_data release];
 
 	[super dealloc];
@@ -201,15 +197,9 @@
 	
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
-	//[_bannerInfoParser finishParsing];
 	
 	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
 }
-
-/*- (WPBannerInfo *) bannerInfo
-{
-	return _bannerInfoParser.bannerInfo;
-}*/
 
 //////////////////////////////////////////////////////////
 //       NSURLConnection delegate functions             //
@@ -236,14 +226,6 @@
 		return;
 
 	[self.data appendData:data];
-	
-    // Process the downloaded chunk of data.
-	/*@try {
-		[_bannerInfoParser parseData:data];
-	}
-	@catch (NSException * e) {
-		NSLog(@"!!!");
-	}*/
 }
 
 
@@ -258,15 +240,12 @@
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeUnknown];
 	
 	[_urlConnection release], _urlConnection = nil;
-	//[_bannerInfoParser finishParsing];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	if (connection != _urlConnection)
 		return;
-	
-	//[_bannerInfoParser finishParsing];
 
 	[_delegate bannerInfoLoaderDidFinish:self];
 	
