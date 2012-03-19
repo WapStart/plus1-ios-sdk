@@ -138,9 +138,10 @@
 		return;
 	
 	bannerView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, [bannerView bannerHeight]);
+	bannerView.orientation = toInterfaceOrientation;
 	self.tableView.tableHeaderView = nil;
 	self.tableView.tableHeaderView = bannerView;
-	[self.tableView reloadData];	
+	[self.tableView reloadData];
 }
 
 - (void) bannerViewPressed:(WPBannerView *) bnView

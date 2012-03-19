@@ -99,6 +99,8 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+	topBannerView.orientation = toInterfaceOrientation;
+
 	[self layoutSubviews];
 }
 

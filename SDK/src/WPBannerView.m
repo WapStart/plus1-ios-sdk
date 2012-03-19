@@ -60,6 +60,7 @@
 @synthesize hideWhenEmpty = _hideWhenEmpty;
 @synthesize disableAutoDetectLocation = _disableAutoDetectLocation;
 @synthesize autoupdateTimeout = _autoupdateTimeout;
+@synthesize orientation = _orientation;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
@@ -109,7 +110,6 @@
 	
     [_locationManager release];
 	[_bannerRequestInfo release];
-	[_bannerImage release];
 	[_closeButton release];
 	[_imageLoadingProgress release];
 	self.minimizedLabel = nil;
@@ -413,7 +413,7 @@
 
 - (void) reloadBanner
 {
-	if (self.isMinimized)
+	if (self.isMinimized || _isExpanded)
 	{
 		if (!self.isEmpty || !_hideWhenEmpty)
 		{
@@ -521,6 +521,8 @@
 {
 	NSLog(@"MRAID: Will expanded!");
 	
+	_isExpanded = true;
+
 	[_bannerInfoLoader cancel];
 	[self stopAutoupdateTimer];
 }
@@ -536,6 +538,8 @@
 	
 	[self startAutoupdateTimer];
 	[self setNeedsDisplay];
+
+	_isExpanded = false;
 }
 
 - (void)adDidLoad:(MRAdView *)adView;

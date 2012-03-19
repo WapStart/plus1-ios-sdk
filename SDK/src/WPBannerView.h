@@ -48,13 +48,13 @@
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;
 	
+	UIInterfaceOrientation _orientation;
 	UIActivityIndicatorView *_loadingInfoIndicator;
 	UIProgressView *_imageLoadingProgress;
 	UIButton *_closeButton;
 	BOOL _showCloseButton;
-	
-	UIImage *_bannerImage;
-	
+	BOOL _isExpanded;
+
 	id<WPBannerViewDelegate> _delegate;
 	
 	NSURLConnection *_urlConnection;
@@ -77,6 +77,7 @@
 @property (nonatomic, readonly) BOOL isEmpty;
 @property (nonatomic, readonly) CGFloat bannerHeight;
 @property (nonatomic, assign) BOOL disableAutoDetectLocation;
+@property (nonatomic, assign) UIInterfaceOrientation orientation;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 
