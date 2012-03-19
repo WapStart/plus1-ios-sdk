@@ -65,9 +65,6 @@
 	BOOL _reloadAfterOpenning;
 	NSString *_minimizedLabel;
 	
-	NSTimer *_drawImageTimer;
-	BOOL _showImageBanner;
-	
 	BOOL _hideWhenEmpty;
     BOOL _disableAutoDetectLocation;
 }

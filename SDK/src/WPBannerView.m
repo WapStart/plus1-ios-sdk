@@ -41,9 +41,6 @@
 
 - (void) configureSubviews;
 
-- (void) loadImage;
-- (void) cancelLoadImage;
-
 - (UIWebView *) makeAdViewWithFrame:(CGRect)frame;
 
 - (void) startAutoupdateTimer;
@@ -107,10 +104,8 @@
 
 - (void) dealloc
 {
-	[_drawImageTimer invalidate];
 	[_autoupdateTimer invalidate];
 	[_bannerInfoLoader cancel];
-	[self cancelLoadImage];
 	
     [_locationManager release];
 	[_bannerRequestInfo release];
@@ -404,21 +399,14 @@
 	[self setIsMinimized:YES animated:YES];
 }
 
-- (void) changeImageState
+- (UIWebView *) makeAdViewWithFrame:(CGRect)frame
 {
-	if (self.isMinimized)
-		return;
+	UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+	webView.backgroundColor = [UIColor clearColor];
+	webView.opaque = NO;
+	[[webView scrollView] setScrollEnabled:NO];
 	
-	_showImageBanner = !_showImageBanner;
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationTransition:_showImageBanner ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown forView:self cache:YES];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	
-	[self setNeedsDisplay];
-	
-	[UIView commitAnimations];
+	return [webView autorelease];
 }
 
 #pragma mark Network
@@ -451,74 +439,7 @@
 	[self startAutoupdateTimer]; // FIXME: need one call at first load
 }
 
-- (UIWebView *) makeAdViewWithFrame:(CGRect)frame
-{
-	UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
-	webView.backgroundColor = [UIColor clearColor];
-	webView.opaque = NO;
-	[[webView scrollView] setScrollEnabled:NO];
-	
-	return [webView autorelease];
-}
-
 #pragma mark Network delegates
-
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-	if (connection != _urlConnection)
-		return;
-	
-	_imageSize = response.expectedContentLength;
-	_imageLoadingProgress.progress = 0.0;
-}
-
-
-- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-	if (connection != _urlConnection)
-		return;
-	
-	[_imageData appendData:data];
-	
-	if (_imageSize != 0)
-		_imageLoadingProgress.progress = 1.0*[_imageData length]/_imageSize;
-}
-
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-	if (connection != _urlConnection)
-		return;
-
-	[_imageLoadingProgress removeFromSuperview];
-	[_imageLoadingProgress release], _imageLoadingProgress = nil;
-	
-	[_imageData release], _imageData = nil;
-	[_urlConnection release], _urlConnection = nil;
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	if (connection != _urlConnection)
-		return;
-
-	[_imageLoadingProgress removeFromSuperview];
-	[_imageLoadingProgress release], _imageLoadingProgress = nil;
-	[_bannerImage release];
-    _bannerImage = [[UIImage alloc] initWithData:_imageData];
-	//_showImageBanner = (_bannerInfo.title == nil);
-	[self setNeedsDisplay];
-	
-	[_drawImageTimer invalidate], _drawImageTimer = nil;
-	/*if (_bannerInfo.title != nil)
-	{
-		_drawImageTimer = [NSTimer timerWithTimeInterval:SHOW_IMAGE_TIMEOUT target:self selector:@selector(changeImageState) userInfo:nil repeats:YES];
-		[[NSRunLoop currentRunLoop] addTimer:_drawImageTimer forMode:NSDefaultRunLoopMode];
-	}*/
-	
-	[_imageData release], _imageData = nil;
-	[_urlConnection release], _urlConnection = nil;
-}
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
@@ -577,7 +498,8 @@
 	[self setNeedsDisplay];
 }
 
-#pragma mark Location manager delegates 
+#pragma mark Location manager delegates
+
 - (void) locationUpdate:(CLLocation *)location
 {
     _bannerRequestInfo.location = location;
