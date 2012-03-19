@@ -30,7 +30,6 @@
  */
 
 #import "WPBannerView.h"
-#import "WPBannerInfo.h"
 #import "MRAdView.h"
 
 #define BANNER_HEIGHT 60
@@ -47,6 +46,9 @@
 
 - (UIWebView *) makeAdViewWithFrame:(CGRect)frame;
 
+- (void) startAutoupdateTimer;
+- (void) stopAutoupdateTimer;
+
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
 @end
@@ -55,7 +57,6 @@
 @implementation WPBannerView
 
 @synthesize delegate = _delegate;
-@synthesize bannerInfo = _bannerInfo;
 @synthesize isMinimized = _isMinimized;
 @synthesize minimizedLabel = _minimizedLabel;
 @synthesize showCloseButton = _showCloseButton;
@@ -69,7 +70,6 @@
 	{
 		self.minimizedLabel = DEFAULT_MINIMIZED_LABEL;
 		self.isMinimized = NO;
-		_bannerInfo = nil;
 		_showCloseButton = YES;
 		_hideWhenEmpty = NO;
 		_reloadAfterOpenning = NO;
@@ -115,7 +115,6 @@
     [_locationManager release];
 	[_bannerRequestInfo release];
 	[_bannerImage release];
-	[_bannerInfo release];
 	[_closeButton release];
 	[_imageLoadingProgress release];
 	self.minimizedLabel = nil;
@@ -132,8 +131,7 @@
 
 - (BOOL) isEmpty
 {
-	return false;
-	//return (_bannerInfo == nil);
+	return _currentContentView == nil;
 }
 
 - (void) setShowCloseButton:(BOOL)show
@@ -158,8 +156,7 @@
 	if (_isMinimized == minimize)
 		return;
 	
-	if (animated)
-	{
+	if (animated) {
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
 		[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.superview cache:YES];
@@ -176,8 +173,7 @@
 			// Banner from bottom
 			currentFrame.origin.y = self.superview.bounds.origin.y+self.superview.bounds.size.height-MINIMIZED_BANNER_HEIGHT;
 			currentFrame.size.height = MINIMIZED_BANNER_HEIGHT;
-		}else
-		{
+		} else {
 			currentFrame.size.height = MINIMIZED_BANNER_HEIGHT;
 		}
 		
@@ -191,8 +187,7 @@
 			// Banner from bottom
 			currentFrame.origin.y = self.superview.bounds.origin.y+self.superview.bounds.size.height-BANNER_HEIGHT;
 			currentFrame.size.height = BANNER_HEIGHT;
-		}else
-		{
+		} else {
 			currentFrame.size.height = BANNER_HEIGHT;
 		}
 	}
@@ -222,7 +217,7 @@
 
 - (void) stopAutoupdateTimer
 {
-	if (_autoupdateTimeout == 0 && _autoupdateTimer != nil) {
+	if (_autoupdateTimer != nil) {
 		// Turn off timer
 		[_autoupdateTimer invalidate], _autoupdateTimer = nil;
 	}
@@ -250,9 +245,9 @@
 			[_imageLoadingProgress setHidden:NO];
 		
 		[_loadingInfoIndicator stopAnimating];
-	}else {
+	} else {
 		[_imageLoadingProgress setHidden:YES];
-		if (_bannerInfo == nil)
+		if (_currentContentView == nil)
 			[_loadingInfoIndicator startAnimating];
 	}
 }
@@ -292,37 +287,6 @@
 	
 	if (_bannerInfoLoader != nil)
 		return;
-	
-	//CGRect maxRect = CGRectMake(9, 0, self.bounds.size.width-([_closeButton isHidden] ? 9 : 31), self.bounds.size.height);
-
-	/*if (_showImageBanner && _bannerImage != nil)
-	{
-		[_bannerImage drawInRect:[WPBannerView aspectFittedRect:_bannerImage.size max:maxRect]];
-	}else
-	{
-		// Draw title
-		if (_bannerInfo.title != nil)
-		{
-			UIFont *font = [UIFont systemFontOfSize:12];
-			CGRect rect = CGRectMake(30, 2, self.bounds.size.width-50, 14);
-			[_bannerInfo.title drawInRect:rect
-								 withFont:font
-							lineBreakMode:UILineBreakModeTailTruncation
-								alignment:UITextAlignmentLeft];
-			
-		}
-		// Draw content
-		if (_bannerInfo.content != nil)
-		{
-			UIFont *font = [UIFont boldSystemFontOfSize:12];
-			CGRect rect = CGRectMake(30, 16, self.bounds.size.width-50, 14);
-			[_bannerInfo.content drawInRect:rect
-								   withFont:font
-							  lineBreakMode:UILineBreakModeTailTruncation
-								  alignment:UITextAlignmentLeft];
-			
-		}
-	}*/
 }
 
 - (void) layoutSubviews
@@ -469,14 +433,13 @@
 			return;
 		}
 	}
-	
-	//[self cancelLoadImage];
+
 	[_bannerInfoLoader cancel];
 	[_bannerInfoLoader release];
-	
+
 	_bannerInfoLoader = [[WPBannerInfoLoader alloc] initWithRequestInfo:_bannerRequestInfo];
 	_bannerInfoLoader.delegate = self;
-	
+
 	if (![_bannerInfoLoader start])
 	{
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
@@ -486,39 +449,6 @@
 	[self setNeedsDisplay];
 
 	[self startAutoupdateTimer]; // FIXME: need one call at first load
-}
-
-- (void) loadImage
-{
-	[self cancelLoadImage];
-	
-	NSString *imageURL = nil;
-	if (_bannerInfo.pictureUrl != nil)
-		imageURL = _bannerInfo.pictureUrl;
-	else
-		imageURL = _bannerInfo.pictureUrlPng;
-    
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]
-                                                cachePolicy:NSURLRequestUseProtocolCachePolicy 
-                                            timeoutInterval:60];
-	
-    _imageData = [[NSMutableData alloc] init];
-	
-    _urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
-                                                     delegate:self 
-                                             startImmediately:YES];
-}
-
-- (void) cancelLoadImage
-{
-	if (_urlConnection == nil)
-		return;
-	
-	[_urlConnection cancel];
-
-#if !__has_feature(objc_arc)
-    [_imageData release];
-#endif
 }
 
 - (UIWebView *) makeAdViewWithFrame:(CGRect)frame
@@ -576,15 +506,15 @@
 	[_imageLoadingProgress release], _imageLoadingProgress = nil;
 	[_bannerImage release];
     _bannerImage = [[UIImage alloc] initWithData:_imageData];
-	_showImageBanner = (_bannerInfo.title == nil);
+	//_showImageBanner = (_bannerInfo.title == nil);
 	[self setNeedsDisplay];
 	
 	[_drawImageTimer invalidate], _drawImageTimer = nil;
-	if (_bannerInfo.title != nil)
+	/*if (_bannerInfo.title != nil)
 	{
 		_drawImageTimer = [NSTimer timerWithTimeInterval:SHOW_IMAGE_TIMEOUT target:self selector:@selector(changeImageState) userInfo:nil repeats:YES];
 		[[NSRunLoop currentRunLoop] addTimer:_drawImageTimer forMode:NSDefaultRunLoopMode];
-	}
+	}*/
 	
 	[_imageData release], _imageData = nil;
 	[_urlConnection release], _urlConnection = nil;

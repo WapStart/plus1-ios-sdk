@@ -30,7 +30,6 @@
  */
 
 #import "WPBannerInfoLoader.h"
-#import "WPBannerInfo.h"
 #import "WPUtils.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
@@ -87,6 +86,7 @@
 	[_bannerRequestInfo release];
 	[_clientSessionId release];
 	[_data release];
+	[_adType release];
 
 	[super dealloc];
 }
@@ -234,6 +234,8 @@
 	if (connection != _urlConnection)
 		return;
 	
+	NSLog(@"code: %d, domain: %@, localizedDesc: %@",[error code],[error domain],[error localizedDescription]);
+
 	if ([error code] == -1001)
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeTimeout];
 	else

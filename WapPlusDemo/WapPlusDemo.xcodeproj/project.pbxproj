@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */; };
 		0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */; };
 		0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */; };
 		0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C376122BAC9300DE1F54 /* WPUtils.m */; };
@@ -44,8 +43,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfo.h; sourceTree = "<group>"; };
-		0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfo.m; sourceTree = "<group>"; };
 		0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoLoader.h; sourceTree = "<group>"; };
 		0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoLoader.m; sourceTree = "<group>"; };
 		0672C372122BAC9300DE1F54 /* WPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerView.h; sourceTree = "<group>"; };
@@ -157,8 +154,6 @@
 				CE6288EA1510A4B100589E56 /* MPTimer.m */,
 				CE6288CC1510A42B00589E56 /* MRAID */,
 				CE6288E71510A48400589E56 /* MRAID.bundle */,
-				0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */,
-				0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */,
 				0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */,
 				0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */,
 				06FE3322124A1BA600A7CA77 /* WPBannerRequestInfo.h */,
@@ -333,7 +328,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* WapPlusDemoAppDelegate.m in Sources */,
-				0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */,
 				0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */,
 				0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */,
 				0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */,

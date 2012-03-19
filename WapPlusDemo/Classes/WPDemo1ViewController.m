@@ -30,7 +30,6 @@
  */
 
 #import "WPDemo1ViewController.h"
-#import "WPBannerInfo.h"
 
 @interface WPDemo1ViewController (PrivateMethods)
 
@@ -133,8 +132,8 @@
 
 - (void) bannerViewPressed:(WPBannerView *) bannerView
 {
-	if (bannerView.bannerInfo.responseType == WPBannerResponseWebSite)
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bannerView.bannerInfo.link]];
+	//if (bannerView.bannerInfo.responseType == WPBannerResponseWebSite)
+	//	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bannerView.bannerInfo.link]];
 
 	[bannerView reloadBanner];
 }
