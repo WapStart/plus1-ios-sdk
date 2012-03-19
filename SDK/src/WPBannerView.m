@@ -609,12 +609,17 @@
 	return nil;
 }
 
-- (void)didExpandAd:(MRAdView *)adView
+- (void) willExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
 {
-	NSLog(@"MRAID: Expanded!");
+	NSLog(@"MRAID: Will expanded!");
 	
 	[_bannerInfoLoader cancel];
 	[self stopAutoupdateTimer];
+}
+
+- (void)didExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
+{
+	NSLog(@"MRAID: Expanded!");
 }
 
 - (void)didCloseAd:(MRAdView *)adView

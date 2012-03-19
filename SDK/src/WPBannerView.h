@@ -39,7 +39,6 @@
 
 @interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate, MRAdViewDelegate>
 {
-	WPBannerInfo        *_bannerInfo;
 	WPBannerRequestInfo *_bannerRequestInfo;
 	WPBannerInfoLoader  *_bannerInfoLoader;
     WPLocationManager   *_locationManager;
@@ -73,7 +72,6 @@
     BOOL _disableAutoDetectLocation;
 }
 
-@property (nonatomic, readonly) WPBannerInfo *bannerInfo;
 @property (nonatomic, assign) BOOL showCloseButton;
 @property (nonatomic, assign) CGFloat autoupdateTimeout;
 @property (nonatomic, assign) BOOL isMinimized;
