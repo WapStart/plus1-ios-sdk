@@ -464,22 +464,6 @@
 		_currentContentView = webview;
 	}
 
-	/*if (loader.bannerInfo != nil && loader.bannerInfo.bannerId != 0)
-	{
-		// Banner info loaded
-		[_drawImageTimer invalidate], _drawImageTimer = nil;
-		[_bannerImage release], _bannerImage = nil;
-		[_bannerInfo release];
-		_bannerInfo = [loader.bannerInfo retain];
-		_showImageBanner = (_bannerInfo.title == nil);
-
-		[self setHideWhenEmpty:_hideWhenEmpty];
-
-		if (_bannerInfo.pictureUrl != nil || _bannerInfo.pictureUrlPng != nil)
-			[self loadImage];
-	}*/
-
-	//[self setHidden:false];
 	[self setHideWhenEmpty:_hideWhenEmpty]; // FIXME: huh?
 	[self insertSubview:_currentContentView atIndex:0];
 
@@ -526,9 +510,11 @@
 	return CGRectIntegral(newRect);
 }
 
+#pragma mark MRAdViewDelegate
+
 - (UIViewController *)viewControllerForPresentingModalView
 {
-	return nil;
+	return nil; // FIXME: implement
 }
 
 - (void) willExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
@@ -544,11 +530,12 @@
 	NSLog(@"MRAID: Expanded!");
 }
 
-- (void)didCloseAd:(MRAdView *)adView
+- (void)adDidClose:(MRAdView *)adView
 {
 	NSLog(@"MRAID: Closed!");
 	
 	[self startAutoupdateTimer];
+	[self setNeedsDisplay];
 }
 
 - (void)adDidLoad:(MRAdView *)adView;
