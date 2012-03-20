@@ -45,20 +45,20 @@
     WPLocationManager   *_locationManager;
 
 	UIView				*_currentContentView;
-	
+	UIView				*_newContentView;
+
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;
 	
 	UIInterfaceOrientation _orientation;
 	UIActivityIndicatorView *_loadingInfoIndicator;
-	UIProgressView *_imageLoadingProgress;
+	UIImageView *_shildImageView;
 	UIButton *_closeButton;
 	BOOL _showCloseButton;
 	BOOL _isExpanded;
 
 	id<WPBannerViewDelegate> _delegate;
 	
-	NSURLConnection *_urlConnection;
 	NSMutableData   *_imageData;
 	NSUInteger      _imageSize;
 	

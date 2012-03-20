@@ -73,13 +73,13 @@
 	[topBannerView reloadBanner];
 	[self.view addSubview:topBannerView];
 
-	bottomBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+	/*bottomBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	bottomBannerView.showCloseButton = YES;
 	bottomBannerView.autoupdateTimeout = 15;
 	bottomBannerView.delegate = self;
 	bottomBannerView.isMinimized = YES;
 	[bottomBannerView reloadBanner];
-	[self.view addSubview:bottomBannerView];
+	[self.view addSubview:bottomBannerView];*/
 	
 	[requestInfo release];
 }
