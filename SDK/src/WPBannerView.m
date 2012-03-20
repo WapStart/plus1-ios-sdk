@@ -31,6 +31,7 @@
 
 #import "WPBannerView.h"
 #import "MRAdView.h"
+#import "WPAdView.h"
 
 #define BANNER_HEIGHT 60
 #define MINIMIZED_BANNER_HEIGHT 20
@@ -409,16 +410,6 @@
 	[self setIsMinimized:YES animated:YES];
 }
 
-- (UIWebView *) makeAdViewWithFrame:(CGRect)frame
-{
-	UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
-	webView.backgroundColor = [UIColor clearColor];
-	webView.opaque = NO;
-	[[webView scrollView] setScrollEnabled:NO];
-	
-	return [webView autorelease];
-}
-
 #pragma mark Network
 
 - (void) reloadBanner
@@ -463,15 +454,14 @@
 	NSString *html = [NSString stringWithUTF8String:[loader.data bytes]];
 
 	if ([@"mraid" isEqualToString:loader.adType]) {
-		MRAdView *mraidview = [[MRAdView alloc] initWithFrame:self.frame];
-		[mraidview loadCreativeWithHTMLString:html baseURL:nil];
-		[mraidview setDelegate:self];
-		_currentContentView = mraidview;
+		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:self.frame];
+		[mraidView loadCreativeWithHTMLString:html baseURL:nil];
+		[mraidView setDelegate:self];
+		_currentContentView = mraidView;
 	} else {
-		UIWebView *webview = [self makeAdViewWithFrame:self.frame];
-		//webview.delegate = self; // FIXME: add UIWebViewDelegate
-		[webview loadHTMLString:html baseURL:nil];
-		_currentContentView = webview;
+		WPAdView *adView = [[WPAdView alloc] initWithFrame:self.frame]; 
+		[adView loadAdWithHTMLString:html baseURL:nil];
+		_currentContentView = adView;
 	}
 
 	[self setHideWhenEmpty:_hideWhenEmpty]; // FIXME: huh?

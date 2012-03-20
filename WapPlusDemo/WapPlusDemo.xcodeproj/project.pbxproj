@@ -40,6 +40,7 @@
 		CE6288EB1510A4B100589E56 /* MPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288EA1510A4B100589E56 /* MPTimer.m */; };
 		CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */; };
 		CE6C8CEE13C5993C00EC98B9 /* WPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */; };
+		CEF341E91518736300631632 /* WPAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF341E81518736200631632 /* WPAdView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLocationManager.h; sourceTree = "<group>"; };
 		CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPLocationManager.m; sourceTree = "<group>"; };
+		CEF341E71518736200631632 /* WPAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdView.h; sourceTree = "<group>"; };
+		CEF341E81518736200631632 /* WPAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				0672C374122BAC9300DE1F54 /* WPTypes.h */,
 				0672C375122BAC9300DE1F54 /* WPUtils.h */,
 				0672C376122BAC9300DE1F54 /* WPUtils.m */,
+				CEF341E71518736200631632 /* WPAdView.h */,
+				CEF341E81518736200631632 /* WPAdView.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				CE6288E31510A42B00589E56 /* MRDimmingView.m in Sources */,
 				CE6288E41510A42B00589E56 /* MRProperty.m in Sources */,
 				CE6288EB1510A4B100589E56 /* MPTimer.m in Sources */,
+				CEF341E91518736300631632 /* WPAdView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
