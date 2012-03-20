@@ -437,7 +437,7 @@
 	[self configureSubviews];
 	[self setNeedsDisplay];
 
-	[self startAutoupdateTimer]; // FIXME: need one call at first load
+	[self startAutoupdateTimer];
 }
 
 #pragma mark Network delegates
@@ -522,17 +522,15 @@
 
 - (void)didExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
 {
-	NSLog(@"MRAID: Expanded!");
+	NSLog(@"MRAID: Did expanded!");
 }
 
 - (void)adDidClose:(MRAdView *)adView
 {
-	NSLog(@"MRAID: Closed!");
+	NSLog(@"MRAID: Did closed!");
 	
-	[self startAutoupdateTimer];
-	[self setNeedsDisplay];
-
 	_isExpanded = false;
+	[self reloadBanner];
 }
 
 // MRAdViewDelegate / WPAdViewDelegate

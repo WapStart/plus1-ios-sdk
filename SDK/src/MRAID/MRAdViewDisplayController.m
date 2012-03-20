@@ -167,13 +167,13 @@ static NSString *const kMovieWillExitNotification42 =
             _currentState = MRAdViewStateHidden; 
             [_view fireChangeEventForProperty:
              [MRStateProperty propertyWithState:_currentState]];
+
+			[_view adDidClose];
             break;
         case MRAdViewStateExpanded: 
             [self closeFromExpandedState];
             break;
     }
-             
-    [_view adDidClose];
 }
 
 #pragma mark - Close Helpers
@@ -488,6 +488,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     [_view fireChangeEventForProperty:[MRStateProperty propertyWithState:_currentState]];
     
     [_view adDidDismissModalView];
+	[_view adDidClose];
 }
 
 #pragma mark - Viewability Timer
