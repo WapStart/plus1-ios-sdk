@@ -228,6 +228,16 @@
         [_locationManager.locMgr startUpdatingLocation];
 }
 
+- (void) setOrientation:(UIInterfaceOrientation)orientation
+{
+	if (_orientation != orientation) {
+		_orientation = orientation;
+
+		if ([_currentContentView isKindOfClass:[MRAdView class]])
+			[_currentContentView rotateToOrientation:orientation];
+	}
+}
+
 #pragma mark Drawing and Views
 
 - (void) configureSubviews
