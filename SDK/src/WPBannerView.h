@@ -33,11 +33,12 @@
 #import "WPBannerInfoLoader.h"
 #import "WPLocationManager.h"
 #import "MRAdView.h"
+#import "WPAdView.h"
 
 @class WPBannerInfo;
 @protocol WPBannerViewDelegate;
 
-@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate, MRAdViewDelegate>
+@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate, MRAdViewDelegate, WPAdViewDelegate>
 {
 	WPBannerRequestInfo *_bannerRequestInfo;
 	WPBannerInfoLoader  *_bannerInfoLoader;

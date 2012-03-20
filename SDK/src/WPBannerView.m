@@ -456,23 +456,16 @@
 	if ([@"mraid" isEqualToString:loader.adType]) {
 		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:self.frame];
 		[mraidView loadCreativeWithHTMLString:html baseURL:nil];
-		[mraidView setDelegate:self];
+		mraidView.delegate = self;
 		_currentContentView = mraidView;
 	} else {
 		WPAdView *adView = [[WPAdView alloc] initWithFrame:self.frame]; 
 		[adView loadAdWithHTMLString:html baseURL:nil];
+		adView.delegate = self;
 		_currentContentView = adView;
 	}
 
-	[self setHideWhenEmpty:_hideWhenEmpty]; // FIXME: huh?
-	[self insertSubview:_currentContentView atIndex:0];
-
 	[_bannerInfoLoader release], _bannerInfoLoader = nil;
-	[self configureSubviews];
-	[self setNeedsDisplay];
-
-	if ([_delegate respondsToSelector:@selector(bannerViewInfoLoaded:)])
-		[_delegate bannerViewInfoLoaded:self];
 }
 
 - (void) bannerInfoLoader:(WPBannerInfoLoader *) loader didFailWithCode:(WPBannerInfoLoaderErrorCode) errorCode
@@ -542,9 +535,17 @@
 	_isExpanded = false;
 }
 
-- (void)adDidLoad:(MRAdView *)adView;
+// MRAdViewDelegate / WPAdViewDelegate
+- (void)adDidLoad:(UIView *)adView;
 {
-	NSLog(@"MRAID: Loaded!");
+	[self setHideWhenEmpty:_hideWhenEmpty];
+	[self insertSubview:_currentContentView atIndex:0];
+
+	[self configureSubviews];
+	[self setNeedsDisplay];
+	
+	if ([_delegate respondsToSelector:@selector(bannerViewInfoLoaded:)])
+		[_delegate bannerViewInfoLoaded:self];
 }
 
 @end
