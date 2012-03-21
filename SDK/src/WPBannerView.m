@@ -46,6 +46,8 @@
 - (void) startAutoupdateTimer;
 - (void) stopAutoupdateTimer;
 
+- (void) cleanCurrentView;
+
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
 @end
@@ -98,8 +100,6 @@
         
         _locationManager = [[WPLocationManager alloc] init];
         _locationManager.delegate = self;
-
-		[self startAutoupdateTimer];
     }
     
     return self;
@@ -179,11 +179,7 @@
 
 		currentFrame.size.height = MINIMIZED_BANNER_HEIGHT;
 
-		if (_currentContentView != nil) {
-			[_currentContentView removeFromSuperview];
-			[_currentContentView release], _currentContentView = nil;
-		}
-		[_newContentView release], _newContentView = nil;
+		[self cleanCurrentView];
 	} else {
 		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
 		{
@@ -193,11 +189,17 @@
 
 		currentFrame.size.height = BANNER_HEIGHT;
 
-		if (animated) {
-			[UIView setAnimationDelegate:self];
-			[UIView setAnimationDidStopSelector:@selector(reloadBanner)];
-		} else
-			[self reloadBanner];
+		if (![self isEmpty]) { // NOTE: current view may be assigned in adDidLoad method
+			_currentContentView.frame = currentFrame;
+			_currentContentView.hidden = false;
+			[self startAutoupdateTimer];
+		} else {
+			if (animated) {
+				[UIView setAnimationDelegate:self];
+				[UIView setAnimationDidStopSelector:@selector(reloadBanner)];
+			} else
+				[self reloadBanner];
+		}
 	}
 
 	self.showCloseButton = _showCloseButton;
@@ -260,7 +262,7 @@
 {
 	if (_bannerInfoLoader == nil)
 		[_loadingInfoIndicator stopAnimating];
-	else// if ([self isEmpty])
+	else if ([self isEmpty])
 		[_loadingInfoIndicator startAnimating];
 }
 
@@ -405,6 +407,14 @@
 	[self setIsMinimized:YES animated:YES];
 }
 
+- (void) cleanCurrentView
+{
+	if (_currentContentView != nil) {
+		[_currentContentView removeFromSuperview];
+		[_currentContentView release], _currentContentView = nil;
+	}
+}
+
 #pragma mark Network
 
 - (void) reloadBanner
@@ -440,6 +450,8 @@
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
 	NSLog(@"Load!!! type: %@", loader.adType);
+
+	[_newContentView release], _newContentView = nil;
 
 	NSString *html = [NSString stringWithUTF8String:[loader.data bytes]];
 
@@ -501,27 +513,24 @@
 	NSLog(@"MRAID: Did closed!");
 
 	_isExpanded = false;
-	[self reloadBanner];
-	[self setNeedsDisplay];
+	[adView removeFromSuperview];
+	[self insertSubview:adView atIndex:0];
+	[self startAutoupdateTimer];
 }
 
 // MRAdViewDelegate / WPAdViewDelegate
 - (void)adDidLoad:(UIView *)adView;
 {
-	if (_currentContentView != nil) {
-		[_currentContentView removeFromSuperview];
-		[_currentContentView release], _currentContentView = nil;
-	}
-
+	[self cleanCurrentView];
 	_currentContentView = _newContentView;
 	_newContentView = nil;
 
-	[self setHideWhenEmpty:_hideWhenEmpty];
+	self.hidden = _isMinimized || _isExpanded;
 	[self insertSubview:_currentContentView atIndex:0];
 
 	[self configureSubviews];
 	[self setNeedsDisplay];
-	
+
 	if ([_delegate respondsToSelector:@selector(bannerViewInfoLoaded:)])
 		[_delegate bannerViewInfoLoaded:self];
 }
