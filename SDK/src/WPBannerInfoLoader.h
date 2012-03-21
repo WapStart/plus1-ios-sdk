@@ -55,6 +55,9 @@ typedef enum
 	
 	NSString           *_clientSessionId;
 	WPBannerInfoParser *_bannerInfoParser;
+
+	NSMutableData		*_data;
+	NSString			*_adType;
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;

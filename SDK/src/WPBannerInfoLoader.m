@@ -255,7 +255,7 @@
 		return;
 
 	[_delegate bannerInfoLoaderDidFinish:self];
-	
+
 	[_urlConnection release], _urlConnection = nil;
 }
 
