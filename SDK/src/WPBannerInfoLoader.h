@@ -54,7 +54,6 @@ typedef enum
 	NSURLConnection    *_urlConnection;
 	
 	NSString           *_clientSessionId;
-	WPBannerInfoParser *_bannerInfoParser;
 
 	NSMutableData		*_data;
 	NSString			*_adType;

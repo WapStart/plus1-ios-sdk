@@ -455,10 +455,9 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
-	NSLog(@"Creating adView for type: %@", loader.adType);
+	NSString *html = [[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding];
+	NSLog(@"Creating adView for type: %@, html: %@", loader.adType, html);
 
-	NSString *html = [NSString stringWithUTF8String:[loader.data bytes]];
-	
 	if ([@"mraid" isEqualToString:loader.adType]) {
 		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:self.frame];
 		mraidView.delegate = self;
