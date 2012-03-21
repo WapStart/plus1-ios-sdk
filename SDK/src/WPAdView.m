@@ -39,7 +39,7 @@
 
 // Delegate callback methods wrapped with -respondsToSelector: checks.
 - (void)adDidLoad;
-//- (void)adDidFailToLoad;
+- (void)adDidFailToLoad;
 
 @end
 
@@ -158,7 +158,7 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     if (error.code == NSURLErrorCancelled) return;
     _isLoading = NO;
-    //[self adDidFailToLoad];
+    [self adDidFailToLoad];
 }
 
 #pragma mark - Delegation Wrappers
@@ -169,10 +169,10 @@
     }
 }
 
-/*- (void)adDidFailToLoad {
+- (void)adDidFailToLoad {
     if ([self.delegate respondsToSelector:@selector(adDidFailToLoad:)]) {
         [self.delegate adDidFailToLoad:self];
     }
-}*/
+}
 
 @end
