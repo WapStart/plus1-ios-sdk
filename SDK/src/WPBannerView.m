@@ -76,7 +76,8 @@
 		_disableAutoDetectLocation = YES;
 
 		_bannerRequestInfo = [requestInfo retain];
-        
+		_adviewPool = [[NSMutableSet set] retain];
+
 		self.backgroundColor = [UIColor clearColor];
 		
 		_shildImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wp_banner_shild.png"]];
@@ -117,7 +118,11 @@
 	self.minimizedLabel = nil;
 
 	[_currentContentView release];
-	[_newContentView release];
+
+	for (UIView *adView in _adviewPool) {
+		[adView release];
+	}
+	[_adviewPool release];
 
     [super dealloc];
 }
@@ -410,6 +415,7 @@
 - (void) cleanCurrentView
 {
 	if (_currentContentView != nil) {
+		[_adviewPool removeObject:_currentContentView];
 		[_currentContentView removeFromSuperview];
 		[_currentContentView release], _currentContentView = nil;
 	}
@@ -449,22 +455,20 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
-	NSLog(@"Load!!! type: %@", loader.adType);
-
-	[_newContentView release], _newContentView = nil;
+	NSLog(@"Creating adView for type: %@", loader.adType);
 
 	NSString *html = [NSString stringWithUTF8String:[loader.data bytes]];
-
+	
 	if ([@"mraid" isEqualToString:loader.adType]) {
 		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:self.frame];
-		[mraidView loadCreativeWithHTMLString:html baseURL:nil];
 		mraidView.delegate = self;
-		_newContentView = mraidView;
+		[mraidView loadCreativeWithHTMLString:html baseURL:nil];
+		[_adviewPool addObject:mraidView];
 	} else {
-		WPAdView *adView = [[WPAdView alloc] initWithFrame:self.frame]; 
-		[adView loadAdWithHTMLString:html baseURL:nil];
+		WPAdView *adView = [[WPAdView alloc] initWithFrame:self.frame];
 		adView.delegate = self;
-		_newContentView = adView;
+		[adView loadAdWithHTMLString:html baseURL:nil];
+		[_adviewPool addObject:adView];
 	}
 
 	[_bannerInfoLoader release], _bannerInfoLoader = nil;
@@ -522,10 +526,10 @@
 - (void)adDidLoad:(UIView *)adView;
 {
 	[self cleanCurrentView];
-	_currentContentView = _newContentView;
-	_newContentView = nil;
+	_currentContentView = adView;
 
-	self.hidden = _isMinimized || _isExpanded;
+	//self.hidden = _isMinimized || _isExpanded;
+	self.hideWhenEmpty = _hideWhenEmpty;
 	[self insertSubview:_currentContentView atIndex:0];
 
 	[self configureSubviews];

@@ -64,6 +64,8 @@
 		_bannerRequestInfo = nil;
 		
 		[self initializeClientSessionId];
+
+		self.data = [NSMutableData data];
 	}
 	return self;
 }
@@ -75,6 +77,8 @@
 		_bannerRequestInfo = [requestInfo retain];
 
 		[self initializeClientSessionId];
+
+		self.data = [NSMutableData data];
 	}
 	return self;
 }
@@ -185,8 +189,6 @@
 	if (_urlConnection == nil)
 		return NO;
 
-	self.data = [NSMutableData data];
-
 	return YES;
 }
 
@@ -197,6 +199,9 @@
 	
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
+
+	[self.data setLength:0];
+	self.adType = nil;
 	
 	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
 }
@@ -233,14 +238,14 @@
 {
 	if (connection != _urlConnection)
 		return;
-	
-	NSLog(@"code: %d, domain: %@, localizedDesc: %@",[error code],[error domain],[error localizedDescription]);
+
+	NSLog(@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]);
 
 	if ([error code] == -1001)
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeTimeout];
 	else
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeUnknown];
-	
+
 	[_urlConnection release], _urlConnection = nil;
 }
 

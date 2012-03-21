@@ -45,7 +45,6 @@
     WPLocationManager   *_locationManager;
 
 	UIView				*_currentContentView;
-	UIView				*_newContentView;
 
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;
@@ -61,7 +60,8 @@
 	
 	NSMutableData   *_imageData;
 	NSUInteger      _imageSize;
-	
+	NSMutableSet	*_adviewPool;
+
 	BOOL _isMinimized;
 	BOOL _reloadAfterOpenning;
 	NSString *_minimizedLabel;
