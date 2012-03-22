@@ -117,7 +117,11 @@
     NSMutableString *urlString = [NSMutableString stringWithString:[url absoluteString]];
     NSString *scheme = url.scheme;
     
-    if ([scheme isEqualToString:@"tel"] || [scheme isEqualToString:@"mailto"]) {
+    if (
+		[scheme isEqualToString:@"tel"]
+		|| [scheme isEqualToString:@"sms"]
+		|| [scheme isEqualToString:@"mailto"]
+	) {
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url];
             return NO;
@@ -125,23 +129,12 @@
 
         return YES;
     }
-    
-    /*if (!_isLoading && navigationType == UIWebViewNavigationTypeOther) {
-        BOOL iframe = ![request.URL isEqual:request.mainDocumentURL];
-        if (iframe) return YES;
-        
-        [_browsingController openBrowserWithUrlString:urlString 
-                                           enableBack:YES 
-                                        enableForward:YES 
-                                        enableRefresh:YES];
-        return NO;
-    }*/
-    
+
     if (!_isLoading && navigationType == UIWebViewNavigationTypeLinkClicked) {
         [[UIApplication sharedApplication] openURL:url];
         return NO;
     }
-    
+
     return YES;
 }
 
