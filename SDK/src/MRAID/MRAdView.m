@@ -364,14 +364,16 @@ static NSString * const kMraidURLScheme = @"mraid";
         if (success) return NO;
     }
     
-    if ([scheme isEqualToString:@"tel"] || [scheme isEqualToString:@"mailto"]) {
+    if (
+		   [scheme isEqualToString:@"tel"]
+		|| [scheme isEqualToString:@"sms"]
+		|| [scheme isEqualToString:@"mailto"]
+	) {
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url];
             return NO;
         }
         return YES;
-    //} else if ([scheme isEqualToString:@"mopub"]) {
-    //    return NO;
     } else if ([scheme isEqualToString:@"ios-log"]) {
         [urlString replaceOccurrencesOfString:@"%20" 
                                    withString:@" " 

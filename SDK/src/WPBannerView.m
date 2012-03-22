@@ -527,7 +527,6 @@
 	[self cleanCurrentView];
 	_currentContentView = adView;
 
-	//self.hidden = _isMinimized || _isExpanded;
 	self.hideWhenEmpty = _hideWhenEmpty;
 	[self insertSubview:_currentContentView atIndex:0];
 

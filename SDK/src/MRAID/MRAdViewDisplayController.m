@@ -141,9 +141,10 @@ static NSString *const kMovieWillExitNotification42 =
 }
 
 - (void)rotateToOrientation:(UIInterfaceOrientation)newOrientation {
+    _expandedFrame = MPApplicationFrame(); // flip height and width
     [_view fireChangeEventForProperty:
-     [MRScreenSizeProperty propertyWithSize:MPApplicationFrame().size]];
-    [self rotateExpandedWindowsToCurrentOrientation];
+     [MRScreenSizeProperty propertyWithSize:_expandedFrame.size]];
+	[self rotateExpandedWindowsToCurrentOrientation];
 }
 
 #pragma mark - Internal
