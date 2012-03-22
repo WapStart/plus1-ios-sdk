@@ -493,7 +493,7 @@
 
 - (UIViewController *)viewControllerForPresentingModalView
 {
-	return nil; // FIXME: implement
+	return self.delegate;
 }
 
 - (void) willExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
