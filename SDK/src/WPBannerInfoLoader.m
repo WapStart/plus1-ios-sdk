@@ -138,11 +138,6 @@
 	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
 }
 
-- (NSString *) getDeviceIMEI
-{
-    return [[UIDevice currentDevice] uniqueIdentifier];
-}
-
 - (NSString *) getDisplayMetrics 
 {
 	CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
@@ -169,7 +164,6 @@
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
-	[theRequest setValue:[self getDeviceIMEI] forHTTPHeaderField:@"x-device-imei"]; 
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 
