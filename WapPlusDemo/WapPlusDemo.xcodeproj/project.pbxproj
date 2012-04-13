@@ -308,6 +308,7 @@
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
 				PRODUCT_NAME = WapPlusDemo;
+				SDKROOT = iphoneos5.1;
 			};
 			name = Debug;
 		};
@@ -320,6 +321,7 @@
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
 				PRODUCT_NAME = WapPlusDemo;
+				SDKROOT = iphoneos5.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -38,7 +38,7 @@
 {
 	WPDemo1ViewController *demo1Controller;
 	WPDemo2ViewController *demo2Controller;
-	WPDemo2ViewController *demo3Controller;
+	WPDemo3ViewController *demo3Controller;
 }
 
 - (id) initMainDemoViewController;
