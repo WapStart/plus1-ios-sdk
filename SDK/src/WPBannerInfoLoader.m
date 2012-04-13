@@ -113,6 +113,11 @@
 	
 	if (_bannerRequestInfo.age > 0)
 		[url appendFormat:@"&age=%d", _bannerRequestInfo.age];
+  
+//  NOTE: disabled while on server side 
+//    NSSet *set = [_bannerRequestInfo.typeList retain];
+//    for (id item in set)
+//        [url appendFormat:@"&types[]=%d", [item intValue]];
     
     if (_bannerRequestInfo.login != nil)
         [url appendFormat:@"&login=%@", _bannerRequestInfo.login];

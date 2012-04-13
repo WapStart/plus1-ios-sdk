@@ -38,6 +38,7 @@
 	NSInteger    _applicationId;
 	WPGender     _gender;
 	NSInteger    _age;
+    NSMutableSet *_typesList;
     NSString     *_login;
     
     CLLocation   *_location;
@@ -47,6 +48,7 @@
 @property (nonatomic, assign) WPGender   gender;
 @property (nonatomic, assign) NSInteger  age;
 @property (nonatomic, readonly) NSString *pageId;
+@property (nonatomic, readonly) NSSet    *typeList;
 @property (nonatomic, retain) NSString   *login;
 @property (nonatomic, retain) CLLocation *location;
 
@@ -54,5 +56,9 @@
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;
 - (id) initWithApplicationId:(NSInteger) applicationId age:(NSInteger) age;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender age:(NSInteger) age;
+
+// NOTE: disabled while
+//- (void) addType:(WPBannerType) bannerType;
+//- (void) clearTypes;
 
 @end

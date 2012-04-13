@@ -39,6 +39,7 @@ static NSString *wpCurrentPageId = nil;
 @synthesize applicationId = _applicationId;
 @synthesize gender = _gender;
 @synthesize age = _age;
+@synthesize typeList = _typesList;
 @synthesize login = _login;
 @synthesize location = _location;
 
@@ -49,6 +50,7 @@ static NSString *wpCurrentPageId = nil;
 		self.applicationId = applicationId;
 		self.gender = WPGenderUnknown;
 		self.age = 0;
+        _typesList = [NSMutableSet set];
 	}
 	return self;
 }
@@ -60,6 +62,7 @@ static NSString *wpCurrentPageId = nil;
 		self.applicationId = applicationId;
 		self.gender = gender;
         self.age = 0;
+        _typesList = [NSMutableSet set];
 	}
 	return self;
 }
@@ -71,6 +74,7 @@ static NSString *wpCurrentPageId = nil;
 		self.applicationId = applicationId;
 		self.gender = WPGenderUnknown;
 		self.age = age;
+        _typesList = [NSMutableSet set];
 	}
 	return self;
 }
@@ -82,8 +86,19 @@ static NSString *wpCurrentPageId = nil;
 		self.applicationId = applicationId;
 		self.gender = gender;
 		self.age = age;
+        _typesList = [NSMutableSet set];
     }
 	return self;
+}
+
+- (void) addType:(WPBannerType) bannerType
+{
+    [_typesList addObject:[NSNumber numberWithInt:bannerType]];
+}
+
+- (void) clearTypes
+{
+    [_typesList removeAllObjects];
 }
 
 - (NSString *) pageId
