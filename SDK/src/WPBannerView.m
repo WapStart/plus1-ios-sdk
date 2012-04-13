@@ -225,9 +225,9 @@
     _disableAutoDetectLocation = disableAutoDetectLocation;
     
     if (_disableAutoDetectLocation)
-        [_locationManager.locMgr stopUpdatingLocation];
+        [_locationManager stopUpdatingLocation];
     else
-        [_locationManager.locMgr startUpdatingLocation];
+        [_locationManager startUpdatingLocation];
 }
 
 #pragma mark Drawing and Views
