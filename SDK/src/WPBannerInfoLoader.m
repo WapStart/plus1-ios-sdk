@@ -33,6 +33,7 @@
 #import "WPBannerInfoParser.h"
 #import "WPBannerInfo.h"
 #import "WPUtils.h"
+#import "UIDevice+IdentifierAddition.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -97,7 +98,7 @@
 	if (_clientSessionId != nil)
 		return;
 
-	_clientSessionId = [[WPUtils sha1Hash:[[UIDevice currentDevice] uniqueIdentifier]] retain];
+	_clientSessionId = [[WPUtils sha1Hash:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]] retain];
 	[[NSUserDefaults standardUserDefaults] setObject:_clientSessionId forKey:WPSessionKey];
 }
 
