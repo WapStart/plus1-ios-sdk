@@ -33,33 +33,45 @@
 
 @implementation WPLocationManager
 
-@synthesize locMgr, delegate;
+@synthesize delegate = _delegate;
 
 - (id)init 
 {
     self = [super init];
     if (self != nil) {
-        self.locMgr = [[CLLocationManager alloc] init];
-        self.locMgr.delegate = self;
+        _locMgr = [[CLLocationManager alloc] init];
+        _locMgr.delegate = self;
     }
     return self;
 }
 
+- (void)dealloc 
+{
+    _locMgr.delegate = nil;
+    [_locMgr release];
+    [super dealloc];
+}
+
+#pragma mark Methods
+- (void) startUpdatingLocation
+{
+	[_locMgr startUpdatingLocation];
+}
+
+- (void) stopUpdatingLocation
+{
+	[_locMgr stopUpdatingLocation];
+}
+
+# pragma mark CLLocationManager delegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    [self.delegate locationUpdate:newLocation];
+    [_delegate locationUpdate:newLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
 {
-    [self.delegate locationError:error];
-}
-
-- (void)dealloc 
-{
-    locMgr.delegate = nil;
-    [locMgr release];
-    [super dealloc];
+    [_delegate locationError:error];
 }
 
 @end
