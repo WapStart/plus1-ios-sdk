@@ -158,15 +158,15 @@ static void startElementSAX(void *ctx, const xmlChar *localname, const xmlChar *
 {
     WPBannerInfoParser *parser = (WPBannerInfoParser *)ctx;
 	
-	NSString *name   = [[NSString alloc] initWithCString:(const char *)localname];
+	NSString *name   = [[NSString alloc] initWithUTF8String:(const char *)localname];
 	
 	NSMutableArray *attrArray = [[NSMutableArray alloc] init];
 	
 	for (int i = 0; i < nb_attributes; i++)
 	{
-		NSString *attrName = [[NSString alloc] initWithCString:(const char *)attributes[5*i] encoding:NSUTF8StringEncoding];
+		NSString *attrName = [[NSString alloc] initWithUTF8String:(const char *)attributes[5*i]];
 		
-		NSString *attrValue = [[NSString alloc] initWithCStringNoCopy:(void *)attributes[5*i+3] length:attributes[5*i+4]-attributes[5*i+3] freeWhenDone:NO];
+		NSString *attrValue = [[NSString alloc] initWithBytesNoCopy:(void *)attributes[5*i+3] length:attributes[5*i+4]-attributes[5*i+3] encoding:NSUTF8StringEncoding freeWhenDone:NO];
 		
 		[attrArray addObject:[NSArray arrayWithObjects:attrName, attrValue, nil]];
 		
@@ -185,7 +185,7 @@ static void	endElementSAX(void *ctx, const xmlChar *localname, const xmlChar *pr
 {    
     WPBannerInfoParser *parser = (WPBannerInfoParser *)ctx;
 	
-	NSString *name   = [[NSString alloc] initWithCString:(const char *)localname];
+	NSString *name   = [[NSString alloc] initWithUTF8String:(const char *)localname];
 	
 	[parser endElementSAX:name];
 	
