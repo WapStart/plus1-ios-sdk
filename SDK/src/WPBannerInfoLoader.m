@@ -31,13 +31,14 @@
 
 #import "WPBannerInfoLoader.h"
 #import "WPUtils.h"
+#import "WPLogging.h"
 #import "UIDevice+IdentifierAddition.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
 //#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
-//#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/?area=application&version=2"
-#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
+#define WPRotatorUrl @"http://ro.zlex.plus1.oemtest.ru/?area=applicationWebView&version=2"
+//#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 //#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 #define WPSessionKey @"WPClientSessionId"
 
@@ -209,7 +210,7 @@
 	
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
 		NSString *adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
-		NSLog(@"X-Adtype received: %@", adType);
+		WPLogDebug(@"X-Adtype received: %@", adType);
 		self.adType = adType;
 	}
 }
@@ -229,7 +230,9 @@
 	if (connection != _urlConnection)
 		return;
 
-	NSLog(@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]);
+	WPLogDebug(
+		@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]
+	);
 
 	if ([error code] == -1001)
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeTimeout];

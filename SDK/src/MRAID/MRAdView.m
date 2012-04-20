@@ -316,7 +316,7 @@ static NSString * const kMraidURLScheme = @"mraid";
     cmd.parameters = parameters;
     cmd.view = self;
     
-	NSLog(@"Mraid command: %@", command);
+	WPLogDebug(@"Mraid command: %@", command);
 	
     BOOL processed = [cmd execute];
     if (!processed) WPLogDebug(@"Unknown command: %@", command);

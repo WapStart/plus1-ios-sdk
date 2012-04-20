@@ -32,6 +32,7 @@
 #import "WPBannerView.h"
 #import "MRAdView.h"
 #import "WPAdView.h"
+#import "WPLogging.h"
 
 #define BANNER_HEIGHT 50
 #define MINIMIZED_BANNER_HEIGHT 20
@@ -456,7 +457,7 @@
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
 	NSString *html = [[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding];
-	NSLog(@"Creating adView for type: %@, html: %@", loader.adType, html);
+	WPLogDebug(@"Creating adView for type: %@, html: %@", loader.adType, html);
 
 	if ([@"mraid" isEqualToString:loader.adType]) {
 		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:self.frame];
@@ -498,7 +499,7 @@
 
 - (void) willExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
 {
-	NSLog(@"MRAID: Will expanded!");
+	WPLogDebug(@"MRAID: Will expanded!");
 	
 	_isExpanded = true;
 
@@ -508,12 +509,12 @@
 
 - (void)didExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
 {
-	NSLog(@"MRAID: Did expanded!");
+	WPLogDebug(@"MRAID: Did expanded!");
 }
 
 - (void)adDidClose:(MRAdView *)adView
 {
-	NSLog(@"MRAID: Did closed!");
+	WPLogDebug(@"MRAID: Did closed!");
 
 	_isExpanded = false;
 	[adView removeFromSuperview];
