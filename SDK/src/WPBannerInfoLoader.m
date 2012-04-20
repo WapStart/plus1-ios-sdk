@@ -208,7 +208,7 @@
 	[self.data setLength:0];
 	
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
-		NSString *adType = [[response allHeaderFields] valueForKey:@"X-Adtype"];
+		NSString *adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
 		NSLog(@"X-Adtype received: %@", adType);
 		self.adType = adType;
 	}

@@ -257,7 +257,7 @@
 		_orientation = orientation;
 
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
-			[_currentContentView rotateToOrientation:orientation];
+			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
 	}
 }
 
@@ -493,7 +493,7 @@
 
 - (UIViewController *)viewControllerForPresentingModalView
 {
-	return self.delegate;
+	return (UIViewController*)self.delegate;
 }
 
 - (void) willExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
