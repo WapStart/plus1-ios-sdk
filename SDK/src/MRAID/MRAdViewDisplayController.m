@@ -11,7 +11,8 @@
 #import "MRDimmingView.h"
 #import "MRProperty.h"
 #import "WPUtils.h"
-#import "MPLogging.h"
+#import "WPLogging.h"
+#import "WPLogging.h"
 #import "MPTimer.h"
 
 static NSString * const kAnimationKeyExpand = @"expand";
@@ -498,7 +499,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     BOOL currentViewability = [_view isViewable];
     
     if (_isViewable != currentViewability) {
-        MPLogDebug(@"Viewable changed to: %@", currentViewability ? @"YES" : @"NO");
+        WPLogDebug(@"Viewable changed to: %@", currentViewability ? @"YES" : @"NO");
         _isViewable = currentViewability;
         [_view adViewableDidChange:_isViewable];
     }

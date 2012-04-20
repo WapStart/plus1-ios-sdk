@@ -34,7 +34,6 @@
 		CE145DA0153F095000CC6BC1 /* MRDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145D98153F095000CC6BC1 /* MRDimmingView.m */; };
 		CE145DA1153F095000CC6BC1 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145D9A153F095000CC6BC1 /* MRProperty.m */; };
 		CE145DAB153F097400CC6BC1 /* MPAdBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */; };
-		CE145DAD153F097400CC6BC1 /* MPLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DA8153F097400CC6BC1 /* MPLogging.m */; };
 		CE145DAE153F097400CC6BC1 /* MPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DAA153F097400CC6BC1 /* MPTimer.m */; };
 		CE145DB6153F09D700CC6BC1 /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE145DAF153F09D700CC6BC1 /* MRAID.bundle */; };
 		CE145DB7153F09D700CC6BC1 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DB1153F09D700CC6BC1 /* NSString+MD5Addition.m */; };
@@ -93,9 +92,6 @@
 		CE145D9A153F095000CC6BC1 /* MRProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProperty.m; sourceTree = "<group>"; };
 		CE145DA2153F097400CC6BC1 /* MPAdBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAdBrowserController.h; sourceTree = "<group>"; };
 		CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAdBrowserController.m; sourceTree = "<group>"; };
-		CE145DA4153F097400CC6BC1 /* MPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
-		CE145DA7153F097400CC6BC1 /* MPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLogging.h; sourceTree = "<group>"; };
-		CE145DA8153F097400CC6BC1 /* MPLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLogging.m; sourceTree = "<group>"; };
 		CE145DA9153F097400CC6BC1 /* MPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTimer.h; sourceTree = "<group>"; };
 		CE145DAA153F097400CC6BC1 /* MPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTimer.m; sourceTree = "<group>"; };
 		CE145DAF153F09D700CC6BC1 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
@@ -105,6 +101,7 @@
 		CE145DB3153F09D700CC6BC1 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		CE145DB4153F09D700CC6BC1 /* WPAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdView.h; sourceTree = "<group>"; };
 		CE145DB5153F09D700CC6BC1 /* WPAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdView.m; sourceTree = "<group>"; };
+		CE145DBA15417E7900CC6BC1 /* WPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLogging.h; sourceTree = "<group>"; };
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLocationManager.h; sourceTree = "<group>"; };
 		CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPLocationManager.m; sourceTree = "<group>"; };
@@ -158,9 +155,6 @@
 				CE145DB5153F09D700CC6BC1 /* WPAdView.m */,
 				CE145DA2153F097400CC6BC1 /* MPAdBrowserController.h */,
 				CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */,
-				CE145DA4153F097400CC6BC1 /* MPConstants.h */,
-				CE145DA7153F097400CC6BC1 /* MPLogging.h */,
-				CE145DA8153F097400CC6BC1 /* MPLogging.m */,
 				CE145DA9153F097400CC6BC1 /* MPTimer.h */,
 				CE145DAA153F097400CC6BC1 /* MPTimer.m */,
 				CE145D8C153F095000CC6BC1 /* MRAID */,
@@ -175,6 +169,7 @@
 				0672C376122BAC9300DE1F54 /* WPUtils.m */,
 				CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */,
 				CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */,
+				CE145DBA15417E7900CC6BC1 /* WPLogging.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -354,7 +349,6 @@
 				CE145DA0153F095000CC6BC1 /* MRDimmingView.m in Sources */,
 				CE145DA1153F095000CC6BC1 /* MRProperty.m in Sources */,
 				CE145DAB153F097400CC6BC1 /* MPAdBrowserController.m in Sources */,
-				CE145DAD153F097400CC6BC1 /* MPLogging.m in Sources */,
 				CE145DAE153F097400CC6BC1 /* MPTimer.m in Sources */,
 				CE145DB7153F09D700CC6BC1 /* NSString+MD5Addition.m in Sources */,
 				CE145DB8153F09D700CC6BC1 /* UIDevice+IdentifierAddition.m in Sources */,
@@ -376,6 +370,8 @@
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "";
+				"OTHER_CFLAGS[arch=*]" = "-DDEBUG";
 				PRODUCT_NAME = WapPlusDemo;
 				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -391,6 +387,7 @@
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CPLUSPLUSFLAGS = "";
 				PRODUCT_NAME = WapPlusDemo;
 				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";

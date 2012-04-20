@@ -11,7 +11,7 @@
 #import "MRAdViewBrowsingController.h"
 #import "MRAdViewDisplayController.h"
 #import "WPUtils.h"
-//#import "MPLogging.h"
+#import "WPLogging.h"
 
 @implementation MRCommand
 
@@ -141,7 +141,7 @@
 	NSString *urlString = [self stringFromParametersForKey:@"url"];
 	NSURL *url = [NSURL URLWithString:urlString];
     
-	NSLog(@"Expanding to (%.1f, %.1f, %.1f, %.1f); displaying %@.", x, y, w, h, url);
+	WPLogInfo(@"Expanding to (%.1f, %.1f, %.1f, %.1f); displaying %@.", x, y, w, h, url);
     
 	CGRect newFrame = CGRectMake(x, y, w, h);
     

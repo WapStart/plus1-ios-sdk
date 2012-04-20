@@ -7,7 +7,7 @@
 //
 
 #import "MPTimer.h"
-#import "MPLogging.h"
+#import "WPLogging.h"
 
 @interface MPTimer ()
 @property (nonatomic, retain) NSTimer *timer;
@@ -72,11 +72,11 @@
 {
 	if (![self.timer isValid])
 	{
-		MPLogDebug(@"Could not schedule invalidated MPTimer (%p).", self);
+		WPLogDebug(@"Could not schedule invalidated MPTimer (%p).", self);
 		return NO;
 	}
 	
-	MPLogDebug(@"Scheduled MPTimer (%p).", self);
+	WPLogDebug(@"Scheduled MPTimer (%p).", self);
 	[[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 	return YES;
 }
@@ -85,19 +85,19 @@
 {
 	if (_isPaused)
 	{
-		MPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was already paused.", self);
+		WPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was already paused.", self);
 		return NO;
 	}
 	
 	if (![self.timer isValid])
 	{
-		MPLogDebug(@"Cannot pause invalidated MPTimer (%p).", self);
+		WPLogDebug(@"Cannot pause invalidated MPTimer (%p).", self);
 		return NO;
 	}
 	
 	if (![self isScheduled])
 	{
-		MPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was never scheduled.", self);
+		WPLogDebug(@"No-op: tried to pause an MPTimer (%p) that was never scheduled.", self);
 		return NO;
 	}
 	
@@ -107,10 +107,10 @@
 	if (_secondsLeft <= 0)
 	{
 		// TODO: Don't think this can happen since we're on the run loop thread.
-		MPLogWarn(@"An MPTimer was somehow paused after it was supposed to fire.");
+		WPLogWarn(@"An MPTimer was somehow paused after it was supposed to fire.");
 		_secondsLeft = 5;
 	}
-	else MPLogDebug(@"Paused MPTimer (%p) %.1f seconds left before firing.", self, _secondsLeft);
+	else WPLogDebug(@"Paused MPTimer (%p) %.1f seconds left before firing.", self, _secondsLeft);
 	
 	// Pause the timer by setting its fire date far into the future.
 	[self.timer setFireDate:[NSDate distantFuture]];
@@ -123,17 +123,17 @@
 {
 	if (![self.timer isValid])
 	{
-		MPLogDebug(@"Cannot resume invalidated MPTimer (%p).", self);
+		WPLogDebug(@"Cannot resume invalidated MPTimer (%p).", self);
 		return NO;
 	}
 	
 	if (!_isPaused)
 	{
-		MPLogDebug(@"No-op: tried to resume an MPTimer (%p) that was never paused.", self);
+		WPLogDebug(@"No-op: tried to resume an MPTimer (%p) that was never paused.", self);
 		return NO;
 	}
 	
-	MPLogDebug(@"Resumed MPTimer (%p), should fire in %.1f seconds.", self, _secondsLeft);
+	WPLogDebug(@"Resumed MPTimer (%p), should fire in %.1f seconds.", self, _secondsLeft);
 	
 	// Resume the timer.
 	NSDate *newFireDate = [NSDate dateWithTimeInterval:_secondsLeft sinceDate:[NSDate date]];
@@ -173,7 +173,7 @@
 {
 	if (!_notificationName)
 	{
-		MPLogWarn(@"MPTimerTarget (%p) tried to post a notification without a notification name.", 
+		WPLogWarn(@"MPTimerTarget (%p) tried to post a notification without a notification name.", 
 				  self);
 		return;
 	}

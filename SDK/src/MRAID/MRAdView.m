@@ -9,7 +9,7 @@
 #import "MRAdView.h"
 //#import "UIWebView+MPAdditions.h"
 #import "WPUtils.h"
-#import "MPLogging.h"
+#import "WPLogging.h"
 #import "MRAdViewBrowsingController.h"
 #import "MRAdViewDisplayController.h"
 #import "MRCommand.h"
@@ -196,14 +196,14 @@ static NSString * const kMraidURLScheme = @"mraid";
 - (void)fireChangeEventForProperty:(MRProperty *)property {
     NSString *JSON = [NSString stringWithFormat:@"{%@}", property];
     [self executeJavascript:@"window.mraidbridge.fireChangeEvent(%@);", JSON];
-    MPLogDebug(@"JSON: %@", JSON);
+    WPLogDebug(@"JSON: %@", JSON);
 }
 
 - (void)fireChangeEventsForProperties:(NSArray *)properties {
     NSString *JSON = [NSString stringWithFormat:@"{%@}", 
                       [properties componentsJoinedByString:@", "]];
     [self executeJavascript:@"window.mraidbridge.fireChangeEvent(%@);", JSON];
-    MPLogDebug(@"JSON: %@", JSON);
+    WPLogDebug(@"JSON: %@", JSON);
 }
 
 - (void)fireErrorEventForAction:(NSString *)action withMessage:(NSString *)message {
@@ -259,7 +259,7 @@ static NSString * const kMraidURLScheme = @"mraid";
 }
 
 - (void)convertFragmentToFullPayload:(NSMutableString *)fragment {
-    MPLogDebug(@"Fragment detected: converting to full payload.");
+    WPLogDebug(@"Fragment detected: converting to full payload.");
     NSString *prepend = @"<html><head>"
     @"<meta name='viewport' content='user-scalable=no; initial-scale=1.0'/>"
     @"</head>"
@@ -288,7 +288,7 @@ static NSString * const kMraidURLScheme = @"mraid";
 }
 
 - (void)initializeJavascriptState {
-    MPLogDebug(@"Injecting initial JavaScript state.");
+    WPLogDebug(@"Injecting initial JavaScript state.");
     [self fireChangeEventForProperty:[MRPlacementTypeProperty propertyWithType:_placementType]];
     [_displayController initializeJavascriptState];
     [self fireReadyEvent];
@@ -319,7 +319,7 @@ static NSString * const kMraidURLScheme = @"mraid";
 	NSLog(@"Mraid command: %@", command);
 	
     BOOL processed = [cmd execute];
-    if (!processed) MPLogDebug(@"Unknown command: %@", command);
+    if (!processed) WPLogDebug(@"Unknown command: %@", command);
     
     [self fireNativeCommandCompleteEvent:command];
     
@@ -359,7 +359,7 @@ static NSString * const kMraidURLScheme = @"mraid";
     NSString *scheme = url.scheme;
     
     if ([scheme isEqualToString:kMraidURLScheme]) {
-        MPLogDebug(@"Trying to process command: %@", urlString);
+        WPLogDebug(@"Trying to process command: %@", urlString);
         BOOL success = [self tryProcessingURLStringAsCommand:urlString];
         if (success) return NO;
     }
@@ -379,7 +379,7 @@ static NSString * const kMraidURLScheme = @"mraid";
                                    withString:@" " 
                                       options:NSLiteralSearch 
                                         range:NSMakeRange(0, [urlString length])];
-        MPLogDebug(@"Web console: %@", urlString);
+        WPLogDebug(@"Web console: %@", urlString);
         return NO;
     }
     

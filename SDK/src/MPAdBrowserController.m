@@ -7,7 +7,7 @@
 //
 
 #import "MPAdBrowserController.h"
-#import "MPLogging.h"
+#import "WPLogging.h"
 
 @interface MPAdBrowserController ()
 @property (nonatomic, retain) UIActionSheet *actionSheet;
@@ -53,7 +53,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 	{
 		_delegate = delegate;
 		_URL = [URL copy];
-		MPLogDebug(@"Ad browser (%p) initialized with URL: %@", self, _URL);
+		WPLogDebug(@"Ad browser (%p) initialized with URL: %@", self, _URL);
 		
 		_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
 		_webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | 
@@ -191,7 +191,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request 
  navigationType:(UIWebViewNavigationType)navigationType 
 {
-	MPLogDebug(@"Ad browser starting to load request %@", request.URL);
+	WPLogDebug(@"Ad browser starting to load request %@", request.URL);
 	
 	/* 
 	 * For all links with http:// or https:// scheme, open in our browser UNLESS
@@ -241,7 +241,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error 
 {
-	MPLogError(@"Ad browser %@ experienced an error: %@.", self, [error localizedDescription]);
+	WPLogError(@"Ad browser %@ experienced an error: %@.", self, [error localizedDescription]);
 	[self webViewDidFinishLoad:webView];
 }
 
