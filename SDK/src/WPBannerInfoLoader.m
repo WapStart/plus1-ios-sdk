@@ -33,8 +33,6 @@
 #import "WPUtils.h"
 #import "WPLogging.h"
 #import "UIDevice+IdentifierAddition.h"
-#include <sys/types.h>
-#include <sys/sysctl.h>
 
 //#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
 #define WPRotatorUrl @"http://ro.zlex.plus1.oemtest.ru/?area=applicationWebView&version=2"
@@ -136,21 +134,9 @@
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (NSString *) getUserAgent
-{
-	size_t size;
-    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-    char *machine = malloc(size);
-    sysctlbyname("hw.machine", machine, &size, NULL, 0);
-    NSString *platform = [[[NSString alloc] initWithCString:machine encoding:NSUTF8StringEncoding] autorelease];
-    free(machine);
-
-	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
-}
-
 - (NSString *) getDisplayMetrics 
 {
-	CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+	CGRect screenRect = [WPUtils getApplicationFrame];
 	return [NSString stringWithFormat:@"%3.0fx%3.0f", screenRect.size.width, screenRect.size.height];
 }
 
@@ -168,7 +154,7 @@
 	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
 	  forHTTPHeaderField:@"Cookies"];
 
-	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
+	[theRequest setValue:[WPUtils getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
 	// TODO: add container metrics header
