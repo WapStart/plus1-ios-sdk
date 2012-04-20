@@ -34,7 +34,6 @@
 		CE145DA0153F095000CC6BC1 /* MRDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145D98153F095000CC6BC1 /* MRDimmingView.m */; };
 		CE145DA1153F095000CC6BC1 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145D9A153F095000CC6BC1 /* MRProperty.m */; };
 		CE145DAB153F097400CC6BC1 /* MPAdBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */; };
-		CE145DAC153F097400CC6BC1 /* MPGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DA6153F097400CC6BC1 /* MPGlobal.m */; };
 		CE145DAD153F097400CC6BC1 /* MPLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DA8153F097400CC6BC1 /* MPLogging.m */; };
 		CE145DAE153F097400CC6BC1 /* MPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DAA153F097400CC6BC1 /* MPTimer.m */; };
 		CE145DB6153F09D700CC6BC1 /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE145DAF153F09D700CC6BC1 /* MRAID.bundle */; };
@@ -95,8 +94,6 @@
 		CE145DA2153F097400CC6BC1 /* MPAdBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAdBrowserController.h; sourceTree = "<group>"; };
 		CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAdBrowserController.m; sourceTree = "<group>"; };
 		CE145DA4153F097400CC6BC1 /* MPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
-		CE145DA5153F097400CC6BC1 /* MPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGlobal.h; sourceTree = "<group>"; };
-		CE145DA6153F097400CC6BC1 /* MPGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGlobal.m; sourceTree = "<group>"; };
 		CE145DA7153F097400CC6BC1 /* MPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLogging.h; sourceTree = "<group>"; };
 		CE145DA8153F097400CC6BC1 /* MPLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLogging.m; sourceTree = "<group>"; };
 		CE145DA9153F097400CC6BC1 /* MPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTimer.h; sourceTree = "<group>"; };
@@ -162,8 +159,6 @@
 				CE145DA2153F097400CC6BC1 /* MPAdBrowserController.h */,
 				CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */,
 				CE145DA4153F097400CC6BC1 /* MPConstants.h */,
-				CE145DA5153F097400CC6BC1 /* MPGlobal.h */,
-				CE145DA6153F097400CC6BC1 /* MPGlobal.m */,
 				CE145DA7153F097400CC6BC1 /* MPLogging.h */,
 				CE145DA8153F097400CC6BC1 /* MPLogging.m */,
 				CE145DA9153F097400CC6BC1 /* MPTimer.h */,
@@ -359,7 +354,6 @@
 				CE145DA0153F095000CC6BC1 /* MRDimmingView.m in Sources */,
 				CE145DA1153F095000CC6BC1 /* MRProperty.m in Sources */,
 				CE145DAB153F097400CC6BC1 /* MPAdBrowserController.m in Sources */,
-				CE145DAC153F097400CC6BC1 /* MPGlobal.m in Sources */,
 				CE145DAD153F097400CC6BC1 /* MPLogging.m in Sources */,
 				CE145DAE153F097400CC6BC1 /* MPTimer.m in Sources */,
 				CE145DB7153F09D700CC6BC1 /* NSString+MD5Addition.m in Sources */,

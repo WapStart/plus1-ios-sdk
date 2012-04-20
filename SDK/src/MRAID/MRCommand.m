@@ -10,7 +10,7 @@
 #import "MRAdView.h"
 #import "MRAdViewBrowsingController.h"
 #import "MRAdViewDisplayController.h"
-#import "MPGlobal.h"
+#import "WPUtils.h"
 //#import "MPLogging.h"
 
 @implementation MRCommand
@@ -122,7 +122,7 @@
 }
 
 - (BOOL)execute {
-    CGRect applicationFrame = MPApplicationFrame();
+    CGRect applicationFrame = [WPUtils getApplicationFrame];
 	CGFloat afWidth = CGRectGetWidth(applicationFrame);
     CGFloat afHeight = CGRectGetHeight(applicationFrame);
     

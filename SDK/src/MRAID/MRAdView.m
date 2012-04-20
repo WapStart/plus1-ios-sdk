@@ -8,7 +8,7 @@
 
 #import "MRAdView.h"
 //#import "UIWebView+MPAdditions.h"
-#import "MPGlobal.h"
+#import "WPUtils.h"
 #import "MPLogging.h"
 #import "MRAdViewBrowsingController.h"
 #import "MRAdViewDisplayController.h"
@@ -306,7 +306,7 @@ static NSString * const kMraidURLScheme = @"mraid";
     
     NSString *commandType = [[schemelessUrlString substringToIndex:r.location] lowercaseString];
     NSString *parameterString = [schemelessUrlString substringFromIndex:(r.location + 1)];
-    NSDictionary *parameters = MPDictionaryFromQueryString(parameterString);
+    NSDictionary *parameters = [WPUtils getDictionaryFromQueryString:parameterString];
     
     return [self tryProcessingCommand:commandType parameters:parameters];
 }

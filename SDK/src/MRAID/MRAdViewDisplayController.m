@@ -10,7 +10,7 @@
 #import "MRAdView+Controllers.h"
 #import "MRDimmingView.h"
 #import "MRProperty.h"
-#import "MPGlobal.h"
+#import "WPUtils.h"
 #import "MPLogging.h"
 #import "MPTimer.h"
 
@@ -112,7 +112,7 @@ static NSString *const kMovieWillExitNotification42 =
                                                      name:kMovieWillExitNotification42
                                                    object:nil];
         
-        _dimmingView = [[MRDimmingView alloc] initWithFrame:MPKeyWindow().frame];
+        _dimmingView = [[MRDimmingView alloc] initWithFrame:[WPUtils getKeyWindow].frame];
         _dimmingView.backgroundColor = [UIColor darkGrayColor];
         _dimmingView.dimmingOpacity = 0.5;
     }
@@ -133,7 +133,7 @@ static NSString *const kMovieWillExitNotification42 =
 
 - (void)initializeJavascriptState {
     NSArray *properties = [NSArray arrayWithObjects:
-                           [MRScreenSizeProperty propertyWithSize:MPApplicationFrame().size],
+                           [MRScreenSizeProperty propertyWithSize:[WPUtils getApplicationFrame].size],
                            [MRStateProperty propertyWithState:_currentState],
                            nil];
     
@@ -141,7 +141,7 @@ static NSString *const kMovieWillExitNotification42 =
 }
 
 - (void)rotateToOrientation:(UIInterfaceOrientation)newOrientation {
-    _expandedFrame = MPApplicationFrame(); // flip height and width
+    _expandedFrame = [WPUtils getApplicationFrame]; // flip height and width
     [_view fireChangeEventForProperty:
      [MRScreenSizeProperty propertyWithSize:_expandedFrame.size]];
 	[self rotateExpandedWindowsToCurrentOrientation];
@@ -150,7 +150,7 @@ static NSString *const kMovieWillExitNotification42 =
 #pragma mark - Internal
 
 - (CGRect)defaultPosition {
-    UIWindow *keyWindow = MPKeyWindow();
+    UIWindow *keyWindow = [WPUtils getKeyWindow];
     UIView *defaultSuperview = (_currentState == MRAdViewStateExpanded) ? 
         [keyWindow viewWithTag:_parentTag] : self.view.superview;   
     CGRect defaultPosition = [defaultSuperview convertRect:_defaultFrame toView:keyWindow];
@@ -183,7 +183,7 @@ static NSString *const kMovieWillExitNotification42 =
     _expansionContentView.usesCustomCloseButton = YES;
     
     // Calculate the frame of our original parent view in the window coordinate space.
-    UIWindow *keyWindow = MPKeyWindow();
+    UIWindow *keyWindow = [WPUtils getKeyWindow];
     UIView *parentView = [keyWindow viewWithTag:_parentTag];
     _defaultFrameInKeyWindow = [parentView convertRect:_defaultFrame toView:keyWindow];
     
@@ -230,7 +230,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     
     _dimmingView.backgroundColor = blockingColor;
     _dimmingView.dimmingOpacity = blockingOpacity;
-    [MPKeyWindow() addSubview:_dimmingView];
+    [[WPUtils getKeyWindow] addSubview:_dimmingView];
     
     if (url) {
         self.twoPartExpansionView = [[[MRAdView alloc] initWithFrame:self.view.frame 
@@ -246,7 +246,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
         [self applyRotationTransformForCurrentOrientationOnView:_expansionContentView];
         [self assignRandomTagToDefaultSuperview];
         
-        UIWindow *keyWindow = MPKeyWindow();
+        UIWindow *keyWindow = [WPUtils getKeyWindow];
         
         _defaultFrameInKeyWindow = [self.view.superview convertRect:_defaultFrame toView:keyWindow];
         _expansionContentView.frame = _defaultFrameInKeyWindow;
@@ -294,7 +294,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     
     CGFloat angle = 0.0;
     
-    switch (MPInterfaceOrientation()) {
+    switch ([WPUtils getInterfaceOrientation]) {
         case UIInterfaceOrientationPortraitUpsideDown: angle = M_PI; break;
         case UIInterfaceOrientationLandscapeLeft: angle = -M_PI_2; break;
         case UIInterfaceOrientationLandscapeRight: angle = M_PI_2; break;
@@ -308,13 +308,13 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     _originalTag = self.view.superview.tag;
     do {
         _parentTag = arc4random() % 25000;
-    } while ([MPKeyWindow() viewWithTag:_parentTag]);
+    } while ([[WPUtils getKeyWindow] viewWithTag:_parentTag]);
     
     self.view.superview.tag = _parentTag;
 }
 
 - (void)restoreDefaultSuperviewTag {
-    [[MPKeyWindow() viewWithTag:_parentTag] setTag:_originalTag];
+    [[[WPUtils getKeyWindow] viewWithTag:_parentTag] setTag:_originalTag];
 }
 
 - (void)moveViewFromDefaultSuperviewToWindow {
@@ -324,7 +324,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     
     // Add the ad view as a subview of the window. This requires converting the ad view's frame from
     // its superview's coordinate system to that of the window.
-    UIWindow *keyWindow = MPKeyWindow();
+    UIWindow *keyWindow = [WPUtils getKeyWindow];
     _defaultFrameInKeyWindow = [self.view.superview convertRect:_defaultFrame toView:keyWindow];
     self.view.frame = _defaultFrameInKeyWindow;
     
@@ -332,7 +332,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
 }
 
 - (void)moveViewFromWindowToDefaultSuperview {
-    UIView *defaultSuperview = [MPKeyWindow() viewWithTag:_parentTag];
+    UIView *defaultSuperview = [[WPUtils getKeyWindow] viewWithTag:_parentTag];
     [defaultSuperview addSubview:self.view];
     
     [self restoreDefaultSuperviewTag];
@@ -401,7 +401,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
     CGFloat height = _expandedFrame.size.height;
     CGFloat width = _expandedFrame.size.width;
     
-    CGRect applicationFrame = MPApplicationFrame();
+    CGRect applicationFrame = [WPUtils getApplicationFrame];
     if (height > CGRectGetHeight(applicationFrame)) height = CGRectGetHeight(applicationFrame);
     if (width > CGRectGetWidth(applicationFrame)) width = CGRectGetWidth(applicationFrame);
     
@@ -410,7 +410,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
 
 - (CGRect)orientationAdjustedRect:(CGRect)rect {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    UIInterfaceOrientation orientation = MPInterfaceOrientation();
+    UIInterfaceOrientation orientation = [WPUtils getInterfaceOrientation];
     
     switch (orientation) {
         case UIInterfaceOrientationPortraitUpsideDown:
@@ -437,7 +437,7 @@ shouldLockOrientation:(BOOL)shouldLockOrientation {
 
 - (CGRect)convertRectToWindowForCurrentOrientation:(CGRect)rect {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    UIInterfaceOrientation orientation = MPInterfaceOrientation();
+    UIInterfaceOrientation orientation = [WPUtils getInterfaceOrientation];
     
     switch (orientation) {
         case UIInterfaceOrientationPortraitUpsideDown:
