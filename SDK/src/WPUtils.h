@@ -35,5 +35,12 @@
 @interface WPUtils : NSObject
 
 + (NSString *) sha1Hash:(NSString *) text;
++ (UIInterfaceOrientation) getInterfaceOrientation;
++ (UIWindow*) getKeyWindow;
++ (CGFloat) getStatusBarHeight;
++ (CGRect) getApplicationFrame;
++ (CGRect) getScreenBounds;
++ (NSString*) getUserAgent;
++ (NSDictionary*) getDictionaryFromQueryString:(NSString*) query;
 
 @end
