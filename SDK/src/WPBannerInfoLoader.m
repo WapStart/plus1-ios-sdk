@@ -31,6 +31,7 @@
 
 #import "WPBannerInfoLoader.h"
 #import "WPUtils.h"
+#import "UIDevice+IdentifierAddition.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -105,7 +106,7 @@
 	if (_clientSessionId != nil)
 		return;
 
-	_clientSessionId = [[WPUtils sha1Hash:[[UIDevice currentDevice] uniqueIdentifier]] retain];
+	_clientSessionId = [[WPUtils sha1Hash:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]] retain];
 	[[NSUserDefaults standardUserDefaults] setObject:_clientSessionId forKey:WPSessionKey];
 }
 
@@ -121,11 +122,6 @@
 	
 	if (_bannerRequestInfo.age > 0)
 		[url appendFormat:@"&age=%d", _bannerRequestInfo.age];
-  
-//  NOTE: disabled while on server side 
-//    NSSet *set = [_bannerRequestInfo.typeList retain];
-//    for (id item in set)
-//        [url appendFormat:@"&types[]=%d", [item intValue]];
     
     if (_bannerRequestInfo.login != nil)
         [url appendFormat:@"&login=%@", _bannerRequestInfo.login];
@@ -151,11 +147,6 @@
 	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
 }
 
-- (NSString *) getDeviceIMEI
-{
-    return [[UIDevice currentDevice] uniqueIdentifier];
-}
-
 - (NSString *) getDisplayMetrics 
 {
 	CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
@@ -179,7 +170,6 @@
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
-	[theRequest setValue:[self getDeviceIMEI] forHTTPHeaderField:@"x-device-imei"];
 	// TODO: add container metrics header
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest

@@ -39,11 +39,13 @@
 @end
 
 @interface WPLocationManager : NSObject <CLLocationManagerDelegate> {
-    id<WPLocationManagerDelegate> delegate;
-    CLLocationManager *locMgr;
+    id<WPLocationManagerDelegate> _delegate;
+    CLLocationManager *_locMgr;
 }
 
 @property (nonatomic, assign) id<WPLocationManagerDelegate> delegate;
-@property (nonatomic, retain) CLLocationManager *locMgr;
+
+- (void) startUpdatingLocation;
+- (void) stopUpdatingLocation;
 
 @end

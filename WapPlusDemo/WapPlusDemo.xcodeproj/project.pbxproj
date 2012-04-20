@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */; };
 		0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */; };
+		0672C379122BAC9300DE1F54 /* WPBannerInfoParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */; };
 		0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C373122BAC9300DE1F54 /* WPBannerView.m */; };
 		0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0672C376122BAC9300DE1F54 /* WPUtils.m */; };
 		0672C380122BAC9F00DE1F54 /* wp_banner_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0672C37D122BAC9F00DE1F54 /* wp_banner_background.png */; };
@@ -26,26 +28,17 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		CE6288DB1510A42B00589E56 /* MPAdBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288C71510A42B00589E56 /* MPAdBrowserController.m */; };
-		CE6288DC1510A42B00589E56 /* MPGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288C91510A42B00589E56 /* MPGlobal.m */; };
-		CE6288DD1510A42B00589E56 /* MPLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288CB1510A42B00589E56 /* MPLogging.m */; };
-		CE6288DE1510A42B00589E56 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CE6288CD1510A42B00589E56 /* LICENSE */; };
-		CE6288DF1510A42B00589E56 /* MRAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288D01510A42B00589E56 /* MRAdView.m */; };
-		CE6288E01510A42B00589E56 /* MRAdViewBrowsingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288D21510A42B00589E56 /* MRAdViewBrowsingController.m */; };
-		CE6288E11510A42B00589E56 /* MRAdViewDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288D41510A42B00589E56 /* MRAdViewDisplayController.m */; };
-		CE6288E21510A42B00589E56 /* MRCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288D61510A42B00589E56 /* MRCommand.m */; };
-		CE6288E31510A42B00589E56 /* MRDimmingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288D81510A42B00589E56 /* MRDimmingView.m */; };
-		CE6288E41510A42B00589E56 /* MRProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288DA1510A42B00589E56 /* MRProperty.m */; };
-		CE6288E81510A48400589E56 /* MRAID.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6288E71510A48400589E56 /* MRAID.bundle */; };
-		CE6288EB1510A4B100589E56 /* MPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6288EA1510A4B100589E56 /* MPTimer.m */; };
 		CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */; };
 		CE6C8CEE13C5993C00EC98B9 /* WPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */; };
-		CEF341E91518736300631632 /* WPAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF341E81518736200631632 /* WPAdView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfo.h; sourceTree = "<group>"; };
+		0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfo.m; sourceTree = "<group>"; };
 		0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoLoader.h; sourceTree = "<group>"; };
 		0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoLoader.m; sourceTree = "<group>"; };
+		0672C370122BAC9300DE1F54 /* WPBannerInfoParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerInfoParser.h; sourceTree = "<group>"; };
+		0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerInfoParser.m; sourceTree = "<group>"; };
 		0672C372122BAC9300DE1F54 /* WPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBannerView.h; sourceTree = "<group>"; };
 		0672C373122BAC9300DE1F54 /* WPBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBannerView.m; sourceTree = "<group>"; };
 		0672C374122BAC9300DE1F54 /* WPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTypes.h; sourceTree = "<group>"; };
@@ -76,35 +69,9 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WapPlusDemo_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WapPlusDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		CE6288C61510A42B00589E56 /* MPAdBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAdBrowserController.h; sourceTree = "<group>"; };
-		CE6288C71510A42B00589E56 /* MPAdBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAdBrowserController.m; sourceTree = "<group>"; };
-		CE6288C81510A42B00589E56 /* MPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGlobal.h; sourceTree = "<group>"; };
-		CE6288C91510A42B00589E56 /* MPGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGlobal.m; sourceTree = "<group>"; };
-		CE6288CA1510A42B00589E56 /* MPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPLogging.h; sourceTree = "<group>"; };
-		CE6288CB1510A42B00589E56 /* MPLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPLogging.m; sourceTree = "<group>"; };
-		CE6288CD1510A42B00589E56 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		CE6288CE1510A42B00589E56 /* MRAdView+Controllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MRAdView+Controllers.h"; sourceTree = "<group>"; };
-		CE6288CF1510A42B00589E56 /* MRAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAdView.h; sourceTree = "<group>"; };
-		CE6288D01510A42B00589E56 /* MRAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAdView.m; sourceTree = "<group>"; };
-		CE6288D11510A42B00589E56 /* MRAdViewBrowsingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAdViewBrowsingController.h; sourceTree = "<group>"; };
-		CE6288D21510A42B00589E56 /* MRAdViewBrowsingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAdViewBrowsingController.m; sourceTree = "<group>"; };
-		CE6288D31510A42B00589E56 /* MRAdViewDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRAdViewDisplayController.h; sourceTree = "<group>"; };
-		CE6288D41510A42B00589E56 /* MRAdViewDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRAdViewDisplayController.m; sourceTree = "<group>"; };
-		CE6288D51510A42B00589E56 /* MRCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCommand.h; sourceTree = "<group>"; };
-		CE6288D61510A42B00589E56 /* MRCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCommand.m; sourceTree = "<group>"; };
-		CE6288D71510A42B00589E56 /* MRDimmingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRDimmingView.h; sourceTree = "<group>"; };
-		CE6288D81510A42B00589E56 /* MRDimmingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRDimmingView.m; sourceTree = "<group>"; };
-		CE6288D91510A42B00589E56 /* MRProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProperty.h; sourceTree = "<group>"; };
-		CE6288DA1510A42B00589E56 /* MRProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProperty.m; sourceTree = "<group>"; };
-		CE6288E61510A46E00589E56 /* MPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPConstants.h; sourceTree = "<group>"; };
-		CE6288E71510A48400589E56 /* MRAID.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MRAID.bundle; sourceTree = "<group>"; };
-		CE6288E91510A4B100589E56 /* MPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTimer.h; sourceTree = "<group>"; };
-		CE6288EA1510A4B100589E56 /* MPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTimer.m; sourceTree = "<group>"; };
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLocationManager.h; sourceTree = "<group>"; };
 		CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPLocationManager.m; sourceTree = "<group>"; };
-		CEF341E71518736200631632 /* WPAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdView.h; sourceTree = "<group>"; };
-		CEF341E81518736200631632 /* WPAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,30 +113,21 @@
 		06FE372D1252346D00A7CA77 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				CE6288C61510A42B00589E56 /* MPAdBrowserController.h */,
-				CE6288C71510A42B00589E56 /* MPAdBrowserController.m */,
-				CE6288E61510A46E00589E56 /* MPConstants.h */,
-				CE6288C81510A42B00589E56 /* MPGlobal.h */,
-				CE6288C91510A42B00589E56 /* MPGlobal.m */,
-				CE6288CA1510A42B00589E56 /* MPLogging.h */,
-				CE6288CB1510A42B00589E56 /* MPLogging.m */,
-				CE6288E91510A4B100589E56 /* MPTimer.h */,
-				CE6288EA1510A4B100589E56 /* MPTimer.m */,
-				CE6288CC1510A42B00589E56 /* MRAID */,
-				CE6288E71510A48400589E56 /* MRAID.bundle */,
-				0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */,
-				0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */,
+				0672C36C122BAC9300DE1F54 /* WPBannerInfo.h */,
+				0672C36D122BAC9300DE1F54 /* WPBannerInfo.m */,
 				06FE3322124A1BA600A7CA77 /* WPBannerRequestInfo.h */,
 				06FE3323124A1BA600A7CA77 /* WPBannerRequestInfo.m */,
+				0672C36E122BAC9300DE1F54 /* WPBannerInfoLoader.h */,
+				0672C36F122BAC9300DE1F54 /* WPBannerInfoLoader.m */,
+				0672C370122BAC9300DE1F54 /* WPBannerInfoParser.h */,
+				0672C371122BAC9300DE1F54 /* WPBannerInfoParser.m */,
 				0672C372122BAC9300DE1F54 /* WPBannerView.h */,
 				0672C373122BAC9300DE1F54 /* WPBannerView.m */,
-				CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */,
-				CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */,
 				0672C374122BAC9300DE1F54 /* WPTypes.h */,
 				0672C375122BAC9300DE1F54 /* WPUtils.h */,
 				0672C376122BAC9300DE1F54 /* WPUtils.m */,
-				CEF341E71518736200631632 /* WPAdView.h */,
-				CEF341E81518736200631632 /* WPAdView.m */,
+				CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */,
+				CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -243,27 +201,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE6288CC1510A42B00589E56 /* MRAID */ = {
-			isa = PBXGroup;
-			children = (
-				CE6288CD1510A42B00589E56 /* LICENSE */,
-				CE6288CE1510A42B00589E56 /* MRAdView+Controllers.h */,
-				CE6288CF1510A42B00589E56 /* MRAdView.h */,
-				CE6288D01510A42B00589E56 /* MRAdView.m */,
-				CE6288D11510A42B00589E56 /* MRAdViewBrowsingController.h */,
-				CE6288D21510A42B00589E56 /* MRAdViewBrowsingController.m */,
-				CE6288D31510A42B00589E56 /* MRAdViewDisplayController.h */,
-				CE6288D41510A42B00589E56 /* MRAdViewDisplayController.m */,
-				CE6288D51510A42B00589E56 /* MRCommand.h */,
-				CE6288D61510A42B00589E56 /* MRCommand.m */,
-				CE6288D71510A42B00589E56 /* MRDimmingView.h */,
-				CE6288D81510A42B00589E56 /* MRDimmingView.m */,
-				CE6288D91510A42B00589E56 /* MRProperty.h */,
-				CE6288DA1510A42B00589E56 /* MRProperty.m */,
-			);
-			path = MRAID;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,8 +256,6 @@
 				0672C3FF122BB04A00DE1F54 /* logo.png in Resources */,
 				0672C64C122BCEFE00DE1F54 /* Default.png in Resources */,
 				0672C64D122BCEFE00DE1F54 /* Icon.png in Resources */,
-				CE6288DE1510A42B00589E56 /* LICENSE in Resources */,
-				CE6288E81510A48400589E56 /* MRAID.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +268,9 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* WapPlusDemoAppDelegate.m in Sources */,
+				0672C377122BAC9300DE1F54 /* WPBannerInfo.m in Sources */,
 				0672C378122BAC9300DE1F54 /* WPBannerInfoLoader.m in Sources */,
+				0672C379122BAC9300DE1F54 /* WPBannerInfoParser.m in Sources */,
 				0672C37A122BAC9300DE1F54 /* WPBannerView.m in Sources */,
 				0672C37B122BAC9300DE1F54 /* WPUtils.m in Sources */,
 				0672C3CD122BAED700DE1F54 /* WPDemo1ViewController.m in Sources */,
@@ -342,17 +279,6 @@
 				06FE33BC124A282400A7CA77 /* WPDemo2ViewController.m in Sources */,
 				06FE33CF124A2CCE00A7CA77 /* WPDemo3ViewController.m in Sources */,
 				CE6C8CEE13C5993C00EC98B9 /* WPLocationManager.m in Sources */,
-				CE6288DB1510A42B00589E56 /* MPAdBrowserController.m in Sources */,
-				CE6288DC1510A42B00589E56 /* MPGlobal.m in Sources */,
-				CE6288DD1510A42B00589E56 /* MPLogging.m in Sources */,
-				CE6288DF1510A42B00589E56 /* MRAdView.m in Sources */,
-				CE6288E01510A42B00589E56 /* MRAdViewBrowsingController.m in Sources */,
-				CE6288E11510A42B00589E56 /* MRAdViewDisplayController.m in Sources */,
-				CE6288E21510A42B00589E56 /* MRCommand.m in Sources */,
-				CE6288E31510A42B00589E56 /* MRDimmingView.m in Sources */,
-				CE6288E41510A42B00589E56 /* MRProperty.m in Sources */,
-				CE6288EB1510A4B100589E56 /* MPTimer.m in Sources */,
-				CEF341E91518736300631632 /* WPAdView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +295,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = WapPlusDemo;
 			};
 			name = Debug;
@@ -382,7 +307,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WapPlusDemo_Prefix.pch;
 				INFOPLIST_FILE = "WapPlusDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = WapPlusDemo;
 				VALIDATE_PRODUCT = YES;
 			};
