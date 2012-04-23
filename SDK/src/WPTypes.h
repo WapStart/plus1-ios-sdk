@@ -36,9 +36,3 @@ typedef enum
 	WPGenderFemale	= 2
 } WPGender;
 
-typedef enum 
-{
-    WPBannerTypeMixed   = 1,
-    WPBannerTypeText    = 2,
-    WPBannerTypeGraphic = 3
-} WPBannerType;

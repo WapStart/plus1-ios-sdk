@@ -45,7 +45,6 @@
 
 - (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
-- (NSString *) getUserAgent;
 
 @end
 
