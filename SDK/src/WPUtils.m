@@ -31,6 +31,8 @@
 
 #import "WPUtils.h"
 #import <CommonCrypto/CommonDigest.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 @implementation WPUtils
 
@@ -97,15 +99,14 @@
 
 + (NSString*) getUserAgent
 {
-	static NSString *userAgent = nil;
-
-	if (!userAgent) {
-		UIWebView *webview = [[UIWebView alloc] init];
-		userAgent = [[webview stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"] copy];  
-		[webview release];
-	}
-
-	return userAgent;
+	size_t size;
+	sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+	char *machine = malloc(size);
+	sysctlbyname("hw.machine", machine, &size, NULL, 0);
+	NSString *platform = [[[NSString alloc] initWithCString:machine encoding:NSUTF8StringEncoding] autorelease];
+	free(machine);
+	
+	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
 }
 
 + (NSDictionary*) getDictionaryFromQueryString:(NSString*) query
