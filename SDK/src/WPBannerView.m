@@ -451,6 +451,7 @@
 	[_bannerInfoLoader release];
 
 	_bannerInfoLoader = [[WPBannerInfoLoader alloc] initWithRequestInfo:_bannerRequestInfo];
+	_bannerInfoLoader.containerRect = self.frame;
 	_bannerInfoLoader.delegate = self;
 
 	if (![_bannerInfoLoader start]) {

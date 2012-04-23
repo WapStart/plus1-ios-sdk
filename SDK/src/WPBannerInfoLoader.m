@@ -45,6 +45,7 @@
 
 - (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
+- (NSString *) getDisplayMetrics;
 
 @end
 
@@ -55,6 +56,7 @@
 @synthesize delegate = _delegate;
 @synthesize data = _data;
 @synthesize adType = _adType;
+@synthesize containerRect = _containerRect;
 
 - (id) init
 {
@@ -136,7 +138,7 @@
 - (NSString *) getDisplayMetrics 
 {
 	CGRect screenRect = [WPUtils getApplicationFrame];
-	return [NSString stringWithFormat:@"%3.0fx%3.0f", screenRect.size.width, screenRect.size.height];
+	return [NSString stringWithFormat:@"%.0fx%.0f", screenRect.size.width, screenRect.size.height];
 }
 
 - (BOOL) start
@@ -156,7 +158,12 @@
 	[theRequest setValue:[WPUtils getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
-	// TODO: add container metrics header
+
+	if (!CGRectIsNull(self.containerRect)) {
+		NSString* metrics = [NSString stringWithFormat:@"%.0fx%.0f", self.containerRect.size.width, self.containerRect.size.height];
+		[theRequest setValue:metrics forHTTPHeaderField:@"x-container-metrics"];
+		WPLogDebug(@"x-container-metrics: %@", metrics);
+	}
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 

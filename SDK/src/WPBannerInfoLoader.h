@@ -47,22 +47,24 @@ typedef enum
 @interface WPBannerInfoLoader : NSObject 
 {
 @private
-	WPBannerRequestInfo *_bannerRequestInfo;
+	WPBannerRequestInfo	*_bannerRequestInfo;
 
 	id<WPBannerInfoLoaderDelegate> _delegate;
-	
-	NSURLConnection    *_urlConnection;
-	
-	NSString           *_clientSessionId;
+
+	NSURLConnection		*_urlConnection;
+
+	NSString			*_clientSessionId;
 
 	NSMutableData		*_data;
 	NSString			*_adType;
+	CGRect				containerRect;
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
 @property (nonatomic, retain) NSMutableData *data;
 @property (nonatomic, retain) NSString *adType;
 @property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;
+@property (nonatomic, assign) CGRect containerRect;
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
 - (BOOL) start;
