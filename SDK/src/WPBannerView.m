@@ -33,6 +33,7 @@
 #import "MRAdView.h"
 #import "WPAdView.h"
 #import "WPLogging.h"
+#import "WPUtils.h"
 
 #define BANNER_HEIGHT 50
 #define MINIMIZED_BANNER_HEIGHT 20
@@ -48,6 +49,7 @@
 - (void) stopAutoupdateTimer;
 
 - (void) cleanCurrentView;
+- (void) updateCurrentViewWidth;
 
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
@@ -257,6 +259,8 @@
 	if (_orientation != orientation) {
 		_orientation = orientation;
 
+		[self updateCurrentViewWidth];
+
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
 	}
@@ -422,6 +426,13 @@
 	}
 }
 
+- (void) updateCurrentViewWidth
+{
+	CGRect frame = _currentContentView.frame;
+	frame.size.width = [WPUtils getApplicationFrame].size.width;
+	_currentContentView.frame = frame;
+}
+
 #pragma mark Network
 
 - (void) reloadBanner
@@ -515,6 +526,8 @@
 - (void)adDidClose:(MRAdView *)adView
 {
 	WPLogDebug(@"MRAID: Did closed!");
+
+	[self updateCurrentViewWidth];
 
 	_isExpanded = false;
 	[adView removeFromSuperview];
