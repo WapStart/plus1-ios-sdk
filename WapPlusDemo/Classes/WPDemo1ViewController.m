@@ -133,12 +133,4 @@
     [super dealloc];
 }
 
-- (void) bannerViewPressed:(WPBannerView *) bannerView
-{
-	//if (bannerView.bannerInfo.responseType == WPBannerResponseWebSite)
-	//	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bannerView.bannerInfo.link]];
-
-	[bannerView reloadBanner];
-}
-
 @end

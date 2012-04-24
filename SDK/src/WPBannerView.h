@@ -95,12 +95,9 @@
 
 @protocol WPBannerViewDelegate <NSObject>
 
-- (void) bannerViewPressed:(WPBannerView *) bannerView;
-
 @optional
 
 - (void) bannerViewInfoLoaded:(WPBannerView *) bannerView;
-
 - (void) bannerViewDidHide:(WPBannerView *) bannerView;
 - (void) bannerViewMinimizedStateChanged:(WPBannerView *) bannerView;
 

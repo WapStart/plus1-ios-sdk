@@ -313,13 +313,10 @@
 	UITouch *touch = [touches anyObject];
 	CGPoint tapLocation = [touch locationInView:self];
 	
-	if (tapLocation.x > (self.bounds.size.width-40))
-	{
+	if (tapLocation.x > (self.bounds.size.width-40) && self.showCloseButton) {
 		[self performSelector:@selector(closeButtonPressed)];
 		return;
 	}
-	
-	[_delegate bannerViewPressed:self];
 }
 
 #pragma mark Methods
@@ -342,6 +339,8 @@
 
 	if (animated)
 		[UIView commitAnimations];
+
+	[self setHidden:false];
 }
 
 - (void) showFromBottom:(BOOL) animated
@@ -362,6 +361,8 @@
 	
 	if (animated)
 		[UIView commitAnimations];
+
+	[self setHidden:false];
 }
 
 - (void) hide:(BOOL) animated

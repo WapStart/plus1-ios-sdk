@@ -144,14 +144,6 @@
 	[self.tableView reloadData];
 }
 
-- (void) bannerViewPressed:(WPBannerView *) bnView
-{
-	//if (bannerView.bannerInfo.responseType == WPBannerResponseWebSite)
-	//	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bannerView.bannerInfo.link]];
-	
-	[bannerView reloadBanner];
-}
-
 - (void) bannerViewInfoLoaded:(WPBannerView *) bnView
 {
 	if (bannerView.isEmpty)
