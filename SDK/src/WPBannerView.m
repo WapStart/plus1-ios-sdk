@@ -521,6 +521,9 @@
 // MRAdViewDelegate / WPAdViewDelegate
 - (void)adDidLoad:(UIView *)adView;
 {
+	if (self.isMinimized || _isExpanded)
+		return;
+
 	[self cleanCurrentView];
 	_currentContentView = adView;
 
