@@ -38,6 +38,7 @@
 #define BANNER_HEIGHT 50
 #define MINIMIZED_BANNER_HEIGHT 20
 #define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
+#define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
 @interface WPBannerView (PrivateMethods)
 
@@ -376,11 +377,9 @@
 			[UIView setAnimationDuration:0.5];
 			[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.superview cache:NO];
 			[UIView setAnimationBeginsFromCurrentState:YES];
-			if ([_delegate respondsToSelector:@selector(bannerViewDidHide:)])
-			{
-				[UIView setAnimationDelegate:self];
-				[UIView setAnimationDidStopSelector:@selector(hideAnimationDidStop:finished:context:)];
-			}
+
+			[UIView setAnimationDelegate:self];
+			[UIView setAnimationDidStopSelector:@selector(hideAnimationDidStop:finished:context:)];
 		}
 		
 		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
@@ -388,17 +387,24 @@
 		else
 			self.frame = CGRectMake(0, -[self bannerHeight], self.superview.bounds.size.width, [self bannerHeight]);
 		self.alpha = 0;
-		
-		if (animated)
+
+		if (animated) {
 			[UIView commitAnimations];
-		else if ([_delegate respondsToSelector:@selector(bannerViewDidHide:)])
-			[_delegate bannerViewDidHide:self];
+		} else {
+			[self setHidden:true];
+
+			if ([_delegate respondsToSelector:@selector(bannerViewDidHide:)])
+				[_delegate bannerViewDidHide:self];
+		}
 	}
 }
 
 - (void) hideAnimationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
-	[_delegate bannerViewDidHide:self];
+	[self setHidden:true];
+
+	if ([_delegate respondsToSelector:@selector(bannerViewDidHide:)])
+		[_delegate bannerViewDidHide:self];
 }
 
 - (void) closeButtonPressed
@@ -451,6 +457,13 @@
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
 	NSString *html = [[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding];
+
+	if (html == HTML_NO_BANNER) {
+		[_bannerInfoLoader release], _bannerInfoLoader = nil;
+		[self hide:YES];
+		return;
+	}
+
 	WPLogDebug(@"Creating adView for type: %@, html: %@", loader.adType, html);
 
 	if ([@"mraid" isEqualToString:loader.adType]) {
