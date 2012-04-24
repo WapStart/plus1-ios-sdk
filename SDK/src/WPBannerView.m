@@ -75,7 +75,6 @@
 		self.isMinimized = NO;
 		_showCloseButton = YES;
 		_hideWhenEmpty = NO;
-		_reloadAfterOpenning = NO;
 		_disableAutoDetectLocation = YES;
 
 		_bannerRequestInfo = [requestInfo retain];
@@ -99,8 +98,6 @@
 		[self addSubview:_loadingInfoIndicator];
 		
 		[self configureSubviews];
-		
-		self.hideWhenEmpty = YES;
         
         _locationManager = [[WPLocationManager alloc] init];
         _locationManager.delegate = self;
@@ -148,12 +145,6 @@
 	[_closeButton setHidden:!_showCloseButton || self.isMinimized];
 }
 
-- (void) setHideWhenEmpty:(BOOL)hide
-{
-	_hideWhenEmpty = hide;
-	[self setHidden:_hideWhenEmpty && self.isEmpty];
-}
-
 - (void) setIsMinimized:(BOOL)minimize
 {
 	[self setIsMinimized:minimize animated:NO];
@@ -163,7 +154,7 @@
 {
 	if (_isMinimized == minimize)
 		return;
-	
+
 	if (animated) {
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
@@ -177,6 +168,9 @@
 
 	if (_isMinimized)
 	{
+		[_bannerInfoLoader cancel];
+		[_bannerInfoLoader release], _bannerInfoLoader = nil;
+
 		[self stopAutoupdateTimer];
 
 		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
@@ -221,11 +215,6 @@
 
 	if ([_delegate respondsToSelector:@selector(bannerViewMinimizedStateChanged:)])
 		[_delegate bannerViewMinimizedStateChanged:self];
-	
-	//if (!_isMinimized && _reloadAfterOpenning)
-	//	[self reloadBanner];
-	
-	_reloadAfterOpenning = NO;
 }
 
 - (void) startAutoupdateTimer
@@ -438,14 +427,7 @@
 - (void) reloadBanner
 {
 	if (self.isMinimized || _isExpanded)
-	{
-		// FIXME: useless?
-		if (!self.isEmpty || !_hideWhenEmpty)
-		{
-			_reloadAfterOpenning = YES;
-			return;
-		}
-	}
+		return;
 
 	[_bannerInfoLoader cancel];
 	[_bannerInfoLoader release];
@@ -542,7 +524,6 @@
 	[self cleanCurrentView];
 	_currentContentView = adView;
 
-	self.hideWhenEmpty = _hideWhenEmpty;
 	[self insertSubview:_currentContentView atIndex:0];
 
 	[self configureSubviews];

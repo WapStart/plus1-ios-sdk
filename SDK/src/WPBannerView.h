@@ -63,7 +63,6 @@
 	NSMutableSet	*_adviewPool;
 
 	BOOL _isMinimized;
-	BOOL _reloadAfterOpenning;
 	NSString *_minimizedLabel;
 	
 	BOOL _hideWhenEmpty;
