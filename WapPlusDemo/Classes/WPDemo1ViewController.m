@@ -68,18 +68,18 @@
     
 	topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	topBannerView.showCloseButton = YES;
-	topBannerView.autoupdateTimeout = 10;
+	topBannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	topBannerView.delegate = self;
 	[topBannerView reloadBanner];
 	[self.view addSubview:topBannerView];
 
-	/*bottomBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
-	bottomBannerView.showCloseButton = YES;
-	bottomBannerView.autoupdateTimeout = 15;
+	bottomBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+	bottomBannerView.showCloseButton = NO;
+	bottomBannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	bottomBannerView.delegate = self;
 	bottomBannerView.isMinimized = YES;
 	[bottomBannerView reloadBanner];
-	[self.view addSubview:bottomBannerView];*/
+	[self.view addSubview:bottomBannerView];
 	
 	[requestInfo release];
 }

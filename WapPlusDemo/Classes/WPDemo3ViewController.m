@@ -70,7 +70,7 @@
 	topBannerView.showCloseButton = YES;
 	topBannerView.delegate = self;
 	topBannerView.hideWhenEmpty = YES;
-	topBannerView.autoupdateTimeout = 20;
+	topBannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	[topBannerView setHidden:YES];
 	[self.view addSubview:topBannerView];
 	

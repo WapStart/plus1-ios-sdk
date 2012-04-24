@@ -68,7 +68,7 @@
 	
 	bannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	bannerView.showCloseButton = YES;
-	bannerView.autoupdateTimeout = 10;
+	bannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	bannerView.delegate = self;
 	[bannerView reloadBanner];
 	
@@ -100,7 +100,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    return 20;
 }
 
 
