@@ -64,8 +64,7 @@
 
 	BOOL _isMinimized;
 	NSString *_minimizedLabel;
-	
-	BOOL _hideWhenEmpty;
+
     BOOL _disableAutoDetectLocation;
 }
 
@@ -73,7 +72,6 @@
 @property (nonatomic, assign) CGFloat autoupdateTimeout;
 @property (nonatomic, assign) BOOL isMinimized;
 @property (nonatomic, retain) NSString *minimizedLabel;
-@property (nonatomic, assign) BOOL hideWhenEmpty;
 @property (nonatomic, readonly) BOOL isEmpty;
 @property (nonatomic, readonly) CGFloat bannerHeight;
 @property (nonatomic, assign) BOOL disableAutoDetectLocation;

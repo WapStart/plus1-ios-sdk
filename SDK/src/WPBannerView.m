@@ -63,7 +63,6 @@
 @synthesize isMinimized = _isMinimized;
 @synthesize minimizedLabel = _minimizedLabel;
 @synthesize showCloseButton = _showCloseButton;
-@synthesize hideWhenEmpty = _hideWhenEmpty;
 @synthesize disableAutoDetectLocation = _disableAutoDetectLocation;
 @synthesize autoupdateTimeout = _autoupdateTimeout;
 @synthesize orientation = _orientation;
@@ -75,7 +74,6 @@
 		self.minimizedLabel = DEFAULT_MINIMIZED_LABEL;
 		self.isMinimized = NO;
 		_showCloseButton = YES;
-		_hideWhenEmpty = NO;
 		_disableAutoDetectLocation = YES;
 
 		_bannerRequestInfo = [requestInfo retain];
