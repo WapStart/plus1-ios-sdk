@@ -34,7 +34,7 @@
 #import "WPLogging.h"
 #import "UIDevice+IdentifierAddition.h"
 
-//#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
+//#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2&sdkver=1.2.0" // FIXME: send mraid version?
 #define WPRotatorUrl @"http://ro.zlex.plus1.oemtest.ru/?area=applicationWebView&version=2"
 //#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
 //#define WPRotatorUrl @"http://ro.trunk.plus1.oemtest.ru/testmraid.php?area=application&version=2"
