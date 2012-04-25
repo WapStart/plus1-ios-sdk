@@ -60,6 +60,7 @@
         _webView.clipsToBounds = YES;
         _webView.delegate = self;
         _webView.opaque = NO;
+        _webView.dataDetectorTypes = UIDataDetectorTypeNone;
         [[_webView scrollView] setScrollEnabled:NO];
         
         if ([_webView respondsToSelector:@selector(setAllowsInlineMediaPlayback:)]) {
