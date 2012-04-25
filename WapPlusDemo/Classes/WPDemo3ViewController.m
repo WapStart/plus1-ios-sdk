@@ -74,7 +74,6 @@
 	[self.view addSubview:topBannerView];
 	
 	[requestInfo release];
-	[topBannerView reloadBanner];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -88,7 +87,8 @@
 {
 	logoView.frame = self.view.bounds;
 	
-	[topBannerView showFromTop:NO];
+	[topBannerView hide:NO]; // Place hidden banner
+	[topBannerView reloadBanner];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

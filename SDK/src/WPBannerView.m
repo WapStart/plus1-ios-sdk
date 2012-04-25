@@ -465,13 +465,15 @@
 
 	WPLogDebug(@"Creating adView for type: %@, html: %@", loader.adType, html);
 
+	CGRect viewFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+
 	if ([@"mraid" isEqualToString:loader.adType]) {
-		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:self.frame];
+		MRAdView *mraidView = [[MRAdView alloc] initWithFrame:viewFrame];
 		mraidView.delegate = self;
 		[mraidView loadCreativeWithHTMLString:html baseURL:nil];
 		[_adviewPool addObject:mraidView];
 	} else {
-		WPAdView *adView = [[WPAdView alloc] initWithFrame:self.frame];
+		WPAdView *adView = [[WPAdView alloc] initWithFrame:viewFrame];
 		adView.delegate = self;
 		[adView loadAdWithHTMLString:html baseURL:nil];
 		[_adviewPool addObject:adView];
