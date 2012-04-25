@@ -35,7 +35,8 @@
 #import "WPLogging.h"
 #import "WPUtils.h"
 
-#define BANNER_HEIGHT 50
+#define BANNER_HEIGHT_IPHONE 50
+#define BANNER_HEIGHT_IPAD 90
 #define MINIMIZED_BANNER_HEIGHT 20
 #define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
 #define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
@@ -83,7 +84,7 @@
 		
 		_shildImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wp_banner_shild.png"]];
 		[_shildImageView setHidden:false];
-		_shildImageView.frame = CGRectMake(0, 0, 9, BANNER_HEIGHT);
+		_shildImageView.frame = CGRectMake(0, 0, 9, [self bannerHeight]);
 		[self addSubview:_shildImageView];
 		
 		_closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -130,7 +131,13 @@
 
 - (CGFloat) bannerHeight
 {
-	return self.isMinimized ? MINIMIZED_BANNER_HEIGHT : BANNER_HEIGHT;
+	if (self.isMinimized)
+		return MINIMIZED_BANNER_HEIGHT;
+
+	return
+		UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+			? BANNER_HEIGHT_IPAD
+			: BANNER_HEIGHT_IPHONE;
 }
 
 - (BOOL) isEmpty
@@ -185,10 +192,10 @@
 		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
 		{
 			// Banner from bottom
-			currentFrame.origin.y = self.superview.bounds.origin.y+self.superview.bounds.size.height-BANNER_HEIGHT;
+			currentFrame.origin.y = self.superview.bounds.origin.y+self.superview.bounds.size.height-[self bannerHeight];
 		}
 
-		currentFrame.size.height = BANNER_HEIGHT;
+		currentFrame.size.height = [self bannerHeight];
 
 		if (![self isEmpty]) { // NOTE: current view may be assigned in adDidLoad method
 			_currentContentView.frame = currentFrame;
