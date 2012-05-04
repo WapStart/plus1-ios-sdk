@@ -35,10 +35,9 @@
 #import "WPLogging.h"
 #import "WPUtils.h"
 
-#define BANNER_HEIGHT_IPHONE 50
-#define BANNER_HEIGHT_IPAD 90
 #define MINIMIZED_BANNER_HEIGHT 20
-#define BANNER_WIDTH 320
+#define BANNER_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 728 : 320)
+#define BANNER_HEIGHT (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 90 : 50)
 
 #define BANNER_X_POS CGRectGetMidX(self.superview.frame) - BANNER_WIDTH / 2	// Center
 //#define BANNER_X_POS self.superview.frame.size.width - BANNER_WIDTH		// Right
@@ -139,13 +138,10 @@
 
 - (CGFloat) bannerHeight
 {
-	if (self.isMinimized)
-		return MINIMIZED_BANNER_HEIGHT;
-
 	return
-		UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
-			? BANNER_HEIGHT_IPAD
-			: BANNER_HEIGHT_IPHONE;
+		self.isMinimized
+			? MINIMIZED_BANNER_HEIGHT
+			: BANNER_HEIGHT;
 }
 
 - (BOOL) isEmpty
