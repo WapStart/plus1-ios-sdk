@@ -57,6 +57,7 @@
 - (void) stopAutoupdateTimer;
 
 - (void) cleanCurrentView;
+- (void) updateContentFrame;
 
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
@@ -261,6 +262,8 @@
 	if (_orientation != orientation) {
 		_orientation = orientation;
 
+		[self updateContentFrame];
+
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
 	}
@@ -432,6 +435,13 @@
 	}
 }
 
+- (void) updateContentFrame
+{
+	CGRect frame = _currentContentView.frame;
+	frame.size.width = self.frame.size.width;
+	_currentContentView.frame = frame;
+}
+
 #pragma mark Network
 
 - (void) reloadBanner
@@ -528,6 +538,8 @@
 - (void)adDidClose:(MRAdView *)adView
 {
 	WPLogDebug(@"MRAID: Did closed!");
+
+	[self updateContentFrame];
 
 	_isExpanded = false;
 	[adView removeFromSuperview];
