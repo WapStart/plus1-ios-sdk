@@ -106,6 +106,8 @@
         
         _locationManager = [[WPLocationManager alloc] init];
         _locationManager.delegate = self;
+
+		self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
     }
     
     return self;

@@ -78,8 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	
-	bannerView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, [bannerView bannerHeight]);
+
 	self.tableView.tableHeaderView = nil;
 	self.tableView.tableHeaderView = bannerView;
 	
