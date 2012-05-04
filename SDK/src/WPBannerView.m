@@ -119,9 +119,9 @@
 
 	[_currentContentView release];
 
-	for (UIView *adView in _adviewPool) {
+	for (UIView *adView in _adviewPool)
 		[adView release];
-	}
+
 	[_adviewPool release];
 
     [super dealloc];

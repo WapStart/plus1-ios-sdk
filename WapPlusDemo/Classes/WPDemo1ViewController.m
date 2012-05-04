@@ -42,8 +42,7 @@
 
 - (id) initDemoViewController
 {
-    if ((self = [super initWithNibName:nil bundle:nil]))
-	{
+    if ((self = [super initWithNibName:nil bundle:nil])) {
 		UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:@"always show"
 														   image:nil
 															 tag:1];
@@ -51,6 +50,7 @@
 		
 		[item release];
     }
+
     return self;
 }
 
