@@ -38,6 +38,12 @@
 #define BANNER_HEIGHT_IPHONE 50
 #define BANNER_HEIGHT_IPAD 90
 #define MINIMIZED_BANNER_HEIGHT 20
+#define BANNER_WIDTH 320
+
+#define BANNER_X_POS CGRectGetMidX(self.superview.frame) - BANNER_WIDTH / 2	// Center
+//#define BANNER_X_POS self.superview.frame.size.width - BANNER_WIDTH		// Right
+//#define BANNER_X_POS 0													// Left
+
 #define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
 #define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
@@ -51,7 +57,6 @@
 - (void) stopAutoupdateTimer;
 
 - (void) cleanCurrentView;
-- (void) updateCurrentViewWidth;
 
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
@@ -254,8 +259,6 @@
 	if (_orientation != orientation) {
 		_orientation = orientation;
 
-		[self updateCurrentViewWidth];
-
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
 	}
@@ -332,7 +335,7 @@
 {
 	if (animated)
 	{
-		self.frame = CGRectMake(0, -[self bannerHeight], self.superview.bounds.size.width, [self bannerHeight]);
+		self.frame = CGRectMake(BANNER_X_POS, -[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
 		self.alpha = 0;
 
 		[UIView beginAnimations:nil context:NULL];
@@ -341,7 +344,7 @@
 		[UIView setAnimationBeginsFromCurrentState:YES];
 	}
 	
-	self.frame = CGRectMake(0, 0, self.superview.bounds.size.width, [self bannerHeight]);
+	self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
 	self.alpha = 1;
 
 	if (animated)
@@ -354,7 +357,7 @@
 {
 	if (animated)
 	{
-		self.frame = CGRectMake(0, self.superview.bounds.size.height, self.superview.bounds.size.width, [self bannerHeight]);
+		self.frame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height, BANNER_WIDTH, [self bannerHeight]);
 		self.alpha = 0;
 		
 		[UIView beginAnimations:nil context:NULL];
@@ -363,7 +366,7 @@
 		[UIView setAnimationBeginsFromCurrentState:YES];
 	}
 	
-	self.frame = CGRectMake(0, self.superview.bounds.size.height-[self bannerHeight], self.superview.bounds.size.width, [self bannerHeight]);
+	self.frame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height-[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
 	self.alpha = 1;
 	
 	if (animated)
@@ -389,9 +392,9 @@
 		}
 		
 		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
-			self.frame = CGRectMake(0, self.superview.bounds.size.height, self.superview.bounds.size.width, [self bannerHeight]);
+			self.frame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height, BANNER_WIDTH, [self bannerHeight]);
 		else
-			self.frame = CGRectMake(0, -[self bannerHeight], self.superview.bounds.size.width, [self bannerHeight]);
+			self.frame = CGRectMake(BANNER_X_POS, -[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
 		self.alpha = 0;
 
 		if (animated) {
@@ -425,13 +428,6 @@
 		[_currentContentView removeFromSuperview];
 		[_currentContentView release], _currentContentView = nil;
 	}
-}
-
-- (void) updateCurrentViewWidth
-{
-	CGRect frame = _currentContentView.frame;
-	frame.size.width = [WPUtils getApplicationFrame].size.width;
-	_currentContentView.frame = frame;
 }
 
 #pragma mark Network
@@ -530,8 +526,6 @@
 - (void)adDidClose:(MRAdView *)adView
 {
 	WPLogDebug(@"MRAID: Did closed!");
-
-	[self updateCurrentViewWidth];
 
 	_isExpanded = false;
 	[adView removeFromSuperview];
