@@ -36,7 +36,7 @@
 #import "WPUtils.h"
 
 #define MINIMIZED_BANNER_HEIGHT 20
-#define BANNER_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 728 : 320)
+#define BANNER_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
 #define BANNER_HEIGHT (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 90 : 50)
 
 #define BANNER_X_POS CGRectGetMidX(self.superview.frame) - BANNER_WIDTH / 2	// Center
