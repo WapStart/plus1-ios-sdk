@@ -36,7 +36,7 @@
 #import "WPUtils.h"
 
 #define MINIMIZED_BANNER_HEIGHT 20
-#define BANNER_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
+#define BANNER_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768  : 320)
 #define BANNER_HEIGHT (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 90 : 50)
 
 #define BANNER_X_POS CGRectGetMidX(self.superview.frame) - BANNER_WIDTH / 2	// Center
@@ -258,8 +258,6 @@
 	if (_orientation != orientation) {
 		_orientation = orientation;
 
-		[self updateContentFrame];
-
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
 	}
@@ -290,8 +288,9 @@
 
 	[[UIColor whiteColor] set];
 
-	if (self.isMinimized)
-	{
+	[self updateContentFrame];
+
+	if (self.isMinimized) {
 		CGRect rect = CGRectMake(10, 2, self.bounds.size.width-20, self.bounds.size.height-4);
 
 		UIFont *font = [UIFont systemFontOfSize:12];
@@ -300,7 +299,7 @@
 							   withFont:font
 						  lineBreakMode:UILineBreakModeTailTruncation
 							  alignment:UITextAlignmentRight];
-	
+
 		return;
 	}
 }
