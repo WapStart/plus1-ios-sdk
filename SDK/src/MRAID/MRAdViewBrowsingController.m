@@ -42,9 +42,8 @@
 - (void)dismissBrowserController:(MPAdBrowserController *)browserController 
                         animated:(BOOL)animated {
     [self.viewControllerForPresentingModalView dismissModalViewControllerAnimated:animated];
-    //[_view adWillShow];
+
     [_view adDidDismissModalView];
-    //[_view adDidShow];
 }
 
 @end

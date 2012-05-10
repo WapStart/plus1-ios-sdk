@@ -542,6 +542,19 @@
 	[self startAutoupdateTimer];
 }
 
+- (void)appShouldSuspendForAd:(MRAdView *)adView
+{
+	[_bannerInfoLoader cancel];
+	[self stopAutoupdateTimer];
+}
+
+- (void)appShouldResumeForAd:(MRAdView *)adView
+{
+	[self updateContentFrame];
+
+	[self startAutoupdateTimer];
+}
+
 // MRAdViewDelegate / WPAdViewDelegate
 - (void)adDidLoad:(UIView *)adView;
 {
