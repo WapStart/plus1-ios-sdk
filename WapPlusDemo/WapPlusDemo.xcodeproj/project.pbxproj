@@ -39,6 +39,7 @@
 		CE145DB7153F09D700CC6BC1 /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DB1153F09D700CC6BC1 /* NSString+MD5Addition.m */; };
 		CE145DB8153F09D700CC6BC1 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DB3153F09D700CC6BC1 /* UIDevice+IdentifierAddition.m */; };
 		CE145DB9153F09D700CC6BC1 /* WPAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE145DB5153F09D700CC6BC1 /* WPAdView.m */; };
+		CE546B8F155E60DB0042CF19 /* MPAdBrowserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE546B8E155E60DB0042CF19 /* MPAdBrowserController.xib */; };
 		CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */; };
 		CE6C8CEE13C5993C00EC98B9 /* WPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		CE145DB4153F09D700CC6BC1 /* WPAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdView.h; sourceTree = "<group>"; };
 		CE145DB5153F09D700CC6BC1 /* WPAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdView.m; sourceTree = "<group>"; };
 		CE145DBA15417E7900CC6BC1 /* WPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLogging.h; sourceTree = "<group>"; };
+		CE546B8E155E60DB0042CF19 /* MPAdBrowserController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MPAdBrowserController.xib; sourceTree = "<group>"; };
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CE6C8CEC13C5993C00EC98B9 /* WPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPLocationManager.h; sourceTree = "<group>"; };
 		CE6C8CED13C5993C00EC98B9 /* WPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPLocationManager.m; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				CE145DB5153F09D700CC6BC1 /* WPAdView.m */,
 				CE145DA2153F097400CC6BC1 /* MPAdBrowserController.h */,
 				CE145DA3153F097400CC6BC1 /* MPAdBrowserController.m */,
+				CE546B8E155E60DB0042CF19 /* MPAdBrowserController.xib */,
 				CE145DA9153F097400CC6BC1 /* MPTimer.h */,
 				CE145DAA153F097400CC6BC1 /* MPTimer.m */,
 				CE145D8C153F095000CC6BC1 /* MRAID */,
@@ -324,6 +327,7 @@
 				0672C64D122BCEFE00DE1F54 /* Icon.png in Resources */,
 				CE145D9B153F095000CC6BC1 /* LICENSE in Resources */,
 				CE145DB6153F09D700CC6BC1 /* MRAID.bundle in Resources */,
+				CE546B8F155E60DB0042CF19 /* MPAdBrowserController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
