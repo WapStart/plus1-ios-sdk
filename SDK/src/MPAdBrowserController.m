@@ -56,8 +56,8 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 		WPLogDebug(@"Ad browser (%p) initialized with URL: %@", self, _URL);
 		
 		_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-		_webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | 
-		UIViewAutoresizingFlexibleHeight;
+		_webView.autoresizingMask =
+			UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		_webView.delegate = self;
 		_webView.scalesPageToFit = YES;
 		
@@ -72,6 +72,7 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
 {
 	_delegate = nil;
 	_webView.delegate = nil;
+	[_webView stopLoading];
 	[_webView release];
 	[_URL release];
 	[_backButton release];
@@ -318,6 +319,5 @@ static NSArray *BROWSER_SCHEMES, *SPECIAL_HOSTS;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
 
 @end

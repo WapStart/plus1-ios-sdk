@@ -120,6 +120,7 @@ static NSString * const kMraidURLScheme = @"mraid";
 
 - (void)dealloc {
     _webView.delegate = nil;
+	[_webView stopLoading];
     [_webView release];
     [_closeButton release];
     [_data release];
