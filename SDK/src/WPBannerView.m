@@ -467,7 +467,7 @@
 {
 	NSString *html = [[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease];
 
-	if (html == HTML_NO_BANNER) {
+	if ([html isEqualToString:HTML_NO_BANNER]) {
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
 		[self hide:YES];
 		return;
