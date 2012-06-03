@@ -16,4 +16,4 @@ WPBannerViewDelegate
 * `(void) bannerViewDidHide:(WPBannerView *) bannerView;`  
   вызывается после вызова метода hide: у WPBannerView.
 * `(void) bannerViewMinimizedStateChanged:(WPBannerView *) bannerView`  
-  Вызывается, когда баннер сворачивается или разворачивается.
+  вызывается, когда баннер сворачивается или разворачивается.
