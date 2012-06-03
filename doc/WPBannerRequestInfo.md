@@ -1,5 +1,6 @@
 WPBannerRequestInfo
 ===================
+ Информация для получения баннера.
 
     @interface WPBannerRequestInfo : NSObject
     
@@ -10,19 +11,17 @@ WPBannerRequestInfo
     @property (nonatomic, retain) NSString   *login;
     @property (nonatomic, retain) CLLocation *location;
 
-    @end
-
 Параметры
 ---------
 
 * `applicationId`
- ID приложения в системе Plus1 WapStart
+ ID приложения в системе Plus1 WapStart (обязательный).
 * `gender`
- пол текущего пользователя приложения (если известен)
+ пол текущего пользователя приложения (необязательный).
 * `age`
- возраст текущего пользователя приложения (если известен)
+ возраст текущего пользователя приложения (необязательный).
 * `pageId`
 
 * `login`
- имя пользователя (если известно)
+ имя пользователя (необязательный).
 * `location`
