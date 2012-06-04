@@ -416,6 +416,7 @@ static NSString * const kMraidURLScheme = @"mraid";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     if (error.code == NSURLErrorCancelled) return;
+
     _isLoading = NO;
     [self adDidFailToLoad];
 }

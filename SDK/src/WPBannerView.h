@@ -97,7 +97,11 @@
 
 @optional
 
+- (void) bannerViewPressed:(WPBannerView *) bannerView;
+
 - (void) bannerViewInfoLoaded:(WPBannerView *) bannerView;
+- (void) bannerViewInfoDidFailWithError:(WPBannerInfoLoaderErrorCode) errorCode;
+
 - (void) bannerViewDidHide:(WPBannerView *) bannerView;
 - (void) bannerViewMinimizedStateChanged:(WPBannerView *) bannerView;
 

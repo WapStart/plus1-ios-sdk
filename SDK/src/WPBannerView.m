@@ -497,6 +497,13 @@
 	[_bannerInfoLoader release], _bannerInfoLoader = nil;
 	[self configureSubviews];
 	[self setNeedsDisplay];
+
+	if (
+		errorCode != WPBannerInfoLoaderErrorCodeCancel
+		&& [_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)]
+	) {
+		[_delegate bannerViewInfoDidFailWithError:errorCode];
+	}
 }
 
 #pragma mark Location manager delegates
@@ -571,6 +578,13 @@
 
 	if ([_delegate respondsToSelector:@selector(bannerViewInfoLoaded:)])
 		[_delegate bannerViewInfoLoaded:self];
+}
+
+// MRAdViewDelegate / WPAdViewDelegate
+- (void)adDidFailToLoad:(UIView *)adView
+{
+	if ([_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)])
+		[_delegate bannerViewInfoDidFailWithError:NSURLErrorUnknown];
 }
 
 @end
