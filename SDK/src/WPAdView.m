@@ -116,7 +116,8 @@
  navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *url = [request URL];
     NSString *scheme = url.scheme;
-    
+	bool result = YES;
+
     if (
 		[scheme isEqualToString:@"tel"]
 		|| [scheme isEqualToString:@"sms"]
@@ -124,18 +125,16 @@
 	) {
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url];
-            return NO;
+            result = NO;
         }
-
-        return YES;
-    }
-
-    if (!_isLoading && navigationType == UIWebViewNavigationTypeLinkClicked) {
+    } else if (!_isLoading && navigationType == UIWebViewNavigationTypeLinkClicked) {
         [[UIApplication sharedApplication] openURL:url];
-        return NO;
+        result = NO;
     }
 
-    return YES;
+	[self adDidPressed];
+
+    return result;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -165,6 +164,12 @@
 - (void)adDidFailToLoad {
     if ([self.delegate respondsToSelector:@selector(adDidFailToLoad:)]) {
         [self.delegate adDidFailToLoad:self];
+    }
+}
+
+- (void)adDidPressed {
+    if ([self.delegate respondsToSelector:@selector(adDidPressed:)]) {
+        [self.delegate adDidPressed:self];
     }
 }
 

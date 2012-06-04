@@ -59,4 +59,7 @@
 // Called when the ad fails to load.
 - (void)adDidFailToLoad:(WPAdView *)adView;
 
+// Called when the ad was pressed.
+- (void)adDidPressed:(WPAdView *)adView;
+
 @end

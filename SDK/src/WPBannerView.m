@@ -530,6 +530,9 @@
 
 	[_bannerInfoLoader cancel];
 	[self stopAutoupdateTimer];
+
+	if ([_delegate respondsToSelector:@selector(bannerViewPressed:)])
+		[_delegate bannerViewPressed:self];
 }
 
 - (void)didExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
@@ -562,7 +565,16 @@
 	[self startAutoupdateTimer];
 }
 
-// MRAdViewDelegate / WPAdViewDelegate
+#pragma mark WPAdViewDelegate
+
+- (void)adDidPressed:(WPAdView *)adView
+{
+	if ([_delegate respondsToSelector:@selector(bannerViewPressed:)])
+		[_delegate bannerViewPressed:self];
+}
+
+#pragma mark MRAdViewDelegate / WPAdViewDelegate
+
 - (void)adDidLoad:(UIView *)adView;
 {
 	if (self.isMinimized || _isExpanded)
@@ -580,7 +592,6 @@
 		[_delegate bannerViewInfoLoaded:self];
 }
 
-// MRAdViewDelegate / WPAdViewDelegate
 - (void)adDidFailToLoad:(UIView *)adView
 {
 	if ([_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)])
