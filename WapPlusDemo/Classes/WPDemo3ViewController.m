@@ -64,7 +64,7 @@
 	logoView.contentMode = UIViewContentModeScaleAspectFit;
 	[self.view addSubview:logoView];
 	
-	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:APPLICATION_ID];
+	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:PLUS1_APP_ID];
 	
 	topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	topBannerView.showCloseButton = YES;

@@ -13,5 +13,5 @@
     #import <CoreData/CoreData.h>
 #endif
 
-#define APPLICATION_ID /* PLACE YOUR APPLICATION ID HERE */
+#define PLUS1_APP_ID /* Place your WapStart Plus1 application id here */
 #define UPDATE_BANNER_TIMEOUT 15
