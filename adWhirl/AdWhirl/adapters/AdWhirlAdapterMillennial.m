@@ -91,13 +91,15 @@
                                   delegate:self
                                     loadAd:YES
                                 startTimer:NO];
+  adView.rootViewController =
+      [adWhirlDelegate viewControllerForPresentingModalView];
   self.adNetworkView = adView;
 }
 
 - (void)stopBeingDelegate {
   MMAdView *adView = (MMAdView *)adNetworkView;
   if (adView != nil) {
-    [adView disableAdRefresh];
+    [adView setRefreshTimerEnabled:false];
     adView.delegate = nil;
   }
 }

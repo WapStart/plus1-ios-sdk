@@ -1,7 +1,7 @@
 /*
 
  AdWhirlAdNetworkAdapter+Helpers.h
- 
+
  Copyright 2009 AdMob, Inc.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- 
+
 */
 
 #import "AdWhirlAdNetworkAdapter.h"
@@ -34,7 +34,7 @@
  */
 - (void)helperNotifyDelegateOfFullScreenModalDismissal;
 
-/*
+/**
  * Subclasses call to get various configs to use, from the AdWhirlDelegate or
  * config from server.
  */
@@ -42,5 +42,10 @@
 - (UIColor *)helperTextColorToUse;
 - (UIColor *)helperSecondaryTextColorToUse;
 - (NSInteger)helperCalculateAge;
+
+/**
+ * Subclasses call to message the AdWhirlDelegate with various selectors.
+ */
+- (NSObject *)helperDelegateValueForSelector:(SEL)selector;
 
 @end

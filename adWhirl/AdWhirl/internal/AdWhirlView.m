@@ -122,6 +122,8 @@ NSInteger adNetworkPriorityComparer(id a, id b, void *ctx) {
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [rollOverReachability setDelegate:nil];
+  [rollOverReachability release], rollOverReachability = nil;
   delegate = nil;
   [config removeDelegate:self];
   [config release], config = nil;
@@ -304,7 +306,7 @@ static BOOL randSeeded = NO;
     AWLogDebug(@"Modal view is active, not going to request another ad");
     return;
   }
-
+  [self.rollOverReachability setDelegate:nil];
   self.rollOverReachability = nil;  // stop any roll over reachability checks
 
   if (requesting) {
@@ -851,6 +853,7 @@ static BOOL randSeeded = NO;
 
 - (void)reachabilityNotReachable:(AWNetworkReachabilityWrapper *)reach {
   if (reach == self.rollOverReachability) {
+    [self.rollOverReachability setDelegate:nil];
     self.rollOverReachability = nil;  // release it and unschedule
     [self notifyDelegateOfErrorWithCode:AdWhirlAdRequestNoNetworkError
                             description:@"No network connection for rollover"];
@@ -868,6 +871,7 @@ static BOOL randSeeded = NO;
          @selector(adWhirlDidFailToReceiveAd:usingBackup:)]) {
       [delegate adWhirlDidFailToReceiveAd:self usingBackup:YES];
     }
+    [self.rollOverReachability setDelegate:nil];
     self.rollOverReachability = nil;   // release it and unschedule
     [self rollOver];
     return;

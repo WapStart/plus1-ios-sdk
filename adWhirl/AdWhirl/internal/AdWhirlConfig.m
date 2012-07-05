@@ -243,7 +243,7 @@ BOOL awDoubleVal(double *var, id val) {
   for (int i = 0; i < [configArray count]; i++) {
     id configObj = [configArray objectAtIndex:i];
     if (![configObj isKindOfClass:[NSDictionary class]]) {
-      if (error != nil)
+      if (error != NULL)
         *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
                                  description:@"Expected dictionary in config data"];
       [adNetConfigDicts release];
@@ -271,7 +271,7 @@ BOOL awDoubleVal(double *var, id val) {
           adsAreOff = NO;
           NSRange underScorePos = [strKey rangeOfString:@"_" options:NSBackwardsSearch];
           if (underScorePos.location == NSNotFound) {
-            if (error != nil)
+            if (error != NULL)
               *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
                                        description:[NSString stringWithFormat:
                                                     @"Expected underscore delimiter in key '%@'", strKey]];
@@ -281,7 +281,7 @@ BOOL awDoubleVal(double *var, id val) {
           NSString *networkName = [strKey substringToIndex:underScorePos.location];
           NSString *valueName = [strKey substringFromIndex:(underScorePos.location+1)];
           if ([networkName length] == 0) {
-            if (error != nil)
+            if (error != NULL)
               *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
                                        description:[NSString stringWithFormat:
                                                     @"Empty ad network name in key '%@'", strKey]];
@@ -289,7 +289,7 @@ BOOL awDoubleVal(double *var, id val) {
             return NO;
           }
           if ([valueName length] == 0) {
-            if (error != nil)
+            if (error != NULL)
               *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
                                        description:[NSString stringWithFormat:
                                                     @"Empty value name in key '%@'", strKey]];
@@ -511,14 +511,15 @@ BOOL awDoubleVal(double *var, id val) {
 
 - (BOOL)parseConfig:(NSData *)data error:(NSError **)error {
   if (hasConfig) {
-    *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
-                             description:@"Already has config, will not parse"];
+    if (error != NULL)
+      *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
+                               description:@"Already has config, will not parse"];
     return NO;
   }
   NSError *jsonError = nil;
   id parsed = [[CJSONDeserializer deserializer] deserialize:data error:&jsonError];
   if (parsed == nil) {
-    if (error != nil)
+    if (error != NULL)
       *error = [AdWhirlError errorWithCode:AdWhirlConfigParseError
                                description:@"Error parsing config JSON from server"
                            underlyingError:jsonError];
@@ -538,7 +539,7 @@ BOOL awDoubleVal(double *var, id val) {
     }
   }
   else {
-    if (error != nil)
+    if (error != NULL)
       *error = [AdWhirlError errorWithCode:AdWhirlConfigDataError
                                description:@"Expected top-level dictionary in config data"];
     return NO;

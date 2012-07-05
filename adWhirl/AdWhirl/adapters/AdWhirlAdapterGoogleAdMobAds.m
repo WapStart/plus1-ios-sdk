@@ -57,11 +57,6 @@
   return nil;
 }
 
-- (NSObject *)delegateValueForSelector:(SEL)selector {
-  return ([adWhirlDelegate respondsToSelector:selector]) ?
-      [adWhirlDelegate performSelector:selector] : nil;
-}
-
 - (void)getAd {
   GADRequest *request = [GADRequest request];
   NSObject *value;
@@ -69,17 +64,17 @@
   NSMutableDictionary *additional = [NSMutableDictionary dictionary];
   if ([adWhirlDelegate respondsToSelector:@selector(adWhirlTestMode)]
       && [adWhirlDelegate adWhirlTestMode]) {
-    [additional setObject:@"on" forKey:@"adtest"];
+    request.testing = YES;
   }
 
-  if ((value = [self delegateValueForSelector:
-                      @selector(adWhirlAdBackgroundColor)])) {
+  if ((value = [self helperDelegateValueForSelector:
+                @selector(adWhirlAdBackgroundColor)])) {
     [additional setObject:[self hexStringFromUIColor:(UIColor *)value]
-                  forKey:@"color_bg"];
+                   forKey:@"color_bg"];
   }
 
-  if ((value = [self delegateValueForSelector:
-                      @selector(adWhirlAdBackgroundColor)])) {
+  if ((value = [self helperDelegateValueForSelector:
+                @selector(adWhirlAdBackgroundColor)])) {
     [additional setObject:[self hexStringFromUIColor:(UIColor *)value]
                    forKey:@"color_text"];
   }
@@ -91,7 +86,8 @@
   }
 
   CLLocation *location =
-      (CLLocation *)[self delegateValueForSelector:@selector(locationInfo)];
+      (CLLocation *)[self
+                     helperDelegateValueForSelector:@selector(locationInfo)];
 
   if ((adWhirlConfig.locationOn) && (location)) {
     [request setLocationWithLatitude:location.coordinate.latitude
@@ -100,7 +96,7 @@
   }
 
   NSString *string =
-      (NSString *)[self delegateValueForSelector:@selector(gender)];
+      (NSString *)[self helperDelegateValueForSelector:@selector(gender)];
 
   if ([string isEqualToString:@"m"]) {
     request.gender = kGADGenderMale;
@@ -110,16 +106,20 @@
     request.gender = kGADGenderUnknown;
   }
 
-  if ((value = [self delegateValueForSelector:@selector(dateOfBirth)])) {
+  if ((value = [self helperDelegateValueForSelector:@selector(dateOfBirth)])) {
     request.birthday = (NSDate *)value;
   }
 
-  if ((value = [self delegateValueForSelector:@selector(keywords)])) {
-    request.keywords = [NSMutableArray arrayWithArray:(NSArray *)value];
+  if ((value = [self helperDelegateValueForSelector:@selector(keywords)])) {
+    NSArray *keywordArray =
+        [(NSString *)value componentsSeparatedByString:@" "];
+    request.keywords = [NSMutableArray arrayWithArray:keywordArray];
   }
 
+  // Set the frame for this view to match the bounds of the parent adWhirlView.
   GADBannerView *view =
-      [[GADBannerView alloc] initWithFrame:kAdWhirlViewDefaultFrame];
+      [[GADBannerView alloc]
+       initWithAdSize:GADAdSizeFromCGSize(adWhirlView.bounds.size)];
 
   view.adUnitID = [self publisherId];
   view.delegate = self;
@@ -135,7 +135,7 @@
   if (self.adNetworkView != nil
       && [self.adNetworkView respondsToSelector:@selector(setDelegate:)]) {
     [self.adNetworkView performSelector:@selector(setDelegate:)
-         withObject:nil];
+                             withObject:nil];
   }
 }
 
