@@ -30,7 +30,6 @@
  */
 
 #import "adWhirlViewController.h"
-#import "WPBannerInfo.h"
 
 @implementation adWhirlViewController
 
@@ -52,7 +51,6 @@
 	plus1Banner.showCloseButton = NO;
 	plus1Banner.autoupdateTimeout = 0;
 	plus1Banner.delegate = self;
-	plus1Banner.hideWhenEmpty = YES;
 	[plus1Banner setFrame:adView.bounds];
 	[requestInfo release];
 }
@@ -87,14 +85,6 @@
 }
 
 # pragma mark WPBannerView delegate methods
-
-- (void) bannerViewPressed:(WPBannerView *) bannerView {
-	if (plus1Banner.bannerInfo.responseType == WPBannerResponseWebSite)
-		[[UIApplication sharedApplication] 
-			openURL:[NSURL URLWithString:plus1Banner.bannerInfo.link]];
-
-	[plus1Banner reloadBanner];
-}
 
 # pragma mark Plus1 Custom Event 
 
