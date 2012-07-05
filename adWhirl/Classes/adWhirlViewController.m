@@ -45,7 +45,7 @@
 	[self.view addSubview:adView];
 	
 	WPBannerRequestInfo *requestInfo = 
-		[[WPBannerRequestInfo alloc] initWithApplicationId:/* PLACE YOUR APPICATION ID HERE */];
+		[[WPBannerRequestInfo alloc] initWithApplicationId:/* Place your WapStart Plus1 application id here */];
     
 	plus1Banner = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
 	plus1Banner.showCloseButton = NO;
@@ -83,8 +83,6 @@
 - (UIViewController *)viewControllerForPresentingModalView {
   return self;
 }
-
-# pragma mark WPBannerView delegate methods
 
 # pragma mark Plus1 Custom Event 
 
