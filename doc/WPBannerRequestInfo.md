@@ -19,7 +19,7 @@ WPBannerRequestInfo
 ---------
 
 * `applicationId`  
-  ID приложения в системе [Plus1 WapStart](http://plus1.wapstart.ru/) (обязательный параметр)
+  ID приложения в системе [Plus1 WapStart](https://plus1.wapstart.ru) (обязательный параметр)
 * `gender`  
   Пол текущего пользователя приложения (необязательный параметр)
 * `age`  
