@@ -1,7 +1,7 @@
 /**
- * WPUtils.h
+ * WPLogging.h
  *
- * Copyright (c) 2010, Alexey Goliatin <alexey.goliatin@gmail.com>
+ * Copyright (c) 2012, Alexander Zaytsev <a.zaytsev@co.wapstart.ru>
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -29,18 +29,18 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#ifdef DEBUG
 
+#define WPLogDebug(format, ...)	NSLog(@"<Debug>: " format @" [%s:%d]", ##__VA_ARGS__, __FILE__, __LINE__)
+#define WPLogInfo(format, ...)	NSLog(@"<Info>: " format @" [%s:%d]", ##__VA_ARGS__, __FILE__, __LINE__)
+#define WPLogWarn(format, ...)	NSLog(@"<Warning>: " format @" [%s:%d]", ##__VA_ARGS__, __FILE__, __LINE__)
+#define WPLogError(format, ...)	NSLog(@"<Error>: " format @" [%s:%d]", ##__VA_ARGS__, __FILE__, __LINE__)
 
-@interface WPUtils : NSObject
+#else
 
-+ (NSString *) sha1Hash:(NSString *) text;
-+ (UIInterfaceOrientation) getInterfaceOrientation;
-+ (UIWindow*) getKeyWindow;
-+ (CGFloat) getStatusBarHeight;
-+ (CGRect) getApplicationFrame;
-+ (CGRect) getScreenBounds;
-+ (NSString*) getUserAgent;
-+ (NSDictionary*) getDictionaryFromQueryString:(NSString*) query;
+#define WPLogDebug(format, ...)
+#define WPLogInfo(format, ...)	NSLog(@"<Info>: " format, ##__VA_ARGS__)
+#define WPLogWarn(format, ...)	NSLog(@"<Warning>: " format, ##__VA_ARGS__)
+#define WPLogError(format, ...)	NSLog(@"<Error>: " format, ##__VA_ARGS__)
 
-@end
+#endif

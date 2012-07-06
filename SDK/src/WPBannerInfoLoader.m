@@ -30,21 +30,18 @@
  */
 
 #import "WPBannerInfoLoader.h"
-#import "WPBannerInfoParser.h"
-#import "WPBannerInfo.h"
 #import "WPUtils.h"
+#import "WPLogging.h"
 #import "UIDevice+IdentifierAddition.h"
-#include <sys/types.h>
-#include <sys/sysctl.h>
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=application&version=2"
+#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=1.2.0"
 #define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)
 
 - (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
-- (NSString *) getUserAgent;
+- (NSString *) getDisplayMetrics;
 
 @end
 
@@ -53,15 +50,19 @@
 
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
+@synthesize data = _data;
+@synthesize adType = _adType;
+@synthesize containerRect = _containerRect;
 
 - (id) init
 {
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = nil;
-		_bannerInfoParser = [[WPBannerInfoParser alloc] init];
 		
 		[self initializeClientSessionId];
+
+		self.data = [NSMutableData data];
 	}
 	return self;
 }
@@ -71,9 +72,10 @@
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = [requestInfo retain];
-		_bannerInfoParser = [[WPBannerInfoParser alloc] init];
 
 		[self initializeClientSessionId];
+
+		self.data = [NSMutableData data];
 	}
 	return self;
 }
@@ -84,7 +86,9 @@
 	
 	[_bannerRequestInfo release];
 	[_clientSessionId release];
-	[_bannerInfoParser release];
+	[_data release];
+	[_adType release];
+
 	[super dealloc];
 }
 
@@ -127,32 +131,17 @@
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (NSString *) getUserAgent
-{
-	size_t size;
-    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-    char *machine = malloc(size);
-    sysctlbyname("hw.machine", machine, &size, NULL, 0);
-    NSString *platform = [[[NSString alloc] initWithCString:machine encoding:NSUTF8StringEncoding] autorelease];
-    free(machine);
-
-	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
-}
-
 - (NSString *) getDisplayMetrics 
 {
-	CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-	return [NSString stringWithFormat:@"%3.0fx%3.0f", screenRect.size.width, screenRect.size.height];
+	CGRect screenRect = [WPUtils getApplicationFrame];
+	return [NSString stringWithFormat:@"%.0fx%.0f", screenRect.size.width, screenRect.size.height];
 }
 
 - (BOOL) start
 {
-	if (_bannerRequestInfo == nil)
+	if (_bannerRequestInfo == nil || _urlConnection != nil)
 		return NO;
-	
-	if (_urlConnection != nil)
-		return NO;
-	
+
 	NSMutableURLRequest *theRequest =
 		[NSMutableURLRequest requestWithURL:[self requestUrl]
 								cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
@@ -162,9 +151,15 @@
 	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
 	  forHTTPHeaderField:@"Cookies"];
 
-	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
+	[theRequest setValue:[WPUtils getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
+
+	if (!CGRectIsNull(self.containerRect)) {
+		NSString* metrics = [NSString stringWithFormat:@"%.0fx%.0f", self.containerRect.size.width, self.containerRect.size.height];
+		[theRequest setValue:metrics forHTTPHeaderField:@"x-container-metrics"];
+		WPLogDebug(@"x-container-metrics: %@", metrics);
+	}
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
 													 delegate:self 
@@ -172,7 +167,7 @@
 	
 	if (_urlConnection == nil)
 		return NO;
-	
+
 	return YES;
 }
 
@@ -183,14 +178,11 @@
 	
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
-	[_bannerInfoParser finishParsing];
+
+	[self.data setLength:0];
+	self.adType = nil;
 	
 	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
-}
-
-- (WPBannerInfo *) bannerInfo
-{
-	return _bannerInfoParser.bannerInfo;
 }
 
 //////////////////////////////////////////////////////////
@@ -201,6 +193,14 @@
 {
 	if (connection != _urlConnection)
 		return;
+	
+	[self.data setLength:0];
+	
+	if ([response respondsToSelector:@selector(allHeaderFields)]) {
+		NSString *adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
+		WPLogDebug(@"X-Adtype received: %@", adType);
+		self.adType = adType;
+	}
 }
 
 
@@ -209,13 +209,7 @@
 	if (connection != _urlConnection)
 		return;
 
-    // Process the downloaded chunk of data.
-	@try {
-		[_bannerInfoParser parseData:data];
-	}
-	@catch (NSException * e) {
-		NSLog(@"!!!");
-	}
+	[self.data appendData:data];
 }
 
 
@@ -223,25 +217,26 @@
 {
 	if (connection != _urlConnection)
 		return;
-	
+
+	WPLogDebug(
+		@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]
+	);
+
 	if ([error code] == -1001)
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeTimeout];
 	else
 		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeUnknown];
-	
+
 	[_urlConnection release], _urlConnection = nil;
-	[_bannerInfoParser finishParsing];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	if (connection != _urlConnection)
 		return;
-	
-	[_bannerInfoParser finishParsing];
 
 	[_delegate bannerInfoLoaderDidFinish:self];
-	
+
 	[_urlConnection release], _urlConnection = nil;
 }
 

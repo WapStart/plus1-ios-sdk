@@ -31,6 +31,8 @@
 
 #import "WPUtils.h"
 #import <CommonCrypto/CommonDigest.h>
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 @implementation WPUtils
 
@@ -46,6 +48,80 @@
 		[hash appendFormat:@"%02X", result[i]];
 		
 	return hash;
+}
+
++ (UIInterfaceOrientation) getInterfaceOrientation
+{
+	return [UIApplication sharedApplication].statusBarOrientation;
+}
+
++ (UIWindow*) getKeyWindow
+{
+    return [UIApplication sharedApplication].keyWindow;
+}
+
++ (CGFloat) getStatusBarHeight
+{
+    if ([UIApplication sharedApplication].statusBarHidden) return 0.0;
+    
+    UIInterfaceOrientation orientation = [self getInterfaceOrientation];
+    
+    return
+		UIInterfaceOrientationIsLandscape(orientation)
+			? CGRectGetWidth([UIApplication sharedApplication].statusBarFrame)
+			: CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+}
+
++ (CGRect) getApplicationFrame
+{
+	CGRect frame = [self getScreenBounds];
+	CGFloat height = [self getStatusBarHeight];
+    
+	frame.origin.y += height;
+	frame.size.height -= height;
+
+	return frame;
+}
+
++ (CGRect) getScreenBounds
+{
+	CGRect bounds = [UIScreen mainScreen].bounds;
+	
+	if (UIInterfaceOrientationIsLandscape([self getInterfaceOrientation]))
+	{
+		CGFloat width = bounds.size.width;
+		bounds.size.width = bounds.size.height;
+		bounds.size.height = width;
+	}
+	
+	return bounds;
+}
+
++ (NSString*) getUserAgent
+{
+	size_t size;
+	sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+	char *machine = malloc(size);
+	sysctlbyname("hw.machine", machine, &size, NULL, 0);
+	NSString *platform = [[[NSString alloc] initWithCString:machine encoding:NSUTF8StringEncoding] autorelease];
+	free(machine);
+	
+	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
+}
+
++ (NSDictionary*) getDictionaryFromQueryString:(NSString*) query
+{
+	NSMutableDictionary *queryDict = [NSMutableDictionary dictionary];
+	NSArray *queryElements = [query componentsSeparatedByString:@"&"];
+	for (NSString *element in queryElements) {
+		NSArray *keyVal = [element componentsSeparatedByString:@"="];
+		NSString *key = [keyVal objectAtIndex:0];
+		NSString *value = [keyVal lastObject];
+		[queryDict setObject:[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] 
+					  forKey:key];
+	}
+
+	return queryDict;
 }
 
 @end

@@ -1,7 +1,7 @@
 /**
- * WPUtils.h
+ * WPAdView.h
  *
- * Copyright (c) 2010, Alexey Goliatin <alexey.goliatin@gmail.com>
+ * Copyright (c) 2012, Alexander Zaytsev <a.zaytsev@co.wapstart.ru>
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without 
@@ -31,16 +31,35 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol WPAdViewDelegate;
 
-@interface WPUtils : NSObject
+@interface WPAdView : UIView <UIWebViewDelegate> {
+	id<WPAdViewDelegate> _delegate;
 
-+ (NSString *) sha1Hash:(NSString *) text;
-+ (UIInterfaceOrientation) getInterfaceOrientation;
-+ (UIWindow*) getKeyWindow;
-+ (CGFloat) getStatusBarHeight;
-+ (CGRect) getApplicationFrame;
-+ (CGRect) getScreenBounds;
-+ (NSString*) getUserAgent;
-+ (NSDictionary*) getDictionaryFromQueryString:(NSString*) query;
+	UIWebView *_webView;
+
+    BOOL _isLoading;
+}
+
+@property (nonatomic, assign) id<WPAdViewDelegate> delegate;
+
+- (void)loadAdWithHTMLString:(NSString *)html baseURL:(NSURL *)url;
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol WPAdViewDelegate <NSObject>
+
+@optional
+
+// Called when the ad loads successfully.
+- (void)adDidLoad:(WPAdView *)adView;
+
+// Called when the ad fails to load.
+- (void)adDidFailToLoad:(WPAdView *)adView;
+
+// Called when the ad was pressed.
+- (void)adDidPressed:(WPAdView *)adView;
 
 @end

@@ -32,53 +32,50 @@
 #import <UIKit/UIKit.h>
 #import "WPBannerInfoLoader.h"
 #import "WPLocationManager.h"
+#import "MRAdView.h"
+#import "WPAdView.h"
 
 @class WPBannerInfo;
 @protocol WPBannerViewDelegate;
 
-@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate>
+@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate, MRAdViewDelegate, WPAdViewDelegate>
 {
-	WPBannerInfo        *_bannerInfo;
 	WPBannerRequestInfo *_bannerRequestInfo;
 	WPBannerInfoLoader  *_bannerInfoLoader;
     WPLocationManager   *_locationManager;
-	
+
+	UIView				*_currentContentView;
+
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;
 	
+	UIInterfaceOrientation _orientation;
 	UIActivityIndicatorView *_loadingInfoIndicator;
-	UIProgressView *_imageLoadingProgress;
+	UIImageView *_shildImageView;
 	UIButton *_closeButton;
 	BOOL _showCloseButton;
-	
-	UIImage *_bannerImage;
-	
+	BOOL _isExpanded;
+
 	id<WPBannerViewDelegate> _delegate;
 	
-	NSURLConnection *_urlConnection;
 	NSMutableData   *_imageData;
 	NSUInteger      _imageSize;
-	
+	NSMutableSet	*_adviewPool;
+
 	BOOL _isMinimized;
-	BOOL _reloadAfterOpenning;
 	NSString *_minimizedLabel;
-	
-	NSTimer *_drawImageTimer;
-	BOOL _showImageBanner;
-	
-	BOOL _hideWhenEmpty;
+
     BOOL _disableAutoDetectLocation;
 }
 
-@property (nonatomic, readonly) WPBannerInfo *bannerInfo;
 @property (nonatomic, assign) BOOL showCloseButton;
 @property (nonatomic, assign) CGFloat autoupdateTimeout;
 @property (nonatomic, assign) BOOL isMinimized;
 @property (nonatomic, retain) NSString *minimizedLabel;
-@property (nonatomic, assign) BOOL hideWhenEmpty;
 @property (nonatomic, readonly) BOOL isEmpty;
 @property (nonatomic, readonly) CGFloat bannerHeight;
 @property (nonatomic, assign) BOOL disableAutoDetectLocation;
+@property (nonatomic, assign) UIInterfaceOrientation orientation;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 
@@ -98,11 +95,12 @@
 
 @protocol WPBannerViewDelegate <NSObject>
 
-- (void) bannerViewPressed:(WPBannerView *) bannerView;
-
 @optional
 
+- (void) bannerViewPressed:(WPBannerView *) bannerView;
+
 - (void) bannerViewInfoLoaded:(WPBannerView *) bannerView;
+- (void) bannerViewInfoDidFailWithError:(WPBannerInfoLoaderErrorCode) errorCode;
 
 - (void) bannerViewDidHide:(WPBannerView *) bannerView;
 - (void) bannerViewMinimizedStateChanged:(WPBannerView *) bannerView;
