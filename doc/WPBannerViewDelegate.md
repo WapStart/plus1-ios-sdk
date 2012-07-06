@@ -14,6 +14,6 @@ WPBannerViewDelegate
 * `(void) bannerViewInfoLoaded:(WPBannerView *) bannerView`  
   вызывается при получении информации о баннере.
 * `(void) bannerViewDidHide:(WPBannerView *) bannerView;`  
-  вызывается после вызова метода hide: у WPBannerView.
+  вызывается после вызова метода hide у [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/doc/WPBannerView.md).
 * `(void) bannerViewMinimizedStateChanged:(WPBannerView *) bannerView`  
   вызывается, когда баннер сворачивается или разворачивается.
