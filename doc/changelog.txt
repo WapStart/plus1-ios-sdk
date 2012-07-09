@@ -1,7 +1,0 @@
-iOS WapStart SDK 1.1.2, 2012-04-13
-----------------------
-- Removed IMEI-checking logic
-- Unique identifier based on MAC address
-- Resolved deprecated issues and other warnings
-- Removed useless classes and methods
-

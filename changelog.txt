@@ -1,0 +1,14 @@
+Plus1 WapStart iOS SDK 2.0.0, 2012-07-09
+----------------------
+- Added MRAID API support
+- WebView layer instead XML banner rendering
+- Better integrate interfaces (BC is broken)
+- Fixed known defects
+- New markdown docs
+
+Plus1 WapStart iOS SDK 1.1.2, 2012-04-13
+----------------------
+- Removed IMEI-checking logic
+- Unique identifier based on MAC address
+- Resolved deprecated issues and other warnings
+- Removed useless classes and methods
