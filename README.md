@@ -1,8 +1,8 @@
 Plus1 WapStart iOS SDK
 ======================
-Это open source библиотека для интеграции рекламы системы [Plus1 WapStart](https://plus1.wapstart.ru) в ваши iOS-приложения, включая iPhone и iPad.
+Это open source библиотека для интеграции рекламы сети [Plus1 WapStart](https://plus1.wapstart.ru) в ваши iOS-приложения, включая iPhone и iPad.
 
-Plus1 WapStart iOS SDK распространяется под свободной лицензией BSD.
+Plus1 WapStart iOS SDK распространяется под свободной лицензией BSD (as is).
 
 # Установка и настройка
 
