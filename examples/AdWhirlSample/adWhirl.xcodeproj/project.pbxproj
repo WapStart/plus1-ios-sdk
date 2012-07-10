@@ -608,8 +608,10 @@
 				GCC_PREFIX_HEADER = adWhirl_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "adWhirl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = adWhirl;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -622,8 +624,10 @@
 				GCC_PREFIX_HEADER = adWhirl_Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "adWhirl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = adWhirl;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

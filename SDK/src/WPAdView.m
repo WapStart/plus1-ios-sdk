@@ -61,8 +61,16 @@
         _webView.delegate = self;
         _webView.opaque = NO;
         _webView.dataDetectorTypes = UIDataDetectorTypeNone;
-        [[_webView scrollView] setScrollEnabled:NO];
-        
+
+		if ([_webView respondsToSelector:@selector(scrollView)]) {
+			// Property available in iOS 5.0 and later
+			[[_webView scrollView] setScrollEnabled:NO];
+		} else {
+			for (id subview in _webView.subviews)
+				if ([[subview class] isSubclassOfClass:[UIScrollView class]])
+					((UIScrollView *)subview).scrollEnabled = NO;
+		}
+
         if ([_webView respondsToSelector:@selector(setAllowsInlineMediaPlayback:)]) {
             [_webView setAllowsInlineMediaPlayback:YES];
         }
