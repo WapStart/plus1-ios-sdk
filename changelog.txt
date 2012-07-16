@@ -1,3 +1,7 @@
+Plus1 WapStart iOS SDK 2.0.1, 2012-07-16
+----------------------
+- Fixed iOS 4 compatibility
+
 Plus1 WapStart iOS SDK 2.0.0, 2012-07-09
 ----------------------
 - Added MRAID API support
