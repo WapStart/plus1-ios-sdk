@@ -34,7 +34,7 @@
 #import "WPLogging.h"
 #import "UIDevice+IdentifierAddition.h"
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=2.0.0"
+#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=2.0.2"
 #define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)

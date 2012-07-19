@@ -1,3 +1,7 @@
+Plus1 WapStart iOS SDK 2.0.2, 2012-07-19
+----------------------
+- Send additional x-original-user-agent header
+
 Plus1 WapStart iOS SDK 2.0.1, 2012-07-16
 ----------------------
 - Fixed iOS 4 compatibility
