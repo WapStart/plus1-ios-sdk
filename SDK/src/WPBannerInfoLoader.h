@@ -54,6 +54,8 @@ typedef enum
 	NSURLConnection		*_urlConnection;
 
 	NSString			*_clientSessionId;
+	NSString			*_userAgent;
+	NSString			*_originalUserAgent;
 
 	NSMutableData		*_data;
 	NSString			*_adType;

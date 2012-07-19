@@ -41,6 +41,7 @@
 + (CGRect) getApplicationFrame;
 + (CGRect) getScreenBounds;
 + (NSString*) getUserAgent;
++ (NSString*) getOriginalUserAgent;
 + (NSDictionary*) getDictionaryFromQueryString:(NSString*) query;
 
 @end

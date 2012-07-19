@@ -109,6 +109,15 @@
 	return [NSString stringWithFormat:@"%@ (%@)", platform, [[UIDevice currentDevice] systemVersion]];
 }
 
++ (NSString*) getOriginalUserAgent
+{
+	UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+	NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+	[webView release];
+
+	return userAgent;
+}
+
 + (NSDictionary*) getDictionaryFromQueryString:(NSString*) query
 {
 	NSMutableDictionary *queryDict = [NSMutableDictionary dictionary];

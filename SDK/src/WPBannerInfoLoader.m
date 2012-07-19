@@ -42,6 +42,8 @@
 - (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
 - (NSString *) getDisplayMetrics;
+- (NSString *) getUserAgent;
+- (NSString *) getOriginalUserAgent;
 
 @end
 
@@ -137,6 +139,22 @@
 	return [NSString stringWithFormat:@"%.0fx%.0f", screenRect.size.width, screenRect.size.height];
 }
 
+- (NSString *) getUserAgent
+{
+	if (_userAgent == nil)
+		_userAgent = [WPUtils getUserAgent];
+
+	return _userAgent;
+}
+
+- (NSString *) getOriginalUserAgent
+{
+	if (_originalUserAgent == nil)
+		_originalUserAgent = [WPUtils getOriginalUserAgent];
+
+	return _originalUserAgent;
+}
+
 - (BOOL) start
 {
 	if (_bannerRequestInfo == nil || _urlConnection != nil)
@@ -151,7 +169,10 @@
 	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
 	  forHTTPHeaderField:@"Cookies"];
 
-	[theRequest setValue:[WPUtils getUserAgent] forHTTPHeaderField:@"User-Agent"];
+	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
+	if ([self getOriginalUserAgent] != nil)
+		[theRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
+
 	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
 
