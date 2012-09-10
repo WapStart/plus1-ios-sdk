@@ -167,7 +167,7 @@
 
 	// Setting up headers
 	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
-	  forHTTPHeaderField:@"Cookies"];
+	  forHTTPHeaderField:@"Cookie"];
 
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
