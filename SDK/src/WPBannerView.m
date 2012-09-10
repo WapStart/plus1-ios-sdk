@@ -469,6 +469,9 @@
 
 	if ([html isEqualToString:HTML_NO_BANNER]) {
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
+
+		[self adDidFailToLoad:nil];
+
 		[self hide:YES];
 		return;
 	}
