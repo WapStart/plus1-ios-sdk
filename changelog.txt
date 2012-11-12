@@ -1,3 +1,9 @@
+Plus1 WapStart iOS SDK 2.0.3, 2012-09-24
+----------------------
+- Fix typo in Cookie header
+- Touch bannerViewInfoDidFailWithError delegate's method when plug received
+- Implement bannerViewInfoLoaded delegate's method for demo-1 view controller
+
 Plus1 WapStart iOS SDK 2.0.2, 2012-07-19
 ----------------------
 - Send additional x-original-user-agent header

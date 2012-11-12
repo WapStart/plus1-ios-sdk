@@ -59,7 +59,7 @@ typedef enum
 
 	NSMutableData		*_data;
 	NSString			*_adType;
-	CGRect				containerRect;
+	CGRect				_containerRect;
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;

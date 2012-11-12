@@ -133,4 +133,12 @@
     [super dealloc];
 }
 
+- (void) bannerViewInfoLoaded:(WPBannerView *) bannerView
+{
+	if (bannerView == topBannerView)
+		[topBannerView showFromTop:YES];
+	else if(bannerView == bottomBannerView)
+		[bottomBannerView showFromBottom:YES];
+}
+
 @end
