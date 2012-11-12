@@ -1,3 +1,7 @@
+Plus1 WapStart iOS SDK 2.0.4, 2012-11-12
+----------------------
+- Fixed dealloc bug: do not release objects of NSMutableSet
+
 Plus1 WapStart iOS SDK 2.0.3, 2012-09-24
 ----------------------
 - Fix typo in Cookie header
