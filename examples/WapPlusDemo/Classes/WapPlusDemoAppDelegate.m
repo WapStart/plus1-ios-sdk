@@ -48,7 +48,8 @@
 	[window setBackgroundColor:[UIColor orangeColor]];
 
     viewController = [[WPMainDemoViewController alloc] initMainDemoViewController];
-	[window addSubview:viewController.view];
+    [window setRootViewController:viewController];
+
     
     [window makeKeyAndVisible];
     
@@ -102,6 +103,9 @@
      */
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
 
 - (void) dealloc 
 {
