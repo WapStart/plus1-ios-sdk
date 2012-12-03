@@ -89,7 +89,10 @@
 		
 		_shildImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wp_banner_shild.png"]];
 		[_shildImageView setHidden:false];
-		_shildImageView.frame = CGRectMake(0, 0, 9, [self bannerHeight]);
+		
+		float bannerHeight = [self bannerHeight];
+        	float bannerWidth = bannerHeight>60? _shildImageView.image.size.width*2 : _shildImageView.image.size.width;
+		_shildImageView.frame = CGRectMake(0, 0, bannerWidth, bannerHeight);
 		[self addSubview:_shildImageView];
 		
 		_closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
