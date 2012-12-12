@@ -43,6 +43,8 @@
 //#define BANNER_X_POS self.superview.frame.size.width - BANNER_WIDTH		// Right
 //#define BANNER_X_POS 0													// Left
 
+#define BANNER_SHILD_WIDTH (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 16.2 : 9) //16.2:9 == 90:50
+
 #define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
 #define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
@@ -87,12 +89,9 @@
 
 		self.backgroundColor = [UIColor clearColor];
 		
-		_shildImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wp_banner_shild.png"]];
+        	_shildImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wp_banner_shild.png"]];
 		[_shildImageView setHidden:false];
-		
-		float bannerHeight = [self bannerHeight];
-        	float bannerWidth = bannerHeight>60? _shildImageView.image.size.width*2 : _shildImageView.image.size.width;
-		_shildImageView.frame = CGRectMake(0, 0, bannerWidth, bannerHeight);
+		_shildImageView.frame = CGRectMake(0, 0, BANNER_SHILD_WIDTH , [self bannerHeight]);
 		[self addSubview:_shildImageView];
 		
 		_closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -217,7 +216,7 @@
 	self.showCloseButton = _showCloseButton;
 	self.frame = currentFrame;
 	
-	_shildImageView.frame = CGRectMake(0, 0, 9, self.frame.size.height);
+	_shildImageView.frame = CGRectMake(0, 0, BANNER_SHILD_WIDTH, self.frame.size.height);
 	[_shildImageView setHidden:_isMinimized];
 
 	if (animated)
