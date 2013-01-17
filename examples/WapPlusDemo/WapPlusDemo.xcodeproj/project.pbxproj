@@ -41,7 +41,6 @@
 		CED8A0B215A60E9000F2AC06 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A09F15A60E9000F2AC06 /* WPUtils.m */; };
 		CED8A10015A610BE00F2AC06 /* wp_banner_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CED8A0FD15A610BE00F2AC06 /* wp_banner_background.png */; };
 		CED8A10115A610BE00F2AC06 /* wp_banner_close.png in Resources */ = {isa = PBXBuildFile; fileRef = CED8A0FE15A610BE00F2AC06 /* wp_banner_close.png */; };
-		CED8A10215A610BE00F2AC06 /* wp_banner_shild.png in Resources */ = {isa = PBXBuildFile; fileRef = CED8A0FF15A610BE00F2AC06 /* wp_banner_shild.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,7 +105,6 @@
 		CED8A09F15A60E9000F2AC06 /* WPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPUtils.m; sourceTree = "<group>"; };
 		CED8A0FD15A610BE00F2AC06 /* wp_banner_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_background.png; path = ../../SDK/resources/wp_banner_background.png; sourceTree = "<group>"; };
 		CED8A0FE15A610BE00F2AC06 /* wp_banner_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_close.png; path = ../../SDK/resources/wp_banner_close.png; sourceTree = "<group>"; };
-		CED8A0FF15A610BE00F2AC06 /* wp_banner_shild.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_shild.png; path = ../../SDK/resources/wp_banner_shild.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,7 +248,6 @@
 			children = (
 				CED8A0FD15A610BE00F2AC06 /* wp_banner_background.png */,
 				CED8A0FE15A610BE00F2AC06 /* wp_banner_close.png */,
-				CED8A0FF15A610BE00F2AC06 /* wp_banner_shild.png */,
 				0672C64A122BCEFE00DE1F54 /* Default.png */,
 				0672C64B122BCEFE00DE1F54 /* Icon.png */,
 				0672C3FE122BB04A00DE1F54 /* logo.png */,
@@ -318,7 +315,6 @@
 				CED8A0AA15A60E9000F2AC06 /* MRAID.bundle in Resources */,
 				CED8A10015A610BE00F2AC06 /* wp_banner_background.png in Resources */,
 				CED8A10115A610BE00F2AC06 /* wp_banner_close.png in Resources */,
-				CED8A10215A610BE00F2AC06 /* wp_banner_shild.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

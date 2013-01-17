@@ -87,11 +87,6 @@
 
 		self.backgroundColor = [UIColor clearColor];
 		
-		_shildImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wp_banner_shild.png"]];
-		[_shildImageView setHidden:false];
-		_shildImageView.frame = CGRectMake(0, 0, 9, [self bannerHeight]);
-		[self addSubview:_shildImageView];
-		
 		_closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		[_closeButton setImage:[UIImage imageNamed:@"wp_banner_close.png"] forState:UIControlStateNormal];
 		[_closeButton addTarget:self action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -120,7 +115,6 @@
 	
     [_locationManager release];
 	[_bannerRequestInfo release];
-	[_shildImageView release];
 	[_closeButton release];
 	self.minimizedLabel = nil;
 
@@ -213,9 +207,6 @@
 
 	self.showCloseButton = _showCloseButton;
 	self.frame = currentFrame;
-	
-	_shildImageView.frame = CGRectMake(0, 0, 9, self.frame.size.height);
-	[_shildImageView setHidden:_isMinimized];
 
 	if (animated)
 		[UIView commitAnimations];

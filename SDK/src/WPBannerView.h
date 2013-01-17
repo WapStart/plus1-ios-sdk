@@ -51,7 +51,6 @@
 	
 	UIInterfaceOrientation _orientation;
 	UIActivityIndicatorView *_loadingInfoIndicator;
-	UIImageView *_shildImageView;
 	UIButton *_closeButton;
 	BOOL _showCloseButton;
 	BOOL _isExpanded;
