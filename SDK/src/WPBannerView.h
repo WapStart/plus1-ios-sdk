@@ -55,6 +55,9 @@
 	BOOL _showCloseButton;
 	BOOL _isExpanded;
 
+	CGRect _hiddenBannerFrame;
+	CGRect _visibleBannerFrame;
+
 	id<WPBannerViewDelegate> _delegate;
 	
 	NSMutableData   *_imageData;

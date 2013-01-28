@@ -58,6 +58,8 @@
 - (void) cleanCurrentView;
 - (void) updateContentFrame;
 
+- (void) show:(bool) animated;
+
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
 @end
@@ -96,13 +98,12 @@
 		_loadingInfoIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 		_loadingInfoIndicator.hidesWhenStopped = YES;
 		[self addSubview:_loadingInfoIndicator];
-		
-		[self configureSubviews];
-        
+
         _locationManager = [[WPLocationManager alloc] init];
         _locationManager.delegate = self;
 
 		self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
+		self.hidden = true;
     }
     
     return self;
@@ -207,9 +208,11 @@
 
 	self.showCloseButton = _showCloseButton;
 	self.frame = currentFrame;
-
-	if (animated)
+	
+	[_loadingInfoIndicator stopAnimating];
+	if (animated) {
 		[UIView commitAnimations];
+	}
 
 	if ([_delegate respondsToSelector:@selector(bannerViewMinimizedStateChanged:)])
 		[_delegate bannerViewMinimizedStateChanged:self];
@@ -321,42 +324,41 @@
 
 - (void) showFromTop:(BOOL) animated
 {
-	if (animated)
-	{
-		self.frame = CGRectMake(BANNER_X_POS, -[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
-		self.alpha = 0;
+	_hiddenBannerFrame = CGRectMake(BANNER_X_POS, -[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
+	_visibleBannerFrame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
 
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.5];
-		[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.superview cache:NO];
-		[UIView setAnimationBeginsFromCurrentState:YES];
-	}
-	
-	self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
-	self.alpha = 1;
-
-	if (animated)
-		[UIView commitAnimations];
-
-	[self setHidden:false];
+	[self show:animated];
 }
 
 - (void) showFromBottom:(BOOL) animated
 {
+	_hiddenBannerFrame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height, BANNER_WIDTH, [self bannerHeight]);
+	_visibleBannerFrame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height-[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
+
+	[self show:animated];
+}
+
+- (void) show:(bool) animated
+{
+	if (![self isHidden])
+		return;
+
 	if (animated)
 	{
-		self.frame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height, BANNER_WIDTH, [self bannerHeight]);
+		self.frame = _hiddenBannerFrame;
 		self.alpha = 0;
-		
+
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
 		[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.superview cache:NO];
 		[UIView setAnimationBeginsFromCurrentState:YES];
 	}
-	
-	self.frame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height-[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
+
+	self.frame = _visibleBannerFrame;
 	self.alpha = 1;
 	
+	_loadingInfoIndicator.frame = self.frame;
+
 	if (animated)
 		[UIView commitAnimations];
 
@@ -365,34 +367,30 @@
 
 - (void) hide:(BOOL) animated
 {
-	if (((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height)) ||
-		(self.frame.origin.y == self.superview.bounds.origin.y))
+	if ([self isHidden])
+		return;
+
+	if (animated)
 	{
-		if (animated)
-		{
-			[UIView beginAnimations:nil context:NULL];
-			[UIView setAnimationDuration:0.5];
-			[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.superview cache:NO];
-			[UIView setAnimationBeginsFromCurrentState:YES];
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.5];
+		[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.superview cache:NO];
+		[UIView setAnimationBeginsFromCurrentState:YES];
 
-			[UIView setAnimationDelegate:self];
-			[UIView setAnimationDidStopSelector:@selector(hideAnimationDidStop:finished:context:)];
-		}
-		
-		if ((self.frame.origin.y+self.frame.size.height) == (self.superview.bounds.origin.y+self.superview.bounds.size.height))
-			self.frame = CGRectMake(BANNER_X_POS, self.superview.bounds.size.height, BANNER_WIDTH, [self bannerHeight]);
-		else
-			self.frame = CGRectMake(BANNER_X_POS, -[self bannerHeight], BANNER_WIDTH, [self bannerHeight]);
-		self.alpha = 0;
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(hideAnimationDidStop:finished:context:)];
+	}
 
-		if (animated) {
-			[UIView commitAnimations];
-		} else {
-			[self setHidden:true];
+	self.frame = _hiddenBannerFrame;
+	self.alpha = 0;
 
-			if ([_delegate respondsToSelector:@selector(bannerViewDidHide:)])
-				[_delegate bannerViewDidHide:self];
-		}
+	if (animated) {
+		[UIView commitAnimations];
+	} else {
+		[self setHidden:true];
+
+		if ([_delegate respondsToSelector:@selector(bannerViewDidHide:)])
+			[_delegate bannerViewDidHide:self];
 	}
 }
 

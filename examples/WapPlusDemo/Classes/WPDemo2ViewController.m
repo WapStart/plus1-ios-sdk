@@ -146,6 +146,7 @@
 		return;
 	
 	bannerView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, [bannerView bannerHeight]);
+	bannerView.hidden = false;
 	self.tableView.tableHeaderView = nil;
 	self.tableView.tableHeaderView = bannerView;
 	[self.tableView reloadData];
