@@ -453,9 +453,12 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
-	NSString *html = [[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease];
+	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-	if ([html isEqualToString:HTML_NO_BANNER]) {
+	if (
+		[html isEqualToString:HTML_NO_BANNER]
+		|| ![html hasSuffix:HTML_NO_BANNER] // TODO: use another logic to detect plus1 banner
+	) {
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
 
 		[self adDidFailToLoad:nil];
