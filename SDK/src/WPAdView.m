@@ -140,7 +140,8 @@
         result = NO;
     }
 
-	[self adDidPressed];
+	if (result == NO)
+		[self adDidPressed];
 
     return result;
 }
