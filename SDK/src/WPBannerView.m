@@ -530,6 +530,10 @@
 - (void)didExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
 {
 	WPLogDebug(@"MRAID: Did expanded!");
+
+	// FIXME: choose better method name to notify about click tracking
+	if ([_delegate respondsToSelector:@selector(bannerViewPressed:)])
+		[_delegate bannerViewPressed:self];
 }
 
 - (void)adDidClose:(MRAdView *)adView
