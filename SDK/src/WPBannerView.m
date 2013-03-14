@@ -454,8 +454,11 @@
 	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
 	if (
-		[html isEqualToString:HTML_NO_BANNER]
-		|| ![html hasSuffix:HTML_NO_BANNER] // TODO: use another logic to detect plus1 banner
+		[HTML_NO_BANNER isEqualToString:html]
+		|| (
+			![@"mraid" isEqualToString:loader.adType]
+			&& ![@"plus1" isEqualToString:loader.adType]
+		)
 	) {
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
 
