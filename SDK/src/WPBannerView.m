@@ -249,6 +249,10 @@
 	if (_orientation != orientation) {
 		_orientation = orientation;
 
+		CGRect currentFrame = self.frame;
+		currentFrame.origin.x = BANNER_X_POS;
+		self.frame = currentFrame;
+
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
 	}
