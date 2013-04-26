@@ -31,6 +31,8 @@
 
 #import "WPMainDemoViewController.h"
 
+// Uncomment the line bellow if you want to use Plus1 WapStart Conversion SDK
+//#import "Plus1ConversionTracker.h"
 
 @implementation WPMainDemoViewController
 
@@ -47,6 +49,15 @@
 	return self;
 }
 
+// Uncomment the block bellow if you want to use Plus1 WapStart Conversion SDK
+/**
+- (void) viewDidLoad
+{
+    Plus1ConversionTracker *tracker = [[Plus1ConversionTracker alloc] initWithTrackId:Plus1TrackId andCallbackUrl:@"wsp1demo://ru.wapstart.plus1.ios.demoapp"];
+    [tracker run];
+    [tracker release];
+}
+*/
 
 - (void) dealloc
 {
