@@ -33,18 +33,8 @@
 #import "MRAdView.h"
 #import "WPAdView.h"
 #import "WPLogging.h"
+#import "WPConst.h"
 #import "WPUtils.h"
-
-#define MINIMIZED_BANNER_HEIGHT 20
-#define BANNER_WIDTH 320
-#define BANNER_HEIGHT 50
-
-#define BANNER_X_POS CGRectGetMidX(self.superview.frame) - BANNER_WIDTH / 2	// Center
-//#define BANNER_X_POS self.superview.frame.size.width - BANNER_WIDTH		// Right
-//#define BANNER_X_POS 0													// Left
-
-#define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
-#define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
 @interface WPBannerView (PrivateMethods)
 

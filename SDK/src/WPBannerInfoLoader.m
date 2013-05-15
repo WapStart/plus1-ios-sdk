@@ -32,10 +32,8 @@
 #import "WPBannerInfoLoader.h"
 #import "WPUtils.h"
 #import "WPLogging.h"
+#import "WPConst.h"
 #import "UIDevice+IdentifierAddition.h"
-
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=2.0.4"
-#define WPSessionKey @"WPClientSessionId"
 
 @interface WPBannerInfoLoader (PrivateMethods)
 
@@ -177,7 +175,7 @@
 	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
 
 	if (!CGRectIsNull(self.containerRect)) {
-		NSString* metrics = [NSString stringWithFormat:@"%.0fx%.0f", self.containerRect.size.width, self.containerRect.size.height];
+		NSString* metrics = [NSString stringWithFormat:@"%dx%d", BANNER_WIDTH, BANNER_HEIGHT];
 		[theRequest setValue:metrics forHTTPHeaderField:@"x-container-metrics"];
 		WPLogDebug(@"x-container-metrics: %@", metrics);
 	}

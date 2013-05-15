@@ -106,6 +106,7 @@
 		CED8A09E15A60E9000F2AC06 /* WPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPUtils.h; sourceTree = "<group>"; };
 		CED8A09F15A60E9000F2AC06 /* WPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPUtils.m; sourceTree = "<group>"; };
 		CED8A0FD15A610BE00F2AC06 /* wp_banner_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_background.png; path = ../../SDK/resources/wp_banner_background.png; sourceTree = "<group>"; };
+		CEF100631743914100D3FA7F /* WPConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WPConst.h; sourceTree = "<group>"; };
 		CEFB41FB16F1FDEE0089981B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CEFB420516F2055C0089981B /* wp_banner_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_close.png; path = ../../SDK/resources/wp_banner_close.png; sourceTree = "<group>"; };
 		CEFB420716F205670089981B /* wp_banner_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wp_banner_close@2x.png"; path = "../../SDK/resources/wp_banner_close@2x.png"; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 				CED8A09D15A60E9000F2AC06 /* WPTypes.h */,
 				CED8A09E15A60E9000F2AC06 /* WPUtils.h */,
 				CED8A09F15A60E9000F2AC06 /* WPUtils.m */,
+				CEF100631743914100D3FA7F /* WPConst.h */,
 			);
 			name = "Plus1 SDK";
 			path = ../../SDK/src;
