@@ -324,6 +324,14 @@
 	}
 }
 
+- (void) willMoveToWindow:(UIWindow *) newWindow
+{
+    if (newWindow == nil)
+        [self stopAutoupdateTimer];
+    else
+        [self startAutoupdateTimer];
+}
+
 #pragma mark Methods
 
 - (void) showFromTop:(BOOL) animated
