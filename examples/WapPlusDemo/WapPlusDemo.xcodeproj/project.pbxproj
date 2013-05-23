@@ -43,6 +43,9 @@
 		CEFB41FC16F1FDEE0089981B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFB41FB16F1FDEE0089981B /* Default-568h@2x.png */; };
 		CEFB420616F2055C0089981B /* wp_banner_close.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFB420516F2055C0089981B /* wp_banner_close.png */; };
 		CEFB420816F205670089981B /* wp_banner_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFB420716F205670089981B /* wp_banner_close@2x.png */; };
+		E7476A2A172A6634008A2ABE /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E7476A25172A6634008A2ABE /* NSString+Base64.m */; };
+		E7476A2B172A6634008A2ABE /* Plus1ConversionTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = E7476A27172A6634008A2ABE /* Plus1ConversionTracker.m */; };
+		E7476A2C172A6634008A2ABE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E7476A29172A6634008A2ABE /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +113,12 @@
 		CEFB41FB16F1FDEE0089981B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CEFB420516F2055C0089981B /* wp_banner_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wp_banner_close.png; path = ../../SDK/resources/wp_banner_close.png; sourceTree = "<group>"; };
 		CEFB420716F205670089981B /* wp_banner_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wp_banner_close@2x.png"; path = "../../SDK/resources/wp_banner_close@2x.png"; sourceTree = "<group>"; };
+		E7476A24172A6634008A2ABE /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		E7476A25172A6634008A2ABE /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		E7476A26172A6634008A2ABE /* Plus1ConversionTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plus1ConversionTracker.h; sourceTree = "<group>"; };
+		E7476A27172A6634008A2ABE /* Plus1ConversionTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plus1ConversionTracker.m; sourceTree = "<group>"; };
+		E7476A28172A6634008A2ABE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		E7476A29172A6634008A2ABE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				CED8A07815A60E9000F2AC06 /* Plus1 SDK */,
+				E7476A2D172A6673008A2ABE /* Plus1 Conversion SDK */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -263,6 +273,20 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		E7476A2D172A6673008A2ABE /* Plus1 Conversion SDK */ = {
+			isa = PBXGroup;
+			children = (
+				E7476A24172A6634008A2ABE /* NSString+Base64.h */,
+				E7476A25172A6634008A2ABE /* NSString+Base64.m */,
+				E7476A26172A6634008A2ABE /* Plus1ConversionTracker.h */,
+				E7476A27172A6634008A2ABE /* Plus1ConversionTracker.m */,
+				E7476A28172A6634008A2ABE /* Reachability.h */,
+				E7476A29172A6634008A2ABE /* Reachability.m */,
+			);
+			name = "Plus1 Conversion SDK";
+			path = ../../conversion/sdk;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,6 +381,9 @@
 				CED8A0B015A60E9000F2AC06 /* WPBannerView.m in Sources */,
 				CED8A0B115A60E9000F2AC06 /* WPLocationManager.m in Sources */,
 				CED8A0B215A60E9000F2AC06 /* WPUtils.m in Sources */,
+				E7476A2A172A6634008A2ABE /* NSString+Base64.m in Sources */,
+				E7476A2B172A6634008A2ABE /* Plus1ConversionTracker.m in Sources */,
+				E7476A2C172A6634008A2ABE /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

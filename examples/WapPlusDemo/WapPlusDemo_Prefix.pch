@@ -15,3 +15,5 @@
 
 #define PLUS1_APP_ID /* Place your WapStart Plus1 application id here */
 #define UPDATE_BANNER_TIMEOUT 15
+
+#define Plus1TrackId /* Place your WapStart Plus1 conversion track id here */
