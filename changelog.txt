@@ -1,3 +1,13 @@
+Plus1 WapStart iOS SDK 2.1.0, 2013-05-23
+----------------------
+- New banner shield in WebView layout
+- Standard 320x50 banner container for iPad
+- Refactor show, hide method
+- start/stop timer on willMoveToWindow to avoid memory leaks
+- Fix adDidPressed call
+- Added conversion submodule to SDK
+- Small bug fixes
+
 Plus1 WapStart iOS SDK 2.0.4, 2012-11-12
 ----------------------
 - Fixed dealloc bug: do not release objects of NSMutableSet
