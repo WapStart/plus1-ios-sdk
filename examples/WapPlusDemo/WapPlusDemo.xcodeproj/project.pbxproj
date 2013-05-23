@@ -46,6 +46,7 @@
 		E7476A2A172A6634008A2ABE /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E7476A25172A6634008A2ABE /* NSString+Base64.m */; };
 		E7476A2B172A6634008A2ABE /* Plus1ConversionTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = E7476A27172A6634008A2ABE /* Plus1ConversionTracker.m */; };
 		E7476A2C172A6634008A2ABE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E7476A29172A6634008A2ABE /* Reachability.m */; };
+		E750B7F3174E6C7E0083BFE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E750B7F2174E6C7E0083BFE9 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		E7476A27172A6634008A2ABE /* Plus1ConversionTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plus1ConversionTracker.m; sourceTree = "<group>"; };
 		E7476A28172A6634008A2ABE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		E7476A29172A6634008A2ABE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		E750B7F2174E6C7E0083BFE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E750B7F3174E6C7E0083BFE9 /* SystemConfiguration.framework in Frameworks */,
 				CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -164,6 +167,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				E750B7F2174E6C7E0083BFE9 /* SystemConfiguration.framework */,
 				CED8A07815A60E9000F2AC06 /* Plus1 SDK */,
 				E7476A2D172A6673008A2ABE /* Plus1 Conversion SDK */,
 				080E96DDFE201D6D7F000001 /* Classes */,
