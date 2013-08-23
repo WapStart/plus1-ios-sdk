@@ -476,7 +476,8 @@
 	) {
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
 
-		[self adDidFailToLoad:nil];
+		if ([_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)])
+			[_delegate bannerViewInfoDidFailWithError:WPBannerInfoLoaderErrorCodeNoBanner];
 
 		[self hide:YES];
 		return;
@@ -608,7 +609,7 @@
 - (void)adDidFailToLoad:(UIView *)adView
 {
 	if ([_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)])
-		[_delegate bannerViewInfoDidFailWithError:NSURLErrorUnknown];
+		[_delegate bannerViewInfoDidFailWithError:WPBannerInfoLoaderErrorCodeUnknown];
 }
 
 @end

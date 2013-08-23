@@ -41,7 +41,8 @@ typedef enum
 {
 	WPBannerInfoLoaderErrorCodeUnknown,
 	WPBannerInfoLoaderErrorCodeCancel,
-	WPBannerInfoLoaderErrorCodeTimeout
+	WPBannerInfoLoaderErrorCodeTimeout,
+	WPBannerInfoLoaderErrorCodeNoBanner
 } WPBannerInfoLoaderErrorCode;
 
 @interface WPBannerInfoLoader : NSObject 
