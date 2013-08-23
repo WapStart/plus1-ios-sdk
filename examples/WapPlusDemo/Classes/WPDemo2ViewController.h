@@ -35,6 +35,7 @@
 
 @interface WPDemo2ViewController : UITableViewController <WPBannerViewDelegate>
 {
+	UIView *containerView;
 	WPBannerView *bannerView;
 }
 

@@ -30,6 +30,7 @@
  */
 
 #import "WPDemo2ViewController.h"
+#import "WPConst.h"
 
 @implementation WPDemo2ViewController
 
@@ -53,6 +54,7 @@
 
 - (void) dealloc
 {
+	[containerView release];
 	[bannerView release];
     [super dealloc];
 }
@@ -71,17 +73,18 @@
 	bannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	bannerView.delegate = self;
 	[bannerView reloadBanner];
-	
+
+	containerView = [[UIView alloc] initWithFrame:bannerView.frame];
+	[containerView addSubview:bannerView];
+
 	[requestInfo release];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-	self.tableView.tableHeaderView = nil;
-	self.tableView.tableHeaderView = bannerView;
 	
+	self.tableView.tableHeaderView = containerView;
 	[self.tableView reloadData];
 }
 
@@ -132,11 +135,8 @@
 {
 	if (bannerView.isEmpty)
 		return;
-	
-	bannerView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, [bannerView bannerHeight]);
+
 	bannerView.orientation = toInterfaceOrientation;
-	self.tableView.tableHeaderView = nil;
-	self.tableView.tableHeaderView = bannerView;
 	[self.tableView reloadData];
 }
 
@@ -144,18 +144,26 @@
 {
 	if (bannerView.isEmpty)
 		return;
-	
-	bannerView.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, [bannerView bannerHeight]);
+
 	bannerView.hidden = false;
-	self.tableView.tableHeaderView = nil;
-	self.tableView.tableHeaderView = bannerView;
 	[self.tableView reloadData];
+}
+
+- (void) bannerViewMinimizedStateWillChange:(WPBannerView *) bnView
+{
+	CGRect frame = bnView.frame;
+	frame.size.height =
+		[bnView isMinimized]
+			? BANNER_HEIGHT
+			: MINIMIZED_BANNER_HEIGHT;
+
+	[containerView setFrame:frame];
 }
 
 - (void) bannerViewMinimizedStateChanged:(WPBannerView *) bnView
 {
 	self.tableView.tableHeaderView = nil;
-	self.tableView.tableHeaderView = bannerView;
+	self.tableView.tableHeaderView = containerView;
 	[self.tableView reloadData];
 }
 

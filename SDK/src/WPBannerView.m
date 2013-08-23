@@ -50,6 +50,8 @@
 
 - (void) show:(bool) animated;
 
+- (void) updateXPos;
+
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
 @end
@@ -147,6 +149,9 @@
 	if (_isMinimized == minimize)
 		return;
 
+	if ([_delegate respondsToSelector:@selector(bannerViewMinimizedStateWillChange:)])
+		[_delegate bannerViewMinimizedStateWillChange:self];
+
 	if (animated) {
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
@@ -239,9 +244,7 @@
 	if (_orientation != orientation) {
 		_orientation = orientation;
 
-		CGRect currentFrame = self.frame;
-		currentFrame.origin.x = BANNER_X_POS;
-		self.frame = currentFrame;
+		[self updateXPos];
 
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
@@ -268,6 +271,8 @@
 
 - (void) drawRect:(CGRect)rect
 {
+	[self updateXPos];
+
 	UIImage *bgImage = [UIImage imageNamed:@"wp_banner_background.png"];
 	[bgImage drawInRect:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
 
@@ -287,6 +292,13 @@
 
 		return;
 	}
+}
+
+- (void) updateXPos
+{
+	CGRect currentFrame = self.frame;
+	currentFrame.origin.x = BANNER_X_POS;
+	self.frame = currentFrame;
 }
 
 - (void) layoutSubviews
