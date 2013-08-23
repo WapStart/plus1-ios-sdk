@@ -241,10 +241,10 @@
 
 - (void) setOrientation:(UIInterfaceOrientation)orientation
 {
+	[self updateXPos];
+
 	if (_orientation != orientation) {
 		_orientation = orientation;
-
-		[self updateXPos];
 
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];

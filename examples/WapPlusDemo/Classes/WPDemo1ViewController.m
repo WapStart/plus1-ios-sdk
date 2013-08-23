@@ -94,6 +94,9 @@
 - (void) layoutSubviews
 {
 	logoView.frame = self.view.bounds;
+
+	[topBannerView setNeedsDisplay];
+	[bottomBannerView setNeedsDisplay];
 	[topBannerView showFromTop:NO];
 	[bottomBannerView showFromBottom:NO];
 }

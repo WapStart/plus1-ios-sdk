@@ -84,6 +84,7 @@
 {
     [super viewWillAppear:animated];
 	
+	[bannerView setNeedsDisplay];
 	self.tableView.tableHeaderView = containerView;
 	[self.tableView reloadData];
 }
