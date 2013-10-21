@@ -33,7 +33,6 @@
 #import "WPUtils.h"
 #import "WPLogging.h"
 #import "WPConst.h"
-#import "UIDevice+IdentifierAddition.h"
 
 @interface WPBannerInfoLoader (PrivateMethods)
 
@@ -102,7 +101,7 @@
 	if (_clientSessionId != nil)
 		return;
 
-	_clientSessionId = [[WPUtils sha1Hash:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]] retain];
+	_clientSessionId = [WPUtils sha1Hash:[WPUtils getAdvertisingIdentifier]];
 	[[NSUserDefaults standardUserDefaults] setObject:_clientSessionId forKey:WPSessionKey];
 }
 
@@ -166,6 +165,7 @@
 	// Setting up headers
 	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
 	  forHTTPHeaderField:@"Cookie"];
+	WPLogDebug(@"wssid=%@", _clientSessionId);
 
 	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)

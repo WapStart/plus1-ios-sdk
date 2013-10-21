@@ -31,6 +31,7 @@
 
 #import "WPUtils.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <AdSupport/AdSupport.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -131,6 +132,15 @@
 	}
 
 	return queryDict;
+}
+
++ (NSString*) getAdvertisingIdentifier
+{
+	ASIdentifierManager *manager = [ASIdentifierManager sharedManager];
+	if (manager.advertisingIdentifier != nil)
+		return [manager.advertisingIdentifier UUIDString];
+
+	return nil;
 }
 
 @end
