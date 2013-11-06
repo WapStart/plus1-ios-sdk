@@ -1,3 +1,12 @@
+Plus1 WapStart iOS SDK 2.1.1, 2013-11-06
+----------------------
+- Fixed crash with AdView dealloc
+- Added bannerViewMinimizedStateWillChange method
+- Advertising identifier logic from AdSupport framework
+- Added new error code named WPBannerInfoLoaderErrorCodeNoBanner
+- Fixed visual defects of ad container
+- Fixes of demo application
+
 Plus1 WapStart iOS SDK 2.1.0, 2013-05-23
 ----------------------
 - New banner shield in WebView layout
