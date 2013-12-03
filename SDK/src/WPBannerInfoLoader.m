@@ -101,7 +101,13 @@
 	if (_clientSessionId != nil)
 		return;
 
-	_clientSessionId = [WPUtils sha1Hash:[WPUtils getAdvertisingIdentifier]];
+	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
+
+	_clientSessionId =
+		advertisingId != nil
+			? [WPUtils sha1Hash:advertisingId]
+			: [WPUtils sha1Hash:[WPUtils getDeviceId]];
+
 	[[NSUserDefaults standardUserDefaults] setObject:_clientSessionId forKey:WPSessionKey];
 }
 

@@ -30,10 +30,14 @@
  */
 
 #import "WPUtils.h"
+#import "SFHFKeychainUtils.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <AdSupport/AdSupport.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
+
+#define SFHFServiceName @"WPUtils"
+#define SFHFDeviceIdKey @"DeviceId"
 
 @implementation WPUtils
 
@@ -141,6 +145,44 @@
 		return [manager.advertisingIdentifier UUIDString];
 
 	return nil;
+}
+
++ (NSString*) getDeviceId
+{
+	NSString *uuidString;
+
+	uuidString = [self retrieveObject:SFHFDeviceIdKey];
+
+	if (!uuidString) {
+		CFUUIDRef cfuuid = CFUUIDCreate(kCFAllocatorDefault);
+		uuidString = (NSString*)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, cfuuid));
+		[self storeObject:uuidString forKey:SFHFDeviceIdKey];
+	}
+
+	return uuidString;
+	
+}
+
++ (void) storeObject:(NSString*) object forKey:(NSString*) key
+{
+	NSString *objectString = object;
+	NSError *error = nil;
+
+	[SFHFKeychainUtils storeUsername:key andPassword:objectString forServiceName:SFHFServiceName updateExisting:TRUE error:&error];
+
+	if (error)
+		NSLog(@"%@", [error localizedDescription]);
+}
+
++ (NSString*) retrieveObject:(NSString*) key
+{
+	NSError *error = nil;
+	NSString *object = [SFHFKeychainUtils getPasswordForUsername:key andServiceName:SFHFServiceName error:&error];
+
+	if (error)
+		NSLog(@"%@", [error localizedDescription]);
+
+	return object;
 }
 
 @end

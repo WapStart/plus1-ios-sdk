@@ -44,5 +44,6 @@
 + (NSString*) getOriginalUserAgent;
 + (NSDictionary*) getDictionaryFromQueryString:(NSString*) query;
 + (NSString*) getAdvertisingIdentifier;
++ (NSString*) getDeviceId;
 
 @end
