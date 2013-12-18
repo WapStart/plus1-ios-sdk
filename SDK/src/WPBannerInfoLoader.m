@@ -105,8 +105,8 @@
 
 	_clientSessionId =
 		advertisingId != nil
-			? [WPUtils sha1Hash:advertisingId]
-			: [WPUtils sha1Hash:[WPUtils getDeviceId]];
+			? [[WPUtils sha1Hash:advertisingId] retain]
+			: [[WPUtils sha1Hash:[WPUtils getDeviceId]] retain];
 
 	[[NSUserDefaults standardUserDefaults] setObject:_clientSessionId forKey:WPSessionKey];
 }
