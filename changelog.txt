@@ -1,3 +1,8 @@
+Plus1 WapStart iOS SDK 2.1.2, 2014-01-10
+----------------------
+- Added reserve uniqueId generating mechanism
+- Fixed EXC_BAD_ACCESS on client session id initialization
+
 Plus1 WapStart iOS SDK 2.1.1, 2013-11-06
 ----------------------
 - Fixed crash with AdView dealloc
