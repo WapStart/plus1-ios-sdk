@@ -1,3 +1,7 @@
+Plus1 WapStart iOS SDK 2.1.3, 2014-01-30
+----------------------
+- Fixed EXC_BAD_ACCESS caused by empty string in sha1Hash function
+
 Plus1 WapStart iOS SDK 2.1.2, 2014-01-10
 ----------------------
 - Added reserve uniqueId generating mechanism

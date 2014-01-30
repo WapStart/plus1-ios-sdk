@@ -44,7 +44,7 @@
 
 #define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=2.1.2"
+#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=2.1.3"
 #define WPSessionKey @"WPClientSessionId"
 
 #endif
