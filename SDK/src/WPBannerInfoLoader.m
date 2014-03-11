@@ -163,30 +163,43 @@
 	if (_bannerRequestInfo == nil || _urlConnection != nil)
 		return NO;
 
-	NSMutableURLRequest *theRequest =
+	NSMutableURLRequest *postRequest =
 		[NSMutableURLRequest requestWithURL:[self requestUrl]
 								cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 							timeoutInterval:60];
 
-	// Setting up headers
-	[theRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
+	NSString *bodyString = [NSString stringWithFormat:@"platform=%@&version=%@&mac=%@&display-metrics=%@&display-orientation=%@&device-imei=%@&preferred-locale=%@",
+							@"ios",
+							@"todo",
+							@"todo",
+							[self getDisplayMetrics],
+							@"todo",
+							@"todo",
+							@"todo"];
+
+	// FIXME XXX: add platform-specific parameters
+	NSData *body = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+
+	[postRequest setHTTPMethod:@"POST"];
+	[postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[postRequest setHTTPBody:body];
+
+	// Setting up BC headers
+	[postRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
 	  forHTTPHeaderField:@"Cookie"];
 	WPLogDebug(@"wssid=%@", _clientSessionId);
 
-	[theRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
+	[postRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
-		[theRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
-
-	[theRequest setValue:@"iOS" forHTTPHeaderField:@"x-application-type"];
-	[theRequest setValue:[self getDisplayMetrics] forHTTPHeaderField:@"x-display-metrics"];
+		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
 
 	if (!CGRectIsNull(self.containerRect)) {
 		NSString* metrics = [NSString stringWithFormat:@"%dx%d", BANNER_WIDTH, BANNER_HEIGHT];
-		[theRequest setValue:metrics forHTTPHeaderField:@"x-container-metrics"];
+		[postRequest setValue:metrics forHTTPHeaderField:@"x-container-metrics"];
 		WPLogDebug(@"x-container-metrics: %@", metrics);
 	}
 
-	_urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
+	_urlConnection = [[NSURLConnection alloc] initWithRequest:postRequest
 													 delegate:self 
 											 startImmediately:YES];
 	
