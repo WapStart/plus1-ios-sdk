@@ -168,21 +168,30 @@
 								cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 							timeoutInterval:60];
 
-	NSString *bodyString = [NSString stringWithFormat:@"platform=%@&version=%@&mac=%@&display-metrics=%@&display-orientation=%@&device-imei=%@&preferred-locale=%@",
-							@"ios",
-							@"todo",
-							@"todo",
-							[self getDisplayMetrics],
-							@"todo",
-							@"todo",
-							@"todo"];
+	NSMutableString *bodyString =
+		[NSString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
 
-	// FIXME XXX: add platform-specific parameters
-	NSData *body = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
+
+	if (advertisingId != nil)
+		[bodyString appendFormat:@"&advertising-identifier=%@", [WPUtils sha1Hash:advertisingId]];
+
+	[bodyString appendFormat:@"&display-metrics=%@", [self getDisplayMetrics]];
+
+	if (!CGRectIsNull(self.containerRect))
+		[bodyString appendFormat:@"&container-metrics=%@", [NSString stringWithFormat:@"%dx%d", BANNER_WIDTH, BANNER_HEIGHT]];
+
+	[bodyString appendFormat:@"&display-orientation=%@",
+		UIInterfaceOrientationIsLandscape([UIDevice currentDevice].orientation)
+			? @"landscape"
+			: @"portrait"
+	];
+
+	[bodyString appendFormat:@"&preferred-locale=%@", [[NSLocale currentLocale] localeIdentifier]];
 
 	[postRequest setHTTPMethod:@"POST"];
 	[postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[postRequest setHTTPBody:body];
+	[postRequest setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 
 	// Setting up BC headers
 	[postRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
@@ -193,16 +202,10 @@
 	if ([self getOriginalUserAgent] != nil)
 		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
 
-	if (!CGRectIsNull(self.containerRect)) {
-		NSString* metrics = [NSString stringWithFormat:@"%dx%d", BANNER_WIDTH, BANNER_HEIGHT];
-		[postRequest setValue:metrics forHTTPHeaderField:@"x-container-metrics"];
-		WPLogDebug(@"x-container-metrics: %@", metrics);
-	}
-
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:postRequest
 													 delegate:self 
 											 startImmediately:YES];
-	
+
 	if (_urlConnection == nil)
 		return NO;
 
