@@ -105,7 +105,8 @@
 {
 	[_autoupdateTimer invalidate];
 	[_bannerInfoLoader cancel];
-	
+	[_initRequestLoader cancel];
+
     [_locationManager release];
 	[_bannerRequestInfo release];
 	[_closeButton release];
@@ -459,6 +460,19 @@
 	[self setNeedsDisplay];
 
 	[self startAutoupdateTimer];
+}
+
+- (void) sendInitRequest
+{
+	[_initRequestLoader cancel];
+	[_initRequestLoader release];
+
+	_initRequestLoader = [[WPInitRequestLoader alloc] initWithRequestInfo:_bannerRequestInfo];
+	_initRequestLoader.delegate = self;
+
+	if (![_initRequestLoader start]) {
+		[_initRequestLoader release], _initRequestLoader = nil;
+	}
 }
 
 #pragma mark Network delegates

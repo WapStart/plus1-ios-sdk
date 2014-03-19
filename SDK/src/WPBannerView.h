@@ -31,6 +31,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WPBannerInfoLoader.h"
+#import "WPInitRequestLoader.h"
 #import "WPLocationManager.h"
 #import "MRAdView.h"
 #import "WPAdView.h"
@@ -42,6 +43,7 @@
 {
 	WPBannerRequestInfo *_bannerRequestInfo;
 	WPBannerInfoLoader  *_bannerInfoLoader;
+	WPInitRequestLoader *_initRequestLoader;
     WPLocationManager   *_locationManager;
 
 	UIView				*_currentContentView;
