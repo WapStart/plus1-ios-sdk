@@ -32,9 +32,6 @@
 #import <Foundation/Foundation.h>
 #import "WPBannerRequestInfo.h"
 
-@class WPBannerInfoParser;
-@class WPBannerInfo;
-
 @protocol WPBannerInfoLoaderDelegate;
 
 typedef enum

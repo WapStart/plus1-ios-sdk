@@ -44,7 +44,9 @@
 
 #define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
-#define WPRotatorUrl @"http://ro.plus1.wapstart.ru/?area=applicationWebView&version=2&sdkver=2.1.3"
+#define ROTATOR_URL @"http://ro.p824.plus1.oemtest.test"
+#define SDK_VERSION @"2.2"
+
 #define WPSessionKey @"WPClientSessionId"
 
 #endif

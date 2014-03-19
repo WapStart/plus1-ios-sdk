@@ -113,8 +113,10 @@
 
 - (NSURL *) requestUrl
 {
-	NSMutableString *url = [NSMutableString stringWithString:WPRotatorUrl];
-	
+	NSMutableString *url = [NSMutableString stringWithString:ROTATOR_URL];
+
+	[url appendFormat:@"/v3/%d.html", PLUS1_APP_ID];
+
 	[url appendFormat:@"&id=%d", _bannerRequestInfo.applicationId];
 	[url appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
 	
@@ -188,8 +190,11 @@
 	];
 
 	[bodyString appendFormat:@"&preferred-locale=%@", [[NSLocale currentLocale] localeIdentifier]];
+	[bodyString appendFormat:@"&sdkver=%@", SDK_VERSION];
 
 	[postRequest setHTTPMethod:@"POST"];
+
+	// FIXME: think about json format
 	[postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[postRequest setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 
