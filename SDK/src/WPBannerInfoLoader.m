@@ -113,28 +113,10 @@
 
 - (NSURL *) requestUrl
 {
-	NSMutableString *url = [NSMutableString stringWithString:ROTATOR_URL];
+	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
 
-	[url appendFormat:@"/v3/%d.html", PLUS1_APP_ID];
+	[url appendFormat:@"/v3/%d.html", _bannerRequestInfo.applicationId];
 
-	[url appendFormat:@"&id=%d", _bannerRequestInfo.applicationId];
-	[url appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
-	
-	if (_bannerRequestInfo.gender != WPGenderUnknown)
-		[url appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
-	
-	if (_bannerRequestInfo.age > 0)
-		[url appendFormat:@"&age=%d", _bannerRequestInfo.age];
-    
-    if (_bannerRequestInfo.login != nil)
-        [url appendFormat:@"&login=%@", _bannerRequestInfo.login];
-	
-    if (_bannerRequestInfo.location != nil)
-        [url appendFormat:@"&location=%.8f;%.8f", 
-           _bannerRequestInfo.location.coordinate.latitude,
-           _bannerRequestInfo.location.coordinate.longitude
-        ];
-    
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
@@ -171,7 +153,26 @@
 							timeoutInterval:60];
 
 	NSMutableString *bodyString =
-		[NSString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
+		[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
+
+	[bodyString appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
+	
+	if (_bannerRequestInfo.gender != WPGenderUnknown)
+		[bodyString appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
+	
+	if (_bannerRequestInfo.age > 0)
+		[bodyString appendFormat:@"&age=%d", _bannerRequestInfo.age];
+    
+    if (_bannerRequestInfo.login != nil)
+        [bodyString appendFormat:@"&login=%@", _bannerRequestInfo.login];
+	
+	// FIXME: change format
+	if (_bannerRequestInfo.location != nil) {
+        [bodyString appendFormat:@"&location=%.8f;%.8f",
+			_bannerRequestInfo.location.coordinate.latitude,
+			_bannerRequestInfo.location.coordinate.longitude
+		];
+	}
 
 	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
 
