@@ -40,6 +40,7 @@
 @synthesize delegate = _delegate;
 @synthesize containerRect = _containerRect;
 @synthesize sdkParameters = _sdkParameters;
+@synthesize uid = _uid;
 
 - (id) init
 {
@@ -207,7 +208,13 @@
 		return;
 
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
-		// FIXME XXX: get parameters
+		//NSError *error;
+
+		//FIXME XXX: please debug
+		//self.sdkParameters =
+		//	[NSJSONSerialization JSONObjectWithData:[[[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_PARAMETERS_HEADER] dataUsingEncoding:NSUTF8StringEncoding]
+		//								    options:NSJSONReadingMutableContainers
+		//									  error:&error];
 	}
 }
 
@@ -216,7 +223,7 @@
 	if (connection != _urlConnection)
 		return;
 
-	// FIXME XXX: get unique user id;
+	self.uid = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

@@ -47,6 +47,8 @@
 #define ROTATOR_URL @"http://ro.p824.plus1.oemtest.test"
 #define SDK_VERSION @"2.2"
 
+#define SDK_PARAMETERS_HEADER @"X-Plus1-SDK-Parameters"
+
 #define WPSessionKey @"WPClientSessionId"
 
 #endif
