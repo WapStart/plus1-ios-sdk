@@ -49,10 +49,18 @@ typedef enum
 	id<WPInitRequestLoaderDelegate> _delegate;
 
 	NSURLConnection		*_urlConnection;
+
+	NSString			*_userAgent;
+	NSString			*_originalUserAgent;
+	
+	CGRect				_containerRect;
+	NSDictionary		*_sdkParameters;
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
 @property (nonatomic, assign) id<WPInitRequestLoaderDelegate> delegate;
+@property (nonatomic, assign) CGRect containerRect;
+@property (nonatomic, assign) NSDictionary *sdkParameters;
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;
 - (BOOL) start;
@@ -62,7 +70,7 @@ typedef enum
 
 @protocol WPInitRequestLoaderDelegate
 
-- (void) initRequestLoaderDidFinish:(NSDictionary *) properties;
+- (void) initRequestLoaderDidFinish:(WPInitRequestLoader *) loader;
 - (void) initRequestLoader:(WPInitRequestLoader *) loader didFailWithCode:(WPInitRequestLoaderErrorCode) errorCode;
 
 @end

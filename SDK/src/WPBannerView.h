@@ -39,7 +39,7 @@
 @class WPBannerInfo;
 @protocol WPBannerViewDelegate;
 
-@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPLocationManagerDelegate, MRAdViewDelegate, WPAdViewDelegate>
+@interface WPBannerView : UIView <WPBannerInfoLoaderDelegate, WPInitRequestLoaderDelegate, WPLocationManagerDelegate, MRAdViewDelegate, WPAdViewDelegate>
 {
 	WPBannerRequestInfo *_bannerRequestInfo;
 	WPBannerInfoLoader  *_bannerInfoLoader;

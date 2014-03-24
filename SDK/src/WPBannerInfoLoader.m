@@ -117,6 +117,8 @@
 
 	[url appendFormat:@"/v3/%d.html", _bannerRequestInfo.applicationId];
 
+	WPLogDebug(@"HTML request url: %@", url);
+
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
@@ -189,9 +191,6 @@
 			? @"landscape"
 			: @"portrait"
 	];
-
-	[bodyString appendFormat:@"&preferred-locale=%@", [[NSLocale currentLocale] localeIdentifier]];
-	[bodyString appendFormat:@"&sdkver=%@", SDK_VERSION];
 
 	[postRequest setHTTPMethod:@"POST"];
 

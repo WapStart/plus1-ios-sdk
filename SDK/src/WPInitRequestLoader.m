@@ -38,15 +38,13 @@
 
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
+@synthesize containerRect = _containerRect;
+@synthesize sdkParameters = _sdkParameters;
 
 - (id) init
 {
 	if ((self = [super init]) != nil)
-	{
 		_bannerRequestInfo = nil;
-
-		[self initializeClientSessionId];
-	}
 
 	return self;
 }
@@ -54,11 +52,7 @@
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
 	if ((self = [super init]) != nil)
-	{
 		_bannerRequestInfo = [requestInfo retain];
-
-		[self initializeClientSessionId];
-	}
 
 	return self;
 }
@@ -76,8 +70,10 @@
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
 	
-	[url appendFormat:@"/v3/%d.html", _bannerRequestInfo.applicationId];
-	
+	[url appendFormat:@"/v3/%d.init", _bannerRequestInfo.applicationId];
+
+	WPLogDebug(@"INIT request url: %@", url);
+
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
@@ -91,7 +87,7 @@
 {
 	if (_userAgent == nil)
 		_userAgent = [WPUtils getUserAgent];
-	
+
 	return _userAgent;
 }
 
@@ -99,7 +95,7 @@
 {
 	if (_originalUserAgent == nil)
 		_originalUserAgent = [WPUtils getOriginalUserAgent];
-	
+
 	return _originalUserAgent;
 }
 
@@ -113,8 +109,12 @@
 							cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 						timeoutInterval:60];
 
+	//NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	//[parameters setObject:@"iOS" forKey:@"platform"];
+	//[parameters setObject:[[UIDevice currentDevice] systemVersion] forKey:@"version"];
+
 	NSMutableString *bodyString =
-	[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
+		[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
 
 	[bodyString appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
 
@@ -146,25 +146,32 @@
 		[bodyString appendFormat:@"&container-metrics=%@", [NSString stringWithFormat:@"%dx%d", BANNER_WIDTH, BANNER_HEIGHT]];
 
 	[bodyString appendFormat:@"&display-orientation=%@",
-	 UIInterfaceOrientationIsLandscape([UIDevice currentDevice].orientation)
-	 ? @"landscape"
-							: @"portrait"
-	 ];
+		UIInterfaceOrientationIsLandscape([UIDevice currentDevice].orientation)
+			? @"landscape"
+			: @"portrait"
+	];
 
 	[bodyString appendFormat:@"&preferred-locale=%@", [[NSLocale currentLocale] localeIdentifier]];
 	[bodyString appendFormat:@"&sdkver=%@", SDK_VERSION];
+ 
+	NSData *postData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
 
-	[[postRequest setHTTPMethod:@"POST"];
+	[postRequest setHTTPMethod:@"POST"];
+	[postRequest setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
+	[postRequest setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+	[postRequest setHTTPBody:postData];
 
-	// FIXME: think about json format
-	[postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[postRequest setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	// Setting up BC headers
-	[postRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
-	   forHTTPHeaderField:@"Cookie"];
-	WPLogDebug(@"wssid=%@", _clientSessionId);
-	
+	// FIXME XXX: use json or remove
+	/*NSError *error;
+	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
+
+	if (!jsonData) {
+		WPLogError(@"JSON serialization error: %@", error);
+	} else {
+		[postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+		[postRequest setHTTPBody:jsonData];
+	}*/
+
 	[postRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
 		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
@@ -186,11 +193,8 @@
 	
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
-	
-	[self.data setLength:0];
-	self.adType = nil;
-	
-	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
+
+	[_delegate bannerInitRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeCancel];
 }
 
 //////////////////////////////////////////////////////////
@@ -203,9 +207,7 @@
 		return;
 
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
-		NSString *adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
-		WPLogDebug(@"X-Adtype received: %@", adType);
-		self.adType = adType;
+		// FIXME XXX: get parameters
 	}
 }
 
@@ -213,8 +215,8 @@
 {
 	if (connection != _urlConnection)
 		return;
-	
-	[self.data appendData:data];
+
+	// FIXME XXX: get unique user id;
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -225,9 +227,9 @@
 	WPLogDebug(@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]);
 
 	if ([error code] == -1001)
-		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeTimeout];
+		[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeTimeout];
 	else
-		[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeUnknown];
+		[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeUnknown];
 	
 	[_urlConnection release], _urlConnection = nil;
 }
@@ -237,7 +239,7 @@
 	if (connection != _urlConnection)
 		return;
 	
-	[_delegate bannerInfoLoaderDidFinish:self];
+	[_delegate initRequestLoaderDidFinish:self];
 	
 	[_urlConnection release], _urlConnection = nil;
 }

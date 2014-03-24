@@ -96,6 +96,8 @@
 
 		self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
 		self.hidden = true;
+
+		[self sendInitRequest];
     }
     
     return self;
@@ -528,6 +530,19 @@
 	) {
 		[_delegate bannerViewInfoDidFailWithError:errorCode];
 	}
+}
+
+- (void) initRequestLoaderDidFinish:(WPInitRequestLoader *) loader
+{
+	// FIXME XXX: implement setups
+	WPLogDebug(@"call initRequestLoaderDidFinish");
+
+	for (NSString *key in [loader.sdkParameters allKeys]) {
+		WPLogDebug(@"lskdfj");
+		//WPLogDebug([loader.sdkParameters valueForKey:key]);
+	}
+
+	[_initRequestLoader release], _initRequestLoader = nil;
 }
 
 #pragma mark Location manager delegates
