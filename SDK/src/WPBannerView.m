@@ -534,15 +534,25 @@
 
 - (void) initRequestLoaderDidFinish:(WPInitRequestLoader *) loader
 {
-	// FIXME XXX: implement setups
-	WPLogDebug(@"call initRequestLoaderDidFinish");
-
 	for (NSString *key in [loader.sdkParameters allKeys]) {
-		WPLogDebug(@"lskdfj");
-		//WPLogDebug([loader.sdkParameters valueForKey:key]);
+		WPLogDebug(@"Received SDK parameter: %@ = %@", key, [loader.sdkParameters valueForKey:key]);
+
+		if ([key isEqualToString:@"refreshDelay"]) {
+			self.autoupdateTimeout = [[loader.sdkParameters valueForKey:key] floatValue];
+		}
+
+		// FIXME XXX: implement setups
 	}
 
 	[_initRequestLoader release], _initRequestLoader = nil;
+}
+
+- (void) initRequestLoader:(WPInitRequestLoader *) loader didFailWithCode:(WPInitRequestLoaderErrorCode) errorCode
+{
+	[_initRequestLoader release], _initRequestLoader = nil;
+
+	if (errorCode != WPInitRequestLoaderErrorCodeCancel)
+		WPLogWarn(@"Init request loader failed with code: %d", errorCode);
 }
 
 #pragma mark Location manager delegates

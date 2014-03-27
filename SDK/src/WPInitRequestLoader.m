@@ -63,6 +63,8 @@
 	[self cancel];
 
 	[_bannerRequestInfo release];
+	[_sdkParameters release];
+	[_uid release];
 
 	[super dealloc];
 }
@@ -70,7 +72,8 @@
 - (NSURL *) requestUrl
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
-	
+
+	// FIXME: send uid
 	[url appendFormat:@"/v3/%d.init", _bannerRequestInfo.applicationId];
 
 	WPLogDebug(@"INIT request url: %@", url);
@@ -195,7 +198,7 @@
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
 
-	[_delegate bannerInitRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeCancel];
+	[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeCancel];
 }
 
 //////////////////////////////////////////////////////////
@@ -208,13 +211,15 @@
 		return;
 
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
-		//NSError *error;
+		NSString *parameters = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_PARAMETERS_HEADER];
+		NSError *error;
 
-		//FIXME XXX: please debug
-		//self.sdkParameters =
-		//	[NSJSONSerialization JSONObjectWithData:[[[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_PARAMETERS_HEADER] dataUsingEncoding:NSUTF8StringEncoding]
-		//								    options:NSJSONReadingMutableContainers
-		//									  error:&error];
+		if (parameters != nil) {
+			self.sdkParameters =
+				[NSJSONSerialization JSONObjectWithData:[parameters dataUsingEncoding:NSUTF8StringEncoding]
+											    options:0
+												  error:&error];
+		}
 	}
 }
 
