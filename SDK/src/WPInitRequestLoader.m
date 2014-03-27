@@ -212,13 +212,17 @@
 
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
 		NSString *parameters = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_PARAMETERS_HEADER];
-		NSError *error;
 
 		if (parameters != nil) {
+			NSError *error;
+
 			self.sdkParameters =
 				[NSJSONSerialization JSONObjectWithData:[parameters dataUsingEncoding:NSUTF8StringEncoding]
 											    options:0
 												  error:&error];
+
+			if (!self.sdkParameters)
+				WPLogError(@"Error parsing JSON: %@", error);
 		}
 	}
 }

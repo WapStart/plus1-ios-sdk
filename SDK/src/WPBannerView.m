@@ -52,6 +52,10 @@
 
 - (void) updateXPos;
 
+- (void) sendInitRequest;
+
+- (void) updateParameters:(NSDictionary*)sdkParameters;
+
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
 @end
@@ -440,6 +444,19 @@
 	_currentContentView.frame = frame;
 }
 
+- (void) updateParameters:(NSDictionary *)sdkParameters
+{
+	for (NSString *key in [sdkParameters allKeys]) {
+		WPLogDebug(@"Update SDK parameter: %@ = %@", key, [sdkParameters valueForKey:key]);
+
+		if ([key isEqualToString:@"refreshDelay"]) {
+			self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
+		}
+
+		// FIXME XXX: implement other setups
+	}
+}
+
 #pragma mark Network
 
 - (void) reloadBanner
@@ -481,6 +498,9 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
+	if (loader.sdkParameters)
+		[self updateParameters:loader.sdkParameters];
+
 	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
 	if (
@@ -534,15 +554,8 @@
 
 - (void) initRequestLoaderDidFinish:(WPInitRequestLoader *) loader
 {
-	for (NSString *key in [loader.sdkParameters allKeys]) {
-		WPLogDebug(@"Received SDK parameter: %@ = %@", key, [loader.sdkParameters valueForKey:key]);
-
-		if ([key isEqualToString:@"refreshDelay"]) {
-			self.autoupdateTimeout = [[loader.sdkParameters valueForKey:key] floatValue];
-		}
-
-		// FIXME XXX: implement setups
-	}
+	if (loader.sdkParameters)
+		[self updateParameters:loader.sdkParameters];
 
 	[_initRequestLoader release], _initRequestLoader = nil;
 }

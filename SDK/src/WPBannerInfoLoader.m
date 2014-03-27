@@ -52,6 +52,7 @@
 @synthesize data = _data;
 @synthesize adType = _adType;
 @synthesize containerRect = _containerRect;
+@synthesize sdkParameters = _sdkParameters;
 
 - (id) init
 {
@@ -245,7 +246,22 @@
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
 		NSString *adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
 		WPLogDebug(@"X-Adtype received: %@", adType);
+
 		self.adType = adType;
+
+		NSString *parameters = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_PARAMETERS_HEADER];
+
+		if (parameters != nil) {
+			NSError *error;
+
+			self.sdkParameters =
+				[NSJSONSerialization JSONObjectWithData:[parameters dataUsingEncoding:NSUTF8StringEncoding]
+												options:0
+												  error:&error];
+
+			if (!self.sdkParameters)
+				WPLogError(@"Error parsing JSON: %@", error);
+		}
 	}
 }
 
