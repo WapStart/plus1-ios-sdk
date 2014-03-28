@@ -53,6 +53,7 @@
 @synthesize adType = _adType;
 @synthesize containerRect = _containerRect;
 @synthesize sdkParameters = _sdkParameters;
+@synthesize uid = _uid;
 
 - (id) init
 {
@@ -262,6 +263,10 @@
 			if (!self.sdkParameters)
 				WPLogError(@"Error parsing JSON: %@", error);
 		}
+
+		NSArray *etagParts = [[[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"ETag"] componentsSeparatedByString:@"_"];
+
+		self.uid = etagParts[0];
 	}
 }
 

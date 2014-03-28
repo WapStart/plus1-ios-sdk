@@ -267,7 +267,11 @@
 {
 	_reinitTimeout = timeout;
 
-	if (_reinitTimeout > 0 && _reinitTimer == nil) {
+	if (_reinitTimer != nil) {
+		[_reinitTimer invalidate], _reinitTimer = nil;
+	}
+
+	if (_reinitTimeout > 0) {
 		_reinitTimer = [NSTimer timerWithTimeInterval:_reinitTimeout target:self selector:@selector(sendInitRequest) userInfo:nil repeats:YES];
 
 		[[NSRunLoop currentRunLoop] addTimer:_reinitTimer forMode:NSDefaultRunLoopMode];
@@ -469,7 +473,7 @@
 			self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 		}
 
-		if ([key isEqualToString:@"reinitDelay"]) {
+		if ([key isEqualToString:@"reInitDelay"]) {
 			// FIXME XXX: backup last value
 			self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
 		}

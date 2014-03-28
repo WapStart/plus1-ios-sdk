@@ -54,8 +54,8 @@ typedef enum
 	NSString			*_originalUserAgent;
 	
 	CGRect				_containerRect;
-	NSString			*_uid;
 	NSDictionary		*_sdkParameters;
+	NSString			*_uid;
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
