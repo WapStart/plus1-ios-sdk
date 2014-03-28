@@ -89,6 +89,8 @@
 	[_clientSessionId release];
 	[_data release];
 	[_adType release];
+	[_sdkParameters release];
+	[_uid release];
 
 	[super dealloc];
 }
@@ -117,7 +119,7 @@
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
 
-	[url appendFormat:@"/v3/%d.html", _bannerRequestInfo.applicationId];
+	[url appendFormat:@"/v3/%d.html?uid=%@", _bannerRequestInfo.applicationId, _clientSessionId];
 
 	WPLogDebug(@"HTML request url: %@", url);
 
@@ -196,15 +198,10 @@
 
 	[postRequest setHTTPMethod:@"POST"];
 
-	// FIXME: think about json format
 	[postRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[postRequest setHTTPBody:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
 
 	// Setting up BC headers
-	[postRequest addValue:[NSString stringWithFormat:@"wssid=%@", _clientSessionId]
-	  forHTTPHeaderField:@"Cookie"];
-	WPLogDebug(@"wssid=%@", _clientSessionId);
-
 	[postRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
 		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
