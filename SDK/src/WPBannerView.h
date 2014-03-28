@@ -50,7 +50,9 @@
 
 	CGFloat _autoupdateTimeout;
 	NSTimer *_autoupdateTimer;
-	
+	CGFloat _reinitTimeout;
+	NSTimer *_reinitTimer;
+
 	UIInterfaceOrientation _orientation;
 	UIActivityIndicatorView *_loadingInfoIndicator;
 	UIButton *_closeButton;
@@ -80,6 +82,7 @@
 @property (nonatomic, readonly) CGFloat bannerHeight;
 @property (nonatomic, assign) BOOL disableAutoDetectLocation;
 @property (nonatomic, assign) UIInterfaceOrientation orientation;
+@property (nonatomic, assign) CGFloat reinitTimeout;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 

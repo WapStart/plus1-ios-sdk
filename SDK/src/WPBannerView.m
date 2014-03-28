@@ -45,6 +45,8 @@
 - (void) startAutoupdateTimer;
 - (void) stopAutoupdateTimer;
 
+- (void) setReinitTimeout:(CGFloat)timeout;
+
 - (void) cleanCurrentView;
 - (void) updateContentFrame;
 
@@ -70,6 +72,7 @@
 @synthesize disableAutoDetectLocation = _disableAutoDetectLocation;
 @synthesize autoupdateTimeout = _autoupdateTimeout;
 @synthesize orientation = _orientation;
+@synthesize reinitTimeout = _reinitTimeout;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
@@ -102,8 +105,10 @@
 		self.hidden = true;
 
 		[self sendInitRequest];
+
+		self.reinitTimeout = DEFAULT_REINIT_TIMEOUT;
     }
-    
+
     return self;
 }
 
@@ -255,6 +260,17 @@
 
 		if ([_currentContentView isKindOfClass:[MRAdView class]])
 			[(MRAdView*)_currentContentView rotateToOrientation:orientation];
+	}
+}
+
+- (void) setReinitTimeout:(CGFloat)timeout
+{
+	_reinitTimeout = timeout;
+
+	if (_reinitTimeout > 0 && _reinitTimer == nil) {
+		_reinitTimer = [NSTimer timerWithTimeInterval:_reinitTimeout target:self selector:@selector(sendInitRequest) userInfo:nil repeats:YES];
+
+		[[NSRunLoop currentRunLoop] addTimer:_reinitTimer forMode:NSDefaultRunLoopMode];
 	}
 }
 
@@ -451,6 +467,11 @@
 
 		if ([key isEqualToString:@"refreshDelay"]) {
 			self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
+		}
+
+		if ([key isEqualToString:@"reinitDelay"]) {
+			// FIXME XXX: backup last value
+			self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
 		}
 
 		// FIXME XXX: implement other setups

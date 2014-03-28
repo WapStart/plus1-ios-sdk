@@ -49,6 +49,8 @@
 
 #define SDK_PARAMETERS_HEADER @"X-Plus1-SDK-Parameters"
 
+#define DEFAULT_REINIT_TIMEOUT 60
+
 #define WPSessionKey @"WPClientSessionId"
 
 #endif
