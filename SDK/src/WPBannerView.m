@@ -526,6 +526,9 @@
 	if (loader.sdkParameters)
 		[self updateParameters:loader.sdkParameters];
 
+	if (loader.uid)
+		_bannerRequestInfo.uid = loader.uid;
+
 	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
 	if (
@@ -581,6 +584,9 @@
 {
 	if (loader.sdkParameters)
 		[self updateParameters:loader.sdkParameters];
+
+	if (loader.uid)
+		_bannerRequestInfo.uid = loader.uid;
 
 	[_initRequestLoader release], _initRequestLoader = nil;
 }

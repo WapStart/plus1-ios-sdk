@@ -32,8 +32,6 @@
 #import "WPBannerRequestInfo.h"
 #import "WPUtils.h"
 
-static NSString *wpCurrentPageId = nil;
-
 @implementation WPBannerRequestInfo
 
 @synthesize applicationId = _applicationId;
@@ -41,6 +39,7 @@ static NSString *wpCurrentPageId = nil;
 @synthesize age = _age;
 @synthesize login = _login;
 @synthesize location = _location;
+@synthesize uid = _uid;
 
 - (id) initWithApplicationId:(NSInteger) applicationId
 {
@@ -84,21 +83,6 @@ static NSString *wpCurrentPageId = nil;
 		self.age = age;
     }
 	return self;
-}
-
-- (NSString *) pageId
-{
-	if (wpCurrentPageId != nil)
-		return wpCurrentPageId;
-	
-	NSString *tempPageId = 
-	[[NSString alloc] initWithFormat:@"%i%i%i%i%i%i%i", 
-	 arc4random(), arc4random(), arc4random(), arc4random(), arc4random(), arc4random(), arc4random()];
-	
-	wpCurrentPageId = [[WPUtils sha1Hash:tempPageId] retain];
-	[tempPageId release];
-	
-	return wpCurrentPageId;
 }
 
 @end

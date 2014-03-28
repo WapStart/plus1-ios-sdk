@@ -73,8 +73,7 @@
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
 
-	// FIXME: send uid
-	[url appendFormat:@"/v3/%d.init", _bannerRequestInfo.applicationId];
+	[url appendFormat:@"/v3/%d.init?uid=%@", _bannerRequestInfo.applicationId, _bannerRequestInfo.uid];
 
 	WPLogDebug(@"INIT request url: %@", url);
 
@@ -113,14 +112,10 @@
 							cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 						timeoutInterval:60];
 
-	//NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-	//[parameters setObject:@"iOS" forKey:@"platform"];
-	//[parameters setObject:[[UIDevice currentDevice] systemVersion] forKey:@"version"];
+	// FIXME: refactor dublicated code
 
 	NSMutableString *bodyString =
 		[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
-
-	[bodyString appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
 
 	if (_bannerRequestInfo.gender != WPGenderUnknown)
 		[bodyString appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
@@ -165,17 +160,6 @@
 	[postRequest setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
 	[postRequest setHTTPBody:postData];
 
-	// FIXME XXX: use json or remove
-	/*NSError *error;
-	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:&error];
-
-	if (!jsonData) {
-		WPLogError(@"JSON serialization error: %@", error);
-	} else {
-		[postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-		[postRequest setHTTPBody:jsonData];
-	}*/
-
 	[postRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
 		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
@@ -197,6 +181,9 @@
 	
 	[_urlConnection cancel];
 	[_urlConnection release], _urlConnection = nil;
+
+	self.sdkParameters = nil;
+	self.uid = nil;
 
 	[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeCancel];
 }

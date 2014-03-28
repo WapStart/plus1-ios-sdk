@@ -119,7 +119,7 @@
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
 
-	[url appendFormat:@"/v3/%d.html?uid=%@", _bannerRequestInfo.applicationId, _clientSessionId];
+	[url appendFormat:@"/v3/%d.html?uid=%@", _bannerRequestInfo.applicationId, _bannerRequestInfo.uid];
 
 	WPLogDebug(@"HTML request url: %@", url);
 
@@ -161,8 +161,6 @@
 	NSMutableString *bodyString =
 		[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
 
-	[bodyString appendFormat:@"&pageId=%@", _bannerRequestInfo.pageId];
-	
 	if (_bannerRequestInfo.gender != WPGenderUnknown)
 		[bodyString appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
 	
@@ -226,6 +224,8 @@
 
 	[self.data setLength:0];
 	self.adType = nil;
+	self.sdkParameters = nil;
+	self.uid = nil;
 	
 	[_delegate bannerInfoLoader:self didFailWithCode:WPBannerInfoLoaderErrorCodeCancel];
 }
@@ -261,9 +261,13 @@
 				WPLogError(@"Error parsing JSON: %@", error);
 		}
 
-		NSArray *etagParts = [[[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"ETag"] componentsSeparatedByString:@"_"];
+		NSString *etagValue = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"ETag"];
 
-		self.uid = etagParts[0];
+		if (etagValue != nil) {
+			NSArray *etagParts = [etagValue componentsSeparatedByString:@"_"];
+
+			self.uid = etagParts[0];
+		}
 	}
 }
 

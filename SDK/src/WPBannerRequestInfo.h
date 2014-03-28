@@ -39,16 +39,17 @@
 	WPGender     _gender;
 	NSInteger    _age;
     NSString     *_login;
-    
+
     CLLocation   *_location;
+	NSString     *_uid;
 }
 
 @property (nonatomic, assign) NSInteger  applicationId;
 @property (nonatomic, assign) WPGender   gender;
 @property (nonatomic, assign) NSInteger  age;
-@property (nonatomic, readonly) NSString *pageId;
 @property (nonatomic, retain) NSString   *login;
 @property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, retain) NSString   *uid;
 
 - (id) initWithApplicationId:(NSInteger) applicationId;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;
