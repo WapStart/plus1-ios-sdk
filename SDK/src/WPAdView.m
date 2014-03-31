@@ -31,7 +31,6 @@
 
 #import "WPAdView.h"
 
-
 @interface WPAdView ()
 
 - (void)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL;
@@ -46,6 +45,7 @@
 @implementation WPAdView
 
 @synthesize delegate = _delegate;
+@synthesize openInApplication = _openInApplication;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -78,7 +78,9 @@
         if ([_webView respondsToSelector:@selector(setMediaPlaybackRequiresUserAction:)]) {
             [_webView setMediaPlaybackRequiresUserAction:NO];
         }
-        
+
+		_browsingController = [[WPAdViewBrowsingController alloc] initWithAdView:self];
+
         [self addSubview:_webView];
 	}
 
@@ -136,7 +138,17 @@
             [[UIApplication sharedApplication] openURL:url];
             result = NO;
         }
-    } else if (!_isLoading && navigationType == UIWebViewNavigationTypeLinkClicked) {
+	} else if (!_isLoading && _openInApplication && navigationType == UIWebViewNavigationTypeOther) {
+		BOOL iframe = ![request.URL isEqual:request.mainDocumentURL];
+		if (!iframe) {
+			[_browsingController openBrowserWithUrlString:[NSMutableString stringWithString:[url absoluteString]]
+											   enableBack:YES
+											enableForward:YES
+											enableRefresh:YES];
+		}
+
+		result = NO;
+	} else if (!_isLoading && navigationType == UIWebViewNavigationTypeLinkClicked) {
         [[UIApplication sharedApplication] openURL:url];
         result = NO;
     }

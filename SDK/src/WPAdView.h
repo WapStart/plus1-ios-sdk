@@ -30,6 +30,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "WPAdViewBrowsingController.h"
 
 @protocol WPAdViewDelegate;
 
@@ -38,10 +39,14 @@
 
 	UIWebView *_webView;
 
+	WPAdViewBrowsingController *_browsingController;
+
     BOOL _isLoading;
+	BOOL _openInApplication;
 }
 
 @property (nonatomic, assign) id<WPAdViewDelegate> delegate;
+@property (nonatomic, retain) BOOL openInApplication;
 
 - (void)loadAdWithHTMLString:(NSString *)html baseURL:(NSURL *)url;
 

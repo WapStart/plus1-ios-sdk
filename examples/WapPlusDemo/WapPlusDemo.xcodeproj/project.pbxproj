@@ -19,6 +19,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		CE09981E18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE09981D18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m */; };
 		CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */; };
 		CED8A0A015A60E9000F2AC06 /* MPAdBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A07A15A60E9000F2AC06 /* MPAdBrowserController.m */; };
 		CED8A0A115A60E9000F2AC06 /* MPAdBrowserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED8A07B15A60E9000F2AC06 /* MPAdBrowserController.xib */; };
@@ -69,6 +70,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* WapPlusDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WapPlusDemo_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WapPlusDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		CE09981C18E9A5FF0040CCA2 /* WPAdViewBrowsingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdViewBrowsingController.h; sourceTree = "<group>"; };
+		CE09981D18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdViewBrowsingController.m; sourceTree = "<group>"; };
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CED8A07915A60E9000F2AC06 /* MPAdBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAdBrowserController.h; sourceTree = "<group>"; };
 		CED8A07A15A60E9000F2AC06 /* MPAdBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAdBrowserController.m; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				CED8A08D15A60E9000F2AC06 /* MRAID.bundle */,
 				CED8A09215A60E9000F2AC06 /* WPAdView.h */,
 				CED8A09315A60E9000F2AC06 /* WPAdView.m */,
+				CE09981C18E9A5FF0040CCA2 /* WPAdViewBrowsingController.h */,
+				CE09981D18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m */,
 				CED8A09415A60E9000F2AC06 /* WPBannerInfoLoader.h */,
 				CED8A09515A60E9000F2AC06 /* WPBannerInfoLoader.m */,
 				CED8A09615A60E9000F2AC06 /* WPBannerRequestInfo.h */,
@@ -367,6 +372,7 @@
 				CED8A0B115A60E9000F2AC06 /* WPLocationManager.m in Sources */,
 				CED8A0B215A60E9000F2AC06 /* WPUtils.m in Sources */,
 				CEED750418CF507A00FD5ABF /* WPInitRequestLoader.m in Sources */,
+				CE09981E18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
