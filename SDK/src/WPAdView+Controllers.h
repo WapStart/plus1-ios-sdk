@@ -1,5 +1,5 @@
 /**
- * WPAdViewBrowsingController.h
+ * WPAdView+Controllers.h
  *
  * Copyright (c) 2014, Alexander Zaytsev <a.zaytsev@co.wapstart.ru>
  * All rights reserved.
@@ -29,20 +29,15 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
-#import "MPAdBrowserController.h"
+#import "WPAdView.h"
 
-@class WPAdView;
+@interface WPAdView (Controllers)
 
-@interface WPAdViewBrowsingController : NSObject <MPAdBrowserControllerDelegate> {
-	WPAdView *_view;
-	UIViewController *_viewControllerForPresentingModalView;
-}
-
-@property (nonatomic, assign) UIViewController *viewControllerForPresentingModalView;
-
-- (id)initWithAdView:(WPAdView *)adView;
-- (void)openBrowserWithUrlString:(NSString *)urlString enableBack:(BOOL)back
-                   enableForward:(BOOL)forward enableRefresh:(BOOL)refresh;
+// Delegate callback methods wrapped with -respondsToSelector: checks.
+- (void)adDidLoad;
+- (void)adDidFailToLoad;
+- (void)adDidPressed;
+- (void)adWillPresentModalView;
+- (void)adDidDismissModalView;
 
 @end

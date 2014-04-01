@@ -46,7 +46,7 @@
 }
 
 @property (nonatomic, assign) id<WPAdViewDelegate> delegate;
-@property (nonatomic, retain) BOOL openInApplication;
+@property (nonatomic, assign) BOOL openInApplication;
 
 - (void)loadAdWithHTMLString:(NSString *)html baseURL:(NSURL *)url;
 
@@ -66,5 +66,11 @@
 
 // Called when the ad was pressed.
 - (void)adDidPressed:(WPAdView *)adView;
+
+// Called when the ad is about to display modal content (thus taking over the screen).
+- (void)appShouldSuspendForAd:(WPAdView *)adView;
+
+// Called when the ad has dismissed any modal content (removing any on-screen takeovers).
+- (void)appShouldResumeFromAd:(WPAdView *)adView;
 
 @end

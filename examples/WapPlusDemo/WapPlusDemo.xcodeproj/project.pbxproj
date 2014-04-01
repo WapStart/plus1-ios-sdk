@@ -72,6 +72,7 @@
 		8D1107310486CEB800E47090 /* WapPlusDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WapPlusDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CE09981C18E9A5FF0040CCA2 /* WPAdViewBrowsingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdViewBrowsingController.h; sourceTree = "<group>"; };
 		CE09981D18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdViewBrowsingController.m; sourceTree = "<group>"; };
+		CE09981F18EAAAD80040CCA2 /* WPAdView+Controllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WPAdView+Controllers.h"; sourceTree = "<group>"; };
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CED8A07915A60E9000F2AC06 /* MPAdBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAdBrowserController.h; sourceTree = "<group>"; };
 		CED8A07A15A60E9000F2AC06 /* MPAdBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAdBrowserController.m; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 				CED8A07D15A60E9000F2AC06 /* MPTimer.m */,
 				CED8A07E15A60E9000F2AC06 /* MRAID */,
 				CED8A08D15A60E9000F2AC06 /* MRAID.bundle */,
+				CE09981F18EAAAD80040CCA2 /* WPAdView+Controllers.h */,
 				CED8A09215A60E9000F2AC06 /* WPAdView.h */,
 				CED8A09315A60E9000F2AC06 /* WPAdView.m */,
 				CE09981C18E9A5FF0040CCA2 /* WPAdViewBrowsingController.h */,

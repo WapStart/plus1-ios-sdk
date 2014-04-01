@@ -39,6 +39,9 @@
 // Delegate callback methods wrapped with -respondsToSelector: checks.
 - (void)adDidLoad;
 - (void)adDidFailToLoad;
+- (void)adDidPressed;
+- (void)adWillPresentModalView;
+- (void)adDidDismissModalView;
 
 @end
 
@@ -91,6 +94,7 @@
 	[_webView stopLoading];
     _webView.delegate = nil;
     [_webView release];
+	[_browsingController release];
     [super dealloc];
 }
 
@@ -193,6 +197,18 @@
     if ([self.delegate respondsToSelector:@selector(adDidPressed:)]) {
         [self.delegate adDidPressed:self];
     }
+}
+
+- (void)adWillPresentModalView {
+	if ([self.delegate respondsToSelector:@selector(appShouldSuspendForAd:)]) {
+		[self.delegate appShouldSuspendForAd:self];
+	}
+}
+
+- (void)adDidDismissModalView {
+	if ([self.delegate respondsToSelector:@selector(appShouldResumeFromAd:)]) {
+		[self.delegate appShouldResumeFromAd:self];
+	}
 }
 
 @end
