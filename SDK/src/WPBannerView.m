@@ -73,6 +73,7 @@
 @synthesize autoupdateTimeout = _autoupdateTimeout;
 @synthesize orientation = _orientation;
 @synthesize reinitTimeout = _reinitTimeout;
+@synthesize openInApplication = _openInApplication;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
@@ -85,6 +86,7 @@
 
 		_bannerRequestInfo = [requestInfo retain];
 		_adviewPool = [[NSMutableSet set] retain];
+		_prevValueDictionary = [[NSMutableDictionary alloc] init];
 
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -107,6 +109,8 @@
 		[self sendInitRequest];
 
 		self.reinitTimeout = DEFAULT_REINIT_TIMEOUT;
+
+		self.openInApplication = NO;
     }
 
     return self;
@@ -126,6 +130,8 @@
 	[_currentContentView release];
 
 	[_adviewPool release];
+
+	[_prevValueDictionary release];
 
     [super dealloc];
 }
@@ -466,20 +472,43 @@
 
 - (void) updateParameters:(NSDictionary *)sdkParameters
 {
-	for (NSString *key in [sdkParameters allKeys]) {
-		WPLogDebug(@"Update SDK parameter: %@ = %@", key, [sdkParameters valueForKey:key]);
+	// FIXME: dirty code
+	for (NSString *key in [sdkParameters allValues]) {
+		WPLogDebug(@"Found SDK parameter: %@ = %@", key, [sdkParameters valueForKey:key]);
 
 		if ([key isEqualToString:@"refreshDelay"]) {
-			self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_prevValueDictionary valueForKey:key] != nil)
+					self.autoupdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			} else {
+				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
+				self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
+			}
+		} else if ([key isEqualToString:@"reInitDelay"]) {
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_prevValueDictionary valueForKey:key] != nil)
+					self.reinitTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			} else {
+				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
+				self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
+			}
+		} else if ([key isEqualToString:@"openIn"]) {
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_prevValueDictionary valueForKey:key] != nil)
+					self.openInApplication = [[_prevValueDictionary valueForKey:key] boolValue];
+			} else {
+				[_prevValueDictionary setValue:[NSNumber numberWithBool:self.openInApplication] forKey:key];
+				self.openInApplication = [[sdkParameters valueForKey:key] isEqualToString:@"application"];
+			}
 		}
 
-		if ([key isEqualToString:@"reInitDelay"]) {
-			// FIXME XXX: backup last value
-			self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
-		}
-
-		// FIXME XXX: implement other setups
+		// FIXME: implement logic for refreshRetryNum
 	}
+}
+
+- (NSString*) getParameterValue:(NSDictionary *)sdkParameters byKey:(NSString*)key
+{
+	
 }
 
 #pragma mark Network
@@ -559,6 +588,7 @@
 	} else {
 		WPAdView *adView = [[WPAdView alloc] initWithFrame:viewFrame];
 		adView.delegate = self;
+		adView.openInApplication = self.openInApplication;
 		[adView loadAdWithHTMLString:html baseURL:nil];
 		[_adviewPool addObject:adView];
 	}

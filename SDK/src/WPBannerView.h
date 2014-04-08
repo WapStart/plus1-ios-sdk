@@ -72,6 +72,9 @@
 	NSString *_minimizedLabel;
 
     BOOL _disableAutoDetectLocation;
+
+	NSMutableDictionary *_prevValueDictionary;
+	BOOL _openInApplication;
 }
 
 @property (nonatomic, assign) BOOL showCloseButton;
@@ -83,6 +86,7 @@
 @property (nonatomic, assign) BOOL disableAutoDetectLocation;
 @property (nonatomic, assign) UIInterfaceOrientation orientation;
 @property (nonatomic, assign) CGFloat reinitTimeout;
+@property (nonatomic, assign) BOOL openInApplication;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 
