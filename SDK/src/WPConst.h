@@ -48,6 +48,7 @@
 #define SDK_VERSION @"2.2"
 
 #define SDK_PARAMETERS_HEADER @"X-Plus1-SDK-Parameters"
+#define SDK_ACTION_HEADER @"X-Plus1-SDK-Action"
 
 #define DEFAULT_REINIT_TIMEOUT 60
 

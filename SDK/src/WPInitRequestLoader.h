@@ -55,6 +55,7 @@ typedef enum
 	
 	CGRect				_containerRect;
 	NSDictionary		*_sdkParameters;
+	NSDictionary		*_sdkActions;
 	NSString			*_uid;
 }
 
@@ -62,6 +63,7 @@ typedef enum
 @property (nonatomic, assign) id<WPInitRequestLoaderDelegate> delegate;
 @property (nonatomic, assign) CGRect containerRect;
 @property (nonatomic, retain) NSDictionary *sdkParameters;
+@property (nonatomic, retain) NSDictionary *sdkActions;
 @property (nonatomic, retain) NSString *uid;
 
 - (id) initWithRequestInfo:(WPBannerRequestInfo *) requestInfo;

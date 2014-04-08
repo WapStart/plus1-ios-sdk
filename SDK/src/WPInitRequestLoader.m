@@ -34,12 +34,14 @@
 #import "WPLogging.h"
 #import "WPConst.h"
 
+// FIXME: refactor dublicated code of loaders
 @implementation WPInitRequestLoader
 
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
 @synthesize containerRect = _containerRect;
 @synthesize sdkParameters = _sdkParameters;
+@synthesize sdkActions = _sdkActions;
 @synthesize uid = _uid;
 
 - (id) init
@@ -209,6 +211,20 @@
 												  error:&error];
 
 			if (!self.sdkParameters)
+				WPLogError(@"Error parsing JSON: %@", error);
+		}
+
+		NSString *action = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_ACTION_HEADER];
+
+		if (action != nil) {
+			NSError *error;
+			
+			self.sdkActions =
+			[NSJSONSerialization JSONObjectWithData:[parameters dataUsingEncoding:NSUTF8StringEncoding]
+											options:0
+											  error:&error];
+			
+			if (!self.sdkActions)
 				WPLogError(@"Error parsing JSON: %@", error);
 		}
 	}

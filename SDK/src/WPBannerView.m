@@ -56,7 +56,11 @@
 
 - (void) sendInitRequest;
 
+- (void) openLink:(NSString*)url;
+
 - (void) updateParameters:(NSDictionary*)sdkParameters;
+
+- (void) checkAndDoActions:(NSDictionary*)sdkActions;
 
 + (CGRect) aspectFittedRect:(CGSize)imageSize max:(CGRect)maxRect;
 
@@ -473,7 +477,7 @@
 - (void) updateParameters:(NSDictionary *)sdkParameters
 {
 	// FIXME: dirty code
-	for (NSString *key in [sdkParameters allValues]) {
+	for (NSString *key in [sdkParameters allKeys]) {
 		WPLogDebug(@"Found SDK parameter: %@ = %@", key, [sdkParameters valueForKey:key]);
 
 		if ([key isEqualToString:@"refreshDelay"]) {
@@ -506,9 +510,30 @@
 	}
 }
 
-- (NSString*) getParameterValue:(NSDictionary *)sdkParameters byKey:(NSString*)key
+- (void) checkAndDoActions:(NSDictionary*)sdkActions
 {
-	
+	// FIXME: dirty code, add data checks
+	for (NSString *key in [sdkActions allKeys]) {
+		WPLogDebug(@"Found SDK action: %@ = %@", key, [sdkActions valueForKey:key]);
+
+		if ([key isEqualToString:@"openLink"]) {
+			[self openLink:[sdkActions valueForKey:key]];
+		}
+	}
+}
+
+- (void) openLink:(NSString*)url
+{
+	url = [url stringByReplacingOccurrencesOfString:@"%orientation%" withString:self.orientation];
+	url = [url stringByReplacingOccurrencesOfString:@"%reinitTimeout%" withString:[[NSNumber numberWithFloat:self.reinitTimeout] stringValue]];
+	url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:_bannerInfoLoader.uid];
+
+	NSURL *linkUrl = [NSURL URLWithString:url];
+
+	if ([[UIApplication sharedApplication] canOpenURL:linkUrl]) {
+		[[UIApplication sharedApplication] openURL:linkUrl];
+	} else
+		WPLogInfo(@"Can not open url:%@", url);
 }
 
 #pragma mark Network
@@ -557,6 +582,9 @@
 
 	if (loader.uid)
 		_bannerRequestInfo.uid = loader.uid;
+	
+	if (loader.sdkActions)
+		[self checkAndDoActions:loader.sdkActions];
 
 	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
@@ -618,6 +646,9 @@
 	if (loader.uid)
 		_bannerRequestInfo.uid = loader.uid;
 
+	if (loader.sdkActions)
+		[self checkAndDoActions:loader.sdkActions];
+		
 	[_initRequestLoader release], _initRequestLoader = nil;
 }
 
