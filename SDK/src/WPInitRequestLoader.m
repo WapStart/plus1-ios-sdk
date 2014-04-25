@@ -220,7 +220,7 @@
 			NSError *error;
 			
 			self.sdkActions =
-			[NSJSONSerialization JSONObjectWithData:[parameters dataUsingEncoding:NSUTF8StringEncoding]
+			[NSJSONSerialization JSONObjectWithData:[action dataUsingEncoding:NSUTF8StringEncoding]
 											options:0
 											  error:&error];
 			
