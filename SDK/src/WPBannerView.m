@@ -524,9 +524,14 @@
 
 - (void) openLink:(NSString*)url
 {
-	url = [url stringByReplacingOccurrencesOfString:@"%orientation%" withString:self.orientation];
-	url = [url stringByReplacingOccurrencesOfString:@"%reinitTimeout%" withString:[[NSNumber numberWithFloat:self.reinitTimeout] stringValue]];
-	url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:_bannerInfoLoader.uid];
+    if (self.orientation)
+        url = [url stringByReplacingOccurrencesOfString:@"%orientation%" withString:self.orientation];
+
+    if (self.reinitTimeout)
+        url = [url stringByReplacingOccurrencesOfString:@"%reinitTimeout%" withString:[[NSNumber numberWithFloat:self.reinitTimeout] stringValue]];
+
+    if (_bannerInfoLoader.uid)
+        url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:_bannerInfoLoader.uid];
 
 	NSURL *linkUrl = [NSURL URLWithString:url];
 
