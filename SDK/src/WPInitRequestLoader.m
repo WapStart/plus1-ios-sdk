@@ -220,9 +220,9 @@
 			NSError *error;
 			
 			self.sdkActions =
-			[NSJSONSerialization JSONObjectWithData:[action dataUsingEncoding:NSUTF8StringEncoding]
-											options:0
-											  error:&error];
+                [NSJSONSerialization JSONObjectWithData:[action dataUsingEncoding:NSUTF8StringEncoding]
+                                                options:0
+                                                  error:&error];
 			
 			if (!self.sdkActions)
 				WPLogError(@"Error parsing JSON: %@", error);
