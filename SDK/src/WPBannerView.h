@@ -30,6 +30,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Accounts/Accounts.h>
 #import "WPBannerInfoLoader.h"
 #import "WPInitRequestLoader.h"
 #import "WPLocationManager.h"
@@ -52,6 +53,10 @@
 	NSTimer *_autoupdateTimer;
 	CGFloat _reinitTimeout;
 	NSTimer *_reinitTimer;
+	CGFloat _facebookInfoUpdateTimeout;
+	NSTimer *_facebookInfoUpdateTimer;
+	CGFloat _twitterInfoUpdateTimeout;
+	NSTimer *_twitterInfoUpdateTimer;
 
 	UIInterfaceOrientation _orientation;
 	UIActivityIndicatorView *_loadingInfoIndicator;
@@ -86,6 +91,8 @@
 @property (nonatomic, assign) BOOL disableAutoDetectLocation;
 @property (nonatomic, assign) UIInterfaceOrientation orientation;
 @property (nonatomic, assign) CGFloat reinitTimeout;
+@property (nonatomic, assign) CGFloat facebookInfoUpdateTimeout;
+@property (nonatomic, assign) CGFloat twitterInfoUpdateTimeout;
 @property (nonatomic, assign) BOOL openInApplication;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;

@@ -44,13 +44,15 @@
 
 #define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
 
-#define ROTATOR_URL @"http://ro.p824.plus1.oemtest.test"
+#define ROTATOR_URL @"http://ro.plus1.wapstart.ru"
 #define SDK_VERSION @"2.2"
 
 #define SDK_PARAMETERS_HEADER @"X-Plus1-SDK-Parameters"
 #define SDK_ACTION_HEADER @"X-Plus1-SDK-Action"
 
-#define DEFAULT_REINIT_TIMEOUT 60
+#define DEFAULT_REINIT_TIMEOUT 3600
+#define DEFAULT_FACEBOOK_INFO_UPDATE_TIMEOUT 60
+#define DEFAULT_TWITTER_INFO_UPDATE_TIMEOUT 60
 
 #define WPSessionKey @"WPClientSessionId"
 

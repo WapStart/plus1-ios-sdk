@@ -20,6 +20,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		CE09981E18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE09981D18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m */; };
+		CE36BA35192CF9F5009749FE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE36BA34192CF9F5009749FE /* Accounts.framework */; };
 		CE6C8CEA13C597F400EC98B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */; };
 		CED8A0A015A60E9000F2AC06 /* MPAdBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8A07A15A60E9000F2AC06 /* MPAdBrowserController.m */; };
 		CED8A0A115A60E9000F2AC06 /* MPAdBrowserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED8A07B15A60E9000F2AC06 /* MPAdBrowserController.xib */; };
@@ -73,6 +74,7 @@
 		CE09981C18E9A5FF0040CCA2 /* WPAdViewBrowsingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAdViewBrowsingController.h; sourceTree = "<group>"; };
 		CE09981D18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAdViewBrowsingController.m; sourceTree = "<group>"; };
 		CE09981F18EAAAD80040CCA2 /* WPAdView+Controllers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WPAdView+Controllers.h"; sourceTree = "<group>"; };
+		CE36BA34192CF9F5009749FE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		CE6C8CE913C597F400EC98B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
 		CED8A07915A60E9000F2AC06 /* MPAdBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAdBrowserController.h; sourceTree = "<group>"; };
 		CED8A07A15A60E9000F2AC06 /* MPAdBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAdBrowserController.m; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE36BA35192CF9F5009749FE /* Accounts.framework in Frameworks */,
 				CEF6BA54184E568600331A90 /* Security.framework in Frameworks */,
 				CEEF2EFB18155FEC00143221 /* AdSupport.framework in Frameworks */,
 				E750B7F3174E6C7E0083BFE9 /* SystemConfiguration.framework in Frameworks */,
@@ -198,6 +201,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE36BA34192CF9F5009749FE /* Accounts.framework */,
 				CEF6BA53184E568500331A90 /* Security.framework */,
 				CEEF2EFA18155FEC00143221 /* AdSupport.framework */,
 				E750B7F2174E6C7E0083BFE9 /* SystemConfiguration.framework */,

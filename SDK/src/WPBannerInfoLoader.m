@@ -182,7 +182,7 @@
 	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
 
 	if (advertisingId != nil)
-		[bodyString appendFormat:@"&advertising-identifier=%@", [WPUtils sha1Hash:advertisingId]];
+		[bodyString appendFormat:@"&apple-advertising-id=%@", advertisingId];
 
 	[bodyString appendFormat:@"&display-metrics=%@", [self getDisplayMetrics]];
 

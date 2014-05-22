@@ -40,6 +40,8 @@
 @synthesize login = _login;
 @synthesize location = _location;
 @synthesize uid = _uid;
+@synthesize facebookUserHash = _facebookUserHash;
+@synthesize twitterUserHash = _twitterUserHash;
 
 - (id) initWithApplicationId:(NSInteger) applicationId
 {
@@ -60,6 +62,7 @@
 		self.gender = gender;
         self.age = 0;
 	}
+
 	return self;
 }
 

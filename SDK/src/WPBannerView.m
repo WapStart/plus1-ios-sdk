@@ -46,6 +46,8 @@
 - (void) stopAutoupdateTimer;
 
 - (void) setReinitTimeout:(CGFloat)timeout;
+- (void) setFacebookInfoUpdateTimeout:(CGFloat)timeout;
+- (void) setTwitterInfoUpdateTimeout:(CGFloat)timeout;
 
 - (void) cleanCurrentView;
 - (void) updateContentFrame;
@@ -55,6 +57,8 @@
 - (void) updateXPos;
 
 - (void) sendInitRequest;
+- (void) updateFacebookUserInfo;
+- (void) updateTwitterUserInfo;
 
 - (void) openLink:(NSString*)url;
 
@@ -77,6 +81,8 @@
 @synthesize autoupdateTimeout = _autoupdateTimeout;
 @synthesize orientation = _orientation;
 @synthesize reinitTimeout = _reinitTimeout;
+@synthesize facebookInfoUpdateTimeout = _facebookInfoUpdateTimeout;
+@synthesize twitterInfoUpdateTimeout = _twitterInfoUpdateTimeout;
 @synthesize openInApplication = _openInApplication;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
@@ -110,11 +116,26 @@
 		self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
 		self.hidden = true;
 
+		[self updateFacebookUserInfo];
+		[self updateTwitterUserInfo];
 		[self sendInitRequest];
 
 		self.reinitTimeout = DEFAULT_REINIT_TIMEOUT;
+		self.facebookInfoUpdateTimeout = DEFAULT_FACEBOOK_INFO_UPDATE_TIMEOUT;
+		self.twitterInfoUpdateTimeout = DEFAULT_TWITTER_INFO_UPDATE_TIMEOUT;
 
 		self.openInApplication = NO;
+
+		/*ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+		ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+
+		[accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error){
+			if (granted && !error) {
+				WPLogDebug(@"access granted");
+			} else {
+				WPLogDebug(@"access NOT granted or error accurs");
+			}
+		}];*/
     }
 
     return self;
@@ -285,6 +306,36 @@
 		_reinitTimer = [NSTimer timerWithTimeInterval:_reinitTimeout target:self selector:@selector(sendInitRequest) userInfo:nil repeats:YES];
 
 		[[NSRunLoop currentRunLoop] addTimer:_reinitTimer forMode:NSDefaultRunLoopMode];
+	}
+}
+
+- (void) setFacebookInfoUpdateTimeout:(CGFloat)timeout
+{
+	_facebookInfoUpdateTimeout = timeout;
+	
+	if (_facebookInfoUpdateTimer != nil) {
+		[_facebookInfoUpdateTimer invalidate], _facebookInfoUpdateTimer = nil;
+	}
+
+	if (_facebookInfoUpdateTimeout > 0) {
+		_facebookInfoUpdateTimer = [NSTimer timerWithTimeInterval:_facebookInfoUpdateTimeout target:self selector:@selector(updateFacebookUserInfo) userInfo:nil repeats:YES];
+
+		[[NSRunLoop currentRunLoop] addTimer:_facebookInfoUpdateTimer forMode:NSDefaultRunLoopMode];
+	}
+}
+
+- (void) setTwitterInfoUpdateTimeout:(CGFloat)timeout
+{
+	_twitterInfoUpdateTimeout = timeout;
+	
+	if (_twitterInfoUpdateTimer != nil) {
+		[_twitterInfoUpdateTimer invalidate], _twitterInfoUpdateTimer = nil;
+	}
+
+	if (_twitterInfoUpdateTimeout > 0) {
+		_twitterInfoUpdateTimer = [NSTimer timerWithTimeInterval:_twitterInfoUpdateTimeout target:self selector:@selector(updateTwitterUserInfo) userInfo:nil repeats:YES];
+
+		[[NSRunLoop currentRunLoop] addTimer:_twitterInfoUpdateTimer forMode:NSDefaultRunLoopMode];
 	}
 }
 
@@ -571,6 +622,72 @@
 	if (![_initRequestLoader start]) {
 		[_initRequestLoader release], _initRequestLoader = nil;
 	}
+}
+
+- (void) updateFacebookUserInfo
+{
+	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+	ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:withObject:ACAccountTypeIdentifierFacebook];
+	
+	NSArray *facebookAccounts = [accountStore accountsWithAccountType:accountType];
+	
+	WPLogDebug(@"Total facebook accounts available: %d", facebookAccounts.count);
+	
+	if (facebookAccounts.count > 0) {
+		ACAccount *account = [facebookAccounts lastObject];
+		
+		_bannerRequestInfo.facebookUserHash = [[[account valueForKey:@"properties"] valueForKey:@"uid"] stringValue];
+		WPLogDebug(@"Retrieve facebook user id by Accounts.framework: %@", _bannerRequestInfo.facebookUserHash);
+	}
+
+	[accountStore release];
+
+	if (_bannerRequestInfo.facebookUserHash != nil) {
+		Class requestCls = NSClassFromString(@"FBRequest");
+
+		if (requestCls) {
+			[[requestCls performSelector:@selector(requestForMe)] performSelector:@selector(startWithCompletionHandler) withObject:
+				^(id *connection, NSDictionary<NSObject> *aUser, NSError *error) {
+					if (!error) {
+						//FIXME XXX: rm debug
+						NSLog(@"Facebook user id=%@", [aUser objectForKey:@"id"]);
+
+						dispatch_sync(dispatch_get_main_queue(), ^{
+							_bannerRequestInfo.facebookUserHash = [WPUtils sha1Hash:[aUser objectForKey:@"id"]];
+
+							WPLogDebug(@"Retrieve facebook user id by Facebook sdk: %@", _bannerRequestInfo.facebookUserHash);
+						});
+					} else {
+						WPLogDebug(@"User is not logged in with Facebook sdk");
+					}
+				}
+			];
+		} else {
+			WPLogDebug(@"Application is not using Facebook sdk");
+		}
+	}
+}
+
+- (void) updateTwitterUserInfo
+{
+	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+	ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+
+	NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
+
+	WPLogDebug(@"Total twitter accounts available: %d", twitterAccounts.count);
+
+	ACAccount *account = nil;
+
+	if (twitterAccounts.count > 0) {
+		account = [twitterAccounts lastObject];
+
+		_bannerRequestInfo.twitterUserHash = [[[account valueForKey:@"properties"] valueForKey:@"user_id"] stringValue];
+		
+		WPLogDebug(@"Retrieve twitter user id by Accounts.framework: %@", _bannerRequestInfo.twitterUserHash);
+	}
+
+	[accountStore release];
 }
 
 #pragma mark Network delegates

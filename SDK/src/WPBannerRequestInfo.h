@@ -35,13 +35,15 @@
 
 @interface WPBannerRequestInfo : NSObject
 {
-	NSInteger    _applicationId;
-	WPGender     _gender;
-	NSInteger    _age;
-    NSString     *_login;
+	NSInteger	_applicationId;
+	WPGender	_gender;
+	NSInteger	_age;
+    NSString	*_login;
 
-    CLLocation   *_location;
-	NSString     *_uid;
+    CLLocation	*_location;
+	NSString	*_uid;
+	NSString	*_facebookUserHash;
+	NSString	*_twitterUserHash;
 }
 
 @property (nonatomic, assign) NSInteger  applicationId;
@@ -50,6 +52,8 @@
 @property (nonatomic, retain) NSString   *login;
 @property (nonatomic, retain) CLLocation *location;
 @property (nonatomic, retain) NSString   *uid;
+@property (nonatomic, retain) NSString   *facebookUserHash;
+@property (nonatomic, retain) NSString   *twitterUserHash;
 
 - (id) initWithApplicationId:(NSInteger) applicationId;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;
