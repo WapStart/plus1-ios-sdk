@@ -159,7 +159,16 @@
 	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
 
 	if (advertisingId != nil)
-		[bodyString appendFormat:@"&apple-advertising-id=%@", [WPUtils sha1Hash:advertisingId]];
+		[bodyString appendFormat:@"&apple-advertising-id=%@", advertisingId];
+
+	if ([WPUtils isLimitAdTrackingEnabled])
+		[bodyString appendString:@"&limit-ad-tracking-enabled=1"];
+
+	if (_bannerRequestInfo.facebookUserHash != nil)
+		[bodyString appendFormat:@"&facebook-user-id=%@", _bannerRequestInfo.facebookUserHash];
+
+	if (_bannerRequestInfo.twitterUserHash != nil)
+		[bodyString appendFormat:@"&twitter-user-id=%@", _bannerRequestInfo.twitterUserHash];
 
 	[bodyString appendFormat:@"&display-metrics=%@", [self getDisplayMetrics]];
 

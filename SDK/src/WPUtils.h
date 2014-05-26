@@ -43,6 +43,7 @@
 + (NSString*) getUserAgent;
 + (NSString*) getOriginalUserAgent;
 + (NSDictionary*) getDictionaryFromQueryString:(NSString*) query;
++ (BOOL) isLimitAdTrackingEnabled;
 + (NSString*) getAdvertisingIdentifier;
 + (NSString*) getDeviceId;
 

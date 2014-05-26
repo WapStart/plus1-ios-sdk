@@ -138,6 +138,13 @@
 	return queryDict;
 }
 
++ (BOOL) isLimitAdTrackingEnabled
+{
+	ASIdentifierManager *manager = [ASIdentifierManager sharedManager];
+
+	return !manager.advertisingTrackingEnabled;
+}
+
 + (NSString*) getAdvertisingIdentifier
 {
 	ASIdentifierManager *manager = [ASIdentifierManager sharedManager];
