@@ -126,6 +126,7 @@
 
 		self.openInApplication = NO;
 
+		// FIXME XXX: remove debug
 		/*ACAccountStore *accountStore = [[ACAccountStore alloc] init];
 		ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 
@@ -626,23 +627,29 @@
 
 - (void) updateFacebookUserInfo
 {
-	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-	ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:withObject:ACAccountTypeIdentifierFacebook];
-	
-	NSArray *facebookAccounts = [accountStore accountsWithAccountType:accountType];
-	
-	WPLogDebug(@"Total facebook accounts available: %d", facebookAccounts.count);
-	
-	if (facebookAccounts.count > 0) {
-		ACAccount *account = [facebookAccounts lastObject];
-		
-		_bannerRequestInfo.facebookUserHash = [[[account valueForKey:@"properties"] valueForKey:@"uid"] stringValue];
-		WPLogDebug(@"Retrieve facebook user id by Accounts.framework: %@", _bannerRequestInfo.facebookUserHash);
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
+		ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+		ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+		NSArray *facebookAccounts = [accountStore accountsWithAccountType:accountType];
+
+		WPLogDebug(@"Total facebook accounts available: %d", facebookAccounts.count);
+
+		if (facebookAccounts.count > 0) {
+			ACAccount *account = [facebookAccounts lastObject];
+
+			_bannerRequestInfo.facebookUserHash = [WPUtils sha1Hash:[[[account valueForKey:@"properties"] valueForKey:@"uid"] stringValue]];
+			WPLogDebug(@"Retrieve facebook user id by Accounts.framework: %@", _bannerRequestInfo.facebookUserHash);
+		}
+
+		[accountStore release];
+	} else {
+		WPLogDebug(@"Facebook accounts.framework info is not available on iOS %@", [[UIDevice currentDevice] systemVersion]);
 	}
 
-	[accountStore release];
-
-	if (_bannerRequestInfo.facebookUserHash != nil) {
+	if (
+		[[[UIDevice currentDevice] systemVersion] floatValue] < 6.0
+		|| _bannerRequestInfo.facebookUserHash == nil
+	) {
 		Class requestCls = NSClassFromString(@"FBRequest");
 
 		if (requestCls) {
@@ -670,24 +677,28 @@
 
 - (void) updateTwitterUserInfo
 {
-	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-	ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
+		ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+		ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
 
-	NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
+		NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
 
-	WPLogDebug(@"Total twitter accounts available: %d", twitterAccounts.count);
+		WPLogDebug(@"Total twitter accounts available: %d", twitterAccounts.count);
 
-	ACAccount *account = nil;
+		ACAccount *account = nil;
 
-	if (twitterAccounts.count > 0) {
-		account = [twitterAccounts lastObject];
+		if (twitterAccounts.count > 0) {
+			account = [twitterAccounts lastObject];
 
-		_bannerRequestInfo.twitterUserHash = [[[account valueForKey:@"properties"] valueForKey:@"user_id"] stringValue];
-		
-		WPLogDebug(@"Retrieve twitter user id by Accounts.framework: %@", _bannerRequestInfo.twitterUserHash);
+			_bannerRequestInfo.twitterUserHash = [WPUtils sha1Hash:[[account valueForKey:@"properties"] valueForKey:@"user_id"]];
+
+			WPLogDebug(@"Retrieve twitter user id by Accounts.framework: %@", _bannerRequestInfo.twitterUserHash);
+		}
+
+		[accountStore release];
+	} else {
+		WPLogDebug(@"Twitter accounts.framework info is not available on iOS %@", [[UIDevice currentDevice] systemVersion]);
 	}
-
-	[accountStore release];
 }
 
 #pragma mark Network delegates

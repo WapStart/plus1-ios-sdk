@@ -286,7 +286,6 @@
 	}
 }
 
-
 - (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
 	if (connection != _urlConnection)
@@ -294,7 +293,6 @@
 
 	[self.data appendData:data];
 }
-
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {

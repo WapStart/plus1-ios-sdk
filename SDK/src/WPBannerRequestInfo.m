@@ -51,6 +51,7 @@
 		self.gender = WPGenderUnknown;
 		self.age = 0;
 	}
+
 	return self;
 }
 
@@ -74,6 +75,7 @@
 		self.gender = WPGenderUnknown;
 		self.age = age;
 	}
+
 	return self;
 }
 
@@ -85,6 +87,7 @@
 		self.gender = gender;
 		self.age = age;
     }
+
 	return self;
 }
 
