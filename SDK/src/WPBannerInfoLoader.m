@@ -48,6 +48,7 @@
 
 @synthesize bannerRequestInfo = _bannerRequestInfo;
 @synthesize delegate = _delegate;
+@synthesize statusCode = _statusCode;
 @synthesize data = _data;
 @synthesize adType = _adType;
 @synthesize containerRect = _containerRect;
@@ -207,10 +208,8 @@
 	[self.data setLength:0];
 	
 	if ([response respondsToSelector:@selector(allHeaderFields)]) {
-		NSString *adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
-		WPLogDebug(@"X-Adtype received: %@", adType);
-
-		self.adType = adType;
+		self.statusCode = [(NSHTTPURLResponse*)response statusCode];
+		self.adType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"X-Adtype"];
 
 		NSString *parameters = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_PARAMETERS_HEADER];
 

@@ -739,12 +739,14 @@
 	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
 	if (
-		[HTML_NO_BANNER isEqualToString:html]
+		STATUS_CODE_NO_BANNER == loader.statusCode
 		|| (
 			![@"mraid" isEqualToString:loader.adType]
 			&& ![@"plus1" isEqualToString:loader.adType]
 		)
 	) {
+		WPLogDebug(@"No content to display");
+
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
 
 		if ([_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)])

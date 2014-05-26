@@ -55,6 +55,7 @@ typedef enum
 	NSString			*_originalUserAgent;
 	NSString			*_currentETag;
 
+	NSInteger			_statusCode;
 	NSMutableData		*_data;
 	NSString			*_adType;
 	CGRect				_containerRect;
@@ -64,6 +65,7 @@ typedef enum
 }
 
 @property (nonatomic, retain) WPBannerRequestInfo  *bannerRequestInfo;
+@property (nonatomic, assign) NSInteger statusCode;
 @property (nonatomic, retain) NSMutableData *data;
 @property (nonatomic, retain) NSString *adType;
 @property (nonatomic, assign) id<WPBannerInfoLoaderDelegate> delegate;

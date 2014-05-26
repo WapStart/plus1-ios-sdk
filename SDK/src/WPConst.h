@@ -42,7 +42,7 @@
 #define MINIMIZED_BANNER_HEIGHT 20
 #define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
 
-#define HTML_NO_BANNER @"<!-- i4jgij4pfd4ssd -->"
+#define STATUS_CODE_NO_BANNER 204
 
 #define ROTATOR_URL @"http://ro.plus1.wapstart.ru"
 #define SDK_VERSION @"2.2"
