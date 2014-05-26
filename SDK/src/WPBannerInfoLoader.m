@@ -256,6 +256,9 @@
 	if (connection != _urlConnection)
 		return;
 
+	//FIXME XXX: remove debug
+	WPLogDebug(@"content: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
 	[self.data appendData:data];
 }
 

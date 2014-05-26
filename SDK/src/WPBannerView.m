@@ -605,7 +605,7 @@
 	if ([[UIApplication sharedApplication] canOpenURL:linkUrl]) {
 		[[UIApplication sharedApplication] openURL:linkUrl];
 	} else
-		WPLogInfo(@"Can not open url:%@", url);
+		WPLogInfo(@"Can not open url: %@", url);
 }
 
 #pragma mark Network
@@ -741,7 +741,8 @@
 	if (
 		STATUS_CODE_NO_BANNER == loader.statusCode
 		|| (
-			![@"mraid" isEqualToString:loader.adType]
+			loader.adType != nil // FIXME: must exists in API 3
+			&& ![@"mraid" isEqualToString:loader.adType]
 			&& ![@"plus1" isEqualToString:loader.adType]
 		)
 	) {
