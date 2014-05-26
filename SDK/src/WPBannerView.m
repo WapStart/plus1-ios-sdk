@@ -539,7 +539,7 @@
 				if ([_prevValueDictionary valueForKey:key] != nil)
 					self.autoupdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
+				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.autoupdateTimeout] forKey:key];
 				self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"reInitDelay"]) {
@@ -549,6 +549,22 @@
 			} else {
 				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
 				self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
+			}
+		} else if ([key isEqualToString:@"facebookInfoDelay"]) {
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_prevValueDictionary valueForKey:key] != nil)
+					self.facebookInfoUpdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			} else {
+				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] forKey:key];
+				self.facebookInfoUpdateTimeout = [[sdkParameters valueForKey:key] floatValue];
+			}
+		} else if ([key isEqualToString:@"twitterInfoDelay"]) {
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_prevValueDictionary valueForKey:key] != nil)
+					self.twitterInfoUpdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			} else {
+				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] forKey:key];
+				self.twitterInfoUpdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"openIn"]) {
 			if ([[sdkParameters valueForKey:key] intValue] == -1) {
@@ -578,8 +594,10 @@
 
 - (void) openLink:(NSString*)url
 {
-	url = [url stringByReplacingOccurrencesOfString:@"%orientation%" withString:self.orientation];
-	url = [url stringByReplacingOccurrencesOfString:@"%reinitTimeout%" withString:[[NSNumber numberWithFloat:self.reinitTimeout] stringValue]];
+	url = [url stringByReplacingOccurrencesOfString:@"%reinitDelay%" withString:[[NSNumber numberWithFloat:self.reinitTimeout] stringValue]];
+	url = [url stringByReplacingOccurrencesOfString:@"%bannerRefreshInterval%" withString:[[NSNumber numberWithFloat:self.autoupdateTimeout] stringValue]];
+	url = [url stringByReplacingOccurrencesOfString:@"%facebookInfoRefreshInterval%" withString:[[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] stringValue]];
+	url = [url stringByReplacingOccurrencesOfString:@"%twitterInfoRefreshInterval%" withString:[[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] stringValue]];
 	url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:_bannerInfoLoader.uid];
 
 	NSURL *linkUrl = [NSURL URLWithString:url];
