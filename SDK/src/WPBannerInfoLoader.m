@@ -36,11 +36,10 @@
 
 @interface WPBannerInfoLoader (PrivateMethods)
 
-- (void) initializeClientSessionId;
 - (NSURL *) requestUrl;
-- (NSString *) getDisplayMetrics;
 - (NSString *) getUserAgent;
 - (NSString *) getOriginalUserAgent;
+- (NSString *) getCurrentETag;
 
 @end
 
@@ -61,11 +60,10 @@
 	if ((self = [super init]) != nil)
 	{
 		_bannerRequestInfo = nil;
-		
-		[self initializeClientSessionId];
 
 		self.data = [NSMutableData data];
 	}
+
 	return self;
 }
 
@@ -75,45 +73,23 @@
 	{
 		_bannerRequestInfo = [requestInfo retain];
 
-		[self initializeClientSessionId];
-
 		self.data = [NSMutableData data];
 	}
+
 	return self;
 }
 
 - (void) dealloc
 {
 	[self cancel];
-	
+
 	[_bannerRequestInfo release];
-	[_clientSessionId release];
 	[_data release];
 	[_adType release];
 	[_sdkParameters release];
 	[_uid release];
 
 	[super dealloc];
-}
-
-- (void) initializeClientSessionId
-{
-	if (_clientSessionId != nil)
-		return;
-	
-	_clientSessionId = [[[NSUserDefaults standardUserDefaults] objectForKey:WPSessionKey] retain];
-	
-	if (_clientSessionId != nil)
-		return;
-
-	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
-
-	_clientSessionId =
-		advertisingId != nil
-			? [[WPUtils sha1Hash:advertisingId] retain]
-			: [[WPUtils sha1Hash:[WPUtils getDeviceId]] retain];
-
-	[[NSUserDefaults standardUserDefaults] setObject:_clientSessionId forKey:WPSessionKey];
 }
 
 - (NSURL *) requestUrl
@@ -125,12 +101,6 @@
 	WPLogDebug(@"HTML request url: %@", url);
 
 	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-}
-
-- (NSString *) getDisplayMetrics 
-{
-	CGRect screenRect = [WPUtils getApplicationFrame];
-	return [NSString stringWithFormat:@"%.0fx%.0f", screenRect.size.width, screenRect.size.height];
 }
 
 - (NSString *) getUserAgent
@@ -149,6 +119,14 @@
 	return _originalUserAgent;
 }
 
+- (NSString *) getCurrentETag
+{
+	if (_currentETag == nil && _bannerRequestInfo.uid != nil)
+		_currentETag = [_bannerRequestInfo.uid stringByAppendingString:@"_0"];
+	
+	return _currentETag;
+}
+
 - (BOOL) start
 {
 	if (_bannerRequestInfo == nil || _urlConnection != nil)
@@ -160,17 +138,8 @@
 							timeoutInterval:60];
 
 	NSMutableString *bodyString =
-		[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
+	[NSMutableString stringWithFormat:@"platform=%@&version=%@&sdkver=%@", @"iOS", [[UIDevice currentDevice] systemVersion], SDK_VERSION];
 
-	if (_bannerRequestInfo.gender != WPGenderUnknown)
-		[bodyString appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
-	
-	if (_bannerRequestInfo.age > 0)
-		[bodyString appendFormat:@"&age=%d", _bannerRequestInfo.age];
-    
-    if (_bannerRequestInfo.login != nil)
-        [bodyString appendFormat:@"&login=%@", _bannerRequestInfo.login];
-	
 	// FIXME: change format
 	if (_bannerRequestInfo.location != nil) {
         [bodyString appendFormat:@"&location=%.8f;%.8f",
@@ -178,13 +147,6 @@
 			_bannerRequestInfo.location.coordinate.longitude
 		];
 	}
-
-	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
-
-	if (advertisingId != nil)
-		[bodyString appendFormat:@"&apple-advertising-id=%@", advertisingId];
-
-	[bodyString appendFormat:@"&display-metrics=%@", [self getDisplayMetrics]];
 
 	if (!CGRectIsNull(self.containerRect))
 		[bodyString appendFormat:@"&container-metrics=%@", [NSString stringWithFormat:@"%dx%d", BANNER_WIDTH, BANNER_HEIGHT]];
@@ -204,6 +166,8 @@
 	[postRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
 		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
+	if ([self getCurrentETag] != nil)
+		[postRequest setValue:[self getCurrentETag] forHTTPHeaderField:@"If-None-Match"];
 
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:postRequest
 													 delegate:self 
@@ -279,9 +243,11 @@
 		NSString *etagValue = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"ETag"];
 
 		if (etagValue != nil) {
+			_currentETag = etagValue;
 			NSArray *etagParts = [etagValue componentsSeparatedByString:@"_"];
+			[etagParts delete:[etagParts lastObject]]; // NOTE: remove request counter
 
-			self.uid = etagParts[0];
+			self.uid = [etagParts componentsJoinedByString:@"_"];
 		}
 	}
 }

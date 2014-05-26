@@ -34,6 +34,15 @@
 #import "WPLogging.h"
 #import "WPConst.h"
 
+@interface WPInitRequestLoader (PrivateMethods)
+
+- (NSURL *) requestUrl;
+- (NSString *) getUserAgent;
+- (NSString *) getOriginalUserAgent;
+- (NSString *) getCurrentETag;
+
+@end
+
 // FIXME: refactor dublicated code of loaders
 @implementation WPInitRequestLoader
 
@@ -75,7 +84,10 @@
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
 
-	[url appendFormat:@"/v3/%d.init?uid=%@", _bannerRequestInfo.applicationId, _bannerRequestInfo.uid];
+	[url appendFormat:@"/v3/%d.init", _bannerRequestInfo.applicationId];
+
+	if (_bannerRequestInfo.uid != nil)
+		[url appendFormat:@"?uid=%@", _bannerRequestInfo.uid];
 
 	WPLogDebug(@"INIT request url: %@", url);
 
@@ -104,6 +116,14 @@
 	return _originalUserAgent;
 }
 
+- (NSString *) getCurrentETag
+{
+	if (_currentETag == nil && _bannerRequestInfo.uid != nil)
+		_currentETag = [_bannerRequestInfo.uid stringByAppendingString:@"_0"];
+
+	return _currentETag;
+}
+
 - (BOOL) start
 {
 	if (_bannerRequestInfo == nil || _urlConnection != nil)
@@ -117,7 +137,7 @@
 	// FIXME: refactor dublicated code
 
 	NSMutableString *bodyString =
-		[NSMutableString stringWithFormat:@"platform=%@&version=%@", @"iOS", [[UIDevice currentDevice] systemVersion]];
+		[NSMutableString stringWithFormat:@"platform=%@&version=%@&sdkver=%@", @"iOS", [[UIDevice currentDevice] systemVersion], SDK_VERSION];
 
 	if (_bannerRequestInfo.gender != WPGenderUnknown)
 		[bodyString appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
@@ -139,7 +159,7 @@
 	NSString *advertisingId = [WPUtils getAdvertisingIdentifier];
 
 	if (advertisingId != nil)
-		[bodyString appendFormat:@"&advertising-identifier=%@", [WPUtils sha1Hash:advertisingId]];
+		[bodyString appendFormat:@"&apple-advertising-id=%@", [WPUtils sha1Hash:advertisingId]];
 
 	[bodyString appendFormat:@"&display-metrics=%@", [self getDisplayMetrics]];
 
@@ -153,7 +173,6 @@
 	];
 
 	[bodyString appendFormat:@"&preferred-locale=%@", [[NSLocale currentLocale] localeIdentifier]];
-	[bodyString appendFormat:@"&sdkver=%@", SDK_VERSION];
  
 	NSData *postData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -165,7 +184,9 @@
 	[postRequest setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
 	if ([self getOriginalUserAgent] != nil)
 		[postRequest setValue:[self getOriginalUserAgent] forHTTPHeaderField:@"x-original-user-agent"];
-	
+	if ([self getCurrentETag] != nil)
+		[postRequest setValue:[self getCurrentETag] forHTTPHeaderField:@"If-None-Match"];
+
 	_urlConnection = [[NSURLConnection alloc] initWithRequest:postRequest
 													 delegate:self
 											 startImmediately:YES];
@@ -227,6 +248,16 @@
 			if (!self.sdkActions)
 				WPLogError(@"Error parsing JSON: %@", error);
 		}
+
+		NSString *etagValue = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"ETag"];
+		
+		if (etagValue != nil) {
+			_currentETag = etagValue;
+			NSArray *etagParts = [etagValue componentsSeparatedByString:@"_"];
+			[etagParts delete:[etagParts lastObject]]; // NOTE: remove request counter
+			
+			self.uid = [etagParts componentsJoinedByString:@"_"];
+		}
 	}
 }
 
@@ -249,7 +280,7 @@
 		[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeTimeout];
 	else
 		[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeUnknown];
-	
+
 	[_urlConnection release], _urlConnection = nil;
 }
 
@@ -257,9 +288,9 @@
 {
 	if (connection != _urlConnection)
 		return;
-	
+
 	[_delegate initRequestLoaderDidFinish:self];
-	
+
 	[_urlConnection release], _urlConnection = nil;
 }
 

@@ -52,6 +52,7 @@ typedef enum
 
 	NSString			*_userAgent;
 	NSString			*_originalUserAgent;
+	NSString			*_currentETag;
 	
 	CGRect				_containerRect;
 	NSDictionary		*_sdkParameters;

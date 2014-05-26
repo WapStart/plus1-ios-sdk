@@ -116,6 +116,8 @@
 		self.frame = CGRectMake(BANNER_X_POS, 0, BANNER_WIDTH, [self bannerHeight]);
 		self.hidden = true;
 
+		_bannerRequestInfo.uid = [[NSUserDefaults standardUserDefaults] objectForKey:WPSessionKey];
+
 		[self updateFacebookUserInfo];
 		[self updateTwitterUserInfo];
 		[self sendInitRequest];
@@ -592,7 +594,7 @@
 
 - (void) reloadBanner
 {
-	if (self.isMinimized || _isExpanded)
+	if (self.isMinimized || _isExpanded || _bannerRequestInfo.uid == nil)
 		return;
 
 	[_bannerInfoLoader cancel];
@@ -708,9 +710,11 @@
 	if (loader.sdkParameters)
 		[self updateParameters:loader.sdkParameters];
 
-	if (loader.uid)
+	if (loader.uid) {
 		_bannerRequestInfo.uid = loader.uid;
-	
+		[[NSUserDefaults standardUserDefaults] setObject:_bannerRequestInfo.uid forKey:WPSessionKey];
+	}
+
 	if (loader.sdkActions)
 		[self checkAndDoActions:loader.sdkActions];
 
@@ -771,8 +775,10 @@
 	if (loader.sdkParameters)
 		[self updateParameters:loader.sdkParameters];
 
-	if (loader.uid)
+	if (loader.uid) {
 		_bannerRequestInfo.uid = loader.uid;
+		[[NSUserDefaults standardUserDefaults] setObject:_bannerRequestInfo.uid forKey:WPSessionKey];
+	}
 
 	if (loader.sdkActions)
 		[self checkAndDoActions:loader.sdkActions];
