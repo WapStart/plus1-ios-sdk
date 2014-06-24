@@ -119,7 +119,7 @@
 - (NSString *) getCurrentETag
 {
 	if (_currentETag == nil && _bannerRequestInfo.uid != nil)
-		_currentETag = [_bannerRequestInfo.uid stringByAppendingString:@"_0"];
+		_currentETag = _bannerRequestInfo.uid;
 
 	return _currentETag;
 }
@@ -262,10 +262,12 @@
 		
 		if (etagValue != nil) {
 			_currentETag = etagValue;
-			NSArray *etagParts = [etagValue componentsSeparatedByString:@"_"];
-			[etagParts delete:[etagParts lastObject]]; // NOTE: remove request counter
-			
-			self.uid = [etagParts componentsJoinedByString:@"_"];
+
+			NSRange range = [etagValue rangeOfString:@":"];
+			self.uid =
+				range.location != NSNotFound
+					? [etagValue substringToIndex:range.location]
+					: etagValue;
 		}
 	}
 }
