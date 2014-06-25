@@ -262,6 +262,7 @@
 		
 		if (etagValue != nil) {
 			_currentETag = etagValue;
+			WPLogDebug(@"New current ETag value: %@", _currentETag);
 
 			NSRange range = [etagValue rangeOfString:@":"];
 			self.uid =
@@ -277,7 +278,15 @@
 	if (connection != _urlConnection)
 		return;
 
-	self.uid = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSString *uid = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSRange range = [uid rangeOfString:@"^\\S+\\n?$" options:NSRegularExpressionSearch];
+
+	if (range.location != NSNotFound) {
+		self.uid = [uid stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		WPLogDebug(@"Unique identifier (UID): %@", self.uid);
+	} else {
+		WPLogError(@"Retrieve strange UID: %@", uid);
+	}
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

@@ -243,7 +243,8 @@
 
 		if (etagValue != nil) {
 			_currentETag = etagValue;
-			
+			WPLogDebug(@"New current ETag value: %@", _currentETag);
+
 			NSRange range = [etagValue rangeOfString:@":"];
 			self.uid =
 				range.location != NSNotFound
