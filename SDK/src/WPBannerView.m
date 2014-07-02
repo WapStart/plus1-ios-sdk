@@ -826,11 +826,6 @@
 
 #pragma mark MRAdViewDelegate
 
-- (UIViewController *)viewControllerForPresentingModalView
-{
-	return (UIViewController*)self.delegate;
-}
-
 - (void) willExpandAd:(MRAdView *)adView toFrame:(CGRect)frame
 {
 	WPLogDebug(@"MRAID: Will expanded!");
@@ -887,6 +882,11 @@
 }
 
 #pragma mark MRAdViewDelegate / WPAdViewDelegate
+
+- (UIViewController *)viewControllerForPresentingModalView
+{
+	return (UIViewController*)self.delegate;
+}
 
 - (void)adDidLoad:(UIView *)adView;
 {

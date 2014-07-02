@@ -56,6 +56,11 @@
 
 @protocol WPAdViewDelegate <NSObject>
 
+@required
+
+// Retrieves the view controller from which modal views should be presented.
+- (UIViewController *)viewControllerForPresentingModalView;
+
 @optional
 
 // Called when the ad loads successfully.

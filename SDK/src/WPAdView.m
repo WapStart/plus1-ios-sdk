@@ -104,6 +104,15 @@
 	[self loadHTMLString:html baseURL:url];
 }
 
+#pragma mark - Public
+
+- (void)setDelegate:(id<WPAdViewDelegate>)delegate {
+	_delegate = delegate;
+
+	_browsingController.viewControllerForPresentingModalView =
+		[_delegate viewControllerForPresentingModalView];
+}
+
 #pragma mark - Private
 
 - (void)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL {
