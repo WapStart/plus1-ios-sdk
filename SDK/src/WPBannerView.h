@@ -79,7 +79,7 @@
     BOOL _disableAutoDetectLocation;
 
 	NSMutableDictionary *_prevValueDictionary;
-	BOOL _openInApplication;
+	BOOL _openInBrowser;
 }
 
 @property (nonatomic, assign) BOOL showCloseButton;
@@ -93,7 +93,7 @@
 @property (nonatomic, assign) CGFloat reinitTimeout;
 @property (nonatomic, assign) CGFloat facebookInfoUpdateTimeout;
 @property (nonatomic, assign) CGFloat twitterInfoUpdateTimeout;
-@property (nonatomic, assign) BOOL openInApplication;
+@property (nonatomic, assign) BOOL openInBrowser;
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 

@@ -83,7 +83,7 @@
 @synthesize reinitTimeout = _reinitTimeout;
 @synthesize facebookInfoUpdateTimeout = _facebookInfoUpdateTimeout;
 @synthesize twitterInfoUpdateTimeout = _twitterInfoUpdateTimeout;
-@synthesize openInApplication = _openInApplication;
+@synthesize openInBrowser = _openInBrowser;
 
 - (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
 {
@@ -126,7 +126,7 @@
 		self.facebookInfoUpdateTimeout = DEFAULT_FACEBOOK_INFO_UPDATE_TIMEOUT;
 		self.twitterInfoUpdateTimeout = DEFAULT_TWITTER_INFO_UPDATE_TIMEOUT;
 
-		self.openInApplication = NO;
+		self.openInBrowser = NO;
 
 		// FIXME XXX: remove debug
 		/*ACAccountStore *accountStore = [[ACAccountStore alloc] init];
@@ -569,10 +569,10 @@
 		} else if ([key isEqualToString:@"openIn"]) {
 			if ([[sdkParameters valueForKey:key] intValue] == -1) {
 				if ([_prevValueDictionary valueForKey:key] != nil)
-					self.openInApplication = [[_prevValueDictionary valueForKey:key] boolValue];
+					self.openInBrowser = [[_prevValueDictionary valueForKey:key] boolValue];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithBool:self.openInApplication] forKey:key];
-				self.openInApplication = [[sdkParameters valueForKey:key] isEqualToString:@"application"];
+				[_prevValueDictionary setValue:[NSNumber numberWithBool:self.openInBrowser] forKey:key];
+				self.openInBrowser = [[sdkParameters valueForKey:key] isEqualToString:@"browser"];
 			}
 		}
 
@@ -769,7 +769,7 @@
 	} else {
 		WPAdView *adView = [[WPAdView alloc] initWithFrame:viewFrame];
 		adView.delegate = self;
-		adView.openInApplication = self.openInApplication;
+		adView.openInBrowser = self.openInBrowser;
 		[adView loadAdWithHTMLString:html baseURL:nil];
 		[_adviewPool addObject:adView];
 	}

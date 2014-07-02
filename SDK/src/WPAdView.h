@@ -42,11 +42,11 @@
 	WPAdViewBrowsingController *_browsingController;
 
     BOOL _isLoading;
-	BOOL _openInApplication;
+	BOOL _openInBrowser;
 }
 
 @property (nonatomic, assign) id<WPAdViewDelegate> delegate;
-@property (nonatomic, assign) BOOL openInApplication;
+@property (nonatomic, assign) BOOL openInBrowser;
 
 - (void)loadAdWithHTMLString:(NSString *)html baseURL:(NSURL *)url;
 

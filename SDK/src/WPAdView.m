@@ -30,6 +30,7 @@
  */
 
 #import "WPAdView.h"
+#import "WPLogging.h"
 
 @interface WPAdView ()
 
@@ -48,7 +49,7 @@
 @implementation WPAdView
 
 @synthesize delegate = _delegate;
-@synthesize openInApplication = _openInApplication;
+@synthesize openInBrowser = _openInBrowser;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -142,19 +143,22 @@
             [[UIApplication sharedApplication] openURL:url];
             result = NO;
         }
-	} else if (!_isLoading && _openInApplication && navigationType == UIWebViewNavigationTypeOther) {
-		BOOL iframe = ![request.URL isEqual:request.mainDocumentURL];
-		if (!iframe) {
-			[_browsingController openBrowserWithUrlString:[NSMutableString stringWithString:[url absoluteString]]
-											   enableBack:YES
-											enableForward:YES
-											enableRefresh:YES];
+	} else if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+		if (_openInBrowser) {
+			[[UIApplication sharedApplication] openURL:url];
+			result = NO;
+		} else {
+        	BOOL iframe = ![request.URL isEqual:request.mainDocumentURL];
+			if (!iframe) {
+				[_browsingController openBrowserWithUrlString:[NSMutableString stringWithString:[url absoluteString]]
+												   enableBack:YES
+												enableForward:YES
+												enableRefresh:YES];
+				result = NO;
+			} else {
+				WPLogWarn(@"request.URL is not equal to request.mainDocumentUrl");
+			}
 		}
-
-		result = NO;
-	} else if (!_isLoading && navigationType == UIWebViewNavigationTypeLinkClicked) {
-        [[UIApplication sharedApplication] openURL:url];
-        result = NO;
     }
 
 	if (result == NO)

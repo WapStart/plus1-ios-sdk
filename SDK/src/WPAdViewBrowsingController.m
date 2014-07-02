@@ -32,6 +32,7 @@
 #import "WPAdViewBrowsingController.h"
 #import "WPAdView.h"
 #import "WPAdView+Controllers.h"
+#import "WPLogging.h"
 
 @implementation WPAdViewBrowsingController
 
@@ -50,7 +51,7 @@
     NSURL *url = [NSURL URLWithString:urlString];
     MPAdBrowserController *controller = [[MPAdBrowserController alloc] initWithURL:url 
                                                                           delegate:self];
-    
+    WPLogDebug(@"Open application browser");
     [_view adWillPresentModalView];
     [self.viewControllerForPresentingModalView presentModalViewController:controller animated:YES];
     [controller release];
