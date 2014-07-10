@@ -244,13 +244,13 @@
 				WPLogError(@"Error parsing JSON: %@", error);
 		}
 
-		NSString *action = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_ACTION_HEADER];
+		NSString *actions = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:SDK_ACTION_HEADER];
 
-		if (action != nil) {
+		if (actions != nil) {
 			NSError *error;
 			
 			self.sdkActions =
-                [NSJSONSerialization JSONObjectWithData:[action dataUsingEncoding:NSUTF8StringEncoding]
+                [NSJSONSerialization JSONObjectWithData:[actions dataUsingEncoding:NSUTF8StringEncoding]
                                                 options:0
                                                   error:&error];
 			

@@ -78,7 +78,7 @@
 
     BOOL _disableAutoDetectLocation;
 
-	NSMutableDictionary *_prevValueDictionary;
+	NSMutableDictionary *_backupValueDictionary;
 	BOOL _openInBrowser;
 }
 

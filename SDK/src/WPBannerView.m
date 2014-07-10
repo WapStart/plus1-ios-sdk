@@ -96,7 +96,7 @@
 
 		_bannerRequestInfo = [requestInfo retain];
 		_adviewPool = [[NSMutableSet set] retain];
-		_prevValueDictionary = [[NSMutableDictionary alloc] init];
+		_backupValueDictionary = [[NSMutableDictionary alloc] init];
 
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -159,7 +159,7 @@
 
 	[_adviewPool release];
 
-	[_prevValueDictionary release];
+	[_backupValueDictionary release];
 
     [super dealloc];
 }
@@ -309,6 +309,16 @@
 		_reinitTimer = [NSTimer timerWithTimeInterval:_reinitTimeout target:self selector:@selector(sendInitRequest) userInfo:nil repeats:YES];
 
 		[[NSRunLoop currentRunLoop] addTimer:_reinitTimer forMode:NSDefaultRunLoopMode];
+	}
+}
+
+- (void) setAutoupdateTimeout:(CGFloat)timeout
+{
+	_autoupdateTimeout = timeout;
+
+	if (_autoupdateTimer != nil) {
+		[self stopAutoupdateTimer];
+		[self startAutoupdateTimer];
 	}
 }
 
@@ -530,48 +540,52 @@
 
 - (void) updateParameters:(NSDictionary *)sdkParameters
 {
-	// FIXME: dirty code
 	for (NSString *key in [sdkParameters allKeys]) {
 		WPLogDebug(@"Found SDK parameter: %@ = %@", key, [sdkParameters valueForKey:key]);
 
 		if ([key isEqualToString:@"refreshDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1) {
-				if ([_prevValueDictionary valueForKey:key] != nil)
-					self.autoupdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
+				self.autoupdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+				[_backupValueDictionary removeObjectForKey:key];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.autoupdateTimeout] forKey:key];
+				if ([_backupValueDictionary valueForKey:key] == nil)
+					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.autoupdateTimeout] forKey:key];
 				self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"reInitDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1) {
-				if ([_prevValueDictionary valueForKey:key] != nil)
-					self.reinitTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
+				self.reinitTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+				[_backupValueDictionary removeObjectForKey:key];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
+				if ([_backupValueDictionary valueForKey:key] == nil)
+					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
 				self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"facebookInfoDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1) {
-				if ([_prevValueDictionary valueForKey:key] != nil)
-					self.facebookInfoUpdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
+				self.facebookInfoUpdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+				[_backupValueDictionary removeObjectForKey:key];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] forKey:key];
+				if ([_backupValueDictionary valueForKey:key] == nil)
+					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] forKey:key];
 				self.facebookInfoUpdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"twitterInfoDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1) {
-				if ([_prevValueDictionary valueForKey:key] != nil)
-					self.twitterInfoUpdateTimeout = [[_prevValueDictionary valueForKey:key] floatValue];
+			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
+				self.twitterInfoUpdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+				[_backupValueDictionary removeObjectForKey:key];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] forKey:key];
+				if ([_backupValueDictionary valueForKey:key] == nil)
+					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] forKey:key];
 				self.twitterInfoUpdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"openIn"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1) {
-				if ([_prevValueDictionary valueForKey:key] != nil)
-					self.openInBrowser = [[_prevValueDictionary valueForKey:key] boolValue];
+			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
+				self.openInBrowser = [[_backupValueDictionary valueForKey:key] boolValue];
+				[_backupValueDictionary removeObjectForKey:key];
 			} else {
-				[_prevValueDictionary setValue:[NSNumber numberWithBool:self.openInBrowser] forKey:key];
+				if ([_backupValueDictionary valueForKey:key] == nil)
+					[_backupValueDictionary setValue:[NSNumber numberWithBool:self.openInBrowser] forKey:key];
 				self.openInBrowser = [[sdkParameters valueForKey:key] isEqualToString:@"browser"];
 			}
 		}
@@ -594,18 +608,21 @@
 
 - (void) openLink:(NSString*)url
 {
+	WPLogDebug(@"Open link url template: %@", url);
 	url = [url stringByReplacingOccurrencesOfString:@"%reinitDelay%" withString:[[NSNumber numberWithFloat:self.reinitTimeout] stringValue]];
 	url = [url stringByReplacingOccurrencesOfString:@"%bannerRefreshInterval%" withString:[[NSNumber numberWithFloat:self.autoupdateTimeout] stringValue]];
 	url = [url stringByReplacingOccurrencesOfString:@"%facebookInfoRefreshInterval%" withString:[[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] stringValue]];
 	url = [url stringByReplacingOccurrencesOfString:@"%twitterInfoRefreshInterval%" withString:[[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] stringValue]];
-	url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:_bannerInfoLoader.uid];
+	url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:(_bannerInfoLoader.uid ?: @"unknown")];
+	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	WPLogDebug(@"Open link after replacements: %@", url);
 
 	NSURL *linkUrl = [NSURL URLWithString:url];
 
 	if ([[UIApplication sharedApplication] canOpenURL:linkUrl]) {
 		[[UIApplication sharedApplication] openURL:linkUrl];
 	} else
-		WPLogInfo(@"Can not open url: %@", url);
+		WPLogWarn(@"Can not open url: %@", url);
 }
 
 #pragma mark Network
