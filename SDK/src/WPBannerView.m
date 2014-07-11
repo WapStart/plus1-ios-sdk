@@ -544,45 +544,55 @@
 		WPLogDebug(@"Found SDK parameter: %@ = %@", key, [sdkParameters valueForKey:key]);
 
 		if ([key isEqualToString:@"refreshDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
-				self.autoupdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
-				[_backupValueDictionary removeObjectForKey:key];
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_backupValueDictionary valueForKey:key] != nil) {
+					self.autoupdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+					[_backupValueDictionary removeObjectForKey:key];
+				}
 			} else {
 				if ([_backupValueDictionary valueForKey:key] == nil)
 					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.autoupdateTimeout] forKey:key];
 				self.autoupdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"reInitDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
-				self.reinitTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
-				[_backupValueDictionary removeObjectForKey:key];
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_backupValueDictionary valueForKey:key] != nil) {
+					self.reinitTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+					[_backupValueDictionary removeObjectForKey:key];
+				}
 			} else {
 				if ([_backupValueDictionary valueForKey:key] == nil)
 					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.reinitTimeout] forKey:key];
 				self.reinitTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"facebookInfoDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
-				self.facebookInfoUpdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
-				[_backupValueDictionary removeObjectForKey:key];
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_backupValueDictionary valueForKey:key] != nil) {
+					self.facebookInfoUpdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+					[_backupValueDictionary removeObjectForKey:key];
+				}
 			} else {
 				if ([_backupValueDictionary valueForKey:key] == nil)
 					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] forKey:key];
 				self.facebookInfoUpdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"twitterInfoDelay"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
-				self.twitterInfoUpdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
-				[_backupValueDictionary removeObjectForKey:key];
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_backupValueDictionary valueForKey:key] != nil) {
+					self.twitterInfoUpdateTimeout = [[_backupValueDictionary valueForKey:key] floatValue];
+					[_backupValueDictionary removeObjectForKey:key];
+				}
 			} else {
 				if ([_backupValueDictionary valueForKey:key] == nil)
 					[_backupValueDictionary setValue:[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] forKey:key];
 				self.twitterInfoUpdateTimeout = [[sdkParameters valueForKey:key] floatValue];
 			}
 		} else if ([key isEqualToString:@"openIn"]) {
-			if ([[sdkParameters valueForKey:key] intValue] == -1 && [_backupValueDictionary valueForKey:key] != nil) {
-				self.openInBrowser = [[_backupValueDictionary valueForKey:key] boolValue];
-				[_backupValueDictionary removeObjectForKey:key];
+			if ([[sdkParameters valueForKey:key] intValue] == -1) {
+				if ([_backupValueDictionary valueForKey:key] != nil) {
+					self.openInBrowser = [[_backupValueDictionary valueForKey:key] boolValue];
+					[_backupValueDictionary removeObjectForKey:key];
+				}
 			} else {
 				if ([_backupValueDictionary valueForKey:key] == nil)
 					[_backupValueDictionary setValue:[NSNumber numberWithBool:self.openInBrowser] forKey:key];
