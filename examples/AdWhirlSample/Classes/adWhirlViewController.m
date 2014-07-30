@@ -47,7 +47,7 @@
 	WPBannerRequestInfo *requestInfo = 
 		[[WPBannerRequestInfo alloc] initWithApplicationId:/* Place your WapStart Plus1 application id here */];
     
-	plus1Banner = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+	plus1Banner = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo andCallbackUrl:/* Place your callback url here */];
 	plus1Banner.showCloseButton = NO;
 	plus1Banner.autoupdateTimeout = 0;
 	plus1Banner.delegate = self;

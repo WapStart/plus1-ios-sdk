@@ -12,10 +12,14 @@ WPBannerView
     @property (nonatomic, readonly) CGFloat bannerHeight;
     @property (nonatomic, assign) BOOL disableAutoDetectLocation;
     @property (nonatomic, assign) UIInterfaceOrientation orientation;
+    @property (nonatomic, assign) CGFloat reinitTimeout;
+    @property (nonatomic, assign) CGFloat facebookInfoUpdateTimeout;
+    @property (nonatomic, assign) CGFloat twitterInfoUpdateTimeout;
+    @property (nonatomic, assign) BOOL openInBrowser;
 
     @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 
-    (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo;
+    (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo andCallbackUrl:(NSString *) callbackUrl;
 
     (void) showFromTop:(BOOL) animated;
     (void) showFromBottom:(BOOL) animated;
@@ -42,9 +46,17 @@ WPBannerView
   Высота баннера в данный момент
 * `disableAutoDetectLocation`  
   Получение местонахождения пользователя. Информация автоматически получаться не будет (по умолчанию: *YES*)
+* `orientation`  
+  Ориентация экрана
+* `reinitTimeout`  
+  Интервал времени между запросами инициализации
+* `facebookInfoUpdateTimeout`  
+  Интервал времени между обновлениями идентификатора пользователя в facebook
+* `twitterInfoUpdateTimeout`  
+  Интервал времени между обновлениями идентификатора пользователя в twitter
 * `delegate`  
   Объект, который будет информироваться о текущем состоянии баннера (см. [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md)
-* `(id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo`  
+* `(id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo andCallbackUrl:(NSString *) callbackUrl`  
   Инициализация объекта
 * `(void) showFromTop:(BOOL) animated`  
   Показать баннер сверху superview

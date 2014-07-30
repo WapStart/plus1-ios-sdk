@@ -26,6 +26,15 @@ Plus1 WapStart iOS SDK распространяется под свободно�
 # Использование SDK
 Примеры настройки и конфигурации баннеров можно посмотреть в тестовом приложении [WapPlusDemo](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/WapPlusDemo). В этом разделе даются краткие пояснения для быстрой настройки собственного проекта.
 
+В первую очередь необходимо добавить собственную url-схему. Это необходимо для возврата из браузера обратно в приложение после синхронизации cookie пользователя. Схему нужно добавить в plist вашего приложения.
+
+Например, для тестового приложения WapPlusDemo url-схема выглядит следующим образом:
+![WapPlusDemo url scheme](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/demo-url-scheme.png)
+
+Для тестового приложения в качестве схемы выступает wsp1demo://
+
+**Внимание:** для гарантии возврата в ваше приложение схема должна быть уникальна. Если указанная вами схема используется другим приложением, поведение iOS не регламентированно и переход по ссылке может быть осуществлен в любое приложение. Постарайтесь придумать достаточно уникальную схему.
+
 ## Добавление баннера в приложение
 Добавьте поддержку протокола [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) к наследнику *UIViewController*:
 
@@ -61,7 +70,7 @@ Plus1 WapStart iOS SDK распространяется под свободно�
 
   WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:PLUS1_APP_ID];
 
-  topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+  topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo andCallbackUrl:@"wsp1demo://ru.wapstart.plus1.ios.demoapp"];
   topBannerView.showCloseButton = YES;
   topBannerView.delegate = self;
   topBannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
@@ -118,7 +127,7 @@ Plus1 WapStart iOS SDK распространяется под свободно�
         [[WPBannerRequestInfo alloc] initWithApplicationId:
                             /* Place your WapStart Plus1 application id here */];
 
-    plus1Banner = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+    plus1Banner = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo andCallbackUrl:/* Place your callback url here */];
     plus1Banner.showCloseButton = NO;
     plus1Banner.autoupdateTimeout = 0;
     plus1Banner.delegate = self;
