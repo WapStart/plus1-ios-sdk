@@ -132,18 +132,6 @@
 
 		if (!_callbackUrl)
 			@throw([NSException exceptionWithName:@"WPBannerView" reason:@"You must define callback url" userInfo:nil]);
-
-		// FIXME XXX: remove debug
-		/*ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-		ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-
-		[accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error){
-			if (granted && !error) {
-				WPLogDebug(@"access granted");
-			} else {
-				WPLogDebug(@"access NOT granted or error accurs");
-			}
-		}];*/
     }
 
     return self;
@@ -709,9 +697,6 @@
 			[[requestCls performSelector:@selector(requestForMe)] performSelector:@selector(startWithCompletionHandler) withObject:
 				^(id *connection, NSDictionary<NSObject> *aUser, NSError *error) {
 					if (!error) {
-						//FIXME XXX: rm debug
-						NSLog(@"Facebook user id=%@", [aUser objectForKey:@"id"]);
-
 						dispatch_sync(dispatch_get_main_queue(), ^{
 							_bannerRequestInfo.facebookUserHash = [WPUtils sha1Hash:[aUser objectForKey:@"id"]];
 
