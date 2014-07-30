@@ -45,7 +45,7 @@
 #define STATUS_CODE_NO_BANNER 204
 
 #define ROTATOR_URL @"http://ro.plus1.wapstart.ru"
-#define SDK_VERSION @"2.2"
+#define SDK_VERSION @"2.2.0"
 
 #define SDK_PARAMETERS_HEADER @"X-Plus1-SDK-Parameters"
 #define SDK_ACTION_HEADER @"X-Plus1-SDK-Action"

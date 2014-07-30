@@ -1,3 +1,8 @@
+Plus1 WapStart iOS SDK 2.2.0, 2014-07-30
+----------------------
+- Plus1 WapStart API v3 implemented
+- Small bug fixes
+
 Plus1 WapStart iOS SDK 2.1.3, 2014-01-30
 ----------------------
 - Fixed EXC_BAD_ACCESS caused by empty string in sha1Hash function
