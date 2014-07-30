@@ -42,6 +42,7 @@
 		CED8A10015A610BE00F2AC06 /* wp_banner_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CED8A0FD15A610BE00F2AC06 /* wp_banner_background.png */; };
 		CEED750418CF507A00FD5ABF /* WPInitRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEED750318CF507A00FD5ABF /* WPInitRequestLoader.m */; };
 		CEEF2EFB18155FEC00143221 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF2EFA18155FEC00143221 /* AdSupport.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		CEF2B5E61988EB8A000A8F48 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF2B5E51988EB8A000A8F48 /* NSString+Base64.m */; };
 		CEF6BA52184E565400331A90 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF6BA4E184CABB700331A90 /* SFHFKeychainUtils.m */; };
 		CEF6BA54184E568600331A90 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF6BA53184E568500331A90 /* Security.framework */; };
 		CEFB41FC16F1FDEE0089981B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFB41FB16F1FDEE0089981B /* Default-568h@2x.png */; };
@@ -114,6 +115,8 @@
 		CEED750318CF507A00FD5ABF /* WPInitRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPInitRequestLoader.m; sourceTree = "<group>"; };
 		CEEF2EFA18155FEC00143221 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		CEF100631743914100D3FA7F /* WPConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WPConst.h; sourceTree = "<group>"; };
+		CEF2B5E41988EB8A000A8F48 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		CEF2B5E51988EB8A000A8F48 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		CEF6BA4D184CABB700331A90 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		CEF6BA4E184CABB700331A90 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		CEF6BA53184E568500331A90 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -216,6 +219,8 @@
 		CED8A07815A60E9000F2AC06 /* Plus1 SDK */ = {
 			isa = PBXGroup;
 			children = (
+				CEF2B5E41988EB8A000A8F48 /* NSString+Base64.h */,
+				CEF2B5E51988EB8A000A8F48 /* NSString+Base64.m */,
 				CEF6BA4D184CABB700331A90 /* SFHFKeychainUtils.h */,
 				CEF6BA4E184CABB700331A90 /* SFHFKeychainUtils.m */,
 				CED8A07915A60E9000F2AC06 /* MPAdBrowserController.h */,
@@ -379,6 +384,7 @@
 				CED8A0B215A60E9000F2AC06 /* WPUtils.m in Sources */,
 				CEED750418CF507A00FD5ABF /* WPInitRequestLoader.m in Sources */,
 				CE09981E18E9A5FF0040CCA2 /* WPAdViewBrowsingController.m in Sources */,
+				CEF2B5E61988EB8A000A8F48 /* NSString+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

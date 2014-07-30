@@ -47,6 +47,8 @@
 	WPInitRequestLoader *_initRequestLoader;
     WPLocationManager   *_locationManager;
 
+	NSString			*_callbackUrl;
+
 	UIView				*_currentContentView;
 
 	CGFloat _autoupdateTimeout;
@@ -97,7 +99,7 @@
 
 @property (nonatomic, assign) id<WPBannerViewDelegate> delegate;
 
-- (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo;
+- (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo andCallbackUrl:(NSString *) callbackUrl;
 
 - (void) showFromTop:(BOOL) animated;
 - (void) showFromBottom:(BOOL) animated;

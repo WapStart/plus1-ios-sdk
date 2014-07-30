@@ -65,15 +65,15 @@
 	[self.view addSubview:logoView];
 
 	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:PLUS1_APP_ID];
-    
-	topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+
+	topBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo andCallbackUrl:@"wsp1demo://ru.wapstart.plus1.ios.demoapp"];
 	topBannerView.showCloseButton = YES;
 	topBannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	topBannerView.delegate = self;
 	[topBannerView reloadBanner];
 	[self.view addSubview:topBannerView];
 
-	bottomBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+	bottomBannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo andCallbackUrl:@"wsp1demo://ru.wapstart.plus1.ios.demoapp"];
 	bottomBannerView.showCloseButton = NO;
 	bottomBannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	bottomBannerView.delegate = self;

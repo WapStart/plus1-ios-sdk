@@ -68,7 +68,7 @@
 
 	WPBannerRequestInfo *requestInfo = [[WPBannerRequestInfo alloc] initWithApplicationId:PLUS1_APP_ID];
 	
-	bannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo];
+	bannerView = [[WPBannerView alloc] initWithBannerRequestInfo:requestInfo andCallbackUrl:@"wsp1demo://ru.wapstart.plus1.ios.demoapp"];
 	bannerView.showCloseButton = YES;
 	bannerView.autoupdateTimeout = UPDATE_BANNER_TIMEOUT;
 	bannerView.delegate = self;

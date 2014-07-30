@@ -35,6 +35,7 @@
 #import "WPLogging.h"
 #import "WPConst.h"
 #import "WPUtils.h"
+#import "NSString+Base64.h"
 
 @interface WPBannerView (PrivateMethods)
 
@@ -85,7 +86,7 @@
 @synthesize twitterInfoUpdateTimeout = _twitterInfoUpdateTimeout;
 @synthesize openInBrowser = _openInBrowser;
 
-- (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo
+- (id) initWithBannerRequestInfo:(WPBannerRequestInfo *) requestInfo andCallbackUrl:(NSString *) callbackUrl
 {
     if ((self = [super initWithFrame:CGRectZero]))
 	{
@@ -93,6 +94,7 @@
 		self.isMinimized = NO;
 		_showCloseButton = YES;
 		_disableAutoDetectLocation = YES;
+		_callbackUrl = callbackUrl;
 
 		_bannerRequestInfo = [requestInfo retain];
 		_adviewPool = [[NSMutableSet set] retain];
@@ -127,6 +129,9 @@
 		self.twitterInfoUpdateTimeout = DEFAULT_TWITTER_INFO_UPDATE_TIMEOUT;
 
 		self.openInBrowser = NO;
+
+		if (!_callbackUrl)
+			@throw([NSException exceptionWithName:@"WPBannerView" reason:@"You must define callback url" userInfo:nil]);
 
 		// FIXME XXX: remove debug
 		/*ACAccountStore *accountStore = [[ACAccountStore alloc] init];
@@ -624,6 +629,7 @@
 	url = [url stringByReplacingOccurrencesOfString:@"%facebookInfoRefreshInterval%" withString:[[NSNumber numberWithFloat:self.facebookInfoUpdateTimeout] stringValue]];
 	url = [url stringByReplacingOccurrencesOfString:@"%twitterInfoRefreshInterval%" withString:[[NSNumber numberWithFloat:self.twitterInfoUpdateTimeout] stringValue]];
 	url = [url stringByReplacingOccurrencesOfString:@"%uid%" withString:(_bannerInfoLoader.uid ?: @"unknown")];
+	url = [url stringByReplacingOccurrencesOfString:@"%encodedCallback%" withString:[NSString stringWithBase64EncodedString:_callbackUrl]];
 	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	WPLogDebug(@"Open link after replacements: %@", url);
 
