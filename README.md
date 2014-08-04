@@ -1,42 +1,42 @@
 Plus1 WapStart iOS SDK
 ======================
-Это open source библиотека для интеграции рекламы сети [Plus1 WapStart](https://plus1.wapstart.ru) в ваши iOS-приложения, включая iPhone и iPad.
+This is an open source library for [Plus1 WapStart](https://plus1.wapstart.ru) network advertisement integration into your iOS Apps, including iPhone and  iPad.
 
-Plus1 WapStart iOS SDK распространяется под свободной лицензией BSD (as is).
+Plus1 WapStart iOS SDK is distributed under a free license BSD (as is).
 
-# Установка и настройка
+# Installation and set up
 
-1. Скачайте последнюю версию SDK: https://github.com/WapStart/plus1-ios-sdk/tags
-2. Скопируйте все файлы, находящиеся в директориях _SDK/resources_ и _SDK/src_, в свой проект;
-3. В prefix header файле *(.pch)* своего приложения укажите константы, необходимые для работы SDK. Например:
+1. Download our latest version of SDK: https://github.com/WapStart/plus1-ios-sdk/tags
+2. Copy all files located from directories _SDK/resources_ и _SDK/src_ into your project;
+3. In prefix header file *(.pch)* of your App state the constant values necessary for working with SDK. For example:
 
-    \#define PLUS1_APP_ID 4242 // Идентификатор приложения в системе Plus1 WapStart  
-    \#define UPDATE_BANNER_TIMEOUT 15 // Частота обновления баннера в секундах
+    \#define PLUS1_APP_ID 4242 // App Identification in Plus1 WapStart system  
+    \#define UPDATE_BANNER_TIMEOUT 15 // Browser refresh rate in seconds
 
-Для корректной работы тестового приложения также требуется указать идентификатор площадки *(PLUS1_APP_ID)* в файле [WapPlusDemo_Prefix.pch](https://github.com/WapStart/plus1-ios-sdk/blob/master/examples/WapPlusDemo/WapPlusDemo_Prefix.pch). Для тестового приложения [AdWhirlSample](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/AdWhirlSample) идентификатор площадки нужно задать в файле [adWhirlViewController.m](https://github.com/WapStart/plus1-ios-sdk/blob/master/examples/AdWhirlSample/Classes/adWhirlViewController.m#L48) (метод **initWithApplicationId**).
+For the correct functioning of your test App please also specify publisher identification *(PLUS1_APP_ID)* in [WapPlusDemo_Prefix.pch](https://github.com/WapStart/plus1-ios-sdk/blob/master/examples/WapPlusDemo/WapPlusDemo_Prefix.pch) file. For a test App [AdWhirlSample](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/AdWhirlSample) publisher identification must be specified in [adWhirlViewController.m](https://github.com/WapStart/plus1-ios-sdk/blob/master/examples/AdWhirlSample/Classes/adWhirlViewController.m#L48) (**initWithApplicationId** method).
 
-Идентификатор площадки *PLUS1_APP_ID* можно узнать на странице **Код для площадки** после регистрации в системе [Plus1 WapStart](https://plus1.wapstart.ru) и добавления площадки типа iOS.
+Publisher identification *PLUS1_APP_ID* can be found on **Publisher code** page after registration in [Plus1 WapStart](https://plus1.wapstart.ru) system and added an iOS type publisher.
 
-## Если используется ARC
-Если вы используете ARC в вашем приложении, то требуется добавить флаг компилятора **-fno-objc-arc** к классам SDK. В противном случае на этапе компиляции будут ошибки.
+## If you use ARC
+If you use ARC in your App, you need to add **-fno-objc-arc** compilator flag to SDK classes. Otherwise there will be errors at the compilation stage.
 
-Для добавления флагов пройдите в настройки вашего проекта, затем перейдите в *Build Phases*, раскройте список *Compile Sources*, найдите в списке классов нужные и кликните по ним двойным щелчком. После добавления флага должен получиться примерно следующий результат:
-![Добавление флага -fno-objc-arc](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/flag-fno-objc-arc.png)
+To add flags, go to your project settings, then to *Build Phases*, open *Compile Sources* list, find the necessary classes and double click on them. After adding the flag you will see the following result:
+![Adding flag -fno-objc-arc](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/flag-fno-objc-arc.png)
 
-# Использование SDK
-Примеры настройки и конфигурации баннеров можно посмотреть в тестовом приложении [WapPlusDemo](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/WapPlusDemo). В этом разделе даются краткие пояснения для быстрой настройки собственного проекта.
+# Using SDK
+Examples of banner set up and configuring can be found in test App [WapPlusDemo](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/WapPlusDemo). This section contains brief comments for quick project set up.
 
-В первую очередь необходимо добавить собственную url-схему. Это необходимо для возврата из браузера обратно в приложение после синхронизации cookie пользователя. Схему нужно добавить в plist вашего приложения.
+First, add your own url scheme. It is necessary for return back to the App from the browser after the user cookie synchronization. The scheme must be added to your App plist.
 
-Например, для тестового приложения WapPlusDemo url-схема выглядит следующим образом:
+For example, for Например, WapPlusDemo test App url scheme looks as follows:
 ![WapPlusDemo url scheme](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/demo-url-scheme.png)
 
-Для тестового приложения в качестве схемы выступает wsp1demo://
+For a test App Для wsp1demo:// can be used as a scheme.
 
-**Внимание:** для гарантии возврата в ваше приложение схема должна быть уникальна. Если указанная вами схема используется другим приложением, поведение iOS не регламентированно и переход по ссылке может быть осуществлен в любое приложение. Постарайтесь придумать достаточно уникальную схему.
+**Note:** in order to guaranty the return to your App the scheme must be unique. If your specified scheme is being used by another App, iOS behavior is not regulated and link may lead to any App. Try to create a unique scheme.
 
-## Добавление баннера в приложение
-Добавьте поддержку протокола [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) к наследнику *UIViewController*:
+## Adding banner into your App
+Add protocol [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) support to successor *UIViewController*:
 
 ```ObjectiveC
 #import <UIKit/UIKit.h>
@@ -50,7 +50,7 @@ Plus1 WapStart iOS SDK распространяется под свободно�
 
 @end
 ```
-Инициализируйте и настройте объекты [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) и [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md) в методе **viewDidLoad** следующим образом:
+Initialize and tune objects [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) and [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md) in **viewDidLoad** method as follows:
 
 ```ObjectiveC
 #import "ExampleViewController.h"
@@ -83,19 +83,19 @@ Plus1 WapStart iOS SDK распространяется под свободно�
 
 @end
 ```
-Все объекты можно настраивать на ваше усмотрение - смотрите подробное описание свойств объектов [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) и [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md).
+All objects may be tuned as you like – see detailed description of object specifications for [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) and [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md).
 
-Если необходимо, добавьте в ваше приложение необходимые методы протокола [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md).
+If necessary, add the required methods of [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) protocol into your App.
 
-# Использование SDK с AdWhirl
-Предполагается, что вы знакомы с AdWhirl и выполнили все шаги по его интеграции в приложение.
+# Using SDK with AdWhirl
+We suppose that you are familiar with AdWhirl and have already integrated it into your App.
 
-Примеры настройки и конфигурации баннеров можно посмотреть в тестовом приложении [AdWhirlSample](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/AdWhirlSample). В этом разделе даются краткие пояснения для быстрой настройки собственного проекта, использующего AdWhirl.
+Examples of banner setup and configurations can be seen in test App [AdWhirlSample](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/AdWhirlSample). This section contains brief comments for quick setup of your project that uses AdWhirl.
 
-Ниже приводится последовательность действий для добавления рекламной сети [Plus1 WapStart](https://plus1.wapstart.ru) через механизм **Custom Events**.
+Below you can find the steps for adding [Plus1 WapStart](https://plus1.wapstart.ru) advertising network via **Custom Events** mechanism.
 
-## Добавление кода в приложение с AdWhirl
-Добавьте поддержку протокола [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) (если необходимо), объект класса [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md) и метод **plus1CustomEvent**, отвечающий за получение баннеров от сети:
+## Adding a code into your App with AdWhirl
+Add protocol [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) (if necessary), object of [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md) class and **plus1CustomEvent** method, responsible for receiving banners from the network:
 
 ```ObjectiveC
 #import <UIKit/UIKit.h>
@@ -111,7 +111,7 @@ Plus1 WapStart iOS SDK распространяется под свободно�
 
 @end
 ```
-Инициализируйте и настройте объекты [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) и [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md) в методе **viewDidLoad**, добавьте имплементацию метода **plus1CustomEvent** для обработки событий AdWhirl:
+Initialize and set up objects [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) and [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md) in **viewDidLoad** method, add implementation of method **plus1CustomEvent** for processing of AdWhirl events:
 
 ```ObjectiveC
 #import "adWhirlViewController.h"
@@ -149,15 +149,15 @@ Plus1 WapStart iOS SDK распространяется под свободно�
 
 @end
 ```
-Если необходимо, добавьте в ваше приложение необходимые методы протокола [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md).
+If necessary, add the required methods of [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) protocol into your App.
 
-##Добавление Custom Event в AdWhirl
-Зайдите в панель управления приложением на сайте AdWhirl и добавьте вновь созданный Custom Event к сети:
-![Добавление Custom Event](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/plus1_custom_event.png)
+## Adding Custom Event in AdWhirl
+Go to App control panel on AdWhirl site and add newly created Custom Event to the network:
+![Adding Custom Event](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/plus1_custom_event.png)
 
-После добавления вы сможете указать процент рекламных объявлений, который будет отсылаться сети [Plus1 WapStart](https://plus1.wapstart.ru).
+After adding it, you will be able to specify the percentage of ads that will be sent to [Plus1 WapStart](https://plus1.wapstart.ru) network.
 
-# Контактная информация
-По всем возникающим у вас вопросам интеграции вы можете обратиться в службу поддержки пользователей:  
+# Contact information
+If you have any questions on integration please contact our support team:  
 E-Mail: clientsupport@co.wapstart.ru  
 ICQ: 553425962
