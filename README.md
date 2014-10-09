@@ -26,7 +26,7 @@ To add flags, go to your project settings, then to *Build Phases*, open *Compile
 # Using SDK
 Examples of banner set up and configuring can be found in test App [WapPlusDemo](https://github.com/WapStart/plus1-ios-sdk/tree/master/examples/WapPlusDemo). This section contains brief comments for quick project set up.
 
-First, add your own url scheme. It is necessary for return back to the App from the browser after the user cookie synchronization. The scheme must be added to your App plist.
+First, add your own url scheme. It is necessary for return back to the App from the browser after the user cookie synchronization. The scheme must be added to your App plist. If you are using *disabledOpenLinkAction* of [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md), you may skip these settings (not recommended).
 
 For example, for Например, WapPlusDemo test App url scheme looks as follows:
 ![WapPlusDemo url scheme](https://github.com/WapStart/plus1-ios-sdk/raw/master/doc/demo-url-scheme.png)
@@ -83,6 +83,8 @@ Initialize and tune objects [WPBannerRequestInfo](https://github.com/WapStart/pl
 
 @end
 ```
+You may set *nil* for *andCallbackUrl* if you are using *disabledOpenLinkAction* of [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) (not recommended).
+
 All objects may be tuned as you like – see detailed description of object specifications for [WPBannerRequestInfo](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerRequestInfo.md) and [WPBannerView](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerView.md).
 
 If necessary, add the required methods of [WPBannerViewDelegate](https://github.com/WapStart/plus1-ios-sdk/blob/master/doc/WPBannerViewDelegate.md) protocol into your App.
