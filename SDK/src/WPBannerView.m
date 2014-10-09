@@ -766,7 +766,7 @@
 		return;
 	}
 
-	if (STATUS_CODE_ACCEPTED != loader.statusCode) {
+	if (STATUS_CODE_OK != loader.statusCode) {
 		WPLogError(@"An error occurred on the server. Status code was %d", loader.statusCode);
 
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
