@@ -43,6 +43,7 @@
 #define DEFAULT_MINIMIZED_LABEL @"Открыть баннер"
 
 #define STATUS_CODE_NO_BANNER 204
+#define STATUS_CODE_ACCEPTED 200
 
 #define SERVER_HOST @"ro.plus1.wapstart.ru"
 #define SDK_VERSION @"2.2.0"

@@ -98,7 +98,7 @@
 {
 	NSMutableString *url = [NSMutableString stringWithFormat:@"http://%@/v3/%d.%@", SERVER_HOST, self.applicationId, format];
 
-	NSMutableArray *params = [NSMutableArray array];
+	NSMutableArray *params = [[NSMutableArray alloc] init];
 
 	if (self.uid != nil) {
 		[params addObject:[NSString stringWithFormat:@"uid=%@", self.uid]];

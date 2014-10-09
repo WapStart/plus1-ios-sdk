@@ -747,19 +747,6 @@
 
 - (void) bannerInfoLoaderDidFinish:(WPBannerInfoLoader *) loader
 {
-	if (loader.sdkParameters)
-		[self updateParameters:loader.sdkParameters];
-
-	if (loader.uid) {
-		_bannerRequestInfo.uid = loader.uid;
-		[[NSUserDefaults standardUserDefaults] setObject:_bannerRequestInfo.uid forKey:WPSessionKey];
-	}
-
-	if (loader.sdkActions)
-		[self checkAndDoActions:loader.sdkActions];
-
-	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
 	if (
 		STATUS_CODE_NO_BANNER == loader.statusCode
 		|| (
@@ -778,6 +765,31 @@
 		[self hide:YES];
 		return;
 	}
+
+	if (STATUS_CODE_ACCEPTED != loader.statusCode) {
+		WPLogError(@"An error occurred on the server. Status code was %d", loader.statusCode);
+
+		[_bannerInfoLoader release], _bannerInfoLoader = nil;
+
+		if ([_delegate respondsToSelector:@selector(bannerViewInfoDidFailWithError:)])
+			[_delegate bannerViewInfoDidFailWithError:WPBannerInfoLoaderErrorCodeUnknown];
+
+		[self hide:YES];
+		return;
+	}
+
+	if (loader.sdkParameters)
+		[self updateParameters:loader.sdkParameters];
+
+	if (loader.uid) {
+		_bannerRequestInfo.uid = loader.uid;
+		[[NSUserDefaults standardUserDefaults] setObject:_bannerRequestInfo.uid forKey:WPSessionKey];
+	}
+
+	if (loader.sdkActions)
+		[self checkAndDoActions:loader.sdkActions];
+
+	NSString *html = [[[[NSString alloc] initWithData:loader.data encoding:NSUTF8StringEncoding] autorelease] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
 	WPLogDebug(@"Creating adView for type: %@, html: %@", loader.adType, html);
 
