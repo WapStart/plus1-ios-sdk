@@ -130,7 +130,7 @@
 
 		self.openInBrowser = NO;
 
-		if (!_callbackUrl)
+		if (!requestInfo.disabledOpenLinkAction && !_callbackUrl)
 			@throw([NSException exceptionWithName:@"WPBannerView" reason:@"You must define callback url" userInfo:nil]);
     }
 
