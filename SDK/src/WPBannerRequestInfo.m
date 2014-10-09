@@ -42,6 +42,7 @@
 @synthesize uid = _uid;
 @synthesize facebookUserHash = _facebookUserHash;
 @synthesize twitterUserHash = _twitterUserHash;
+@synthesize disabledOpenLinkAction = _disabledOpenLinkAction;
 
 - (id) initWithApplicationId:(NSInteger) applicationId
 {

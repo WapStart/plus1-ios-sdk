@@ -44,6 +44,7 @@
 	NSString	*_uid;
 	NSString	*_facebookUserHash;
 	NSString	*_twitterUserHash;
+	BOOL		_disabledOpenLinkAction;
 }
 
 @property (nonatomic, assign) NSInteger  applicationId;
@@ -54,6 +55,7 @@
 @property (nonatomic, retain) NSString   *uid;
 @property (nonatomic, retain) NSString   *facebookUserHash;
 @property (nonatomic, retain) NSString   *twitterUserHash;
+@property (nonatomic, assign) BOOL       disabledOpenLinkAction;
 
 - (id) initWithApplicationId:(NSInteger) applicationId;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;

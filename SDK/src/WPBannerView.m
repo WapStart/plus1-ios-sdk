@@ -604,7 +604,11 @@
 		WPLogDebug(@"Found SDK action: %@ = %@", key, [sdkActions valueForKey:key]);
 
 		if ([key isEqualToString:@"openLink"]) {
-			[self openLink:[sdkActions valueForKey:key]];
+			if (_bannerRequestInfo.disabledOpenLinkAction) {
+				WPLogWarn(@"'Open link' action was received, but actually disabled by request. Url was '%@'", [sdkActions valueForKey:key]);
+			} else {
+				[self openLink:[sdkActions valueForKey:key]];
+			}
 		}
 	}
 }
