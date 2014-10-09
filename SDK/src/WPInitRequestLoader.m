@@ -82,16 +82,7 @@
 
 - (NSURL *) requestUrl
 {
-	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
-
-	[url appendFormat:@"/v3/%d.init", _bannerRequestInfo.applicationId];
-
-	if (_bannerRequestInfo.uid != nil)
-		[url appendFormat:@"?uid=%@", _bannerRequestInfo.uid];
-
-	WPLogDebug(@"INIT request url: %@", url);
-
-	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	return [_bannerRequestInfo requestUrlByFormat:@"init"];
 }
 
 - (NSString *) getDisplayMetrics

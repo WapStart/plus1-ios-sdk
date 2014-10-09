@@ -61,5 +61,6 @@
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender;
 - (id) initWithApplicationId:(NSInteger) applicationId age:(NSInteger) age;
 - (id) initWithApplicationId:(NSInteger) applicationId gender:(WPGender) gender age:(NSInteger) age;
+- (NSURL*) requestUrlByFormat:(NSString*) format;
 
 @end

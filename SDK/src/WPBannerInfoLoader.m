@@ -95,13 +95,7 @@
 
 - (NSURL *) requestUrl
 {
-	NSMutableString *url = [NSMutableString stringWithFormat:ROTATOR_URL];
-
-	[url appendFormat:@"/v3/%d.html?uid=%@", _bannerRequestInfo.applicationId, _bannerRequestInfo.uid];
-
-	WPLogDebug(@"HTML request url: %@", url);
-
-	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	return [_bannerRequestInfo requestUrlByFormat:@"html"];
 }
 
 - (NSString *) getUserAgent

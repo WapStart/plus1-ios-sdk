@@ -31,6 +31,8 @@
 
 #import "WPBannerRequestInfo.h"
 #import "WPUtils.h"
+#import "WPLogging.h"
+#import "WPConst.h"
 
 @implementation WPBannerRequestInfo
 
@@ -90,6 +92,30 @@
     }
 
 	return self;
+}
+
+- (NSURL*) requestUrlByFormat:(NSString*) format
+{
+	NSMutableString *url = [NSMutableString stringWithFormat:@"http://%@/v3/%d.%@", SERVER_HOST, self.applicationId, format];
+
+	NSMutableArray *params = [NSMutableArray array];
+
+	if (self.uid != nil) {
+		[params addObject:[NSString stringWithFormat:@"uid=%@", self.uid]];
+	}
+
+	if (self.disabledOpenLinkAction) {
+		[params addObject:@"disabledOpenLinkAction=1"];
+	}
+
+	if (params.count > 0)
+		[url appendFormat:@"?%@", [params componentsJoinedByString:@"&"]];
+
+	[params release];
+
+	WPLogDebug(@"Request url with format %@: '%@'", format, url);
+
+	return [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end
