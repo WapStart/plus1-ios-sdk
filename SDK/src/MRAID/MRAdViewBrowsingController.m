@@ -28,7 +28,7 @@
                                                                           delegate:self];
     
     [_view adWillPresentModalView];
-    [self.viewControllerForPresentingModalView presentModalViewController:controller animated:YES];
+    [self.viewControllerForPresentingModalView presentViewController:controller animated:YES completion:nil];
     [controller release];
 }
 
@@ -41,7 +41,7 @@
 
 - (void)dismissBrowserController:(MPAdBrowserController *)browserController 
                         animated:(BOOL)animated {
-    [self.viewControllerForPresentingModalView dismissModalViewControllerAnimated:animated];
+    [self.viewControllerForPresentingModalView dismissViewControllerAnimated:animated completion:nil];
 
     [_view adDidDismissModalView];
 }

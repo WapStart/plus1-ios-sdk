@@ -381,8 +381,8 @@
 
 		[self.minimizedLabel drawInRect:rect
 							   withFont:font
-						  lineBreakMode:UILineBreakModeTailTruncation
-							  alignment:UITextAlignmentRight];
+						  lineBreakMode:NSLineBreakByTruncatingTail
+							  alignment:NSTextAlignmentRight];
 
 		return;
 	}
