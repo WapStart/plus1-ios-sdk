@@ -96,7 +96,7 @@
 
 - (NSURL*) requestUrlByFormat:(NSString*) format
 {
-	NSMutableString *url = [NSMutableString stringWithFormat:@"http://%@/v3/%d.%@", SERVER_HOST, self.applicationId, format];
+	NSMutableString *url = [NSMutableString stringWithFormat:@"http://%@/v3/%ld.%@", SERVER_HOST, (long)self.applicationId, format];
 
 	NSMutableArray *params = [[NSMutableArray alloc] init];
 

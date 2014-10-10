@@ -262,7 +262,7 @@
 		return;
 
 	WPLogDebug(
-		@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]
+		@"code: %ld, domain: %@, localizedDesc: %@", (long)[error code], [error domain], [error localizedDescription]
 	);
 
 	if ([error code] == -1001)

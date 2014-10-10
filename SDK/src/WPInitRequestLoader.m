@@ -134,7 +134,7 @@
 		[bodyString appendFormat:@"&sex=%d", _bannerRequestInfo.gender];
 
 	if (_bannerRequestInfo.age > 0)
-		[bodyString appendFormat:@"&age=%d", _bannerRequestInfo.age];
+		[bodyString appendFormat:@"&age=%d", (int)_bannerRequestInfo.age];
 
     if (_bannerRequestInfo.login != nil)
         [bodyString appendFormat:@"&login=%@", _bannerRequestInfo.login];
@@ -177,7 +177,7 @@
 	NSData *postData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
 
 	[postRequest setHTTPMethod:@"POST"];
-	[postRequest setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
+	[postRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
 	[postRequest setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
 	[postRequest setHTTPBody:postData];
 
@@ -285,7 +285,7 @@
 	if (connection != _urlConnection)
 		return;
 
-	WPLogDebug(@"code: %d, domain: %@, localizedDesc: %@", [error code], [error domain], [error localizedDescription]);
+	WPLogDebug(@"code: %ld, domain: %@, localizedDesc: %@", (long)[error code], [error domain], [error localizedDescription]);
 
 	if ([error code] == -1001)
 		[_delegate initRequestLoader:self didFailWithCode:WPInitRequestLoaderErrorCodeTimeout];

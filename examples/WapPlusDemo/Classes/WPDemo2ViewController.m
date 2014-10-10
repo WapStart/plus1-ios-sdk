@@ -114,7 +114,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
 
-    cell.textLabel.text = [NSString stringWithFormat:@"cell %d", indexPath.row+1];
+    cell.textLabel.text = [NSString stringWithFormat:@"cell %ld", (long)indexPath.row+1];
     
     return cell;
 }

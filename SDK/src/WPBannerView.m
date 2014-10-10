@@ -677,7 +677,7 @@
 		ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
 		NSArray *facebookAccounts = [accountStore accountsWithAccountType:accountType];
 
-		WPLogDebug(@"Total facebook accounts available: %d", facebookAccounts.count);
+		WPLogDebug(@"Total facebook accounts available: %ld", (long)facebookAccounts.count);
 
 		if (facebookAccounts.count > 0) {
 			ACAccount *account = [facebookAccounts lastObject];
@@ -725,7 +725,7 @@
 
 		NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
 
-		WPLogDebug(@"Total twitter accounts available: %d", twitterAccounts.count);
+		WPLogDebug(@"Total twitter accounts available: %lu", (unsigned long)twitterAccounts.count);
 
 		ACAccount *account = nil;
 
@@ -767,7 +767,7 @@
 	}
 
 	if (STATUS_CODE_OK != loader.statusCode) {
-		WPLogError(@"An error occurred on the server. Status code was %d", loader.statusCode);
+		WPLogError(@"An error occurred on the server. Status code was %d", (int)loader.statusCode);
 
 		[_bannerInfoLoader release], _bannerInfoLoader = nil;
 

@@ -45,7 +45,7 @@
 {
 	const char *cStr = [text UTF8String];
 	unsigned char result[CC_SHA1_DIGEST_LENGTH];
-	CC_SHA1(cStr, cStr ? strlen(cStr) : 0, result);
+	CC_SHA1(cStr, cStr ? (unsigned int)strlen(cStr) : 0, result);
 	
 	NSMutableString *hash = [NSMutableString string];
 	
