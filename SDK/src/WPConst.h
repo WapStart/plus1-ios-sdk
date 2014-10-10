@@ -46,7 +46,7 @@
 #define STATUS_CODE_OK 200
 
 #define SERVER_HOST @"ro.plus1.wapstart.ru"
-#define SDK_VERSION @"2.2.0"
+#define SDK_VERSION @"2.2.1"
 
 #define SDK_PARAMETERS_HEADER @"X-Plus1-SDK-Parameters"
 #define SDK_ACTION_HEADER @"X-Plus1-SDK-Action"
